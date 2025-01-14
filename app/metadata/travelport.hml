@@ -45,7 +45,1795 @@ definition:
             type: string
           aggregate_functions: {}
           comparison_operators: {}
-      object_types: {}
+      object_types:
+        tp_search_hotels:
+          fields:
+            hotels_response:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response
+            pagination:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_pagination
+            trace_id:
+              type:
+                type: named
+                name: Json
+            transaction_id:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response:
+          fields:
+            check_in_date_local:
+              type:
+                type: named
+                name: Json
+            check_out_date_local:
+              type:
+                type: named
+                name: Json
+            property_items:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items
+            search_point:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_search_point
+        tp_search_hotels_hotels_response_property_items:
+          fields:
+            availability:
+              type:
+                type: named
+                name: Boolean
+            brand_code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            chain_code:
+              type:
+                type: named
+                name: String
+            data_quality_summary_score:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_data_quality_summary_score
+            long_description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            lowest_private_available_rate:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate
+            lowest_public_available_rate:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate
+            name:
+              type:
+                type: named
+                name: String
+            property_code:
+              type:
+                type: named
+                name: String
+            property_info:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_property_info
+            room_types:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_room_types
+        tp_search_hotels_hotels_response_property_items_data_quality_summary_score:
+          fields:
+            property_summary:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_data_quality_summary_score_property_summary
+        tp_search_hotels_hotels_response_property_items_data_quality_summary_score_property_summary:
+          fields:
+            average_augmented_rate_quality_score:
+              type:
+                type: named
+                name: Int
+            average_augmented_room_quality_score:
+              type:
+                type: named
+                name: Int
+            merchandising_quality_score:
+              type:
+                type: named
+                name: Int
+            property_content_quality_score:
+              type:
+                type: named
+                name: Int
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate:
+          fields:
+            average_nightly_base:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_average_nightly_base
+            average_nightly_total_price:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_average_nightly_total_price
+            average_nightly_total_taxes:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_average_nightly_total_taxes
+            base:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_base
+            currency_code:
+              type:
+                type: named
+                name: String
+            rate_code_info:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_rate_code_info
+            rate_key:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_rate_key
+            short_room_description:
+              type:
+                type: named
+                name: String
+            terms:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms
+            total_price:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_total_price
+            total_taxes:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_total_taxes
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_average_nightly_base:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_average_nightly_total_price:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_average_nightly_total_taxes:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_base:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_rate_code_info:
+          fields:
+            rate_category:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_category_code:
+              type:
+                type: named
+                name: Int
+            rate_classification_code:
+              type:
+                type: named
+                name: Int
+            rate_code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_type:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_rate_key:
+          fields:
+            authority:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms:
+          fields:
+            cancel_note:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            cancel_penalties:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms_cancel_penalties
+            customer_loyalty_id_required_at_reservation:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            description:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: String
+            guarantee_type:
+              type:
+                type: named
+                name: String
+            rate_payment_info:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_qualification_id_required_at_check_in:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            refundable:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms_cancel_penalties:
+          fields:
+            cancel_short_description:
+              type:
+                type: named
+                name: String
+            deadline_local:
+              type:
+                type: named
+                name: Json
+            estimated_deadline_local:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            penalty:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms_cancel_penalties_penalty
+            penalty_notes:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms_cancel_penalties_penalty_notes
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms_cancel_penalties_penalty:
+          fields:
+            currency_amount:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms_cancel_penalties_penalty_currency_amount
+            estimated_amount:
+              type:
+                type: named
+                name: Boolean
+            original_penalty_info:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms_cancel_penalties_penalty_currency_amount:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+            currency:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_terms_cancel_penalties_penalty_notes:
+          fields:
+            message:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_total_price:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_private_available_rate_total_taxes:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate:
+          fields:
+            average_nightly_base:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_average_nightly_base
+            average_nightly_total_price:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_average_nightly_total_price
+            average_nightly_total_taxes:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_average_nightly_total_taxes
+            base:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_base
+            currency_code:
+              type:
+                type: named
+                name: String
+            rate_code_info:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_rate_code_info
+            rate_key:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_rate_key
+            short_room_description:
+              type:
+                type: named
+                name: String
+            terms:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms
+            total_price:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_total_price
+            total_taxes:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_total_taxes
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_average_nightly_base:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_average_nightly_total_price:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_average_nightly_total_taxes:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_base:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_rate_code_info:
+          fields:
+            rate_category:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_category_code:
+              type:
+                type: named
+                name: Int
+            rate_classification_code:
+              type:
+                type: named
+                name: Int
+            rate_code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_type:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_rate_key:
+          fields:
+            authority:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms:
+          fields:
+            cancel_note:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            cancel_penalties:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms_cancel_penalties
+            customer_loyalty_id_required_at_reservation:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            description:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: String
+            guarantee_type:
+              type:
+                type: named
+                name: String
+            rate_payment_info:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_qualification_id_required_at_check_in:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            refundable:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms_cancel_penalties:
+          fields:
+            cancel_short_description:
+              type:
+                type: named
+                name: String
+            deadline_local:
+              type:
+                type: named
+                name: Json
+            estimated_deadline_local:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            penalty:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms_cancel_penalties_penalty
+            penalty_notes:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms_cancel_penalties_penalty_notes
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms_cancel_penalties_penalty:
+          fields:
+            currency_amount:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms_cancel_penalties_penalty_currency_amount
+            estimated_amount:
+              type:
+                type: named
+                name: Boolean
+            original_penalty_info:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms_cancel_penalties_penalty_currency_amount:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+            currency:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_terms_cancel_penalties_penalty_notes:
+          fields:
+            message:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_total_price:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_lowest_public_available_rate_total_taxes:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_property_info:
+          fields:
+            accepted_credit_cards:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: String
+            ada_compliant:
+              type:
+                type: named
+                name: Boolean
+            address:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_property_info_address
+            amenities:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_property_info_amenities
+            check_in_time_local:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            check_out_time_local:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            distance_from_search_point:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_property_info_distance_from_search_point
+            email:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            fax:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_property_info_fax
+            featured_property_ind:
+              type:
+                type: named
+                name: Boolean
+            geolocation:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_property_info_geolocation
+            image_urls:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_property_info_image_urls
+            phone:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_property_info_phone
+            ratings:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_property_info_ratings
+        tp_search_hotels_hotels_response_property_items_property_info_address:
+          fields:
+            city:
+              type:
+                type: named
+                name: String
+            country_code:
+              type:
+                type: named
+                name: String
+            postal_code:
+              type:
+                type: named
+                name: String
+            state_province:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            street:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_property_info_amenities:
+          fields:
+            category:
+              type:
+                type: named
+                name: String
+            code:
+              type:
+                type: named
+                name: Int
+            description:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_property_info_distance_from_search_point:
+          fields:
+            unit_of_distance:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: Float
+        tp_search_hotels_hotels_response_property_items_property_info_fax:
+          fields:
+            phone_number:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_property_info_geolocation:
+          fields:
+            center:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_property_info_geolocation_center
+        tp_search_hotels_hotels_response_property_items_property_info_geolocation_center:
+          fields:
+            latitude:
+              type:
+                type: named
+                name: Float
+            longitude:
+              type:
+                type: named
+                name: Float
+        tp_search_hotels_hotels_response_property_items_property_info_image_urls:
+          fields:
+            caption:
+              type:
+                type: named
+                name: String
+            curated_image:
+              type:
+                type: named
+                name: Boolean
+            image_size:
+              type:
+                type: named
+                name: String
+            picture_category:
+              type:
+                type: named
+                name: Int
+            url:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_property_info_phone:
+          fields:
+            phone_number:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_property_info_ratings:
+          fields:
+            provider:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: Int
+        tp_search_hotels_hotels_response_property_items_room_types:
+          fields:
+            bed_types:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_bed_types
+            characteristics:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_characteristics
+            estimated_room_type_ota_code:
+              type:
+                type: named
+                name: Int
+            max_occupancy:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            rates:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_rates
+            room_amenities:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_room_types_room_amenities
+            room_image_urls:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_room_types_room_image_urls
+            short_room_description:
+              type:
+                type: named
+                name: String
+            view:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_view
+        tp_search_hotels_hotels_response_property_items_room_types_bed_types:
+          fields:
+            bed_type:
+              type:
+                type: named
+                name: String
+            quantity:
+              type:
+                type: named
+                name: Int
+            size:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_characteristics:
+          fields:
+            accessible:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            balcony_type:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_characteristics_balcony_type
+            bed_types:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_characteristics_bed_types
+            category:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_characteristics_category
+            class_:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_characteristics_class_
+            location_info:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_characteristics_location_info
+            max_occupancy:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            number_of_bathrooms:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            number_of_bedrooms:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            other_features:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: String
+            view:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_characteristics_view
+        tp_search_hotels_hotels_response_property_items_room_types_characteristics_balcony_type:
+          fields:
+            code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            description:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_characteristics_bed_types:
+          fields:
+            bed_type:
+              type:
+                type: named
+                name: String
+            quantity:
+              type:
+                type: named
+                name: Int
+            size:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_characteristics_category:
+          fields:
+            code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            description:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_characteristics_class_:
+          fields:
+            code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            description:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_characteristics_location_info:
+          fields:
+            floor:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            proximity:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+        tp_search_hotels_hotels_response_property_items_room_types_characteristics_view:
+          fields:
+            code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            description:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_rates:
+          fields:
+            accessible_room:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            booking_code:
+              type:
+                type: named
+                name: String
+            breakfast_included:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            data_quality_score:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_data_quality_score
+            dinner_included:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            lunch_included:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            non_smoking:
+              type:
+                type: named
+                name: Boolean
+            price:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price
+            quantity:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            rate_code_info:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_rate_code_info
+            rate_description:
+              type:
+                type: named
+                name: String
+            rate_key:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_rate_key
+            room_description:
+              type:
+                type: named
+                name: String
+            terms:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_terms
+            wifi_included:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        tp_search_hotels_hotels_response_property_items_room_types_rates_data_quality_score:
+          fields:
+            augmented_rate_quality_score:
+              type:
+                type: named
+                name: Int
+            augmented_room_quality_score:
+              type:
+                type: named
+                name: Int
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price:
+          fields:
+            base:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_base
+            commission:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_commission
+            currency_code:
+              type:
+                type: named
+                name: String
+            nightly_rates_breakdown:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_nightly_rates_breakdown
+            per_stay_tax_and_fee_breakdown:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown
+            price_note:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_price_note
+            taxes_included_in_base:
+              type:
+                type: named
+                name: Boolean
+            total_price:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_total_price
+            total_taxes:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_total_taxes
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_base:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_commission:
+          fields:
+            application:
+              type:
+                type: named
+                name: Boolean
+            estimated_percent:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            percent:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_nightly_rates_breakdown:
+          fields:
+            local_date:
+              type:
+                type: named
+                name: Json
+            total_price:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_nightly_rates_breakdown_total_price
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_nightly_rates_breakdown_total_price:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown:
+          fields:
+            fees:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown_fees
+            taxes:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown_taxes
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown_fees:
+          fields:
+            description:
+              type:
+                type: named
+                name: String
+            purpose:
+              type:
+                type: named
+                name: String
+            tax_code:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown_fees_value
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown_fees_value:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+            currency:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown_taxes:
+          fields:
+            description:
+              type:
+                type: named
+                name: String
+            tax_code:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown_taxes_value
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_per_stay_tax_and_fee_breakdown_taxes_value:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_price_note:
+          fields:
+            message:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_total_price:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_room_types_rates_price_total_taxes:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_room_types_rates_rate_code_info:
+          fields:
+            rate_category:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_category_code:
+              type:
+                type: named
+                name: Int
+            rate_classification_code:
+              type:
+                type: named
+                name: Int
+            rate_code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_type:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_rates_rate_key:
+          fields:
+            authority:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_rates_terms:
+          fields:
+            cancel_note:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            cancel_penalties:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: tp_search_hotels_hotels_response_property_items_room_types_rates_terms_cancel_penalties
+            customer_loyalty_id_required_at_reservation:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            description:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: String
+            guarantee_type:
+              type:
+                type: named
+                name: String
+            rate_payment_info:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            rate_qualification_id_required_at_check_in:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            refundable:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        tp_search_hotels_hotels_response_property_items_room_types_rates_terms_cancel_penalties:
+          fields:
+            cancel_short_description:
+              type:
+                type: named
+                name: String
+            deadline_local:
+              type:
+                type: named
+                name: Json
+            estimated_deadline_local:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            penalty:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_terms_cancel_penalties_penalty
+            penalty_notes:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_hotels_response_property_items_room_types_rates_terms_cancel_penalties_penalty_notes
+        tp_search_hotels_hotels_response_property_items_room_types_rates_terms_cancel_penalties_penalty:
+          fields:
+            currency_amount:
+              type:
+                type: named
+                name: tp_search_hotels_hotels_response_property_items_room_types_rates_terms_cancel_penalties_penalty_currency_amount
+            estimated_amount:
+              type:
+                type: named
+                name: Boolean
+            original_penalty_info:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_rates_terms_cancel_penalties_penalty_currency_amount:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Json
+            currency:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_rates_terms_cancel_penalties_penalty_notes:
+          fields:
+            message:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_room_amenities:
+          fields:
+            code:
+              type:
+                type: named
+                name: Int
+            description:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_property_items_room_types_room_image_urls:
+          fields:
+            caption:
+              type:
+                type: named
+                name: String
+            curated_image:
+              type:
+                type: named
+                name: Boolean
+            image_size:
+              type:
+                type: named
+                name: String
+            picture_category:
+              type:
+                type: named
+                name: Int
+            url:
+              type:
+                type: named
+                name: Json
+        tp_search_hotels_hotels_response_property_items_room_types_view:
+          fields:
+            code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            description:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_hotels_response_search_point:
+          fields:
+            latitude:
+              type:
+                type: named
+                name: Float
+            longitude:
+              type:
+                type: named
+                name: Float
+        tp_search_hotels_pagination:
+          fields:
+            page:
+              type:
+                type: named
+                name: Int
+            page_size:
+              type:
+                type: named
+                name: Int
+            pagination_token:
+              type:
+                type: named
+                name: Json
+            total_items:
+              type:
+                type: named
+                name: Int
+            total_pages:
+              type:
+                type: named
+                name: Int
+        tp_search_hotels_search_params:
+          fields:
+            propertyFilter:
+              type:
+                type: named
+                name: tp_search_hotels_search_params_propertyFilter
+            rateFilter:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_search_params_rateFilter
+            requestedCurrency:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            responseFields:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: String
+            roomFilter:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_search_params_roomFilter
+            stayDetails:
+              type:
+                type: named
+                name: tp_search_hotels_search_params_stayDetails
+        tp_search_hotels_search_params_propertyFilter:
+          fields:
+            amenityCategories:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: String
+            chainCodes:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: String
+            customerLoyaltyCards:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_search_params_propertyFilter_customerLoyaltyCards
+            hotelNameContains:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            imageSize:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            location:
+              type:
+                type: named
+                name: tp_search_hotels_search_params_propertyFilter_location
+            maxWaitTime:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            negotiatedRates:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_search_params_propertyFilter_negotiatedRates
+            recommendedPropertyAmenitiesInd:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            returnAllImageURLs:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            returnOnlyAvailableProperties:
+              type:
+                type: named
+                name: Boolean
+        tp_search_hotels_search_params_propertyFilter_customerLoyaltyCards:
+          fields:
+            supplierCode:
+              type:
+                type: named
+                name: String
+            supplierType:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_search_params_propertyFilter_location:
+          fields:
+            details:
+              type:
+                type: named
+                name: tp_search_hotels_search_params_propertyFilter_location_details
+            radius:
+              type:
+                type: named
+                name: tp_search_hotels_search_params_propertyFilter_location_radius
+            type:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_search_params_propertyFilter_location_details:
+          fields:
+            iataCode:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_search_params_propertyFilter_location_radius:
+          fields:
+            unit:
+              type:
+                type: named
+                name: String
+            value:
+              type:
+                type: named
+                name: Int
+        tp_search_hotels_search_params_propertyFilter_negotiatedRates:
+          fields:
+            masterRateCode:
+              type:
+                type: named
+                name: String
+            rateCodes:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: String
+        tp_search_hotels_search_params_rateFilter:
+          fields:
+            categories:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: String
+            rateFlags:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_search_params_rateFilter_rateFlags
+            removeSpecialRates:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        tp_search_hotels_search_params_rateFilter_rateFlags:
+          fields:
+            breakfast:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            commissionable:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            deposit:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            dinner:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            lunch:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            postpay:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            prepay:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            refundable:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        tp_search_hotels_search_params_roomFilter:
+          fields:
+            accessible:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            amenityCodes:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: Int
+            balcony:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            bedConfiguration:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: tp_search_hotels_search_params_roomFilter_bedConfiguration
+            connecting:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            family:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            highFloor:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            maxOccupancy:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            nonSmoking:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            recommendedRoomAmenitiesInd:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        tp_search_hotels_search_params_roomFilter_bedConfiguration:
+          fields:
+            minimumQuantity:
+              type:
+                type: named
+                name: Int
+            type:
+              type:
+                type: named
+                name: String
+        tp_search_hotels_search_params_stayDetails:
+          fields:
+            checkInDateLocal:
+              type:
+                type: named
+                name: String
+            checkOutDateLocal:
+              type:
+                type: named
+                name: String
+            guests:
+              type:
+                type: named
+                name: tp_search_hotels_search_params_stayDetails_guests
+            rooms:
+              type:
+                type: named
+                name: Int
+        tp_search_hotels_search_params_stayDetails_guests:
+          fields:
+            adults:
+              type:
+                type: named
+                name: Int
+            children:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: tp_search_hotels_search_params_stayDetails_guests_children
+        tp_search_hotels_search_params_stayDetails_guests_children:
+          fields:
+            age:
+              type:
+                type: named
+                name: Int
       collections: []
       functions:
         - name: hello
@@ -57,6 +1845,16 @@ definition:
           result_type:
             type: named
             name: String
+        - name: tp_search_hotels
+          description: Search for hotels using the TravelPort API
+          arguments:
+            search_params:
+              type:
+                type: named
+                name: tp_search_hotels_search_params
+          result_type:
+            type: named
+            name: tp_search_hotels
       procedures: []
     capabilities:
       version: 0.1.6
