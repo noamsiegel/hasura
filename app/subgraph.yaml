@@ -7,3 +7,13 @@ definition:
     namingConvention: graphql
   includePaths:
     - metadata
+  envMapping:
+    APP_TRAVELPORT_AUTHORIZATION_HEADER:
+      fromEnv: APP_TRAVELPORT_AUTHORIZATION_HEADER
+    APP_TRAVELPORT_READ_URL:
+      fromEnv: APP_TRAVELPORT_READ_URL
+    APP_TRAVELPORT_WRITE_URL:
+      fromEnv: APP_TRAVELPORT_WRITE_URL
+  connectors:
+    - path: connector/travelport/connector.yaml
+      connectorLinkName: travelport

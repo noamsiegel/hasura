@@ -1,3 +1,5 @@
+include:
+  - path: app/connector/travelport/compose.yaml
 services:
   engine:
     build:

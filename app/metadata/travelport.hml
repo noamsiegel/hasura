@@ -1,0 +1,69 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: travelport
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_TRAVELPORT_READ_URL
+      write:
+        valueFromEnv: APP_TRAVELPORT_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_TRAVELPORT_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        Boolean:
+          representation:
+            type: boolean
+          aggregate_functions: {}
+          comparison_operators: {}
+        Float:
+          representation:
+            type: float64
+          aggregate_functions: {}
+          comparison_operators: {}
+        HeaderMap:
+          representation:
+            type: json
+          aggregate_functions: {}
+          comparison_operators: {}
+        Int:
+          representation:
+            type: integer
+          aggregate_functions: {}
+          comparison_operators: {}
+        Json:
+          representation:
+            type: json
+          aggregate_functions: {}
+          comparison_operators: {}
+        String:
+          representation:
+            type: string
+          aggregate_functions: {}
+          comparison_operators: {}
+      object_types: {}
+      collections: []
+      functions:
+        - name: hello
+          arguments:
+            name:
+              type:
+                type: named
+                name: String
+          result_type:
+            type: named
+            name: String
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+        mutation:
+          transactional: {}
