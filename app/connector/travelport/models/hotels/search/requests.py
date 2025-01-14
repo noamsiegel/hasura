@@ -44,12 +44,14 @@ class CityLocation(BaseModel):
     iataCode: str
     radius: Radius
 
-class LocationType(BaseModel):
-    type: str
-    details: Union[AirportLocation, CoordinatesLocation, AddressLocation, CityLocation]
+class CityIataCodeLocationDetails(BaseModel):
+    iataCode: str
+
+class CityIataCodeLocationType(BaseModel):
+    type: str = "CityIATACode"
+    details: CityIataCodeLocationDetails
     radius: Radius
 
-""" Cont """
 
 class NegotiatedRates(BaseModel):
     rateCodes: List[str]
@@ -60,11 +62,11 @@ class CustomerLoyaltyCard(BaseModel):
     supplierCode: str
     supplierType: str
 
-class PropertyFilter(BaseModel):
-    location: LocationType
-    returnOnlyAvailableProperties: bool
+class CityIataCodePropertyFilter(BaseModel):
     maxWaitTime: Optional[int] = None
+    location: CityIataCodeLocationType
     chainCodes: Optional[List[str]] = None
+    returnOnlyAvailableProperties: bool
     hotelNameContains: Optional[str] = None
     negotiatedRates: Optional[NegotiatedRates] = None
     customerLoyaltyCards: Optional[List[CustomerLoyaltyCard]] = None
@@ -73,27 +75,27 @@ class PropertyFilter(BaseModel):
     recommendedPropertyAmenitiesInd: Optional[bool] = None
     amenityCategories: Optional[List[str]] = None
 
-class AirportPropertyFilter(BaseModel):
-    location: AirportLocation
-    returnOnlyAvailableProperties: bool
-    maxWaitTime: Optional[int] = None
-    chainCodes: Optional[List[str]] = None
-    hotelNameContains: Optional[str] = None
-    negotiatedRates: Optional[NegotiatedRates] = None
-    customerLoyaltyCards: Optional[List[CustomerLoyaltyCard]] = None
-    imageSize: Optional[str] = None
-    returnAllImageURLs: Optional[bool] = None
-    recommendedPropertyAmenitiesInd: Optional[bool] = None
-    amenityCategories: Optional[List[str]] = None
+# class AirportPropertyFilter(BaseModel):
+#     maxWaitTime: Optional[int] = None
+#     location: AirportLocation
+#     chainCodes: Optional[List[str]] = None
+#     hotelNameContains: Optional[str] = None
+#     negotiatedRates: Optional[NegotiatedRates] = None
+#     customerLoyaltyCards: Optional[List[CustomerLoyaltyCard]] = None
+#     returnOnlyAvailableProperties: bool
+#     imageSize: Optional[str] = None
+#     returnAllImageURLs: Optional[bool] = None
+#     recommendedPropertyAmenitiesInd: Optional[bool] = None
+#     amenityCategories: Optional[List[str]] = None
 
-class CoordinatesPropertyFilter(PropertyFilter):
-    location: CoordinatesLocation
+# class CoordinatesPropertyFilter(PropertyFilter):
+#     location: CoordinatesLocation
 
-class AddressPropertyFilter(PropertyFilter):
-    location: AddressLocation
+# class AddressPropertyFilter(PropertyFilter):
+#     location: AddressLocation
 
-class CityPropertyFilter(PropertyFilter):
-    location: CityLocation
+# class CityPropertyFilter(PropertyFilter):
+#     location: CityLocation
 
 class BedConfiguration(BaseModel):
     minimumQuantity: int
@@ -131,27 +133,27 @@ class RateFilter(BaseModel):
 
 
 # HOTEL SEARCH REQUESTS
-class HotelSearchRequest(BaseModel):
+class CityIataCodeHotelSearchRequest(BaseModel):
     stayDetails: StayDetails
-    propertyFilter: PropertyFilter
+    propertyFilter: CityIataCodePropertyFilter
     responseFields: Optional[List[str]] = None
     requestedCurrency: Optional[str] = None
     roomFilter: Optional[RoomFilter] = None
     rateFilter: Optional[RateFilter] = None
 
-class AirportHotelSearchRequest(BaseModel):
-    stayDetails: StayDetails
-    propertyFilter: AirportPropertyFilter
-    responseFields: Optional[List[str]] = None
-    requestedCurrency: Optional[str] = None
-    roomFilter: Optional[RoomFilter] = None
-    rateFilter: Optional[RateFilter] = None
+# class AirportIataCodeHotelSearchRequest(BaseModel):
+#     stayDetails: StayDetails
+#     propertyFilter: AirportPropertyFilter
+#     responseFields: Optional[List[str]] = None
+#     requestedCurrency: Optional[str] = None
+#     roomFilter: Optional[RoomFilter] = None
+#     rateFilter: Optional[RateFilter] = None
 
-class CoordinatesHotelSearchRequest(HotelSearchRequest):
-    propertyFilter: CoordinatesPropertyFilter
+# class CoordinatesHotelSearchRequest(HotelSearchRequest):
+#     propertyFilter: CoordinatesPropertyFilter
 
-class AddressHotelSearchRequest(HotelSearchRequest):
-    propertyFilter: AddressPropertyFilter
+# class AddressHotelSearchRequest(HotelSearchRequest):
+#     propertyFilter: AddressPropertyFilter
 
-class CityHotelSearchRequest(HotelSearchRequest):
-    propertyFilter: CityPropertyFilter
+# class CityHotelSearchRequest(HotelSearchRequest):
+#     propertyFilter: CityPropertyFilter
