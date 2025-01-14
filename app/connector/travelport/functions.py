@@ -15,12 +15,76 @@ from pydantic import BaseModel, Field # You only need this import if you plan to
 import asyncio # You might not need this import if you aren't doing asynchronous work
 from hasura_ndc.errors import UnprocessableContent
 from typing import Annotated
+import os
+from requests_oauthlib import OAuth2Session
+from oauthlib.oauth2 import LegacyApplicationClient
+import requests
+from dotenv import load_dotenv
+from dotenv import load_dotenv
+import logging
+from models.hotels.search.requests import CityIataCodeHotelSearchRequest
+from models.hotels.search.response import SearchHotelsResponse
+
+load_dotenv()
 
 connector = FunctionConnector()
 
 @connector.register_query
 def hello(name: str) -> str:
     return f"Hello {name}"
+
+
+class TravelPortClient:
+    # TODO make this connection always exists
+    # TODO make this separate into multiple processes
+    # TODO implement a queue
+    @staticmethod
+    def create_connection():
+        load_dotenv()
+        client_id = os.getenv("TRAVELPORT_CLIENT_ID")
+        client_secret = os.getenv("TRAVELPORT_CLIENT_SECRET")
+        oauth_url = os.getenv("TRAVELPORT_OAUTH_URL")
+        username = os.getenv("TRAVELPORT_USERNAME")
+        password = os.getenv("TRAVELPORT_PASSWORD")
+        access_group = os.getenv("TRAVELPORT_ACCESS_GROUP")
+
+        client = LegacyApplicationClient(client_id=client_id)
+        oauth = OAuth2Session(client=client)
+        token = oauth.fetch_token(
+            token_url=oauth_url,
+            username=username,
+            password=password,
+            client_id=client_id,
+            client_secret=client_secret,
+        )
+
+        headers = {
+            "Content-Type": "application/json",
+            "XAUTH_TRAVELPORT_ACCESSGROUP": access_group,
+            "Authorization": f"Bearer {token['access_token']}",
+        }
+
+        session = requests.Session()
+        session.headers.update(headers)
+        return session
+
+@connector.register_query
+async def tp_search_hotels(search_params: CityIataCodeHotelSearchRequest) -> SearchHotelsResponse:
+    """Search for hotels using the TravelPort API"""
+    try:
+        client = TravelPortClient.create_connection()
+        response = client.post(
+            "https://api.travelport.com/12/hotel/search/searchcomplete",
+            json=search_params.model_dump()
+        ).json()
+        
+        # The response is already in the correct format, no need to wrap it
+        return SearchHotelsResponse(**response)
+    except Exception as e:
+        raise UnprocessableContent(
+            message=f"Hotel search failed: {str(e)}",
+            details={"error": "Failed to search hotels"}
+        )
 
 if __name__ == "__main__":
     start(connector)
