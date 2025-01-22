@@ -1,0 +1,105 @@
+{
+    "responseFields": [
+        "propertyDetail",
+        "price",
+        "image"
+    ],
+    "requestedCurrency": "EUR",
+    "stayDetails": {
+        "checkInDateLocal": "{{checkIndate}}",
+        "checkOutDateLocal": "{{checkOutdate}}",
+        "rooms": 1,
+        "guests": {
+            "adults": 1,
+            "children": [
+                {
+                    "age": 2
+                }
+            ]
+        }
+    },
+       "propertyFilter": {
+        "maxWaitTime": 5000,
+        "location": {
+            "type": "cityIATACode",
+            "details": {
+                "iataCode": "PAR"
+            },
+            "radius": {
+                "value": 25,
+                "unit": "mi"
+            }
+        },
+        "chainCodes": [
+            "RT",
+            "HY",
+            "WV",
+            "DA",
+            "CC",
+            "SM"
+        ],
+        "hotelNameContains": "park",
+        "negotiatedRates": {
+            "rateCodes": [
+                "LOREAL",
+                "AAA",
+                "IBM",
+                "PFI",
+                "4TM",
+                "THX"
+            ],
+            "masterRateCode": "1ABC23"
+        },
+        "customerLoyaltyCards": [
+            {
+                "value": "132456",
+                "supplierCode": "EH",
+                "supplierType": "Hotel"
+            }
+        ],
+        "returnOnlyAvailableProperties": false,
+        "imageSize": "Large",
+        "returnAllImageURLs": false,
+        "recommendedPropertyAmenitiesInd": true,
+        "amenityCategories": [
+            "Air conditioning"
+        ]
+    },
+    "roomFilter": {
+        "nonSmoking": true,
+        "balcony": true,
+        "accessible": true,
+        "connecting": true,
+        "family": true,
+        "highFloor": true,
+        "maxOccupancy": 4,
+        "bedConfiguration": {
+            "minimumQuantity": 2,
+            "type": "King"
+        },
+        "amenityCodes": [
+            2,
+            92,
+            107
+        ],
+        "recommendedRoomAmenitiesInd": true
+    },
+    "rateFilter": {
+        "rateFlags": {
+            "refundable": true,
+            "commissionable": true,
+            "deposit": true,
+            "prepay": true,
+            "postpay": true,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true
+        },
+        "removeSpecialRates": false,
+        "categories": [
+            "All",
+            "Weekend",
+            "Package"
+        ]
+    }
+}

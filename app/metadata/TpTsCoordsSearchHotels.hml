@@ -1,0 +1,3305 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CustomerLoyaltyCard
+  fields:
+    - name: supplierCode
+      type: String!
+    - name: supplierType
+      type: String!
+    - name: value
+      type: String!
+  graphql:
+    typeName: CustomerLoyaltyCard
+    inputTypeName: CustomerLoyaltyCardInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CustomerLoyaltyCard
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CustomerLoyaltyCard
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - supplierCode
+          - supplierType
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CoordinatesLocationDetails
+  fields:
+    - name: latitude
+      type: String!
+    - name: longitude
+      type: String!
+  graphql:
+    typeName: CoordinatesLocationDetails
+    inputTypeName: CoordinatesLocationDetailsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CoordinatesLocationDetails
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CoordinatesLocationDetails
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - latitude
+          - longitude
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Radius
+  fields:
+    - name: unit
+      type: String!
+    - name: value
+      type: Float!
+  graphql:
+    typeName: Radius
+    inputTypeName: RadiusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Radius
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Radius
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - unit
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CoordinatesLocationType
+  fields:
+    - name: details
+      type: CoordinatesLocationDetails!
+    - name: radius
+      type: Radius!
+    - name: type
+      type: String!
+  graphql:
+    typeName: CoordinatesLocationType
+    inputTypeName: CoordinatesLocationTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CoordinatesLocationType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CoordinatesLocationType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - details
+          - radius
+          - type
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: NegotiatedRates
+  fields:
+    - name: masterRateCode
+      type: String
+    - name: rateCodes
+      type: "[String!]"
+  graphql:
+    typeName: NegotiatedRates
+    inputTypeName: NegotiatedRatesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: NegotiatedRates
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: NegotiatedRates
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - masterRateCode
+          - rateCodes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CoordinatesPropertyFilter
+  fields:
+    - name: categories
+      type: "[String!]"
+    - name: chainCodes
+      type: "[String!]"
+    - name: customerLoyaltyCards
+      type: "[CustomerLoyaltyCard!]"
+    - name: hotelNameContains
+      type: String
+    - name: imageSize
+      type: String
+    - name: location
+      type: CoordinatesLocationType!
+    - name: maxWaitTime
+      type: Float
+    - name: negotiatedRates
+      type: NegotiatedRates
+    - name: recommendedPropertyAmenitiesInd
+      type: Boolean
+    - name: removeSpecialRates
+      type: Boolean
+    - name: returnAllImageUrLs
+      type: Boolean
+    - name: returnOnlyAvailableProperties
+      type: Boolean!
+  graphql:
+    typeName: CoordinatesPropertyFilter
+    inputTypeName: CoordinatesPropertyFilterInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CoordinatesPropertyFilter
+      fieldMapping:
+        categories:
+          column:
+            name: categories
+        chainCodes:
+          column:
+            name: chainCodes
+        customerLoyaltyCards:
+          column:
+            name: customerLoyaltyCards
+        hotelNameContains:
+          column:
+            name: hotelNameContains
+        imageSize:
+          column:
+            name: imageSize
+        location:
+          column:
+            name: location
+        maxWaitTime:
+          column:
+            name: maxWaitTime
+        negotiatedRates:
+          column:
+            name: negotiatedRates
+        recommendedPropertyAmenitiesInd:
+          column:
+            name: recommendedPropertyAmenitiesInd
+        removeSpecialRates:
+          column:
+            name: removeSpecialRates
+        returnAllImageUrLs:
+          column:
+            name: returnAllImageURLs
+        returnOnlyAvailableProperties:
+          column:
+            name: returnOnlyAvailableProperties
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CoordinatesPropertyFilter
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - categories
+          - chainCodes
+          - customerLoyaltyCards
+          - hotelNameContains
+          - imageSize
+          - location
+          - maxWaitTime
+          - negotiatedRates
+          - recommendedPropertyAmenitiesInd
+          - removeSpecialRates
+          - returnAllImageUrLs
+          - returnOnlyAvailableProperties
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RateFlags
+  fields:
+    - name: breakfast
+      type: Boolean
+    - name: commissionable
+      type: Boolean
+    - name: deposit
+      type: Boolean
+    - name: dinner
+      type: Boolean
+    - name: lunch
+      type: Boolean
+    - name: postpay
+      type: Boolean
+    - name: prepay
+      type: Boolean
+    - name: refundable
+      type: Boolean
+  graphql:
+    typeName: RateFlags
+    inputTypeName: RateFlagsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RateFlags
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RateFlags
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - breakfast
+          - commissionable
+          - deposit
+          - dinner
+          - lunch
+          - postpay
+          - prepay
+          - refundable
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RateFilter
+  fields:
+    - name: publicRateBlacklist
+      type: "[String!]"
+    - name: rateFlags
+      type: RateFlags
+  graphql:
+    typeName: RateFilter
+    inputTypeName: RateFilterInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RateFilter
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RateFilter
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - publicRateBlacklist
+          - rateFlags
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: BedConfiguration
+  fields:
+    - name: minimumQuantity
+      type: Float!
+    - name: type
+      type: String!
+  graphql:
+    typeName: BedConfiguration
+    inputTypeName: BedConfigurationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: BedConfiguration
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: BedConfiguration
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - minimumQuantity
+          - type
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RoomFilter
+  fields:
+    - name: accessible
+      type: Boolean
+    - name: amenityCodes
+      type: "[Float!]"
+    - name: balcony
+      type: Boolean
+    - name: bedConfiguration
+      type: BedConfiguration
+    - name: connecting
+      type: Boolean
+    - name: family
+      type: Boolean
+    - name: nonSmoking
+      type: Boolean
+    - name: recommendedRoomAmenitiesInd
+      type: Boolean
+  graphql:
+    typeName: RoomFilter
+    inputTypeName: RoomFilterInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RoomFilter
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RoomFilter
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - accessible
+          - amenityCodes
+          - balcony
+          - bedConfiguration
+          - connecting
+          - family
+          - nonSmoking
+          - recommendedRoomAmenitiesInd
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Guest
+  fields:
+    - name: age
+      type: Float!
+  graphql:
+    typeName: Guest
+    inputTypeName: GuestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Guest
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Guest
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - age
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Guests
+  fields:
+    - name: adults
+      type: Float!
+    - name: children
+      type: "[Guest!]"
+  graphql:
+    typeName: Guests
+    inputTypeName: GuestsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Guests
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Guests
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - adults
+          - children
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: StayDetails
+  fields:
+    - name: checkInDateLocal
+      type: String!
+    - name: checkOutDateLocal
+      type: String!
+    - name: guests
+      type: Guests!
+    - name: rooms
+      type: Float!
+  graphql:
+    typeName: StayDetails
+    inputTypeName: StayDetailsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: StayDetails
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: StayDetails
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - checkInDateLocal
+          - checkOutDateLocal
+          - guests
+          - rooms
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CoordinatesHotelSearchRequest
+  fields:
+    - name: propertyFilter
+      type: CoordinatesPropertyFilter!
+    - name: rateFilter
+      type: RateFilter
+    - name: requestedCurrency
+      type: String
+    - name: responseFields
+      type: "[String!]"
+    - name: roomFilter
+      type: RoomFilter
+    - name: stayDetails
+      type: StayDetails!
+  graphql:
+    typeName: CoordinatesHotelSearchRequest
+    inputTypeName: CoordinatesHotelSearchRequestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CoordinatesHotelSearchRequest
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CoordinatesHotelSearchRequest
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - propertyFilter
+          - rateFilter
+          - requestedCurrency
+          - responseFields
+          - roomFilter
+          - stayDetails
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelCurrencyExchangeRate
+  fields:
+    - name: conversionFactor
+      type: Float!
+    - name: sourceCurrency
+      type: String!
+    - name: targetCurrency
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelCurrencyExchangeRate
+    inputTypeName: ModelsCoordinatesResponseModelCurrencyExchangeRateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_CurrencyExchangeRate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelCurrencyExchangeRate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - conversionFactor
+          - sourceCurrency
+          - targetCurrency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelAvailabilityNote
+  fields:
+    - name: authority
+      type: String!
+    - name: message
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelAvailabilityNote
+    inputTypeName: ModelsCoordinatesResponseModelAvailabilityNoteInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_AvailabilityNote
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelAvailabilityNote
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authority
+          - message
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPropertySummary
+  fields:
+    - name: averageAugmentedRateQualityScore
+      type: Float!
+    - name: averageAugmentedRoomQualityScore
+      type: Float!
+    - name: merchandisingQualityScore
+      type: Float!
+    - name: propertyContentQualityScore
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPropertySummary
+    inputTypeName: ModelsCoordinatesResponseModelPropertySummaryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PropertySummary
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPropertySummary
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - averageAugmentedRateQualityScore
+          - averageAugmentedRoomQualityScore
+          - merchandisingQualityScore
+          - propertyContentQualityScore
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelDataQualitySummaryScore
+  fields:
+    - name: propertySummary
+      type: ModelsCoordinatesResponseModelPropertySummary!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelDataQualitySummaryScore
+    inputTypeName: ModelsCoordinatesResponseModelDataQualitySummaryScoreInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_DataQualitySummaryScore
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelDataQualitySummaryScore
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - propertySummary
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyBase
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateAverageNightlyBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateAverageNightlyTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateAverageNightlyTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateBase
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateCodeInfo
+  fields:
+    - name: rateCategory
+      type: String!
+    - name: rateCategoryCode
+      type: Float!
+    - name: rateClassificationCode
+      type: Float!
+    - name: rateType
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateCodeInfo
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateCodeInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateRateCodeInfo
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateCodeInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - rateCategory
+          - rateCategoryCode
+          - rateClassificationCode
+          - rateType
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateKey
+  fields:
+    - name: authority
+      type: String!
+    - name: value
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateKey
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateKeyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateRateKey
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateKey
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authority
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPurpleCurrencyAmount
+  fields:
+    - name: amount
+      type: Float!
+    - name: currency
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPurpleCurrencyAmount
+    inputTypeName: ModelsCoordinatesResponseModelPurpleCurrencyAmountInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PurpleCurrencyAmount
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPurpleCurrencyAmount
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPurplePenalty
+  fields:
+    - name: currencyAmount
+      type: ModelsCoordinatesResponseModelPurpleCurrencyAmount!
+    - name: estimatedAmount
+      type: Boolean!
+    - name: originalPenaltyInfo
+      type: String
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPurplePenalty
+    inputTypeName: ModelsCoordinatesResponseModelPurplePenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PurplePenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPurplePenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - currencyAmount
+          - estimatedAmount
+          - originalPenaltyInfo
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPurpleCancelPenalty
+  fields:
+    - name: cancelShortDescription
+      type: String!
+    - name: deadlineLocal
+      type: DateTime!
+    - name: estimatedDeadlineLocal
+      type: Boolean
+    - name: penalty
+      type: ModelsCoordinatesResponseModelPurplePenalty!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPurpleCancelPenalty
+    inputTypeName: ModelsCoordinatesResponseModelPurpleCancelPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PurpleCancelPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPurpleCancelPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelShortDescription
+          - deadlineLocal
+          - estimatedDeadlineLocal
+          - penalty
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTerms
+  fields:
+    - name: cancelPenalties
+      type: "[ModelsCoordinatesResponseModelPurpleCancelPenalty!]!"
+    - name: customerLoyaltyIdRequiredAtReservation
+      type: Boolean!
+    - name: description
+      type: "[String!]!"
+    - name: guaranteeType
+      type: String!
+    - name: ratePaymentInfo
+      type: String
+    - name: rateQualificationIdRequiredAtCheckIn
+      type: Boolean!
+    - name: refundable
+      type: Boolean!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTerms
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTermsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateTerms
+      fieldMapping:
+        cancelPenalties:
+          column:
+            name: cancelPenalties
+        customerLoyaltyIdRequiredAtReservation:
+          column:
+            name: customerLoyaltyIDRequiredAtReservation
+        description:
+          column:
+            name: description
+        guaranteeType:
+          column:
+            name: guaranteeType
+        ratePaymentInfo:
+          column:
+            name: ratePaymentInfo
+        rateQualificationIdRequiredAtCheckIn:
+          column:
+            name: rateQualificationIDRequiredAtCheckIn
+        refundable:
+          column:
+            name: refundable
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTerms
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelPenalties
+          - customerLoyaltyIdRequiredAtReservation
+          - description
+          - guaranteeType
+          - ratePaymentInfo
+          - rateQualificationIdRequiredAtCheckIn
+          - refundable
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalPrice
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalTaxes
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRateTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPrivateAvailableRate
+  fields:
+    - name: averageNightlyBase
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyBase!
+    - name: averageNightlyTotalPrice
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice!
+    - name: averageNightlyTotalTaxes
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+    - name: base
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateBase!
+    - name: currencyCode
+      type: String!
+    - name: rateCodeInfo
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateCodeInfo!
+    - name: rateKey
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateRateKey!
+    - name: shortRoomDescription
+      type: String!
+    - name: terms
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTerms!
+    - name: totalPrice
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalPrice!
+    - name: totalTaxes
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRateTotalTaxes
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRate
+    inputTypeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPrivateAvailableRate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPrivateAvailableRate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - averageNightlyBase
+          - averageNightlyTotalPrice
+          - averageNightlyTotalTaxes
+          - base
+          - currencyCode
+          - rateCodeInfo
+          - rateKey
+          - shortRoomDescription
+          - terms
+          - totalPrice
+          - totalTaxes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyBase
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateAverageNightlyBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateAverageNightlyTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateAverageNightlyTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateBase
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateCodeInfo
+  fields:
+    - name: rateCategoryCode
+      type: Float!
+    - name: rateClassificationCode
+      type: Float!
+    - name: rateType
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateCodeInfo
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateCodeInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateRateCodeInfo
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateCodeInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - rateCategoryCode
+          - rateClassificationCode
+          - rateType
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateKey
+  fields:
+    - name: authority
+      type: String!
+    - name: value
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateKey
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateKeyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateRateKey
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateKey
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authority
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelFluffyCurrencyAmount
+  fields:
+    - name: amount
+      type: Float!
+    - name: currency
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelFluffyCurrencyAmount
+    inputTypeName: ModelsCoordinatesResponseModelFluffyCurrencyAmountInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_FluffyCurrencyAmount
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelFluffyCurrencyAmount
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelFluffyPenalty
+  fields:
+    - name: currencyAmount
+      type: ModelsCoordinatesResponseModelFluffyCurrencyAmount!
+    - name: estimatedAmount
+      type: Boolean!
+    - name: originalPenaltyInfo
+      type: String
+  graphql:
+    typeName: ModelsCoordinatesResponseModelFluffyPenalty
+    inputTypeName: ModelsCoordinatesResponseModelFluffyPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_FluffyPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelFluffyPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - currencyAmount
+          - estimatedAmount
+          - originalPenaltyInfo
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelFluffyCancelPenalty
+  fields:
+    - name: cancelShortDescription
+      type: String!
+    - name: deadlineLocal
+      type: DateTime!
+    - name: estimatedDeadlineLocal
+      type: Boolean
+    - name: penalty
+      type: ModelsCoordinatesResponseModelFluffyPenalty!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelFluffyCancelPenalty
+    inputTypeName: ModelsCoordinatesResponseModelFluffyCancelPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_FluffyCancelPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelFluffyCancelPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelShortDescription
+          - deadlineLocal
+          - estimatedDeadlineLocal
+          - penalty
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateTerms
+  fields:
+    - name: cancelPenalties
+      type: "[ModelsCoordinatesResponseModelFluffyCancelPenalty!]!"
+    - name: customerLoyaltyIdRequiredAtReservation
+      type: Boolean!
+    - name: description
+      type: "[String!]!"
+    - name: guaranteeType
+      type: String!
+    - name: ratePaymentInfo
+      type: String
+    - name: rateQualificationIdRequiredAtCheckIn
+      type: Boolean!
+    - name: refundable
+      type: Boolean!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTerms
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTermsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateTerms
+      fieldMapping:
+        cancelPenalties:
+          column:
+            name: cancelPenalties
+        customerLoyaltyIdRequiredAtReservation:
+          column:
+            name: customerLoyaltyIDRequiredAtReservation
+        description:
+          column:
+            name: description
+        guaranteeType:
+          column:
+            name: guaranteeType
+        ratePaymentInfo:
+          column:
+            name: ratePaymentInfo
+        rateQualificationIdRequiredAtCheckIn:
+          column:
+            name: rateQualificationIDRequiredAtCheckIn
+        refundable:
+          column:
+            name: refundable
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTerms
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelPenalties
+          - customerLoyaltyIdRequiredAtReservation
+          - description
+          - guaranteeType
+          - ratePaymentInfo
+          - rateQualificationIdRequiredAtCheckIn
+          - refundable
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalPrice
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalTaxes
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRateTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLowestPublicAvailableRate
+  fields:
+    - name: averageNightlyBase
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyBase!
+    - name: averageNightlyTotalPrice
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice!
+    - name: averageNightlyTotalTaxes
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+    - name: base
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateBase!
+    - name: currencyCode
+      type: String!
+    - name: rateCodeInfo
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateCodeInfo!
+    - name: rateKey
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateRateKey!
+    - name: shortRoomDescription
+      type: String!
+    - name: terms
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateTerms!
+    - name: totalPrice
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalPrice!
+    - name: totalTaxes
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRateTotalTaxes
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRate
+    inputTypeName: ModelsCoordinatesResponseModelLowestPublicAvailableRateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LowestPublicAvailableRate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLowestPublicAvailableRate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - averageNightlyBase
+          - averageNightlyTotalPrice
+          - averageNightlyTotalTaxes
+          - base
+          - currencyCode
+          - rateCodeInfo
+          - rateKey
+          - shortRoomDescription
+          - terms
+          - totalPrice
+          - totalTaxes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelAddress
+  fields:
+    - name: city
+      type: String!
+    - name: countryCode
+      type: String!
+    - name: postalCode
+      type: String!
+    - name: stateProvince
+      type: String
+    - name: street
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelAddress
+    inputTypeName: ModelsCoordinatesResponseModelAddressInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Address
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelAddress
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - city
+          - countryCode
+          - postalCode
+          - stateProvince
+          - street
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelAmenity
+  fields:
+    - name: category
+      type: String!
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelAmenity
+    inputTypeName: ModelsCoordinatesResponseModelAmenityInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Amenity
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelAmenity
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - category
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelDistanceFromSearchPoint
+  fields:
+    - name: unitOfDistance
+      type: String!
+    - name: value
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelDistanceFromSearchPoint
+    inputTypeName: ModelsCoordinatesResponseModelDistanceFromSearchPointInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_DistanceFromSearchPoint
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelDistanceFromSearchPoint
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - unitOfDistance
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelFax
+  fields:
+    - name: phoneNumber
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelFax
+    inputTypeName: ModelsCoordinatesResponseModelFaxInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Fax
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelFax
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - phoneNumber
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelCenter
+  fields:
+    - name: latitude
+      type: Float!
+    - name: longitude
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelCenter
+    inputTypeName: ModelsCoordinatesResponseModelCenterInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Center
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelCenter
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - latitude
+          - longitude
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelGeolocation
+  fields:
+    - name: center
+      type: ModelsCoordinatesResponseModelCenter!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelGeolocation
+    inputTypeName: ModelsCoordinatesResponseModelGeolocationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Geolocation
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelGeolocation
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - center
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ImageUrlDimensions
+  fields:
+    - name: height
+      type: Float!
+    - name: width
+      type: Float!
+  graphql:
+    typeName: ImageUrlDimensions
+    inputTypeName: ImageUrlDimensionsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: ImageURLDimensions
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ImageUrlDimensions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - height
+          - width
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelImageUrl
+  fields:
+    - name: caption
+      type: String!
+    - name: curatedImage
+      type: Boolean!
+    - name: dimensions
+      type: ImageUrlDimensions!
+    - name: imageSize
+      type: String!
+    - name: pictureCategory
+      type: Float!
+    - name: url
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelImageUrl
+    inputTypeName: ModelsCoordinatesResponseModelImageUrlInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_ImageURL
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelImageUrl
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - caption
+          - curatedImage
+          - dimensions
+          - imageSize
+          - pictureCategory
+          - url
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPhone
+  fields:
+    - name: phoneNumber
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPhone
+    inputTypeName: ModelsCoordinatesResponseModelPhoneInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Phone
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPhone
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - phoneNumber
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRating
+  fields:
+    - name: provider
+      type: String!
+    - name: value
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRating
+    inputTypeName: ModelsCoordinatesResponseModelRatingInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Rating
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRating
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - provider
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPropertyInfo
+  fields:
+    - name: acceptedCreditCards
+      type: "[String!]"
+    - name: adaCompliant
+      type: Boolean!
+    - name: address
+      type: ModelsCoordinatesResponseModelAddress!
+    - name: amenities
+      type: "[ModelsCoordinatesResponseModelAmenity!]!"
+    - name: checkInTimeLocal
+      type: String
+    - name: distanceFromSearchPoint
+      type: ModelsCoordinatesResponseModelDistanceFromSearchPoint!
+    - name: email
+      type: String
+    - name: fax
+      type: ModelsCoordinatesResponseModelFax
+    - name: featuredPropertyInd
+      type: Boolean!
+    - name: geolocation
+      type: ModelsCoordinatesResponseModelGeolocation!
+    - name: imageUrLs
+      type: "[ModelsCoordinatesResponseModelImageUrl!]"
+    - name: phone
+      type: ModelsCoordinatesResponseModelPhone!
+    - name: ratings
+      type: "[ModelsCoordinatesResponseModelRating!]!"
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPropertyInfo
+    inputTypeName: ModelsCoordinatesResponseModelPropertyInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PropertyInfo
+      fieldMapping:
+        acceptedCreditCards:
+          column:
+            name: acceptedCreditCards
+        adaCompliant:
+          column:
+            name: adaCompliant
+        address:
+          column:
+            name: address
+        amenities:
+          column:
+            name: amenities
+        checkInTimeLocal:
+          column:
+            name: checkInTimeLocal
+        distanceFromSearchPoint:
+          column:
+            name: distanceFromSearchPoint
+        email:
+          column:
+            name: email
+        fax:
+          column:
+            name: fax
+        featuredPropertyInd:
+          column:
+            name: featuredPropertyInd
+        geolocation:
+          column:
+            name: geolocation
+        imageUrLs:
+          column:
+            name: imageURLs
+        phone:
+          column:
+            name: phone
+        ratings:
+          column:
+            name: ratings
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPropertyInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - acceptedCreditCards
+          - adaCompliant
+          - address
+          - amenities
+          - checkInTimeLocal
+          - distanceFromSearchPoint
+          - email
+          - fax
+          - featuredPropertyInd
+          - geolocation
+          - imageUrLs
+          - phone
+          - ratings
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRoomTypeBedType
+  fields:
+    - name: bedType
+      type: String!
+    - name: quantity
+      type: Float!
+    - name: size
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRoomTypeBedType
+    inputTypeName: ModelsCoordinatesResponseModelRoomTypeBedTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_RoomTypeBedType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRoomTypeBedType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - bedType
+          - quantity
+          - size
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelCharacteristicsBedType
+  fields:
+    - name: bedType
+      type: String!
+    - name: quantity
+      type: Float!
+    - name: size
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelCharacteristicsBedType
+    inputTypeName: ModelsCoordinatesResponseModelCharacteristicsBedTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_CharacteristicsBedType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelCharacteristicsBedType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - bedType
+          - quantity
+          - size
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelCategory
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelCategory
+    inputTypeName: ModelsCoordinatesResponseModelCategoryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Category
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelCategory
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelClass
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelClass
+    inputTypeName: ModelsCoordinatesResponseModelClassInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Class
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelClass
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelLocationInfo
+  fields:
+    - name: floor
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelLocationInfo
+    inputTypeName: ModelsCoordinatesResponseModelLocationInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_LocationInfo
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelLocationInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - floor
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelCharacteristicsView
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelCharacteristicsView
+    inputTypeName: ModelsCoordinatesResponseModelCharacteristicsViewInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_CharacteristicsView
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelCharacteristicsView
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelCharacteristics
+  fields:
+    - name: accessible
+      type: Boolean
+    - name: bedTypes
+      type: "[ModelsCoordinatesResponseModelCharacteristicsBedType!]!"
+    - name: category
+      type: ModelsCoordinatesResponseModelCategory!
+    - name: class
+      type: ModelsCoordinatesResponseModelClass
+    - name: locationInfo
+      type: ModelsCoordinatesResponseModelLocationInfo
+    - name: maxOccupancy
+      type: Float
+    - name: otherFeatures
+      type: "[String!]"
+    - name: view
+      type: ModelsCoordinatesResponseModelCharacteristicsView
+  graphql:
+    typeName: ModelsCoordinatesResponseModelCharacteristics
+    inputTypeName: ModelsCoordinatesResponseModelCharacteristicsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Characteristics
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelCharacteristics
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - accessible
+          - bedTypes
+          - category
+          - class
+          - locationInfo
+          - maxOccupancy
+          - otherFeatures
+          - view
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelDataQualityScore
+  fields:
+    - name: augmentedRateQualityScore
+      type: Float!
+    - name: augmentedRoomQualityScore
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelDataQualityScore
+    inputTypeName: ModelsCoordinatesResponseModelDataQualityScoreInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_DataQualityScore
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelDataQualityScore
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - augmentedRateQualityScore
+          - augmentedRoomQualityScore
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPriceBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPriceBase
+    inputTypeName: ModelsCoordinatesResponseModelPriceBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PriceBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPriceBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelCommission
+  fields:
+    - name: application
+      type: Boolean!
+    - name: estimatedPercent
+      type: Boolean
+    - name: percent
+      type: Float
+  graphql:
+    typeName: ModelsCoordinatesResponseModelCommission
+    inputTypeName: ModelsCoordinatesResponseModelCommissionInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Commission
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelCommission
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - application
+          - estimatedPercent
+          - percent
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelNightlyRatesBreakdownTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelNightlyRatesBreakdownTotalPrice
+    inputTypeName: ModelsCoordinatesResponseModelNightlyRatesBreakdownTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_NightlyRatesBreakdownTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelNightlyRatesBreakdownTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelNightlyRatesBreakdown
+  fields:
+    - name: localDate
+      type: DateTime!
+    - name: totalPrice
+      type: ModelsCoordinatesResponseModelNightlyRatesBreakdownTotalPrice!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelNightlyRatesBreakdown
+    inputTypeName: ModelsCoordinatesResponseModelNightlyRatesBreakdownInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_NightlyRatesBreakdown
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelNightlyRatesBreakdown
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - localDate
+          - totalPrice
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelFeeValue
+  fields:
+    - name: amount
+      type: Float!
+    - name: currency
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelFeeValue
+    inputTypeName: ModelsCoordinatesResponseModelFeeValueInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_FeeValue
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelFeeValue
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelFee
+  fields:
+    - name: description
+      type: String!
+    - name: feeApplication
+      type: String!
+    - name: feeFrequency
+      type: String!
+    - name: taxCode
+      type: String!
+    - name: value
+      type: ModelsCoordinatesResponseModelFeeValue!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelFee
+    inputTypeName: ModelsCoordinatesResponseModelFeeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Fee
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelFee
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - description
+          - feeApplication
+          - feeFrequency
+          - taxCode
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelTaxValue
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelTaxValue
+    inputTypeName: ModelsCoordinatesResponseModelTaxValueInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_TaxValue
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelTaxValue
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelTax
+  fields:
+    - name: description
+      type: String!
+    - name: taxCode
+      type: String!
+    - name: value
+      type: ModelsCoordinatesResponseModelTaxValue
+  graphql:
+    typeName: ModelsCoordinatesResponseModelTax
+    inputTypeName: ModelsCoordinatesResponseModelTaxInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Tax
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelTax
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - description
+          - taxCode
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPerStayTaxAndFeeBreakdown
+  fields:
+    - name: fees
+      type: "[ModelsCoordinatesResponseModelFee!]"
+    - name: taxes
+      type: "[ModelsCoordinatesResponseModelTax!]!"
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPerStayTaxAndFeeBreakdown
+    inputTypeName: ModelsCoordinatesResponseModelPerStayTaxAndFeeBreakdownInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PerStayTaxAndFeeBreakdown
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPerStayTaxAndFeeBreakdown
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fees
+          - taxes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPriceNote
+  fields:
+    - name: message
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPriceNote
+    inputTypeName: ModelsCoordinatesResponseModelPriceNoteInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PriceNote
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPriceNote
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - message
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPriceTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPriceTotalPrice
+    inputTypeName: ModelsCoordinatesResponseModelPriceTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PriceTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPriceTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPriceTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPriceTotalTaxes
+    inputTypeName: ModelsCoordinatesResponseModelPriceTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PriceTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPriceTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPrice
+  fields:
+    - name: base
+      type: ModelsCoordinatesResponseModelPriceBase!
+    - name: commission
+      type: ModelsCoordinatesResponseModelCommission!
+    - name: currencyCode
+      type: String!
+    - name: nightlyRatesBreakdown
+      type: "[ModelsCoordinatesResponseModelNightlyRatesBreakdown!]!"
+    - name: perStayTaxAndFeeBreakdown
+      type: ModelsCoordinatesResponseModelPerStayTaxAndFeeBreakdown
+    - name: priceNote
+      type: ModelsCoordinatesResponseModelPriceNote!
+    - name: taxesIncludedInBase
+      type: Boolean!
+    - name: totalPrice
+      type: ModelsCoordinatesResponseModelPriceTotalPrice!
+    - name: totalTaxes
+      type: ModelsCoordinatesResponseModelPriceTotalTaxes
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPrice
+    inputTypeName: ModelsCoordinatesResponseModelPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Price
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - base
+          - commission
+          - currencyCode
+          - nightlyRatesBreakdown
+          - perStayTaxAndFeeBreakdown
+          - priceNote
+          - taxesIncludedInBase
+          - totalPrice
+          - totalTaxes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRateRateCodeInfo
+  fields:
+    - name: rateCategory
+      type: String
+    - name: rateCategoryCode
+      type: Float!
+    - name: rateClassificationCode
+      type: Float!
+    - name: rateType
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRateRateCodeInfo
+    inputTypeName: ModelsCoordinatesResponseModelRateRateCodeInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_RateRateCodeInfo
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRateRateCodeInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - rateCategory
+          - rateCategoryCode
+          - rateClassificationCode
+          - rateType
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRateRateKey
+  fields:
+    - name: authority
+      type: String!
+    - name: value
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRateRateKey
+    inputTypeName: ModelsCoordinatesResponseModelRateRateKeyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_RateRateKey
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRateRateKey
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authority
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelTentacledCurrencyAmount
+  fields:
+    - name: amount
+      type: Float!
+    - name: currency
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelTentacledCurrencyAmount
+    inputTypeName: ModelsCoordinatesResponseModelTentacledCurrencyAmountInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_TentacledCurrencyAmount
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelTentacledCurrencyAmount
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelTentacledPenalty
+  fields:
+    - name: currencyAmount
+      type: ModelsCoordinatesResponseModelTentacledCurrencyAmount!
+    - name: estimatedAmount
+      type: Boolean!
+    - name: originalPenaltyInfo
+      type: String
+  graphql:
+    typeName: ModelsCoordinatesResponseModelTentacledPenalty
+    inputTypeName: ModelsCoordinatesResponseModelTentacledPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_TentacledPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelTentacledPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - currencyAmount
+          - estimatedAmount
+          - originalPenaltyInfo
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelTentacledCancelPenalty
+  fields:
+    - name: cancelShortDescription
+      type: String!
+    - name: deadlineLocal
+      type: DateTime!
+    - name: estimatedDeadlineLocal
+      type: Boolean
+    - name: penalty
+      type: ModelsCoordinatesResponseModelTentacledPenalty!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelTentacledCancelPenalty
+    inputTypeName: ModelsCoordinatesResponseModelTentacledCancelPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_TentacledCancelPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelTentacledCancelPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelShortDescription
+          - deadlineLocal
+          - estimatedDeadlineLocal
+          - penalty
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRateTerms
+  fields:
+    - name: cancelPenalties
+      type: "[ModelsCoordinatesResponseModelTentacledCancelPenalty!]!"
+    - name: customerLoyaltyIdRequiredAtReservation
+      type: Boolean
+    - name: description
+      type: "[String!]"
+    - name: guaranteeType
+      type: String!
+    - name: ratePaymentInfo
+      type: String
+    - name: rateQualificationIdRequiredAtCheckIn
+      type: Boolean
+    - name: refundable
+      type: Boolean!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRateTerms
+    inputTypeName: ModelsCoordinatesResponseModelRateTermsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_RateTerms
+      fieldMapping:
+        cancelPenalties:
+          column:
+            name: cancelPenalties
+        customerLoyaltyIdRequiredAtReservation:
+          column:
+            name: customerLoyaltyIDRequiredAtReservation
+        description:
+          column:
+            name: description
+        guaranteeType:
+          column:
+            name: guaranteeType
+        ratePaymentInfo:
+          column:
+            name: ratePaymentInfo
+        rateQualificationIdRequiredAtCheckIn:
+          column:
+            name: rateQualificationIDRequiredAtCheckIn
+        refundable:
+          column:
+            name: refundable
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRateTerms
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelPenalties
+          - customerLoyaltyIdRequiredAtReservation
+          - description
+          - guaranteeType
+          - ratePaymentInfo
+          - rateQualificationIdRequiredAtCheckIn
+          - refundable
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRate
+  fields:
+    - name: accessibleRoom
+      type: Boolean
+    - name: bookingCode
+      type: String!
+    - name: breakfastIncluded
+      type: Boolean
+    - name: dataQualityScore
+      type: ModelsCoordinatesResponseModelDataQualityScore!
+    - name: dinnerIncluded
+      type: Boolean
+    - name: lunchIncluded
+      type: Boolean
+    - name: nonSmoking
+      type: Boolean!
+    - name: price
+      type: ModelsCoordinatesResponseModelPrice!
+    - name: quantity
+      type: Float
+    - name: rateCodeInfo
+      type: ModelsCoordinatesResponseModelRateRateCodeInfo!
+    - name: rateDescription
+      type: String!
+    - name: rateKey
+      type: ModelsCoordinatesResponseModelRateRateKey!
+    - name: roomDescription
+      type: String!
+    - name: terms
+      type: ModelsCoordinatesResponseModelRateTerms!
+    - name: wifiIncluded
+      type: Boolean
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRate
+    inputTypeName: ModelsCoordinatesResponseModelRateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Rate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - accessibleRoom
+          - bookingCode
+          - breakfastIncluded
+          - dataQualityScore
+          - dinnerIncluded
+          - lunchIncluded
+          - nonSmoking
+          - price
+          - quantity
+          - rateCodeInfo
+          - rateDescription
+          - rateKey
+          - roomDescription
+          - terms
+          - wifiIncluded
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRoomAmenity
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRoomAmenity
+    inputTypeName: ModelsCoordinatesResponseModelRoomAmenityInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_RoomAmenity
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRoomAmenity
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RoomImageUrlDimensions
+  fields:
+    - name: height
+      type: Float!
+    - name: width
+      type: Float!
+  graphql:
+    typeName: RoomImageUrlDimensions
+    inputTypeName: RoomImageUrlDimensionsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RoomImageURLDimensions
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RoomImageUrlDimensions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - height
+          - width
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRoomImageUrl
+  fields:
+    - name: caption
+      type: String!
+    - name: curatedImage
+      type: Boolean!
+    - name: dimensions
+      type: RoomImageUrlDimensions!
+    - name: imageSize
+      type: String!
+    - name: pictureCategory
+      type: Float!
+    - name: url
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRoomImageUrl
+    inputTypeName: ModelsCoordinatesResponseModelRoomImageUrlInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_RoomImageURL
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRoomImageUrl
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - caption
+          - curatedImage
+          - dimensions
+          - imageSize
+          - pictureCategory
+          - url
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRoomTypeView
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRoomTypeView
+    inputTypeName: ModelsCoordinatesResponseModelRoomTypeViewInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_RoomTypeView
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRoomTypeView
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelRoomType
+  fields:
+    - name: bedTypes
+      type: "[ModelsCoordinatesResponseModelRoomTypeBedType!]!"
+    - name: characteristics
+      type: ModelsCoordinatesResponseModelCharacteristics!
+    - name: estimatedRoomTypeOtaCode
+      type: Float!
+    - name: maxOccupancy
+      type: Float
+    - name: rates
+      type: "[ModelsCoordinatesResponseModelRate!]!"
+    - name: roomAmenities
+      type: "[ModelsCoordinatesResponseModelRoomAmenity!]"
+    - name: roomImageUrLs
+      type: "[ModelsCoordinatesResponseModelRoomImageUrl!]"
+    - name: shortRoomDescription
+      type: String!
+    - name: view
+      type: ModelsCoordinatesResponseModelRoomTypeView
+  graphql:
+    typeName: ModelsCoordinatesResponseModelRoomType
+    inputTypeName: ModelsCoordinatesResponseModelRoomTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_RoomType
+      fieldMapping:
+        bedTypes:
+          column:
+            name: bedTypes
+        characteristics:
+          column:
+            name: characteristics
+        estimatedRoomTypeOtaCode:
+          column:
+            name: estimatedRoomTypeOTACode
+        maxOccupancy:
+          column:
+            name: maxOccupancy
+        rates:
+          column:
+            name: rates
+        roomAmenities:
+          column:
+            name: roomAmenities
+        roomImageUrLs:
+          column:
+            name: roomImageURLs
+        shortRoomDescription:
+          column:
+            name: shortRoomDescription
+        view:
+          column:
+            name: view
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelRoomType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - bedTypes
+          - characteristics
+          - estimatedRoomTypeOtaCode
+          - maxOccupancy
+          - rates
+          - roomAmenities
+          - roomImageUrLs
+          - shortRoomDescription
+          - view
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPropertyItem
+  fields:
+    - name: availability
+      type: Boolean!
+    - name: availabilityNotes
+      type: "[ModelsCoordinatesResponseModelAvailabilityNote!]"
+    - name: brandCode
+      type: String
+    - name: chainCode
+      type: String!
+    - name: dataQualitySummaryScore
+      type: ModelsCoordinatesResponseModelDataQualitySummaryScore!
+    - name: longDescription
+      type: String
+    - name: lowestPrivateAvailableRate
+      type: ModelsCoordinatesResponseModelLowestPrivateAvailableRate
+    - name: lowestPublicAvailableRate
+      type: ModelsCoordinatesResponseModelLowestPublicAvailableRate!
+    - name: name
+      type: String!
+    - name: propertyCode
+      type: String!
+    - name: propertyInfo
+      type: ModelsCoordinatesResponseModelPropertyInfo!
+    - name: roomTypes
+      type: "[ModelsCoordinatesResponseModelRoomType!]!"
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPropertyItem
+    inputTypeName: ModelsCoordinatesResponseModelPropertyItemInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_PropertyItem
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPropertyItem
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - availability
+          - availabilityNotes
+          - brandCode
+          - chainCode
+          - dataQualitySummaryScore
+          - longDescription
+          - lowestPrivateAvailableRate
+          - lowestPublicAvailableRate
+          - name
+          - propertyCode
+          - propertyInfo
+          - roomTypes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelSearchPoint
+  fields:
+    - name: latitude
+      type: Float!
+    - name: longitude
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelSearchPoint
+    inputTypeName: ModelsCoordinatesResponseModelSearchPointInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_SearchPoint
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelSearchPoint
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - latitude
+          - longitude
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelHotelsResponse
+  fields:
+    - name: checkInDateLocal
+      type: DateTime!
+    - name: checkOutDateLocal
+      type: DateTime!
+    - name: currencyExchangeRates
+      type: "[ModelsCoordinatesResponseModelCurrencyExchangeRate!]!"
+    - name: propertyItems
+      type: "[ModelsCoordinatesResponseModelPropertyItem!]!"
+    - name: searchPoint
+      type: ModelsCoordinatesResponseModelSearchPoint!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelHotelsResponse
+    inputTypeName: ModelsCoordinatesResponseModelHotelsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_HotelsResponse
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelHotelsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - checkInDateLocal
+          - checkOutDateLocal
+          - currencyExchangeRates
+          - propertyItems
+          - searchPoint
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCoordinatesResponseModelPagination
+  fields:
+    - name: page
+      type: Float!
+    - name: pageSize
+      type: Float!
+    - name: paginationToken
+      type: String!
+    - name: totalItems
+      type: Float!
+    - name: totalPages
+      type: Float!
+  graphql:
+    typeName: ModelsCoordinatesResponseModelPagination
+    inputTypeName: ModelsCoordinatesResponseModelPaginationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_coordinates_response_model_Pagination
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCoordinatesResponseModelPagination
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - page
+          - pageSize
+          - paginationToken
+          - totalItems
+          - totalPages
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CoordinatesResponse
+  fields:
+    - name: hotelsResponse
+      type: ModelsCoordinatesResponseModelHotelsResponse!
+    - name: pagination
+      type: ModelsCoordinatesResponseModelPagination!
+    - name: traceId
+      type: String!
+    - name: transactionId
+      type: String!
+  graphql:
+    typeName: CoordinatesResponse
+    inputTypeName: CoordinatesResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CoordinatesResponse
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CoordinatesResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - hotelsResponse
+          - pagination
+          - traceId
+          - transactionId
+
+---
+kind: Command
+version: v1
+definition:
+  name: TpTsCoordsSearchHotels
+  outputType: CoordinatesResponse!
+  arguments:
+    - name: searchParams
+      type: CoordinatesHotelSearchRequest!
+  source:
+    dataConnectorName: travelport_js
+    dataConnectorCommand:
+      function: tpTsCoordsSearchHotels
+  graphql:
+    rootFieldName: tpTsCoordsSearchHotels
+    rootFieldKind: Query
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: TpTsCoordsSearchHotels
+  permissions:
+    - role: admin
+      allowExecution: true
+

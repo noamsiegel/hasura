@@ -1,0 +1,1416 @@
+{
+  "type": "object",
+  "properties": {
+    "traceId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "transactionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer"
+        },
+        "pageSize": {
+          "type": "integer"
+        },
+        "totalPages": {
+          "type": "integer"
+        },
+        "totalItems": {
+          "type": "integer"
+        },
+        "paginationToken": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "page",
+        "pageSize",
+        "totalPages",
+        "totalItems",
+        "paginationToken"
+      ]
+    },
+    "hotelsResponse": {
+      "type": "object",
+      "properties": {
+        "searchPoint": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "latitude",
+            "longitude"
+          ]
+        },
+        "checkInDateLocal": {
+          "type": "string",
+          "format": "date"
+        },
+        "checkOutDateLocal": {
+          "type": "string",
+          "format": "date"
+        },
+        "currencyExchangeRates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sourceCurrency": {
+                "type": "string"
+              },
+              "targetCurrency": {
+                "type": "string"
+              },
+              "conversionFactor": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "sourceCurrency",
+              "targetCurrency",
+              "conversionFactor"
+            ]
+          }
+        },
+        "propertyItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "chainCode": {
+                "type": "string"
+              },
+              "propertyCode": {
+                "type": "string"
+              },
+              "dataQualitySummaryScore": {
+                "type": "object",
+                "properties": {
+                  "propertySummary": {
+                    "type": "object",
+                    "properties": {
+                      "merchandisingQualityScore": {
+                        "type": "integer"
+                      },
+                      "propertyContentQualityScore": {
+                        "type": "integer"
+                      },
+                      "averageAugmentedRateQualityScore": {
+                        "type": "integer"
+                      },
+                      "averageAugmentedRoomQualityScore": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "merchandisingQualityScore",
+                      "propertyContentQualityScore",
+                      "averageAugmentedRateQualityScore",
+                      "averageAugmentedRoomQualityScore"
+                    ]
+                  }
+                },
+                "required": [
+                  "propertySummary"
+                ]
+              },
+              "availability": {
+                "type": "boolean"
+              },
+              "lowestPublicAvailableRate": {
+                "type": "object",
+                "properties": {
+                  "totalPrice": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "base": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "averageNightlyTotalPrice": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "averageNightlyBase": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "currencyCode": {
+                    "type": "string"
+                  },
+                  "rateKey": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "authority": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "value",
+                      "authority"
+                    ]
+                  },
+                  "rateCodeInfo": {
+                    "type": "object",
+                    "properties": {
+                      "rateCategoryCode": {
+                        "type": "integer"
+                      },
+                      "rateType": {
+                        "type": "string"
+                      },
+                      "rateClassificationCode": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "rateCategoryCode",
+                      "rateType",
+                      "rateClassificationCode"
+                    ]
+                  },
+                  "shortRoomDescription": {
+                    "type": "string"
+                  },
+                  "terms": {
+                    "type": "object",
+                    "properties": {
+                      "guaranteeType": {
+                        "type": "string"
+                      },
+                      "customerLoyaltyIDRequiredAtReservation": {
+                        "type": "boolean"
+                      },
+                      "rateQualificationIDRequiredAtCheckIn": {
+                        "type": "boolean"
+                      },
+                      "refundable": {
+                        "type": "boolean"
+                      },
+                      "cancelPenalties": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "deadlineLocal": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "cancelShortDescription": {
+                              "type": "string"
+                            },
+                            "penalty": {
+                              "type": "object",
+                              "properties": {
+                                "estimatedAmount": {
+                                  "type": "boolean"
+                                },
+                                "currencyAmount": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "currency": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "amount",
+                                    "currency"
+                                  ]
+                                },
+                                "originalPenaltyInfo": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "estimatedAmount",
+                                "currencyAmount"
+                              ]
+                            },
+                            "estimatedDeadlineLocal": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "deadlineLocal",
+                            "cancelShortDescription",
+                            "penalty"
+                          ]
+                        }
+                      },
+                      "description": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "ratePaymentInfo": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "guaranteeType",
+                      "customerLoyaltyIDRequiredAtReservation",
+                      "rateQualificationIDRequiredAtCheckIn",
+                      "refundable",
+                      "cancelPenalties",
+                      "description"
+                    ]
+                  },
+                  "totalTaxes": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "averageNightlyTotalTaxes": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  }
+                },
+                "required": [
+                  "totalPrice",
+                  "base",
+                  "averageNightlyTotalPrice",
+                  "averageNightlyBase",
+                  "currencyCode",
+                  "rateKey",
+                  "rateCodeInfo",
+                  "shortRoomDescription",
+                  "terms"
+                ]
+              },
+              "propertyInfo": {
+                "type": "object",
+                "properties": {
+                  "geolocation": {
+                    "type": "object",
+                    "properties": {
+                      "center": {
+                        "type": "object",
+                        "properties": {
+                          "latitude": {
+                            "type": "number"
+                          },
+                          "longitude": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "latitude",
+                          "longitude"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "center"
+                    ]
+                  },
+                  "distanceFromSearchPoint": {
+                    "type": "object",
+                    "properties": {
+                      "unitOfDistance": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "unitOfDistance",
+                      "value"
+                    ]
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "street": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "stateProvince": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "street",
+                      "city",
+                      "countryCode",
+                      "postalCode"
+                    ]
+                  },
+                  "phone": {
+                    "type": "object",
+                    "properties": {
+                      "phoneNumber": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "phoneNumber"
+                    ]
+                  },
+                  "adaCompliant": {
+                    "type": "boolean"
+                  },
+                  "ratings": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "integer"
+                        },
+                        "provider": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "provider"
+                      ]
+                    }
+                  },
+                  "amenities": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "description": {
+                          "type": "string"
+                        },
+                        "code": {
+                          "type": "integer"
+                        },
+                        "category": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "description",
+                        "code",
+                        "category"
+                      ]
+                    }
+                  },
+                  "featuredPropertyInd": {
+                    "type": "boolean"
+                  },
+                  "acceptedCreditCards": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "checkInTimeLocal": {
+                    "type": "string",
+                    "format": "time"
+                  },
+                  "fax": {
+                    "type": "object",
+                    "properties": {
+                      "phoneNumber": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "phoneNumber"
+                    ]
+                  },
+                  "imageURLs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "curatedImage": {
+                          "type": "boolean"
+                        },
+                        "imageSize": {
+                          "type": "string"
+                        },
+                        "caption": {
+                          "type": "string"
+                        },
+                        "dimensions": {
+                          "type": "object",
+                          "properties": {
+                            "width": {
+                              "type": "integer"
+                            },
+                            "height": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "width",
+                            "height"
+                          ]
+                        },
+                        "pictureCategory": {
+                          "type": "integer"
+                        },
+                        "url": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      },
+                      "required": [
+                        "curatedImage",
+                        "imageSize",
+                        "caption",
+                        "dimensions",
+                        "pictureCategory",
+                        "url"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "geolocation",
+                  "distanceFromSearchPoint",
+                  "address",
+                  "phone",
+                  "adaCompliant",
+                  "ratings",
+                  "amenities",
+                  "featuredPropertyInd"
+                ]
+              },
+              "roomTypes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "estimatedRoomTypeOTACode": {
+                      "type": "integer"
+                    },
+                    "shortRoomDescription": {
+                      "type": "string"
+                    },
+                    "characteristics": {
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "integer"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "description"
+                          ]
+                        },
+                        "bedTypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "bedType": {
+                                "type": "string"
+                              },
+                              "quantity": {
+                                "type": "integer"
+                              },
+                              "size": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "bedType",
+                              "quantity",
+                              "size"
+                            ]
+                          }
+                        },
+                        "view": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "integer"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "description"
+                          ]
+                        },
+                        "maxOccupancy": {
+                          "type": "integer"
+                        },
+                        "class": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "integer"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "description"
+                          ]
+                        },
+                        "otherFeatures": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "accessible": {
+                          "type": "boolean"
+                        },
+                        "locationInfo": {
+                          "type": "object",
+                          "properties": {
+                            "floor": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "floor"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "bedTypes"
+                      ]
+                    },
+                    "bedTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "bedType": {
+                            "type": "string"
+                          },
+                          "quantity": {
+                            "type": "integer"
+                          },
+                          "size": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "bedType",
+                          "quantity",
+                          "size"
+                        ]
+                      }
+                    },
+                    "rates": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "rateKey": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "authority": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "authority"
+                            ]
+                          },
+                          "bookingCode": {
+                            "type": "string"
+                          },
+                          "rateDescription": {
+                            "type": "string"
+                          },
+                          "roomDescription": {
+                            "type": "string"
+                          },
+                          "rateCodeInfo": {
+                            "type": "object",
+                            "properties": {
+                              "rateCategoryCode": {
+                                "type": "integer"
+                              },
+                              "rateType": {
+                                "type": "string"
+                              },
+                              "rateClassificationCode": {
+                                "type": "integer"
+                              },
+                              "rateCategory": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rateCategoryCode",
+                              "rateType",
+                              "rateClassificationCode"
+                            ]
+                          },
+                          "dataQualityScore": {
+                            "type": "object",
+                            "properties": {
+                              "augmentedRateQualityScore": {
+                                "type": "integer"
+                              },
+                              "augmentedRoomQualityScore": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "augmentedRateQualityScore",
+                              "augmentedRoomQualityScore"
+                            ]
+                          },
+                          "nonSmoking": {
+                            "type": "boolean"
+                          },
+                          "price": {
+                            "type": "object",
+                            "properties": {
+                              "currencyCode": {
+                                "type": "string"
+                              },
+                              "base": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "amount"
+                                ]
+                              },
+                              "totalPrice": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "amount"
+                                ]
+                              },
+                              "taxesIncludedInBase": {
+                                "type": "boolean"
+                              },
+                              "commission": {
+                                "type": "object",
+                                "properties": {
+                                  "application": {
+                                    "type": "boolean"
+                                  },
+                                  "percent": {
+                                    "type": "integer"
+                                  },
+                                  "estimatedPercent": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "application"
+                                ]
+                              },
+                              "nightlyRatesBreakdown": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "totalPrice": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "amount"
+                                      ]
+                                    },
+                                    "localDate": {
+                                      "type": "string",
+                                      "format": "date"
+                                    }
+                                  },
+                                  "required": [
+                                    "totalPrice",
+                                    "localDate"
+                                  ]
+                                }
+                              },
+                              "priceNote": {
+                                "type": "object",
+                                "properties": {
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "message"
+                                ]
+                              },
+                              "totalTaxes": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "amount"
+                                ]
+                              },
+                              "perStayTaxAndFeeBreakdown": {
+                                "type": "object",
+                                "properties": {
+                                  "taxes": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "taxCode": {
+                                          "type": "string"
+                                        },
+                                        "description": {
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "object",
+                                          "properties": {
+                                            "amount": {
+                                              "type": "number"
+                                            }
+                                          },
+                                          "required": [
+                                            "amount"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "taxCode",
+                                        "description"
+                                      ]
+                                    }
+                                  },
+                                  "fees": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "object",
+                                          "properties": {
+                                            "amount": {
+                                              "type": "integer"
+                                            },
+                                            "currency": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "amount",
+                                            "currency"
+                                          ]
+                                        },
+                                        "taxCode": {
+                                          "type": "string"
+                                        },
+                                        "description": {
+                                          "type": "string"
+                                        },
+                                        "feeApplication": {
+                                          "type": "string"
+                                        },
+                                        "feeFrequency": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "value",
+                                        "taxCode",
+                                        "description",
+                                        "feeApplication",
+                                        "feeFrequency"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "taxes"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "currencyCode",
+                              "base",
+                              "totalPrice",
+                              "taxesIncludedInBase",
+                              "commission",
+                              "nightlyRatesBreakdown",
+                              "priceNote"
+                            ]
+                          },
+                          "terms": {
+                            "type": "object",
+                            "properties": {
+                              "guaranteeType": {
+                                "type": "string"
+                              },
+                              "refundable": {
+                                "type": "boolean"
+                              },
+                              "cancelPenalties": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "deadlineLocal": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "cancelShortDescription": {
+                                      "type": "string"
+                                    },
+                                    "penalty": {
+                                      "type": "object",
+                                      "properties": {
+                                        "estimatedAmount": {
+                                          "type": "boolean"
+                                        },
+                                        "currencyAmount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "amount": {
+                                              "type": "number"
+                                            },
+                                            "currency": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "amount",
+                                            "currency"
+                                          ]
+                                        },
+                                        "originalPenaltyInfo": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "estimatedAmount",
+                                        "currencyAmount"
+                                      ]
+                                    },
+                                    "estimatedDeadlineLocal": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "required": [
+                                    "deadlineLocal",
+                                    "cancelShortDescription",
+                                    "penalty"
+                                  ]
+                                }
+                              },
+                              "customerLoyaltyIDRequiredAtReservation": {
+                                "type": "boolean"
+                              },
+                              "rateQualificationIDRequiredAtCheckIn": {
+                                "type": "boolean"
+                              },
+                              "ratePaymentInfo": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": [
+                              "guaranteeType",
+                              "refundable",
+                              "cancelPenalties"
+                            ]
+                          },
+                          "wifiIncluded": {
+                            "type": "boolean"
+                          },
+                          "accessibleRoom": {
+                            "type": "boolean"
+                          },
+                          "breakfastIncluded": {
+                            "type": "boolean"
+                          },
+                          "lunchIncluded": {
+                            "type": "boolean"
+                          },
+                          "dinnerIncluded": {
+                            "type": "boolean"
+                          },
+                          "quantity": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "rateKey",
+                          "bookingCode",
+                          "rateDescription",
+                          "roomDescription",
+                          "rateCodeInfo",
+                          "dataQualityScore",
+                          "nonSmoking",
+                          "price",
+                          "terms"
+                        ]
+                      }
+                    },
+                    "view": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "description"
+                      ]
+                    },
+                    "maxOccupancy": {
+                      "type": "integer"
+                    },
+                    "roomAmenities": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "code": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "description",
+                          "code"
+                        ]
+                      }
+                    },
+                    "roomImageURLs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "curatedImage": {
+                            "type": "boolean"
+                          },
+                          "imageSize": {
+                            "type": "string"
+                          },
+                          "caption": {
+                            "type": "string"
+                          },
+                          "dimensions": {
+                            "type": "object",
+                            "properties": {
+                              "width": {
+                                "type": "integer"
+                              },
+                              "height": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "width",
+                              "height"
+                            ]
+                          },
+                          "pictureCategory": {
+                            "type": "integer"
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        },
+                        "required": [
+                          "curatedImage",
+                          "imageSize",
+                          "caption",
+                          "dimensions",
+                          "pictureCategory",
+                          "url"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "estimatedRoomTypeOTACode",
+                    "shortRoomDescription",
+                    "characteristics",
+                    "bedTypes",
+                    "rates"
+                  ]
+                }
+              },
+              "lowestPrivateAvailableRate": {
+                "type": "object",
+                "properties": {
+                  "totalPrice": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "base": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "averageNightlyTotalPrice": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "averageNightlyBase": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "currencyCode": {
+                    "type": "string"
+                  },
+                  "rateKey": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "authority": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "value",
+                      "authority"
+                    ]
+                  },
+                  "rateCodeInfo": {
+                    "type": "object",
+                    "properties": {
+                      "rateCategory": {
+                        "type": "string"
+                      },
+                      "rateCategoryCode": {
+                        "type": "integer"
+                      },
+                      "rateType": {
+                        "type": "string"
+                      },
+                      "rateClassificationCode": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "rateCategory",
+                      "rateCategoryCode",
+                      "rateType",
+                      "rateClassificationCode"
+                    ]
+                  },
+                  "shortRoomDescription": {
+                    "type": "string"
+                  },
+                  "terms": {
+                    "type": "object",
+                    "properties": {
+                      "guaranteeType": {
+                        "type": "string"
+                      },
+                      "customerLoyaltyIDRequiredAtReservation": {
+                        "type": "boolean"
+                      },
+                      "rateQualificationIDRequiredAtCheckIn": {
+                        "type": "boolean"
+                      },
+                      "refundable": {
+                        "type": "boolean"
+                      },
+                      "cancelPenalties": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "deadlineLocal": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "cancelShortDescription": {
+                              "type": "string"
+                            },
+                            "penalty": {
+                              "type": "object",
+                              "properties": {
+                                "estimatedAmount": {
+                                  "type": "boolean"
+                                },
+                                "currencyAmount": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "currency": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "amount",
+                                    "currency"
+                                  ]
+                                },
+                                "originalPenaltyInfo": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "estimatedAmount",
+                                "currencyAmount"
+                              ]
+                            },
+                            "estimatedDeadlineLocal": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "deadlineLocal",
+                            "cancelShortDescription",
+                            "penalty"
+                          ]
+                        }
+                      },
+                      "description": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "ratePaymentInfo": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "guaranteeType",
+                      "customerLoyaltyIDRequiredAtReservation",
+                      "rateQualificationIDRequiredAtCheckIn",
+                      "refundable",
+                      "cancelPenalties",
+                      "description"
+                    ]
+                  },
+                  "totalTaxes": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  },
+                  "averageNightlyTotalTaxes": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "amount"
+                    ]
+                  }
+                },
+                "required": [
+                  "totalPrice",
+                  "base",
+                  "averageNightlyTotalPrice",
+                  "averageNightlyBase",
+                  "currencyCode",
+                  "rateKey",
+                  "rateCodeInfo",
+                  "shortRoomDescription",
+                  "terms"
+                ]
+              },
+              "brandCode": {
+                "type": "string"
+              },
+              "availabilityNotes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "authority": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "authority",
+                    "message"
+                  ]
+                }
+              },
+              "longDescription": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "chainCode",
+              "propertyCode",
+              "dataQualitySummaryScore",
+              "availability",
+              "lowestPublicAvailableRate",
+              "propertyInfo",
+              "roomTypes"
+            ]
+          }
+        }
+      },
+      "required": [
+        "searchPoint",
+        "checkInDateLocal",
+        "checkOutDateLocal",
+        "currencyExchangeRates",
+        "propertyItems"
+      ]
+    }
+  },
+  "required": [
+    "traceId",
+    "transactionId",
+    "pagination",
+    "hotelsResponse"
+  ]
+}

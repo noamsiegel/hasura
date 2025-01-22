@@ -1,0 +1,20 @@
+services:
+  app_travelport_js:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile
+    environment:
+      HASURA_SERVICE_TOKEN_SECRET: $APP_TRAVELPORT_JS_HASURA_SERVICE_TOKEN_SECRET
+      OTEL_EXPORTER_OTLP_ENDPOINT: $APP_TRAVELPORT_JS_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $APP_TRAVELPORT_JS_OTEL_SERVICE_NAME
+      # NOTE this is where added the travelport env variables worked locally
+      TRAVELPORT_ACCESS_GROUP: $TRAVELPORT_ACCESS_GROUP
+      TRAVELPORT_CLIENT_ID: $TRAVELPORT_CLIENT_ID
+      TRAVELPORT_CLIENT_SECRET: $TRAVELPORT_CLIENT_SECRET
+      TRAVELPORT_OAUTH_URL: $TRAVELPORT_OAUTH_URL
+      TRAVELPORT_PASSWORD: $TRAVELPORT_PASSWORD
+      TRAVELPORT_USERNAME: $TRAVELPORT_USERNAME
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 5804:8080
