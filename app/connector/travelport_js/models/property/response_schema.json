@@ -1,0 +1,1237 @@
+{
+    "type": "object",
+    "properties": {
+        "traceId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "transactionId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "pagination": {
+            "type": "object",
+            "properties": {
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "totalPages": {
+                    "type": "integer"
+                },
+                "totalItems": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "page",
+                "pageSize",
+                "totalPages",
+                "totalItems"
+            ]
+        },
+        "hotelsResponse": {
+            "type": "object",
+            "properties": {
+                "checkInDateLocal": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "checkOutDateLocal": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "propertyItems": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "brandCode": {
+                                "type": "string"
+                            },
+                            "chainCode": {
+                                "type": "string"
+                            },
+                            "propertyCode": {
+                                "type": "string"
+                            },
+                            "longDescription": {
+                                "type": "string"
+                            },
+                            "dataQualitySummaryScore": {
+                                "type": "object",
+                                "properties": {
+                                    "propertySummary": {
+                                        "type": "object",
+                                        "properties": {
+                                            "merchandisingQualityScore": {
+                                                "type": "integer"
+                                            },
+                                            "propertyContentQualityScore": {
+                                                "type": "integer"
+                                            },
+                                            "averageAugmentedRateQualityScore": {
+                                                "type": "integer"
+                                            },
+                                            "averageAugmentedRoomQualityScore": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "merchandisingQualityScore",
+                                            "propertyContentQualityScore",
+                                            "averageAugmentedRateQualityScore",
+                                            "averageAugmentedRoomQualityScore"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "propertySummary"
+                                ]
+                            },
+                            "availability": {
+                                "type": "boolean"
+                            },
+                            "lowestPublicAvailableRate": {
+                                "type": "object",
+                                "properties": {
+                                    "totalPrice": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "base": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "totalTaxes": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "averageNightlyTotalPrice": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "averageNightlyBase": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "averageNightlyTotalTaxes": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "currencyCode": {
+                                        "type": "string"
+                                    },
+                                    "rateKey": {
+                                        "type": "object",
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            },
+                                            "authority": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "value",
+                                            "authority"
+                                        ]
+                                    },
+                                    "rateCodeInfo": {
+                                        "type": "object",
+                                        "properties": {
+                                            "rateCategoryCode": {
+                                                "type": "integer"
+                                            },
+                                            "rateType": {
+                                                "type": "string"
+                                            },
+                                            "rateClassificationCode": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "rateCategoryCode",
+                                            "rateType",
+                                            "rateClassificationCode"
+                                        ]
+                                    },
+                                    "shortRoomDescription": {
+                                        "type": "string"
+                                    },
+                                    "terms": {
+                                        "type": "object",
+                                        "properties": {
+                                            "ratePaymentInfo": {
+                                                "type": "string"
+                                            },
+                                            "guaranteeType": {
+                                                "type": "string"
+                                            },
+                                            "customerLoyaltyIDRequiredAtReservation": {
+                                                "type": "boolean"
+                                            },
+                                            "rateQualificationIDRequiredAtCheckIn": {
+                                                "type": "boolean"
+                                            },
+                                            "refundable": {
+                                                "type": "boolean"
+                                            },
+                                            "cancelPenalties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "deadlineLocal": {
+                                                            "type": "string",
+                                                            "format": "date-time"
+                                                        },
+                                                        "cancelShortDescription": {
+                                                            "type": "string"
+                                                        },
+                                                        "penalty": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "estimatedAmount": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "currencyAmount": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "amount": {
+                                                                            "type": "number"
+                                                                        },
+                                                                        "currency": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "amount",
+                                                                        "currency"
+                                                                    ]
+                                                                },
+                                                                "originalPenaltyInfo": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "estimatedAmount",
+                                                                "currencyAmount",
+                                                                "originalPenaltyInfo"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "deadlineLocal",
+                                                        "cancelShortDescription",
+                                                        "penalty"
+                                                    ]
+                                                }
+                                            },
+                                            "description": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "ratePaymentInfo",
+                                            "guaranteeType",
+                                            "customerLoyaltyIDRequiredAtReservation",
+                                            "rateQualificationIDRequiredAtCheckIn",
+                                            "refundable",
+                                            "cancelPenalties",
+                                            "description"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "totalPrice",
+                                    "base",
+                                    "totalTaxes",
+                                    "averageNightlyTotalPrice",
+                                    "averageNightlyBase",
+                                    "averageNightlyTotalTaxes",
+                                    "currencyCode",
+                                    "rateKey",
+                                    "rateCodeInfo",
+                                    "shortRoomDescription",
+                                    "terms"
+                                ]
+                            },
+                            "lowestPrivateAvailableRate": {
+                                "type": "object",
+                                "properties": {
+                                    "totalPrice": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "base": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "totalTaxes": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "averageNightlyTotalPrice": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "averageNightlyBase": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "averageNightlyTotalTaxes": {
+                                        "type": "object",
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "amount"
+                                        ]
+                                    },
+                                    "currencyCode": {
+                                        "type": "string"
+                                    },
+                                    "rateKey": {
+                                        "type": "object",
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            },
+                                            "authority": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "value",
+                                            "authority"
+                                        ]
+                                    },
+                                    "rateCodeInfo": {
+                                        "type": "object",
+                                        "properties": {
+                                            "rateCategory": {
+                                                "type": "string"
+                                            },
+                                            "rateCategoryCode": {
+                                                "type": "integer"
+                                            },
+                                            "rateType": {
+                                                "type": "string"
+                                            },
+                                            "rateClassificationCode": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "rateCategory",
+                                            "rateCategoryCode",
+                                            "rateType",
+                                            "rateClassificationCode"
+                                        ]
+                                    },
+                                    "shortRoomDescription": {
+                                        "type": "string"
+                                    },
+                                    "terms": {
+                                        "type": "object",
+                                        "properties": {
+                                            "ratePaymentInfo": {
+                                                "type": "string"
+                                            },
+                                            "guaranteeType": {
+                                                "type": "string"
+                                            },
+                                            "customerLoyaltyIDRequiredAtReservation": {
+                                                "type": "boolean"
+                                            },
+                                            "rateQualificationIDRequiredAtCheckIn": {
+                                                "type": "boolean"
+                                            },
+                                            "refundable": {
+                                                "type": "boolean"
+                                            },
+                                            "cancelPenalties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "deadlineLocal": {
+                                                            "type": "string",
+                                                            "format": "date-time"
+                                                        },
+                                                        "cancelShortDescription": {
+                                                            "type": "string"
+                                                        },
+                                                        "penalty": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "estimatedAmount": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "currencyAmount": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "amount": {
+                                                                            "type": "number"
+                                                                        },
+                                                                        "currency": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "amount",
+                                                                        "currency"
+                                                                    ]
+                                                                },
+                                                                "originalPenaltyInfo": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "estimatedAmount",
+                                                                "currencyAmount",
+                                                                "originalPenaltyInfo"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "deadlineLocal",
+                                                        "cancelShortDescription",
+                                                        "penalty"
+                                                    ]
+                                                }
+                                            },
+                                            "description": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "ratePaymentInfo",
+                                            "guaranteeType",
+                                            "customerLoyaltyIDRequiredAtReservation",
+                                            "rateQualificationIDRequiredAtCheckIn",
+                                            "refundable",
+                                            "cancelPenalties",
+                                            "description"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "totalPrice",
+                                    "base",
+                                    "totalTaxes",
+                                    "averageNightlyTotalPrice",
+                                    "averageNightlyBase",
+                                    "averageNightlyTotalTaxes",
+                                    "currencyCode",
+                                    "rateKey",
+                                    "rateCodeInfo",
+                                    "shortRoomDescription",
+                                    "terms"
+                                ]
+                            },
+                            "propertyInfo": {
+                                "type": "object",
+                                "properties": {
+                                    "geolocation": {
+                                        "type": "object",
+                                        "properties": {
+                                            "center": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "latitude": {
+                                                        "type": "number"
+                                                    },
+                                                    "longitude": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "latitude",
+                                                    "longitude"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "center"
+                                        ]
+                                    },
+                                    "distanceFromSearchPoint": {
+                                        "type": "object",
+                                        "properties": {
+                                            "unitOfDistance": {
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "unitOfDistance",
+                                            "value"
+                                        ]
+                                    },
+                                    "address": {
+                                        "type": "object",
+                                        "properties": {
+                                            "street": {
+                                                "type": "string"
+                                            },
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "stateProvince": {
+                                                "type": "string"
+                                            },
+                                            "countryCode": {
+                                                "type": "string"
+                                            },
+                                            "postalCode": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "street",
+                                            "city",
+                                            "stateProvince",
+                                            "countryCode",
+                                            "postalCode"
+                                        ]
+                                    },
+                                    "phone": {
+                                        "type": "object",
+                                        "properties": {
+                                            "phoneNumber": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "phoneNumber"
+                                        ]
+                                    },
+                                    "fax": {
+                                        "type": "object",
+                                        "properties": {
+                                            "phoneNumber": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "phoneNumber"
+                                        ]
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "checkInTimeLocal": {
+                                        "type": "string",
+                                        "format": "time"
+                                    },
+                                    "adaCompliant": {
+                                        "type": "boolean"
+                                    },
+                                    "ratings": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "value": {
+                                                    "type": "integer"
+                                                },
+                                                "provider": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "value",
+                                                "provider"
+                                            ]
+                                        }
+                                    },
+                                    "imageURLs": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "curatedImage": {
+                                                    "type": "boolean"
+                                                },
+                                                "imageSize": {
+                                                    "type": "string"
+                                                },
+                                                "caption": {
+                                                    "type": "string"
+                                                },
+                                                "dimensions": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "width": {
+                                                            "type": "integer"
+                                                        },
+                                                        "height": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "width",
+                                                        "height"
+                                                    ]
+                                                },
+                                                "pictureCategory": {
+                                                    "type": "integer"
+                                                },
+                                                "url": {
+                                                    "type": "string",
+                                                    "format": "uri"
+                                                }
+                                            },
+                                            "required": [
+                                                "curatedImage",
+                                                "imageSize",
+                                                "caption",
+                                                "dimensions",
+                                                "pictureCategory",
+                                                "url"
+                                            ]
+                                        }
+                                    },
+                                    "featuredPropertyInd": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "geolocation",
+                                    "distanceFromSearchPoint",
+                                    "address",
+                                    "phone",
+                                    "fax",
+                                    "email",
+                                    "checkInTimeLocal",
+                                    "adaCompliant",
+                                    "ratings",
+                                    "imageURLs",
+                                    "featuredPropertyInd"
+                                ]
+                            },
+                            "roomTypes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "estimatedRoomTypeOTACode": {
+                                            "type": "integer"
+                                        },
+                                        "shortRoomDescription": {
+                                            "type": "string"
+                                        },
+                                        "characteristics": {
+                                            "type": "object",
+                                            "properties": {
+                                                "category": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "code": {
+                                                            "type": "integer"
+                                                        },
+                                                        "description": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "code",
+                                                        "description"
+                                                    ]
+                                                },
+                                                "bedTypes": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "bedType": {
+                                                                "type": "string"
+                                                            },
+                                                            "quantity": {
+                                                                "type": "integer"
+                                                            },
+                                                            "size": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "bedType",
+                                                            "quantity",
+                                                            "size"
+                                                        ]
+                                                    }
+                                                },
+                                                "accessible": {
+                                                    "type": "boolean"
+                                                },
+                                                "maxOccupancy": {
+                                                    "type": "integer"
+                                                },
+                                                "class": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "code": {
+                                                            "type": "integer"
+                                                        },
+                                                        "description": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "code",
+                                                        "description"
+                                                    ]
+                                                },
+                                                "view": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "code": {
+                                                            "type": "integer"
+                                                        },
+                                                        "description": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "code",
+                                                        "description"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "category",
+                                                "bedTypes"
+                                            ]
+                                        },
+                                        "bedTypes": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "bedType": {
+                                                        "type": "string"
+                                                    },
+                                                    "quantity": {
+                                                        "type": "integer"
+                                                    },
+                                                    "size": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "bedType",
+                                                    "quantity",
+                                                    "size"
+                                                ]
+                                            }
+                                        },
+                                        "roomAmenities": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "code": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "description",
+                                                    "code"
+                                                ]
+                                            }
+                                        },
+                                        "rates": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "rateKey": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "value": {
+                                                                "type": "string"
+                                                            },
+                                                            "authority": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "value",
+                                                            "authority"
+                                                        ]
+                                                    },
+                                                    "bookingCode": {
+                                                        "type": "string"
+                                                    },
+                                                    "rateDescription": {
+                                                        "type": "string"
+                                                    },
+                                                    "roomDescription": {
+                                                        "type": "string"
+                                                    },
+                                                    "rateCodeInfo": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "rateCategoryCode": {
+                                                                "type": "integer"
+                                                            },
+                                                            "rateType": {
+                                                                "type": "string"
+                                                            },
+                                                            "rateClassificationCode": {
+                                                                "type": "integer"
+                                                            },
+                                                            "rateCategory": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "rateCategoryCode",
+                                                            "rateType",
+                                                            "rateClassificationCode"
+                                                        ]
+                                                    },
+                                                    "dataQualityScore": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "augmentedRateQualityScore": {
+                                                                "type": "integer"
+                                                            },
+                                                            "augmentedRoomQualityScore": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "augmentedRateQualityScore",
+                                                            "augmentedRoomQualityScore"
+                                                        ]
+                                                    },
+                                                    "quantity": {
+                                                        "type": "integer"
+                                                    },
+                                                    "nonSmoking": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "breakfastIncluded": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "price": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "currencyCode": {
+                                                                "type": "string"
+                                                            },
+                                                            "base": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "amount": {
+                                                                        "type": "number"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "amount"
+                                                                ]
+                                                            },
+                                                            "totalTaxes": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "amount": {
+                                                                        "type": "number"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "amount"
+                                                                ]
+                                                            },
+                                                            "totalPrice": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "amount": {
+                                                                        "type": "number"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "amount"
+                                                                ]
+                                                            },
+                                                            "taxesIncludedInBase": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "commission": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "application": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "percent": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "estimatedPercent": {
+                                                                        "type": "boolean"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "application",
+                                                                    "percent",
+                                                                    "estimatedPercent"
+                                                                ]
+                                                            },
+                                                            "perStayTaxAndFeeBreakdown": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "taxes": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "value": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "amount": {
+                                                                                            "type": "number"
+                                                                                        }
+                                                                                    },
+                                                                                    "required": [
+                                                                                        "amount"
+                                                                                    ]
+                                                                                },
+                                                                                "taxCode": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "description": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "value",
+                                                                                "taxCode",
+                                                                                "description"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "taxes"
+                                                                ]
+                                                            },
+                                                            "nightlyRatesBreakdown": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "totalPrice": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "amount": {
+                                                                                    "type": "number"
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "amount"
+                                                                            ]
+                                                                        },
+                                                                        "localDate": {
+                                                                            "type": "string",
+                                                                            "format": "date"
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "totalPrice",
+                                                                        "localDate"
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "priceNote": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "message": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "message"
+                                                                ]
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "currencyCode",
+                                                            "base",
+                                                            "totalTaxes",
+                                                            "totalPrice",
+                                                            "taxesIncludedInBase",
+                                                            "commission",
+                                                            "perStayTaxAndFeeBreakdown",
+                                                            "nightlyRatesBreakdown",
+                                                            "priceNote"
+                                                        ]
+                                                    },
+                                                    "terms": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "ratePaymentInfo": {
+                                                                "type": "string"
+                                                            },
+                                                            "guaranteeType": {
+                                                                "type": "string"
+                                                            },
+                                                            "refundable": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "cancelPenalties": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "deadlineLocal": {
+                                                                            "type": "string",
+                                                                            "format": "date-time"
+                                                                        },
+                                                                        "cancelShortDescription": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "penalty": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "estimatedAmount": {
+                                                                                    "type": "boolean"
+                                                                                },
+                                                                                "currencyAmount": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "amount": {
+                                                                                            "type": "number"
+                                                                                        },
+                                                                                        "currency": {
+                                                                                            "type": "string"
+                                                                                        }
+                                                                                    },
+                                                                                    "required": [
+                                                                                        "amount",
+                                                                                        "currency"
+                                                                                    ]
+                                                                                },
+                                                                                "originalPenaltyInfo": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            },
+                                                                            "required": [
+                                                                                "estimatedAmount",
+                                                                                "currencyAmount",
+                                                                                "originalPenaltyInfo"
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "deadlineLocal",
+                                                                        "cancelShortDescription",
+                                                                        "penalty"
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "description": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "customerLoyaltyIDRequiredAtReservation": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "rateQualificationIDRequiredAtCheckIn": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "ratePaymentInfo",
+                                                            "guaranteeType",
+                                                            "refundable",
+                                                            "cancelPenalties",
+                                                            "description"
+                                                        ]
+                                                    },
+                                                    "accessibleRoom": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "lunchIncluded": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dinnerIncluded": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "wifiIncluded": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "rateKey",
+                                                    "bookingCode",
+                                                    "rateDescription",
+                                                    "roomDescription",
+                                                    "rateCodeInfo",
+                                                    "dataQualityScore",
+                                                    "quantity",
+                                                    "nonSmoking",
+                                                    "breakfastIncluded",
+                                                    "price",
+                                                    "terms"
+                                                ]
+                                            }
+                                        },
+                                        "maxOccupancy": {
+                                            "type": "integer"
+                                        },
+                                        "view": {
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "code",
+                                                "description"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "estimatedRoomTypeOTACode",
+                                        "shortRoomDescription",
+                                        "characteristics",
+                                        "bedTypes",
+                                        "roomAmenities",
+                                        "rates"
+                                    ]
+                                }
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "brandCode",
+                            "chainCode",
+                            "propertyCode",
+                            "longDescription",
+                            "dataQualitySummaryScore",
+                            "availability",
+                            "lowestPublicAvailableRate",
+                            "lowestPrivateAvailableRate",
+                            "propertyInfo",
+                            "roomTypes"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "checkInDateLocal",
+                "checkOutDateLocal",
+                "propertyItems"
+            ]
+        }
+    },
+    "required": [
+        "traceId",
+        "transactionId",
+        "pagination",
+        "hotelsResponse"
+    ]
+}

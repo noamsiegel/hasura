@@ -10,10 +10,23 @@ definition:
   envMapping:
     APP_TRAVELPORT_AUTHORIZATION_HEADER:
       fromEnv: APP_TRAVELPORT_AUTHORIZATION_HEADER
+    APP_TRAVELPORT_JS_AUTHORIZATION_HEADER:
+      fromEnv: APP_TRAVELPORT_JS_AUTHORIZATION_HEADER
+    APP_TRAVELPORT_JS_READ_URL:
+      fromEnv: APP_TRAVELPORT_JS_READ_URL
+    APP_TRAVELPORT_JS_WRITE_URL:
+      fromEnv: APP_TRAVELPORT_JS_WRITE_URL
+    APP_TRAVELPORT_OS_AUTHORIZATION_HEADER:
+      fromEnv: APP_TRAVELPORT_OS_AUTHORIZATION_HEADER
+    APP_TRAVELPORT_OS_READ_URL:
+      fromEnv: APP_TRAVELPORT_OS_READ_URL
+    APP_TRAVELPORT_OS_WRITE_URL:
+      fromEnv: APP_TRAVELPORT_OS_WRITE_URL
     APP_TRAVELPORT_READ_URL:
       fromEnv: APP_TRAVELPORT_READ_URL
     APP_TRAVELPORT_WRITE_URL:
       fromEnv: APP_TRAVELPORT_WRITE_URL
   connectors:
     - path: connector/travelport/connector.yaml
-      connectorLinkName: travelport
+    - path: connector/travelport_js/connector.yaml
+      connectorLinkName: travelport_js

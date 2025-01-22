@@ -1,0 +1,102 @@
+{
+    "responseFields": [
+        "propertyDetail",
+        "price",
+        "image"
+    ],
+    "requestedCurrency": "EUR",
+    "stayDetails": {
+        "checkInDateLocal": "{{checkIndate}}",
+        "checkOutDateLocal": "{{checkOutdate}}",
+        "rooms": 1,
+        "guests": {
+            "adults": 1,
+            "children": [
+                {
+                    "age": 2
+                }
+            ]
+        }
+    },
+    "propertyFilter": {
+        "maxWaitTime": 4000,
+        "location": {
+            "type": "coordinates",
+            "details": {
+                "latitude": "51.470241662259895",
+                "longitude": "-0.45093566335492113"
+            },
+            "radius": {
+                "value": 15,
+                "unit": "km"
+            }
+        },
+        "chainCodes": [
+            "HL",
+            "EM",
+            "HY",
+            "DA",
+            "RT",
+            "HH"
+        ],
+        "customerLoyaltyCards": [
+            {
+                "value": "132456",
+                "supplierCode": "HL",
+                "supplierType": "Hotel"
+            }
+        ],
+        "hotelNameContains": "hotel",
+        "negotiatedRates": {
+            "rateCodes": [
+                "LOREAL",
+                "IBM",
+                "GEE",
+                "ABC"
+            ],
+            "masterRateCode": "1ABC23"
+        },
+        "returnOnlyAvailableProperties": true,
+        "imageSize": "Large",
+        "returnAllImageURLs": false,
+        "recommendedPropertyAmenitiesInd": true,
+        "removeSpecialRates": true,
+        "categories": [
+            "Military",
+            "Weekend",
+            "Club"
+        ]
+    },
+    "roomFilter": {
+        "nonSmoking": true,
+        "balcony": true,
+        "accessible": true,
+        "connecting": true,
+        "family": true,
+        "bedConfiguration": {
+            "minimumQuantity": 1,
+            "type": "King"
+        },
+        "amenityCodes": [
+            2,
+            7,
+            11
+        ],
+        "recommendedRoomAmenitiesInd": true
+    },
+    "rateFilter": {
+        "rateFlags": {
+            "refundable": true,
+            "commissionable": true,
+            "deposit": true,
+            "prepay": true,
+            "postpay": true,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true
+        },
+        "publicRateBlacklist": [
+            "Gold"
+        ]
+    }
+}
