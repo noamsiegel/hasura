@@ -1,11 +1,3 @@
-introspect-travelport:
-	ddn connector introspect travelport
-	ddn model add travelport "*"
-	ddn command add travelport "*"
-	ddn relationship add travelport "*"
-	ddn supergraph build local
-	ddn run docker-start
-
 travelport_js:
 	ddn connector introspect travelport_js
 	ddn command add travelport_js "*"
@@ -17,6 +9,3 @@ make start:
 
 make build:
 	ddn supergraph build local
-
-make travelport-venv:
-	source travelport-v12/bin/activate
