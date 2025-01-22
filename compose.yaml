@@ -1,5 +1,4 @@
 include:
-  - path: app/connector/travelport/compose.yaml
   - path: app/connector/travelport_js/compose.yaml
 services:
   engine:
