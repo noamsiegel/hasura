@@ -1,9 +1,6 @@
 import {
-    StayDetails,
-    RoomFilter,
-    RateFilter,
-    CustomerLoyaltyCard,
-    NegotiatedRates
+    BasePropertyFilter,
+    BaseHotelSearchRequest
 } from '../base_request';
 
 interface PropertyKey {
@@ -11,25 +8,11 @@ interface PropertyKey {
     propertyCode: string;
 }
 
-interface PropertyFilter {
-    maxWaitTime?: number;
+// Note: Property search is slightly different as it uses propertyKeys instead of location
+interface PropertyFilter extends Omit<BasePropertyFilter, 'chainCodes'> {
     propertyKeys: PropertyKey[];
-    customerLoyaltyCards?: CustomerLoyaltyCard[];
-    hotelNameContains?: string;
-    negotiatedRates?: NegotiatedRates;
-    returnOnlyAvailableProperties: boolean;
-    imageSize?: string;
-    returnAllImageURLs?: boolean;
-    recommendedPropertyAmenitiesInd?: boolean;
-    removeSpecialRates?: boolean;
-    categories?: string[];
 }
 
-export interface PropertyHotelSearchRequest {
-    responseFields?: string[];
-    requestedCurrency?: string;
-    stayDetails: StayDetails;
+export interface PropertyHotelSearchRequest extends BaseHotelSearchRequest {
     propertyFilter: PropertyFilter;
-    roomFilter?: RoomFilter;
-    rateFilter?: RateFilter;
 }

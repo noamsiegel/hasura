@@ -220,6 +220,14 @@ definition:
                 underlying_type:
                   type: named
                   name: String
+            responseFields:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: String
             returnCompleteNightlyRateBreakdown:
               type:
                 type: nullable
@@ -371,7 +379,7 @@ definition:
                 type: nullable
                 underlying_type:
                   type: named
-                  name: CityRateFilter
+                  name: RateFilter
             requestedCurrency:
               type:
                 type: nullable
@@ -391,7 +399,7 @@ definition:
                 type: nullable
                 underlying_type:
                   type: named
-                  name: CityRoomFilter
+                  name: RoomFilter
             stayDetails:
               type:
                 type: named
@@ -418,7 +426,7 @@ definition:
                 name: String
         CityIataCodePropertyFilter:
           fields:
-            amenityCategories:
+            categories:
               type:
                 type: nullable
                 underlying_type:
@@ -476,6 +484,12 @@ definition:
                 underlying_type:
                   type: named
                   name: Boolean
+            removeSpecialRates:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
             returnAllImageURLs:
               type:
                 type: nullable
@@ -504,100 +518,6 @@ definition:
               type:
                 type: named
                 name: String
-        CityRateFilter:
-          fields:
-            categories:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            publicRateBlacklist:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            rateFlags:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RateFlags
-            removeSpecialRates:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-        CityRoomFilter:
-          fields:
-            accessible:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            amenityCodes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: Float
-            balcony:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            bedConfiguration:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: BedConfiguration
-            connecting:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            family:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            highFloor:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            maxOccupancy:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            nonSmoking:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            recommendedRoomAmenitiesInd:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
         CoordinatesHotelSearchRequest:
           fields:
             propertyFilter:
@@ -7486,7 +7406,7 @@ definition:
                 name: Float
       collections: []
       functions:
-        - name: tpTsCoordsSearchHotels
+        - name: tpSearchHotelsByCoordinates
           arguments:
             searchParams:
               type:
@@ -7495,7 +7415,7 @@ definition:
           result_type:
             type: named
             name: CoordinatesResponse
-        - name: tpTsSearchByAirportIataCode
+        - name: tpSearchHotelsByAirportIataCode
           arguments:
             searchParams:
               type:
@@ -7504,7 +7424,7 @@ definition:
           result_type:
             type: named
             name: AirportIataCodeResponse
-        - name: tpTsSearchByProperty
+        - name: tpSearchHotelsByProperty
           arguments:
             searchParams:
               type:
@@ -7513,7 +7433,7 @@ definition:
           result_type:
             type: named
             name: PropertyResponse
-        - name: tpTsSearchByAddress
+        - name: tpSearchHotelsByAddress
           arguments:
             searchParams:
               type:
@@ -7522,7 +7442,7 @@ definition:
           result_type:
             type: named
             name: AddressResponse
-        - name: tpTsSearchByCityIataCode
+        - name: tpSearchHotelsByCityIataCode
           arguments:
             searchParams:
               type:

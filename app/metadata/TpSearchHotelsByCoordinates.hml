@@ -3281,7 +3281,7 @@ definition:
 kind: Command
 version: v1
 definition:
-  name: TpTsCoordsSearchHotels
+  name: TpSearchHotelsByCoordinates
   outputType: CoordinatesResponse!
   arguments:
     - name: searchParams
@@ -3289,16 +3289,16 @@ definition:
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:
-      function: tpTsCoordsSearchHotels
+      function: tpSearchHotelsByCoordinates
   graphql:
-    rootFieldName: tpTsCoordsSearchHotels
+    rootFieldName: tpSearchHotelsByCoordinates
     rootFieldKind: Query
 
 ---
 kind: CommandPermissions
 version: v1
 definition:
-  commandName: TpTsCoordsSearchHotels
+  commandName: TpSearchHotelsByCoordinates
   permissions:
     - role: admin
       allowExecution: true

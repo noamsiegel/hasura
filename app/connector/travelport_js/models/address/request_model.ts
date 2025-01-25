@@ -1,10 +1,7 @@
 import {
-    StayDetails,
-    RoomFilter,
-    RateFilter,
     Radius,
-    CustomerLoyaltyCard,
-    NegotiatedRates
+    BasePropertyFilter,
+    BaseHotelSearchRequest
 } from '../base_request';
 
 interface AddressLocationDetails {
@@ -19,26 +16,10 @@ interface AddressLocationType {
     radius: Radius;
 }
 
-interface AddressPropertyFilter {
-    maxWaitTime?: number;
+interface AddressPropertyFilter extends BasePropertyFilter {
     location: AddressLocationType;
-    chainCodes?: string[];
-    customerLoyaltyCards?: CustomerLoyaltyCard[];
-    hotelNameContains?: string;
-    negotiatedRates?: NegotiatedRates;
-    returnOnlyAvailableProperties: boolean;
-    imageSize?: string;
-    returnAllImageURLs?: boolean;
-    recommendedPropertyAmenitiesInd?: boolean;
-    removeSpecialRates?: boolean;
-    categories?: string[];
 }
 
-export interface AddressHotelSearchRequest {
-    responseFields?: string[];
-    requestedCurrency?: string;
-    stayDetails: StayDetails;
+export interface AddressHotelSearchRequest extends BaseHotelSearchRequest {
     propertyFilter: AddressPropertyFilter;
-    roomFilter?: RoomFilter;
-    rateFilter?: RateFilter;
 }
