@@ -2,75 +2,38 @@
 kind: ObjectType
 version: v1
 definition:
-  name: AddressLocationDetails
+  name: PropertyKey
   fields:
-    - name: cityName
+    - name: chainCode
       type: String!
-    - name: countryCode
-      type: String!
-    - name: stateProvince
+    - name: propertyCode
       type: String!
   graphql:
-    typeName: AddressLocationDetails
-    inputTypeName: AddressLocationDetailsInput
+    typeName: PropertyKey
+    inputTypeName: PropertyKeyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressLocationDetails
+      dataConnectorObjectType: PropertyKey
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AddressLocationDetails
+  typeName: PropertyKey
   permissions:
     - role: admin
       output:
         allowedFields:
-          - cityName
-          - countryCode
-          - stateProvince
+          - chainCode
+          - propertyCode
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: AddressLocationType
-  fields:
-    - name: details
-      type: AddressLocationDetails!
-    - name: radius
-      type: Radius!
-    - name: type
-      type: String!
-  graphql:
-    typeName: AddressLocationType
-    inputTypeName: AddressLocationTypeInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressLocationType
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: AddressLocationType
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - details
-          - radius
-          - type
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: AddressPropertyFilter
+  name: PropertyFilter
   fields:
     - name: categories
-      type: "[String!]"
-    - name: chainCodes
       type: "[String!]"
     - name: customerLoyaltyCards
       type: "[CustomerLoyaltyCard!]"
@@ -78,12 +41,12 @@ definition:
       type: String
     - name: imageSize
       type: String
-    - name: location
-      type: AddressLocationType!
     - name: maxWaitTime
       type: Float
     - name: negotiatedRates
       type: NegotiatedRates
+    - name: propertyKeys
+      type: "[PropertyKey!]!"
     - name: recommendedPropertyAmenitiesInd
       type: Boolean
     - name: removeSpecialRates
@@ -93,18 +56,15 @@ definition:
     - name: returnOnlyAvailableProperties
       type: Boolean!
   graphql:
-    typeName: AddressPropertyFilter
-    inputTypeName: AddressPropertyFilterInput
+    typeName: PropertyFilter
+    inputTypeName: PropertyFilterInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressPropertyFilter
+      dataConnectorObjectType: PropertyFilter
       fieldMapping:
         categories:
           column:
             name: categories
-        chainCodes:
-          column:
-            name: chainCodes
         customerLoyaltyCards:
           column:
             name: customerLoyaltyCards
@@ -114,15 +74,15 @@ definition:
         imageSize:
           column:
             name: imageSize
-        location:
-          column:
-            name: location
         maxWaitTime:
           column:
             name: maxWaitTime
         negotiatedRates:
           column:
             name: negotiatedRates
+        propertyKeys:
+          column:
+            name: propertyKeys
         recommendedPropertyAmenitiesInd:
           column:
             name: recommendedPropertyAmenitiesInd
@@ -140,19 +100,18 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AddressPropertyFilter
+  typeName: PropertyFilter
   permissions:
     - role: admin
       output:
         allowedFields:
           - categories
-          - chainCodes
           - customerLoyaltyCards
           - hotelNameContains
           - imageSize
-          - location
           - maxWaitTime
           - negotiatedRates
+          - propertyKeys
           - recommendedPropertyAmenitiesInd
           - removeSpecialRates
           - returnAllImageUrLs
@@ -162,10 +121,10 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: AddressHotelSearchRequest
+  name: PropertyHotelSearchRequest
   fields:
     - name: propertyFilter
-      type: AddressPropertyFilter!
+      type: PropertyFilter!
     - name: rateFilter
       type: RateFilter
     - name: requestedCurrency
@@ -177,17 +136,17 @@ definition:
     - name: stayDetails
       type: StayDetails!
   graphql:
-    typeName: AddressHotelSearchRequest
-    inputTypeName: AddressHotelSearchRequestInput
+    typeName: PropertyHotelSearchRequest
+    inputTypeName: PropertyHotelSearchRequestInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressHotelSearchRequest
+      dataConnectorObjectType: PropertyHotelSearchRequest
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AddressHotelSearchRequest
+  typeName: PropertyHotelSearchRequest
   permissions:
     - role: admin
       output:
@@ -203,7 +162,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPropertySummary
+  name: ModelsPropertyResponseModelPropertySummary
   fields:
     - name: averageAugmentedRateQualityScore
       type: Float!
@@ -214,17 +173,17 @@ definition:
     - name: propertyContentQualityScore
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelPropertySummary
-    inputTypeName: ModelsAddressResponseModelPropertySummaryInput
+    typeName: ModelsPropertyResponseModelPropertySummary
+    inputTypeName: ModelsPropertyResponseModelPropertySummaryInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PropertySummary
+      dataConnectorObjectType: models_property_response_model_PropertySummary
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPropertySummary
+  typeName: ModelsPropertyResponseModelPropertySummary
   permissions:
     - role: admin
       output:
@@ -238,22 +197,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelDataQualitySummaryScore
+  name: ModelsPropertyResponseModelDataQualitySummaryScore
   fields:
     - name: propertySummary
-      type: ModelsAddressResponseModelPropertySummary!
+      type: ModelsPropertyResponseModelPropertySummary!
   graphql:
-    typeName: ModelsAddressResponseModelDataQualitySummaryScore
-    inputTypeName: ModelsAddressResponseModelDataQualitySummaryScoreInput
+    typeName: ModelsPropertyResponseModelDataQualitySummaryScore
+    inputTypeName: ModelsPropertyResponseModelDataQualitySummaryScoreInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_DataQualitySummaryScore
+      dataConnectorObjectType: models_property_response_model_DataQualitySummaryScore
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelDataQualitySummaryScore
+  typeName: ModelsPropertyResponseModelDataQualitySummaryScore
   permissions:
     - role: admin
       output:
@@ -264,22 +223,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyBase
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyBase
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyBaseInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyBase
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateAverageNightlyBase
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateAverageNightlyBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyBase
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyBase
   permissions:
     - role: admin
       output:
@@ -290,22 +249,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalPriceInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateAverageNightlyTotalPrice
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateAverageNightlyTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
   permissions:
     - role: admin
       output:
@@ -316,22 +275,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxesInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateAverageNightlyTotalTaxes
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateAverageNightlyTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
   permissions:
     - role: admin
       output:
@@ -342,22 +301,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateBase
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateBase
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateBaseInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateBase
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateBase
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateBase
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateBase
   permissions:
     - role: admin
       output:
@@ -368,7 +327,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateRateCodeInfo
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateRateCodeInfo
   fields:
     - name: rateCategory
       type: String!
@@ -379,17 +338,17 @@ definition:
     - name: rateType
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateRateCodeInfo
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateRateCodeInfoInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateRateCodeInfo
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateRateCodeInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateRateCodeInfo
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateRateCodeInfo
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateRateCodeInfo
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateRateCodeInfo
   permissions:
     - role: admin
       output:
@@ -403,24 +362,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateRateKey
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateRateKey
   fields:
     - name: authority
       type: String!
     - name: value
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateRateKey
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateRateKeyInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateRateKey
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateRateKeyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateRateKey
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateRateKey
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateRateKey
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateRateKey
   permissions:
     - role: admin
       output:
@@ -432,24 +391,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPurpleCurrencyAmount
+  name: ModelsPropertyResponseModelPurpleCurrencyAmount
   fields:
     - name: amount
       type: Float!
     - name: currency
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelPurpleCurrencyAmount
-    inputTypeName: ModelsAddressResponseModelPurpleCurrencyAmountInput
+    typeName: ModelsPropertyResponseModelPurpleCurrencyAmount
+    inputTypeName: ModelsPropertyResponseModelPurpleCurrencyAmountInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PurpleCurrencyAmount
+      dataConnectorObjectType: models_property_response_model_PurpleCurrencyAmount
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPurpleCurrencyAmount
+  typeName: ModelsPropertyResponseModelPurpleCurrencyAmount
   permissions:
     - role: admin
       output:
@@ -461,26 +420,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPurplePenalty
+  name: ModelsPropertyResponseModelPurplePenalty
   fields:
     - name: currencyAmount
-      type: ModelsAddressResponseModelPurpleCurrencyAmount!
+      type: ModelsPropertyResponseModelPurpleCurrencyAmount!
     - name: estimatedAmount
       type: Boolean!
     - name: originalPenaltyInfo
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelPurplePenalty
-    inputTypeName: ModelsAddressResponseModelPurplePenaltyInput
+    typeName: ModelsPropertyResponseModelPurplePenalty
+    inputTypeName: ModelsPropertyResponseModelPurplePenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PurplePenalty
+      dataConnectorObjectType: models_property_response_model_PurplePenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPurplePenalty
+  typeName: ModelsPropertyResponseModelPurplePenalty
   permissions:
     - role: admin
       output:
@@ -493,45 +452,42 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPurpleCancelPenalty
+  name: ModelsPropertyResponseModelPurpleCancelPenalty
   fields:
     - name: cancelShortDescription
       type: String!
     - name: deadlineLocal
       type: DateTime!
-    - name: estimatedDeadlineLocal
-      type: Boolean
     - name: penalty
-      type: ModelsAddressResponseModelPurplePenalty!
+      type: ModelsPropertyResponseModelPurplePenalty!
   graphql:
-    typeName: ModelsAddressResponseModelPurpleCancelPenalty
-    inputTypeName: ModelsAddressResponseModelPurpleCancelPenaltyInput
+    typeName: ModelsPropertyResponseModelPurpleCancelPenalty
+    inputTypeName: ModelsPropertyResponseModelPurpleCancelPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PurpleCancelPenalty
+      dataConnectorObjectType: models_property_response_model_PurpleCancelPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPurpleCancelPenalty
+  typeName: ModelsPropertyResponseModelPurpleCancelPenalty
   permissions:
     - role: admin
       output:
         allowedFields:
           - cancelShortDescription
           - deadlineLocal
-          - estimatedDeadlineLocal
           - penalty
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateTerms
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateTerms
   fields:
     - name: cancelPenalties
-      type: "[ModelsAddressResponseModelPurpleCancelPenalty!]!"
+      type: "[ModelsPropertyResponseModelPurpleCancelPenalty!]!"
     - name: customerLoyaltyIdRequiredAtReservation
       type: Boolean!
     - name: description
@@ -539,17 +495,17 @@ definition:
     - name: guaranteeType
       type: String!
     - name: ratePaymentInfo
-      type: String
+      type: String!
     - name: rateQualificationIdRequiredAtCheckIn
       type: Boolean!
     - name: refundable
       type: Boolean!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateTerms
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateTermsInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTerms
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTermsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateTerms
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateTerms
       fieldMapping:
         cancelPenalties:
           column:
@@ -577,7 +533,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateTerms
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTerms
   permissions:
     - role: admin
       output:
@@ -594,22 +550,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateTotalPrice
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateTotalPrice
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateTotalPriceInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalPrice
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateTotalPrice
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateTotalPrice
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalPrice
   permissions:
     - role: admin
       output:
@@ -620,22 +576,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRateTotalTaxes
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRateTotalTaxes
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateTotalTaxesInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalTaxes
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRateTotalTaxes
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRateTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRateTotalTaxes
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalTaxes
   permissions:
     - role: admin
       output:
@@ -646,42 +602,42 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPrivateAvailableRate
+  name: ModelsPropertyResponseModelLowestPrivateAvailableRate
   fields:
     - name: averageNightlyBase
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyBase!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyBase!
     - name: averageNightlyTotalPrice
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice!
     - name: averageNightlyTotalTaxes
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes!
     - name: base
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateBase!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateBase!
     - name: currencyCode
       type: String!
     - name: rateCodeInfo
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateRateCodeInfo!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateRateCodeInfo!
     - name: rateKey
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateRateKey!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateRateKey!
     - name: shortRoomDescription
       type: String!
     - name: terms
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateTerms!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateTerms!
     - name: totalPrice
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateTotalPrice!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalPrice!
     - name: totalTaxes
-      type: ModelsAddressResponseModelLowestPrivateAvailableRateTotalTaxes!
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRateTotalTaxes!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPrivateAvailableRate
-    inputTypeName: ModelsAddressResponseModelLowestPrivateAvailableRateInput
+    typeName: ModelsPropertyResponseModelLowestPrivateAvailableRate
+    inputTypeName: ModelsPropertyResponseModelLowestPrivateAvailableRateInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPrivateAvailableRate
+      dataConnectorObjectType: models_property_response_model_LowestPrivateAvailableRate
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPrivateAvailableRate
+  typeName: ModelsPropertyResponseModelLowestPrivateAvailableRate
   permissions:
     - role: admin
       output:
@@ -702,22 +658,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyBase
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyBase
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyBaseInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyBase
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateAverageNightlyBase
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateAverageNightlyBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyBase
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyBase
   permissions:
     - role: admin
       output:
@@ -728,22 +684,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalPriceInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateAverageNightlyTotalPrice
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateAverageNightlyTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
   permissions:
     - role: admin
       output:
@@ -754,22 +710,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxesInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateAverageNightlyTotalTaxes
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateAverageNightlyTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
   permissions:
     - role: admin
       output:
@@ -780,22 +736,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateBase
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateBase
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateBaseInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateBase
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateBase
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateBase
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateBase
   permissions:
     - role: admin
       output:
@@ -806,7 +762,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateRateCodeInfo
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateRateCodeInfo
   fields:
     - name: rateCategoryCode
       type: Float!
@@ -815,17 +771,17 @@ definition:
     - name: rateType
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateRateCodeInfo
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateRateCodeInfoInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateRateCodeInfo
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateRateCodeInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateRateCodeInfo
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateRateCodeInfo
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateRateCodeInfo
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateRateCodeInfo
   permissions:
     - role: admin
       output:
@@ -838,24 +794,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateRateKey
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateRateKey
   fields:
     - name: authority
       type: String!
     - name: value
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateRateKey
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateRateKeyInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateRateKey
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateRateKeyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateRateKey
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateRateKey
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateRateKey
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateRateKey
   permissions:
     - role: admin
       output:
@@ -867,24 +823,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelFluffyCurrencyAmount
+  name: ModelsPropertyResponseModelFluffyCurrencyAmount
   fields:
     - name: amount
       type: Float!
     - name: currency
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelFluffyCurrencyAmount
-    inputTypeName: ModelsAddressResponseModelFluffyCurrencyAmountInput
+    typeName: ModelsPropertyResponseModelFluffyCurrencyAmount
+    inputTypeName: ModelsPropertyResponseModelFluffyCurrencyAmountInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_FluffyCurrencyAmount
+      dataConnectorObjectType: models_property_response_model_FluffyCurrencyAmount
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelFluffyCurrencyAmount
+  typeName: ModelsPropertyResponseModelFluffyCurrencyAmount
   permissions:
     - role: admin
       output:
@@ -896,26 +852,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelFluffyPenalty
+  name: ModelsPropertyResponseModelFluffyPenalty
   fields:
     - name: currencyAmount
-      type: ModelsAddressResponseModelFluffyCurrencyAmount!
+      type: ModelsPropertyResponseModelFluffyCurrencyAmount!
     - name: estimatedAmount
       type: Boolean!
     - name: originalPenaltyInfo
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelFluffyPenalty
-    inputTypeName: ModelsAddressResponseModelFluffyPenaltyInput
+    typeName: ModelsPropertyResponseModelFluffyPenalty
+    inputTypeName: ModelsPropertyResponseModelFluffyPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_FluffyPenalty
+      dataConnectorObjectType: models_property_response_model_FluffyPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelFluffyPenalty
+  typeName: ModelsPropertyResponseModelFluffyPenalty
   permissions:
     - role: admin
       output:
@@ -928,63 +884,60 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelFluffyCancelPenalty
+  name: ModelsPropertyResponseModelFluffyCancelPenalty
   fields:
     - name: cancelShortDescription
       type: String!
     - name: deadlineLocal
       type: DateTime!
-    - name: estimatedDeadlineLocal
-      type: Boolean
     - name: penalty
-      type: ModelsAddressResponseModelFluffyPenalty!
+      type: ModelsPropertyResponseModelFluffyPenalty!
   graphql:
-    typeName: ModelsAddressResponseModelFluffyCancelPenalty
-    inputTypeName: ModelsAddressResponseModelFluffyCancelPenaltyInput
+    typeName: ModelsPropertyResponseModelFluffyCancelPenalty
+    inputTypeName: ModelsPropertyResponseModelFluffyCancelPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_FluffyCancelPenalty
+      dataConnectorObjectType: models_property_response_model_FluffyCancelPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelFluffyCancelPenalty
+  typeName: ModelsPropertyResponseModelFluffyCancelPenalty
   permissions:
     - role: admin
       output:
         allowedFields:
           - cancelShortDescription
           - deadlineLocal
-          - estimatedDeadlineLocal
           - penalty
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateTerms
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateTerms
   fields:
     - name: cancelPenalties
-      type: "[ModelsAddressResponseModelFluffyCancelPenalty!]!"
+      type: "[ModelsPropertyResponseModelFluffyCancelPenalty!]!"
     - name: customerLoyaltyIdRequiredAtReservation
-      type: Boolean
+      type: Boolean!
     - name: description
       type: "[String!]!"
     - name: guaranteeType
       type: String!
     - name: ratePaymentInfo
-      type: String
+      type: String!
     - name: rateQualificationIdRequiredAtCheckIn
-      type: Boolean
+      type: Boolean!
     - name: refundable
       type: Boolean!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateTerms
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateTermsInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateTerms
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateTermsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateTerms
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateTerms
       fieldMapping:
         cancelPenalties:
           column:
@@ -1012,7 +965,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateTerms
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateTerms
   permissions:
     - role: admin
       output:
@@ -1029,22 +982,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateTotalPrice
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateTotalPrice
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateTotalPriceInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateTotalPrice
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateTotalPrice
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateTotalPrice
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateTotalPrice
   permissions:
     - role: admin
       output:
@@ -1055,22 +1008,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRateTotalTaxes
+  name: ModelsPropertyResponseModelLowestPublicAvailableRateTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRateTotalTaxes
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateTotalTaxesInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRateTotalTaxes
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRateTotalTaxes
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRateTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRateTotalTaxes
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRateTotalTaxes
   permissions:
     - role: admin
       output:
@@ -1081,42 +1034,42 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLowestPublicAvailableRate
+  name: ModelsPropertyResponseModelLowestPublicAvailableRate
   fields:
     - name: averageNightlyBase
-      type: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyBase!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyBase!
     - name: averageNightlyTotalPrice
-      type: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice!
     - name: averageNightlyTotalTaxes
-      type: ModelsAddressResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes!
     - name: base
-      type: ModelsAddressResponseModelLowestPublicAvailableRateBase!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateBase!
     - name: currencyCode
       type: String!
     - name: rateCodeInfo
-      type: ModelsAddressResponseModelLowestPublicAvailableRateRateCodeInfo!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateRateCodeInfo!
     - name: rateKey
-      type: ModelsAddressResponseModelLowestPublicAvailableRateRateKey!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateRateKey!
     - name: shortRoomDescription
       type: String!
     - name: terms
-      type: ModelsAddressResponseModelLowestPublicAvailableRateTerms!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateTerms!
     - name: totalPrice
-      type: ModelsAddressResponseModelLowestPublicAvailableRateTotalPrice!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateTotalPrice!
     - name: totalTaxes
-      type: ModelsAddressResponseModelLowestPublicAvailableRateTotalTaxes!
+      type: ModelsPropertyResponseModelLowestPublicAvailableRateTotalTaxes!
   graphql:
-    typeName: ModelsAddressResponseModelLowestPublicAvailableRate
-    inputTypeName: ModelsAddressResponseModelLowestPublicAvailableRateInput
+    typeName: ModelsPropertyResponseModelLowestPublicAvailableRate
+    inputTypeName: ModelsPropertyResponseModelLowestPublicAvailableRateInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LowestPublicAvailableRate
+      dataConnectorObjectType: models_property_response_model_LowestPublicAvailableRate
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelLowestPublicAvailableRate
+  typeName: ModelsPropertyResponseModelLowestPublicAvailableRate
   permissions:
     - role: admin
       output:
@@ -1137,7 +1090,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelAddress
+  name: ModelsPropertyResponseModelAddress
   fields:
     - name: city
       type: String!
@@ -1146,21 +1099,21 @@ definition:
     - name: postalCode
       type: String!
     - name: stateProvince
-      type: String
+      type: String!
     - name: street
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelAddress
-    inputTypeName: ModelsAddressResponseModelAddressInput
+    typeName: ModelsPropertyResponseModelAddress
+    inputTypeName: ModelsPropertyResponseModelAddressInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Address
+      dataConnectorObjectType: models_property_response_model_Address
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelAddress
+  typeName: ModelsPropertyResponseModelAddress
   permissions:
     - role: admin
       output:
@@ -1175,56 +1128,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelAmenity
-  fields:
-    - name: category
-      type: String!
-    - name: code
-      type: Float!
-    - name: description
-      type: String!
-  graphql:
-    typeName: ModelsAddressResponseModelAmenity
-    inputTypeName: ModelsAddressResponseModelAmenityInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Amenity
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsAddressResponseModelAmenity
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - category
-          - code
-          - description
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsAddressResponseModelDistanceFromSearchPoint
+  name: ModelsPropertyResponseModelDistanceFromSearchPoint
   fields:
     - name: unitOfDistance
       type: String!
     - name: value
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelDistanceFromSearchPoint
-    inputTypeName: ModelsAddressResponseModelDistanceFromSearchPointInput
+    typeName: ModelsPropertyResponseModelDistanceFromSearchPoint
+    inputTypeName: ModelsPropertyResponseModelDistanceFromSearchPointInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_DistanceFromSearchPoint
+      dataConnectorObjectType: models_property_response_model_DistanceFromSearchPoint
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelDistanceFromSearchPoint
+  typeName: ModelsPropertyResponseModelDistanceFromSearchPoint
   permissions:
     - role: admin
       output:
@@ -1236,22 +1157,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelFax
+  name: ModelsPropertyResponseModelFax
   fields:
     - name: phoneNumber
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelFax
-    inputTypeName: ModelsAddressResponseModelFaxInput
+    typeName: ModelsPropertyResponseModelFax
+    inputTypeName: ModelsPropertyResponseModelFaxInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Fax
+      dataConnectorObjectType: models_property_response_model_Fax
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelFax
+  typeName: ModelsPropertyResponseModelFax
   permissions:
     - role: admin
       output:
@@ -1262,24 +1183,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelCenter
+  name: ModelsPropertyResponseModelCenter
   fields:
     - name: latitude
       type: Float!
     - name: longitude
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelCenter
-    inputTypeName: ModelsAddressResponseModelCenterInput
+    typeName: ModelsPropertyResponseModelCenter
+    inputTypeName: ModelsPropertyResponseModelCenterInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Center
+      dataConnectorObjectType: models_property_response_model_Center
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelCenter
+  typeName: ModelsPropertyResponseModelCenter
   permissions:
     - role: admin
       output:
@@ -1291,22 +1212,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelGeolocation
+  name: ModelsPropertyResponseModelGeolocation
   fields:
     - name: center
-      type: ModelsAddressResponseModelCenter!
+      type: ModelsPropertyResponseModelCenter!
   graphql:
-    typeName: ModelsAddressResponseModelGeolocation
-    inputTypeName: ModelsAddressResponseModelGeolocationInput
+    typeName: ModelsPropertyResponseModelGeolocation
+    inputTypeName: ModelsPropertyResponseModelGeolocationInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Geolocation
+      dataConnectorObjectType: models_property_response_model_Geolocation
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelGeolocation
+  typeName: ModelsPropertyResponseModelGeolocation
   permissions:
     - role: admin
       output:
@@ -1317,24 +1238,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelDimensions
+  name: ModelsPropertyResponseModelDimensions
   fields:
     - name: height
       type: Float!
     - name: width
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelDimensions
-    inputTypeName: ModelsAddressResponseModelDimensionsInput
+    typeName: ModelsPropertyResponseModelDimensions
+    inputTypeName: ModelsPropertyResponseModelDimensionsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Dimensions
+      dataConnectorObjectType: models_property_response_model_Dimensions
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelDimensions
+  typeName: ModelsPropertyResponseModelDimensions
   permissions:
     - role: admin
       output:
@@ -1346,14 +1267,14 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelImageUrl
+  name: ModelsPropertyResponseModelImageUrl
   fields:
     - name: caption
       type: String!
     - name: curatedImage
       type: Boolean!
     - name: dimensions
-      type: ModelsAddressResponseModelDimensions
+      type: ModelsPropertyResponseModelDimensions!
     - name: imageSize
       type: String!
     - name: pictureCategory
@@ -1361,17 +1282,17 @@ definition:
     - name: url
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelImageUrl
-    inputTypeName: ModelsAddressResponseModelImageUrlInput
+    typeName: ModelsPropertyResponseModelImageUrl
+    inputTypeName: ModelsPropertyResponseModelImageUrlInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_ImageURL
+      dataConnectorObjectType: models_property_response_model_ImageURL
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelImageUrl
+  typeName: ModelsPropertyResponseModelImageUrl
   permissions:
     - role: admin
       output:
@@ -1387,22 +1308,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPhone
+  name: ModelsPropertyResponseModelPhone
   fields:
     - name: phoneNumber
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelPhone
-    inputTypeName: ModelsAddressResponseModelPhoneInput
+    typeName: ModelsPropertyResponseModelPhone
+    inputTypeName: ModelsPropertyResponseModelPhoneInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Phone
+      dataConnectorObjectType: models_property_response_model_Phone
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPhone
+  typeName: ModelsPropertyResponseModelPhone
   permissions:
     - role: admin
       output:
@@ -1413,24 +1334,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRating
+  name: ModelsPropertyResponseModelRating
   fields:
     - name: provider
       type: String!
     - name: value
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelRating
-    inputTypeName: ModelsAddressResponseModelRatingInput
+    typeName: ModelsPropertyResponseModelRating
+    inputTypeName: ModelsPropertyResponseModelRatingInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Rating
+      dataConnectorObjectType: models_property_response_model_Rating
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRating
+  typeName: ModelsPropertyResponseModelRating
   permissions:
     - role: admin
       output:
@@ -1442,61 +1363,46 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPropertyInfo
+  name: ModelsPropertyResponseModelPropertyInfo
   fields:
-    - name: acceptedCreditCards
-      type: "[String!]"
     - name: adaCompliant
       type: Boolean!
     - name: address
-      type: ModelsAddressResponseModelAddress!
-    - name: amenities
-      type: "[ModelsAddressResponseModelAmenity!]"
+      type: ModelsPropertyResponseModelAddress!
     - name: checkInTimeLocal
       type: String!
-    - name: checkOutTimeLocal
-      type: String
     - name: distanceFromSearchPoint
-      type: ModelsAddressResponseModelDistanceFromSearchPoint!
+      type: ModelsPropertyResponseModelDistanceFromSearchPoint!
     - name: email
-      type: String
+      type: String!
     - name: fax
-      type: ModelsAddressResponseModelFax
+      type: ModelsPropertyResponseModelFax!
     - name: featuredPropertyInd
       type: Boolean!
     - name: geolocation
-      type: ModelsAddressResponseModelGeolocation!
+      type: ModelsPropertyResponseModelGeolocation!
     - name: imageUrLs
-      type: "[ModelsAddressResponseModelImageUrl!]!"
+      type: "[ModelsPropertyResponseModelImageUrl!]!"
     - name: phone
-      type: ModelsAddressResponseModelPhone
+      type: ModelsPropertyResponseModelPhone!
     - name: ratings
-      type: "[ModelsAddressResponseModelRating!]"
+      type: "[ModelsPropertyResponseModelRating!]!"
   graphql:
-    typeName: ModelsAddressResponseModelPropertyInfo
-    inputTypeName: ModelsAddressResponseModelPropertyInfoInput
+    typeName: ModelsPropertyResponseModelPropertyInfo
+    inputTypeName: ModelsPropertyResponseModelPropertyInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PropertyInfo
+      dataConnectorObjectType: models_property_response_model_PropertyInfo
       fieldMapping:
-        acceptedCreditCards:
-          column:
-            name: acceptedCreditCards
         adaCompliant:
           column:
             name: adaCompliant
         address:
           column:
             name: address
-        amenities:
-          column:
-            name: amenities
         checkInTimeLocal:
           column:
             name: checkInTimeLocal
-        checkOutTimeLocal:
-          column:
-            name: checkOutTimeLocal
         distanceFromSearchPoint:
           column:
             name: distanceFromSearchPoint
@@ -1526,17 +1432,14 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPropertyInfo
+  typeName: ModelsPropertyResponseModelPropertyInfo
   permissions:
     - role: admin
       output:
         allowedFields:
-          - acceptedCreditCards
           - adaCompliant
           - address
-          - amenities
           - checkInTimeLocal
-          - checkOutTimeLocal
           - distanceFromSearchPoint
           - email
           - fax
@@ -1550,7 +1453,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRoomTypeBedType
+  name: ModelsPropertyResponseModelRoomTypeBedType
   fields:
     - name: bedType
       type: String!
@@ -1559,17 +1462,17 @@ definition:
     - name: size
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelRoomTypeBedType
-    inputTypeName: ModelsAddressResponseModelRoomTypeBedTypeInput
+    typeName: ModelsPropertyResponseModelRoomTypeBedType
+    inputTypeName: ModelsPropertyResponseModelRoomTypeBedTypeInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_RoomTypeBedType
+      dataConnectorObjectType: models_property_response_model_RoomTypeBedType
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRoomTypeBedType
+  typeName: ModelsPropertyResponseModelRoomTypeBedType
   permissions:
     - role: admin
       output:
@@ -1582,36 +1485,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelBalconyType
-  fields:
-    - name: code
-      type: Float!
-    - name: description
-      type: String!
-  graphql:
-    typeName: ModelsAddressResponseModelBalconyType
-    inputTypeName: ModelsAddressResponseModelBalconyTypeInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_BalconyType
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsAddressResponseModelBalconyType
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - code
-          - description
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsAddressResponseModelCharacteristicsBedType
+  name: ModelsPropertyResponseModelCharacteristicsBedType
   fields:
     - name: bedType
       type: String!
@@ -1620,17 +1494,17 @@ definition:
     - name: size
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelCharacteristicsBedType
-    inputTypeName: ModelsAddressResponseModelCharacteristicsBedTypeInput
+    typeName: ModelsPropertyResponseModelCharacteristicsBedType
+    inputTypeName: ModelsPropertyResponseModelCharacteristicsBedTypeInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_CharacteristicsBedType
+      dataConnectorObjectType: models_property_response_model_CharacteristicsBedType
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelCharacteristicsBedType
+  typeName: ModelsPropertyResponseModelCharacteristicsBedType
   permissions:
     - role: admin
       output:
@@ -1643,24 +1517,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelCategory
+  name: ModelsPropertyResponseModelCategory
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelCategory
-    inputTypeName: ModelsAddressResponseModelCategoryInput
+    typeName: ModelsPropertyResponseModelCategory
+    inputTypeName: ModelsPropertyResponseModelCategoryInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Category
+      dataConnectorObjectType: models_property_response_model_Category
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelCategory
+  typeName: ModelsPropertyResponseModelCategory
   permissions:
     - role: admin
       output:
@@ -1672,24 +1546,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelClass
+  name: ModelsPropertyResponseModelClass
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelClass
-    inputTypeName: ModelsAddressResponseModelClassInput
+    typeName: ModelsPropertyResponseModelClass
+    inputTypeName: ModelsPropertyResponseModelClassInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Class
+      dataConnectorObjectType: models_property_response_model_Class
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelClass
+  typeName: ModelsPropertyResponseModelClass
   permissions:
     - role: admin
       output:
@@ -1701,53 +1575,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelLocationInfo
-  fields:
-    - name: floor
-      type: String
-    - name: proximity
-      type: String
-  graphql:
-    typeName: ModelsAddressResponseModelLocationInfo
-    inputTypeName: ModelsAddressResponseModelLocationInfoInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_LocationInfo
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsAddressResponseModelLocationInfo
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - floor
-          - proximity
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsAddressResponseModelCharacteristicsView
+  name: ModelsPropertyResponseModelCharacteristicsView
   fields:
     - name: code
-      type: Float
+      type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelCharacteristicsView
-    inputTypeName: ModelsAddressResponseModelCharacteristicsViewInput
+    typeName: ModelsPropertyResponseModelCharacteristicsView
+    inputTypeName: ModelsPropertyResponseModelCharacteristicsViewInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_CharacteristicsView
+      dataConnectorObjectType: models_property_response_model_CharacteristicsView
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelCharacteristicsView
+  typeName: ModelsPropertyResponseModelCharacteristicsView
   permissions:
     - role: admin
       output:
@@ -1759,77 +1604,65 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelCharacteristics
+  name: ModelsPropertyResponseModelCharacteristics
   fields:
     - name: accessible
       type: Boolean
-    - name: balconyType
-      type: ModelsAddressResponseModelBalconyType
     - name: bedTypes
-      type: "[ModelsAddressResponseModelCharacteristicsBedType!]!"
+      type: "[ModelsPropertyResponseModelCharacteristicsBedType!]!"
     - name: category
-      type: ModelsAddressResponseModelCategory!
+      type: ModelsPropertyResponseModelCategory!
     - name: class
-      type: ModelsAddressResponseModelClass
-    - name: locationInfo
-      type: ModelsAddressResponseModelLocationInfo
+      type: ModelsPropertyResponseModelClass
     - name: maxOccupancy
       type: Float
-    - name: numberOfBedrooms
-      type: Float
-    - name: otherFeatures
-      type: "[String!]"
     - name: view
-      type: ModelsAddressResponseModelCharacteristicsView
+      type: ModelsPropertyResponseModelCharacteristicsView
   graphql:
-    typeName: ModelsAddressResponseModelCharacteristics
-    inputTypeName: ModelsAddressResponseModelCharacteristicsInput
+    typeName: ModelsPropertyResponseModelCharacteristics
+    inputTypeName: ModelsPropertyResponseModelCharacteristicsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Characteristics
+      dataConnectorObjectType: models_property_response_model_Characteristics
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelCharacteristics
+  typeName: ModelsPropertyResponseModelCharacteristics
   permissions:
     - role: admin
       output:
         allowedFields:
           - accessible
-          - balconyType
           - bedTypes
           - category
           - class
-          - locationInfo
           - maxOccupancy
-          - numberOfBedrooms
-          - otherFeatures
           - view
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelDataQualityScore
+  name: ModelsPropertyResponseModelDataQualityScore
   fields:
     - name: augmentedRateQualityScore
       type: Float!
     - name: augmentedRoomQualityScore
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelDataQualityScore
-    inputTypeName: ModelsAddressResponseModelDataQualityScoreInput
+    typeName: ModelsPropertyResponseModelDataQualityScore
+    inputTypeName: ModelsPropertyResponseModelDataQualityScoreInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_DataQualityScore
+      dataConnectorObjectType: models_property_response_model_DataQualityScore
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelDataQualityScore
+  typeName: ModelsPropertyResponseModelDataQualityScore
   permissions:
     - role: admin
       output:
@@ -1841,22 +1674,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPriceBase
+  name: ModelsPropertyResponseModelPriceBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelPriceBase
-    inputTypeName: ModelsAddressResponseModelPriceBaseInput
+    typeName: ModelsPropertyResponseModelPriceBase
+    inputTypeName: ModelsPropertyResponseModelPriceBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PriceBase
+      dataConnectorObjectType: models_property_response_model_PriceBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPriceBase
+  typeName: ModelsPropertyResponseModelPriceBase
   permissions:
     - role: admin
       output:
@@ -1867,26 +1700,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelCommission
+  name: ModelsPropertyResponseModelCommission
   fields:
     - name: application
       type: Boolean!
     - name: estimatedPercent
-      type: Boolean
+      type: Boolean!
     - name: percent
-      type: Float
+      type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelCommission
-    inputTypeName: ModelsAddressResponseModelCommissionInput
+    typeName: ModelsPropertyResponseModelCommission
+    inputTypeName: ModelsPropertyResponseModelCommissionInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Commission
+      dataConnectorObjectType: models_property_response_model_Commission
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelCommission
+  typeName: ModelsPropertyResponseModelCommission
   permissions:
     - role: admin
       output:
@@ -1899,22 +1732,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelNightlyRatesBreakdownTotalPrice
+  name: ModelsPropertyResponseModelNightlyRatesBreakdownTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelNightlyRatesBreakdownTotalPrice
-    inputTypeName: ModelsAddressResponseModelNightlyRatesBreakdownTotalPriceInput
+    typeName: ModelsPropertyResponseModelNightlyRatesBreakdownTotalPrice
+    inputTypeName: ModelsPropertyResponseModelNightlyRatesBreakdownTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_NightlyRatesBreakdownTotalPrice
+      dataConnectorObjectType: models_property_response_model_NightlyRatesBreakdownTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelNightlyRatesBreakdownTotalPrice
+  typeName: ModelsPropertyResponseModelNightlyRatesBreakdownTotalPrice
   permissions:
     - role: admin
       output:
@@ -1925,24 +1758,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelNightlyRatesBreakdown
+  name: ModelsPropertyResponseModelNightlyRatesBreakdown
   fields:
     - name: localDate
       type: DateTime!
     - name: totalPrice
-      type: ModelsAddressResponseModelNightlyRatesBreakdownTotalPrice!
+      type: ModelsPropertyResponseModelNightlyRatesBreakdownTotalPrice!
   graphql:
-    typeName: ModelsAddressResponseModelNightlyRatesBreakdown
-    inputTypeName: ModelsAddressResponseModelNightlyRatesBreakdownInput
+    typeName: ModelsPropertyResponseModelNightlyRatesBreakdown
+    inputTypeName: ModelsPropertyResponseModelNightlyRatesBreakdownInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_NightlyRatesBreakdown
+      dataConnectorObjectType: models_property_response_model_NightlyRatesBreakdown
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelNightlyRatesBreakdown
+  typeName: ModelsPropertyResponseModelNightlyRatesBreakdown
   permissions:
     - role: admin
       output:
@@ -1954,86 +1787,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelFeeValue
-  fields:
-    - name: amount
-      type: Float!
-    - name: currency
-      type: String!
-  graphql:
-    typeName: ModelsAddressResponseModelFeeValue
-    inputTypeName: ModelsAddressResponseModelFeeValueInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_FeeValue
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsAddressResponseModelFeeValue
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - amount
-          - currency
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsAddressResponseModelFee
-  fields:
-    - name: description
-      type: String!
-    - name: purpose
-      type: String!
-    - name: taxCode
-      type: String!
-    - name: value
-      type: ModelsAddressResponseModelFeeValue!
-  graphql:
-    typeName: ModelsAddressResponseModelFee
-    inputTypeName: ModelsAddressResponseModelFeeInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Fee
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsAddressResponseModelFee
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - description
-          - purpose
-          - taxCode
-          - value
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsAddressResponseModelTaxValue
+  name: ModelsPropertyResponseModelValue
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelTaxValue
-    inputTypeName: ModelsAddressResponseModelTaxValueInput
+    typeName: ModelsPropertyResponseModelValue
+    inputTypeName: ModelsPropertyResponseModelValueInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_TaxValue
+      dataConnectorObjectType: models_property_response_model_Value
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelTaxValue
+  typeName: ModelsPropertyResponseModelValue
   permissions:
     - role: admin
       output:
@@ -2044,26 +1813,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelTax
+  name: ModelsPropertyResponseModelTax
   fields:
     - name: description
       type: String!
     - name: taxCode
       type: String!
     - name: value
-      type: ModelsAddressResponseModelTaxValue!
+      type: ModelsPropertyResponseModelValue!
   graphql:
-    typeName: ModelsAddressResponseModelTax
-    inputTypeName: ModelsAddressResponseModelTaxInput
+    typeName: ModelsPropertyResponseModelTax
+    inputTypeName: ModelsPropertyResponseModelTaxInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Tax
+      dataConnectorObjectType: models_property_response_model_Tax
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelTax
+  typeName: ModelsPropertyResponseModelTax
   permissions:
     - role: admin
       output:
@@ -2076,51 +1845,48 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPerStayTaxAndFeeBreakdown
+  name: ModelsPropertyResponseModelPerStayTaxAndFeeBreakdown
   fields:
-    - name: fees
-      type: "[ModelsAddressResponseModelFee!]"
     - name: taxes
-      type: "[ModelsAddressResponseModelTax!]!"
+      type: "[ModelsPropertyResponseModelTax!]!"
   graphql:
-    typeName: ModelsAddressResponseModelPerStayTaxAndFeeBreakdown
-    inputTypeName: ModelsAddressResponseModelPerStayTaxAndFeeBreakdownInput
+    typeName: ModelsPropertyResponseModelPerStayTaxAndFeeBreakdown
+    inputTypeName: ModelsPropertyResponseModelPerStayTaxAndFeeBreakdownInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PerStayTaxAndFeeBreakdown
+      dataConnectorObjectType: models_property_response_model_PerStayTaxAndFeeBreakdown
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPerStayTaxAndFeeBreakdown
+  typeName: ModelsPropertyResponseModelPerStayTaxAndFeeBreakdown
   permissions:
     - role: admin
       output:
         allowedFields:
-          - fees
           - taxes
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPriceNote
+  name: ModelsPropertyResponseModelPriceNote
   fields:
     - name: message
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelPriceNote
-    inputTypeName: ModelsAddressResponseModelPriceNoteInput
+    typeName: ModelsPropertyResponseModelPriceNote
+    inputTypeName: ModelsPropertyResponseModelPriceNoteInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PriceNote
+      dataConnectorObjectType: models_property_response_model_PriceNote
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPriceNote
+  typeName: ModelsPropertyResponseModelPriceNote
   permissions:
     - role: admin
       output:
@@ -2131,22 +1897,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPriceTotalPrice
+  name: ModelsPropertyResponseModelPriceTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelPriceTotalPrice
-    inputTypeName: ModelsAddressResponseModelPriceTotalPriceInput
+    typeName: ModelsPropertyResponseModelPriceTotalPrice
+    inputTypeName: ModelsPropertyResponseModelPriceTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PriceTotalPrice
+      dataConnectorObjectType: models_property_response_model_PriceTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPriceTotalPrice
+  typeName: ModelsPropertyResponseModelPriceTotalPrice
   permissions:
     - role: admin
       output:
@@ -2157,22 +1923,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPriceTotalTaxes
+  name: ModelsPropertyResponseModelPriceTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelPriceTotalTaxes
-    inputTypeName: ModelsAddressResponseModelPriceTotalTaxesInput
+    typeName: ModelsPropertyResponseModelPriceTotalTaxes
+    inputTypeName: ModelsPropertyResponseModelPriceTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PriceTotalTaxes
+      dataConnectorObjectType: models_property_response_model_PriceTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPriceTotalTaxes
+  typeName: ModelsPropertyResponseModelPriceTotalTaxes
   permissions:
     - role: admin
       output:
@@ -2183,38 +1949,38 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPrice
+  name: ModelsPropertyResponseModelPrice
   fields:
     - name: base
-      type: ModelsAddressResponseModelPriceBase!
+      type: ModelsPropertyResponseModelPriceBase!
     - name: commission
-      type: ModelsAddressResponseModelCommission!
+      type: ModelsPropertyResponseModelCommission!
     - name: currencyCode
       type: String!
     - name: nightlyRatesBreakdown
-      type: "[ModelsAddressResponseModelNightlyRatesBreakdown!]!"
+      type: "[ModelsPropertyResponseModelNightlyRatesBreakdown!]!"
     - name: perStayTaxAndFeeBreakdown
-      type: ModelsAddressResponseModelPerStayTaxAndFeeBreakdown!
+      type: ModelsPropertyResponseModelPerStayTaxAndFeeBreakdown!
     - name: priceNote
-      type: ModelsAddressResponseModelPriceNote!
+      type: ModelsPropertyResponseModelPriceNote!
     - name: taxesIncludedInBase
       type: Boolean!
     - name: totalPrice
-      type: ModelsAddressResponseModelPriceTotalPrice!
+      type: ModelsPropertyResponseModelPriceTotalPrice!
     - name: totalTaxes
-      type: ModelsAddressResponseModelPriceTotalTaxes!
+      type: ModelsPropertyResponseModelPriceTotalTaxes!
   graphql:
-    typeName: ModelsAddressResponseModelPrice
-    inputTypeName: ModelsAddressResponseModelPriceInput
+    typeName: ModelsPropertyResponseModelPrice
+    inputTypeName: ModelsPropertyResponseModelPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Price
+      dataConnectorObjectType: models_property_response_model_Price
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPrice
+  typeName: ModelsPropertyResponseModelPrice
   permissions:
     - role: admin
       output:
@@ -2233,7 +1999,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRateRateCodeInfo
+  name: ModelsPropertyResponseModelRateRateCodeInfo
   fields:
     - name: rateCategory
       type: String
@@ -2241,22 +2007,20 @@ definition:
       type: Float!
     - name: rateClassificationCode
       type: Float!
-    - name: rateCode
-      type: String
     - name: rateType
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelRateRateCodeInfo
-    inputTypeName: ModelsAddressResponseModelRateRateCodeInfoInput
+    typeName: ModelsPropertyResponseModelRateRateCodeInfo
+    inputTypeName: ModelsPropertyResponseModelRateRateCodeInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_RateRateCodeInfo
+      dataConnectorObjectType: models_property_response_model_RateRateCodeInfo
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRateRateCodeInfo
+  typeName: ModelsPropertyResponseModelRateRateCodeInfo
   permissions:
     - role: admin
       output:
@@ -2264,31 +2028,30 @@ definition:
           - rateCategory
           - rateCategoryCode
           - rateClassificationCode
-          - rateCode
           - rateType
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRateRateKey
+  name: ModelsPropertyResponseModelRateRateKey
   fields:
     - name: authority
       type: String!
     - name: value
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelRateRateKey
-    inputTypeName: ModelsAddressResponseModelRateRateKeyInput
+    typeName: ModelsPropertyResponseModelRateRateKey
+    inputTypeName: ModelsPropertyResponseModelRateRateKeyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_RateRateKey
+      dataConnectorObjectType: models_property_response_model_RateRateKey
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRateRateKey
+  typeName: ModelsPropertyResponseModelRateRateKey
   permissions:
     - role: admin
       output:
@@ -2300,24 +2063,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelTentacledCurrencyAmount
+  name: ModelsPropertyResponseModelTentacledCurrencyAmount
   fields:
     - name: amount
       type: Float!
     - name: currency
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelTentacledCurrencyAmount
-    inputTypeName: ModelsAddressResponseModelTentacledCurrencyAmountInput
+    typeName: ModelsPropertyResponseModelTentacledCurrencyAmount
+    inputTypeName: ModelsPropertyResponseModelTentacledCurrencyAmountInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_TentacledCurrencyAmount
+      dataConnectorObjectType: models_property_response_model_TentacledCurrencyAmount
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelTentacledCurrencyAmount
+  typeName: ModelsPropertyResponseModelTentacledCurrencyAmount
   permissions:
     - role: admin
       output:
@@ -2329,26 +2092,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelTentacledPenalty
+  name: ModelsPropertyResponseModelTentacledPenalty
   fields:
     - name: currencyAmount
-      type: ModelsAddressResponseModelTentacledCurrencyAmount!
+      type: ModelsPropertyResponseModelTentacledCurrencyAmount!
     - name: estimatedAmount
       type: Boolean!
     - name: originalPenaltyInfo
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelTentacledPenalty
-    inputTypeName: ModelsAddressResponseModelTentacledPenaltyInput
+    typeName: ModelsPropertyResponseModelTentacledPenalty
+    inputTypeName: ModelsPropertyResponseModelTentacledPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_TentacledPenalty
+      dataConnectorObjectType: models_property_response_model_TentacledPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelTentacledPenalty
+  typeName: ModelsPropertyResponseModelTentacledPenalty
   permissions:
     - role: admin
       output:
@@ -2361,45 +2124,42 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelTentacledCancelPenalty
+  name: ModelsPropertyResponseModelTentacledCancelPenalty
   fields:
     - name: cancelShortDescription
       type: String!
     - name: deadlineLocal
       type: DateTime!
-    - name: estimatedDeadlineLocal
-      type: Boolean
     - name: penalty
-      type: ModelsAddressResponseModelTentacledPenalty!
+      type: ModelsPropertyResponseModelTentacledPenalty!
   graphql:
-    typeName: ModelsAddressResponseModelTentacledCancelPenalty
-    inputTypeName: ModelsAddressResponseModelTentacledCancelPenaltyInput
+    typeName: ModelsPropertyResponseModelTentacledCancelPenalty
+    inputTypeName: ModelsPropertyResponseModelTentacledCancelPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_TentacledCancelPenalty
+      dataConnectorObjectType: models_property_response_model_TentacledCancelPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelTentacledCancelPenalty
+  typeName: ModelsPropertyResponseModelTentacledCancelPenalty
   permissions:
     - role: admin
       output:
         allowedFields:
           - cancelShortDescription
           - deadlineLocal
-          - estimatedDeadlineLocal
           - penalty
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRateTerms
+  name: ModelsPropertyResponseModelRateTerms
   fields:
     - name: cancelPenalties
-      type: "[ModelsAddressResponseModelTentacledCancelPenalty!]!"
+      type: "[ModelsPropertyResponseModelTentacledCancelPenalty!]!"
     - name: customerLoyaltyIdRequiredAtReservation
       type: Boolean
     - name: description
@@ -2407,17 +2167,17 @@ definition:
     - name: guaranteeType
       type: String!
     - name: ratePaymentInfo
-      type: String
+      type: String!
     - name: rateQualificationIdRequiredAtCheckIn
       type: Boolean
     - name: refundable
       type: Boolean!
   graphql:
-    typeName: ModelsAddressResponseModelRateTerms
-    inputTypeName: ModelsAddressResponseModelRateTermsInput
+    typeName: ModelsPropertyResponseModelRateTerms
+    inputTypeName: ModelsPropertyResponseModelRateTermsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_RateTerms
+      dataConnectorObjectType: models_property_response_model_RateTerms
       fieldMapping:
         cancelPenalties:
           column:
@@ -2445,7 +2205,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRateTerms
+  typeName: ModelsPropertyResponseModelRateTerms
   permissions:
     - role: admin
       output:
@@ -2462,16 +2222,16 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRate
+  name: ModelsPropertyResponseModelRate
   fields:
     - name: accessibleRoom
       type: Boolean
     - name: bookingCode
       type: String!
     - name: breakfastIncluded
-      type: Boolean
+      type: Boolean!
     - name: dataQualityScore
-      type: ModelsAddressResponseModelDataQualityScore!
+      type: ModelsPropertyResponseModelDataQualityScore!
     - name: dinnerIncluded
       type: Boolean
     - name: lunchIncluded
@@ -2479,33 +2239,33 @@ definition:
     - name: nonSmoking
       type: Boolean!
     - name: price
-      type: ModelsAddressResponseModelPrice!
+      type: ModelsPropertyResponseModelPrice!
     - name: quantity
-      type: Float
+      type: Float!
     - name: rateCodeInfo
-      type: ModelsAddressResponseModelRateRateCodeInfo!
+      type: ModelsPropertyResponseModelRateRateCodeInfo!
     - name: rateDescription
       type: String!
     - name: rateKey
-      type: ModelsAddressResponseModelRateRateKey!
+      type: ModelsPropertyResponseModelRateRateKey!
     - name: roomDescription
       type: String!
     - name: terms
-      type: ModelsAddressResponseModelRateTerms!
+      type: ModelsPropertyResponseModelRateTerms!
     - name: wifiIncluded
       type: Boolean
   graphql:
-    typeName: ModelsAddressResponseModelRate
-    inputTypeName: ModelsAddressResponseModelRateInput
+    typeName: ModelsPropertyResponseModelRate
+    inputTypeName: ModelsPropertyResponseModelRateInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Rate
+      dataConnectorObjectType: models_property_response_model_Rate
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRate
+  typeName: ModelsPropertyResponseModelRate
   permissions:
     - role: admin
       output:
@@ -2530,24 +2290,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRoomAmenity
+  name: ModelsPropertyResponseModelRoomAmenity
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelRoomAmenity
-    inputTypeName: ModelsAddressResponseModelRoomAmenityInput
+    typeName: ModelsPropertyResponseModelRoomAmenity
+    inputTypeName: ModelsPropertyResponseModelRoomAmenityInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_RoomAmenity
+      dataConnectorObjectType: models_property_response_model_RoomAmenity
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRoomAmenity
+  typeName: ModelsPropertyResponseModelRoomAmenity
   permissions:
     - role: admin
       output:
@@ -2559,24 +2319,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRoomTypeView
+  name: ModelsPropertyResponseModelRoomTypeView
   fields:
     - name: code
-      type: Float
+      type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAddressResponseModelRoomTypeView
-    inputTypeName: ModelsAddressResponseModelRoomTypeViewInput
+    typeName: ModelsPropertyResponseModelRoomTypeView
+    inputTypeName: ModelsPropertyResponseModelRoomTypeViewInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_RoomTypeView
+      dataConnectorObjectType: models_property_response_model_RoomTypeView
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRoomTypeView
+  typeName: ModelsPropertyResponseModelRoomTypeView
   permissions:
     - role: admin
       output:
@@ -2588,30 +2348,30 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelRoomType
+  name: ModelsPropertyResponseModelRoomType
   fields:
     - name: bedTypes
-      type: "[ModelsAddressResponseModelRoomTypeBedType!]!"
+      type: "[ModelsPropertyResponseModelRoomTypeBedType!]!"
     - name: characteristics
-      type: ModelsAddressResponseModelCharacteristics!
+      type: ModelsPropertyResponseModelCharacteristics!
     - name: estimatedRoomTypeOtaCode
       type: Float!
     - name: maxOccupancy
       type: Float
     - name: rates
-      type: "[ModelsAddressResponseModelRate!]!"
+      type: "[ModelsPropertyResponseModelRate!]!"
     - name: roomAmenities
-      type: "[ModelsAddressResponseModelRoomAmenity!]"
+      type: "[ModelsPropertyResponseModelRoomAmenity!]!"
     - name: shortRoomDescription
       type: String!
     - name: view
-      type: ModelsAddressResponseModelRoomTypeView
+      type: ModelsPropertyResponseModelRoomTypeView
   graphql:
-    typeName: ModelsAddressResponseModelRoomType
-    inputTypeName: ModelsAddressResponseModelRoomTypeInput
+    typeName: ModelsPropertyResponseModelRoomType
+    inputTypeName: ModelsPropertyResponseModelRoomTypeInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_RoomType
+      dataConnectorObjectType: models_property_response_model_RoomType
       fieldMapping:
         bedTypes:
           column:
@@ -2642,7 +2402,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelRoomType
+  typeName: ModelsPropertyResponseModelRoomType
   permissions:
     - role: admin
       output:
@@ -2660,42 +2420,42 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPropertyItem
+  name: ModelsPropertyResponseModelPropertyItem
   fields:
     - name: availability
       type: Boolean!
     - name: brandCode
-      type: String
+      type: String!
     - name: chainCode
       type: String!
     - name: dataQualitySummaryScore
-      type: ModelsAddressResponseModelDataQualitySummaryScore!
+      type: ModelsPropertyResponseModelDataQualitySummaryScore!
     - name: longDescription
       type: String!
     - name: lowestPrivateAvailableRate
-      type: ModelsAddressResponseModelLowestPrivateAvailableRate
+      type: ModelsPropertyResponseModelLowestPrivateAvailableRate!
     - name: lowestPublicAvailableRate
-      type: ModelsAddressResponseModelLowestPublicAvailableRate
+      type: ModelsPropertyResponseModelLowestPublicAvailableRate!
     - name: name
       type: String!
     - name: propertyCode
       type: String!
     - name: propertyInfo
-      type: ModelsAddressResponseModelPropertyInfo!
+      type: ModelsPropertyResponseModelPropertyInfo!
     - name: roomTypes
-      type: "[ModelsAddressResponseModelRoomType!]!"
+      type: "[ModelsPropertyResponseModelRoomType!]!"
   graphql:
-    typeName: ModelsAddressResponseModelPropertyItem
-    inputTypeName: ModelsAddressResponseModelPropertyItemInput
+    typeName: ModelsPropertyResponseModelPropertyItem
+    inputTypeName: ModelsPropertyResponseModelPropertyItemInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_PropertyItem
+      dataConnectorObjectType: models_property_response_model_PropertyItem
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPropertyItem
+  typeName: ModelsPropertyResponseModelPropertyItem
   permissions:
     - role: admin
       output:
@@ -2716,57 +2476,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelSearchPoint
-  fields:
-    - name: latitude
-      type: Float!
-    - name: longitude
-      type: Float!
-  graphql:
-    typeName: ModelsAddressResponseModelSearchPoint
-    inputTypeName: ModelsAddressResponseModelSearchPointInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_SearchPoint
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsAddressResponseModelSearchPoint
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - latitude
-          - longitude
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsAddressResponseModelHotelsResponse
+  name: ModelsPropertyResponseModelHotelsResponse
   fields:
     - name: checkInDateLocal
       type: DateTime!
     - name: checkOutDateLocal
       type: DateTime!
     - name: propertyItems
-      type: "[ModelsAddressResponseModelPropertyItem!]!"
-    - name: searchPoint
-      type: ModelsAddressResponseModelSearchPoint!
+      type: "[ModelsPropertyResponseModelPropertyItem!]!"
   graphql:
-    typeName: ModelsAddressResponseModelHotelsResponse
-    inputTypeName: ModelsAddressResponseModelHotelsResponseInput
+    typeName: ModelsPropertyResponseModelHotelsResponse
+    inputTypeName: ModelsPropertyResponseModelHotelsResponseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_HotelsResponse
+      dataConnectorObjectType: models_property_response_model_HotelsResponse
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelHotelsResponse
+  typeName: ModelsPropertyResponseModelHotelsResponse
   permissions:
     - role: admin
       output:
@@ -2774,43 +2503,39 @@ definition:
           - checkInDateLocal
           - checkOutDateLocal
           - propertyItems
-          - searchPoint
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAddressResponseModelPagination
+  name: ModelsPropertyResponseModelPagination
   fields:
     - name: page
       type: Float!
     - name: pageSize
       type: Float!
-    - name: paginationToken
-      type: String!
     - name: totalItems
       type: Float!
     - name: totalPages
       type: Float!
   graphql:
-    typeName: ModelsAddressResponseModelPagination
-    inputTypeName: ModelsAddressResponseModelPaginationInput
+    typeName: ModelsPropertyResponseModelPagination
+    inputTypeName: ModelsPropertyResponseModelPaginationInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_address_response_model_Pagination
+      dataConnectorObjectType: models_property_response_model_Pagination
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAddressResponseModelPagination
+  typeName: ModelsPropertyResponseModelPagination
   permissions:
     - role: admin
       output:
         allowedFields:
           - page
           - pageSize
-          - paginationToken
           - totalItems
           - totalPages
 
@@ -2818,28 +2543,28 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: AddressResponse
+  name: PropertyResponse
   fields:
     - name: hotelsResponse
-      type: ModelsAddressResponseModelHotelsResponse!
+      type: ModelsPropertyResponseModelHotelsResponse!
     - name: pagination
-      type: ModelsAddressResponseModelPagination!
+      type: ModelsPropertyResponseModelPagination!
     - name: traceId
       type: String!
     - name: transactionId
       type: String!
   graphql:
-    typeName: AddressResponse
-    inputTypeName: AddressResponseInput
+    typeName: PropertyResponse
+    inputTypeName: PropertyResponseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressResponse
+      dataConnectorObjectType: PropertyResponse
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AddressResponse
+  typeName: PropertyResponse
   permissions:
     - role: admin
       output:
@@ -2853,24 +2578,24 @@ definition:
 kind: Command
 version: v1
 definition:
-  name: TpTsSearchByAddress
-  outputType: AddressResponse!
+  name: TpSearchHotelsByProperty
+  outputType: PropertyResponse!
   arguments:
     - name: searchParams
-      type: AddressHotelSearchRequest!
+      type: PropertyHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:
-      function: tpTsSearchByAddress
+      function: tpSearchHotelsByProperty
   graphql:
-    rootFieldName: tpTsSearchByAddress
+    rootFieldName: tpSearchHotelsByProperty
     rootFieldKind: Query
 
 ---
 kind: CommandPermissions
 version: v1
 definition:
-  commandName: TpTsSearchByAddress
+  commandName: TpSearchHotelsByProperty
   permissions:
     - role: admin
       allowExecution: true

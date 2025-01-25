@@ -61,3 +61,25 @@ export interface RateFilter {
     rateFlags?: RateFlags;
     publicRateBlacklist?: string[];
 }
+
+export interface BasePropertyFilter {
+    maxWaitTime?: number;
+    chainCodes?: string[];
+    customerLoyaltyCards?: CustomerLoyaltyCard[];
+    hotelNameContains?: string;
+    negotiatedRates?: NegotiatedRates;
+    returnOnlyAvailableProperties: boolean;
+    imageSize?: string;
+    returnAllImageURLs?: boolean;
+    recommendedPropertyAmenitiesInd?: boolean;
+    removeSpecialRates?: boolean;
+    categories?: string[];
+}
+
+export interface BaseHotelSearchRequest {
+    responseFields?: string[];
+    requestedCurrency?: string;
+    stayDetails: StayDetails;
+    roomFilter?: RoomFilter;
+    rateFilter?: RateFilter;
+}

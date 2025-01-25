@@ -2,22 +2,22 @@
 kind: ObjectType
 version: v1
 definition:
-  name: AirportIataCodeLocationDetails
+  name: CityIataCodeLocationDetails
   fields:
     - name: iataCode
       type: String!
   graphql:
-    typeName: AirportIataCodeLocationDetails
-    inputTypeName: AirportIataCodeLocationDetailsInput
+    typeName: CityIataCodeLocationDetails
+    inputTypeName: CityIataCodeLocationDetailsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodeLocationDetails
+      dataConnectorObjectType: CityIataCodeLocationDetails
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AirportIataCodeLocationDetails
+  typeName: CityIataCodeLocationDetails
   permissions:
     - role: admin
       output:
@@ -28,26 +28,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: AirportIataCodeLocationType
+  name: CityIataCodeLocationType
   fields:
     - name: details
-      type: AirportIataCodeLocationDetails!
+      type: CityIataCodeLocationDetails!
     - name: radius
       type: Radius!
     - name: type
       type: String!
   graphql:
-    typeName: AirportIataCodeLocationType
-    inputTypeName: AirportIataCodeLocationTypeInput
+    typeName: CityIataCodeLocationType
+    inputTypeName: CityIataCodeLocationTypeInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodeLocationType
+      dataConnectorObjectType: CityIataCodeLocationType
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AirportIataCodeLocationType
+  typeName: CityIataCodeLocationType
   permissions:
     - role: admin
       output:
@@ -60,7 +60,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: AirportIataCodePropertyFilter
+  name: CityIataCodePropertyFilter
   fields:
     - name: categories
       type: "[String!]"
@@ -73,7 +73,7 @@ definition:
     - name: imageSize
       type: String
     - name: location
-      type: AirportIataCodeLocationType!
+      type: CityIataCodeLocationType!
     - name: maxWaitTime
       type: Float
     - name: negotiatedRates
@@ -87,11 +87,11 @@ definition:
     - name: returnOnlyAvailableProperties
       type: Boolean!
   graphql:
-    typeName: AirportIataCodePropertyFilter
-    inputTypeName: AirportIataCodePropertyFilterInput
+    typeName: CityIataCodePropertyFilter
+    inputTypeName: CityIataCodePropertyFilterInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodePropertyFilter
+      dataConnectorObjectType: CityIataCodePropertyFilter
       fieldMapping:
         categories:
           column:
@@ -134,7 +134,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AirportIataCodePropertyFilter
+  typeName: CityIataCodePropertyFilter
   permissions:
     - role: admin
       output:
@@ -156,32 +156,32 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: AirportIataCodeHotelSearchRequest
+  name: CityIataCodeHotelSearchRequest
   fields:
     - name: propertyFilter
-      type: AirportIataCodePropertyFilter!
+      type: CityIataCodePropertyFilter!
     - name: rateFilter
       type: RateFilter
     - name: requestedCurrency
       type: String
-    - name: returnCompleteNightlyRateBreakdown
-      type: Boolean
+    - name: responseFields
+      type: "[String!]"
     - name: roomFilter
       type: RoomFilter
     - name: stayDetails
       type: StayDetails!
   graphql:
-    typeName: AirportIataCodeHotelSearchRequest
-    inputTypeName: AirportIataCodeHotelSearchRequestInput
+    typeName: CityIataCodeHotelSearchRequest
+    inputTypeName: CityIataCodeHotelSearchRequestInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodeHotelSearchRequest
+      dataConnectorObjectType: CityIataCodeHotelSearchRequest
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AirportIataCodeHotelSearchRequest
+  typeName: CityIataCodeHotelSearchRequest
   permissions:
     - role: admin
       output:
@@ -189,7 +189,7 @@ definition:
           - propertyFilter
           - rateFilter
           - requestedCurrency
-          - returnCompleteNightlyRateBreakdown
+          - responseFields
           - roomFilter
           - stayDetails
 
@@ -197,56 +197,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelCurrencyExchangeRate
-  fields:
-    - name: conversionFactor
-      type: Float!
-    - name: sourceCurrency
-      type: String!
-    - name: targetCurrency
-      type: String!
-  graphql:
-    typeName: ModelsAirportIataCodeResponseModelCurrencyExchangeRate
-    inputTypeName: ModelsAirportIataCodeResponseModelCurrencyExchangeRateInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_CurrencyExchangeRate
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsAirportIataCodeResponseModelCurrencyExchangeRate
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - conversionFactor
-          - sourceCurrency
-          - targetCurrency
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsAirportIataCodeResponseModelAvailabilityNote
+  name: ModelsCityIataCodeResponseModelAvailabilityNote
   fields:
     - name: authority
       type: String!
     - name: message
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelAvailabilityNote
-    inputTypeName: ModelsAirportIataCodeResponseModelAvailabilityNoteInput
+    typeName: ModelsCityIataCodeResponseModelAvailabilityNote
+    inputTypeName: ModelsCityIataCodeResponseModelAvailabilityNoteInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_AvailabilityNote
+      dataConnectorObjectType: models_city_iata_code_response_model_AvailabilityNote
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelAvailabilityNote
+  typeName: ModelsCityIataCodeResponseModelAvailabilityNote
   permissions:
     - role: admin
       output:
@@ -258,7 +226,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPropertySummary
+  name: ModelsCityIataCodeResponseModelPropertySummary
   fields:
     - name: averageAugmentedRateQualityScore
       type: Float!
@@ -269,17 +237,17 @@ definition:
     - name: propertyContentQualityScore
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPropertySummary
-    inputTypeName: ModelsAirportIataCodeResponseModelPropertySummaryInput
+    typeName: ModelsCityIataCodeResponseModelPropertySummary
+    inputTypeName: ModelsCityIataCodeResponseModelPropertySummaryInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PropertySummary
+      dataConnectorObjectType: models_city_iata_code_response_model_PropertySummary
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPropertySummary
+  typeName: ModelsCityIataCodeResponseModelPropertySummary
   permissions:
     - role: admin
       output:
@@ -293,22 +261,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelDataQualitySummaryScore
+  name: ModelsCityIataCodeResponseModelDataQualitySummaryScore
   fields:
     - name: propertySummary
-      type: ModelsAirportIataCodeResponseModelPropertySummary!
+      type: ModelsCityIataCodeResponseModelPropertySummary!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelDataQualitySummaryScore
-    inputTypeName: ModelsAirportIataCodeResponseModelDataQualitySummaryScoreInput
+    typeName: ModelsCityIataCodeResponseModelDataQualitySummaryScore
+    inputTypeName: ModelsCityIataCodeResponseModelDataQualitySummaryScoreInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_DataQualitySummaryScore
+      dataConnectorObjectType: models_city_iata_code_response_model_DataQualitySummaryScore
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelDataQualitySummaryScore
+  typeName: ModelsCityIataCodeResponseModelDataQualitySummaryScore
   permissions:
     - role: admin
       output:
@@ -319,22 +287,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBase
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBase
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBaseInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBase
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateAverageNightlyBase
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateAverageNightlyBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBase
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBase
   permissions:
     - role: admin
       output:
@@ -345,22 +313,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPriceInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateAverageNightlyTotalPrice
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateAverageNightlyTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice
   permissions:
     - role: admin
       output:
@@ -371,22 +339,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxesInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateAverageNightlyTotalTaxes
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateAverageNightlyTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
   permissions:
     - role: admin
       output:
@@ -397,22 +365,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateBase
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateBase
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateBaseInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateBase
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateBase
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateBase
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateBase
   permissions:
     - role: admin
       output:
@@ -423,7 +391,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfo
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfo
   fields:
     - name: rateCategory
       type: String!
@@ -433,41 +401,20 @@ definition:
       type: Float!
     - name: rateCode
       type: String
-    - name: ratePlanId
-      type: String
     - name: rateType
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfo
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfoInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfo
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateRateCodeInfo
-      fieldMapping:
-        rateCategory:
-          column:
-            name: rateCategory
-        rateCategoryCode:
-          column:
-            name: rateCategoryCode
-        rateClassificationCode:
-          column:
-            name: rateClassificationCode
-        rateCode:
-          column:
-            name: rateCode
-        ratePlanId:
-          column:
-            name: ratePlanID
-        rateType:
-          column:
-            name: rateType
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateRateCodeInfo
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfo
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfo
   permissions:
     - role: admin
       output:
@@ -476,31 +423,30 @@ definition:
           - rateCategoryCode
           - rateClassificationCode
           - rateCode
-          - ratePlanId
           - rateType
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateKey
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateKey
   fields:
     - name: authority
       type: String!
     - name: value
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateKey
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateKeyInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateKey
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateKeyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateRateKey
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateRateKey
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateKey
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateKey
   permissions:
     - role: admin
       output:
@@ -512,24 +458,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPurpleCurrencyAmount
+  name: ModelsCityIataCodeResponseModelPurpleCurrencyAmount
   fields:
     - name: amount
       type: Float!
     - name: currency
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPurpleCurrencyAmount
-    inputTypeName: ModelsAirportIataCodeResponseModelPurpleCurrencyAmountInput
+    typeName: ModelsCityIataCodeResponseModelPurpleCurrencyAmount
+    inputTypeName: ModelsCityIataCodeResponseModelPurpleCurrencyAmountInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PurpleCurrencyAmount
+      dataConnectorObjectType: models_city_iata_code_response_model_PurpleCurrencyAmount
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPurpleCurrencyAmount
+  typeName: ModelsCityIataCodeResponseModelPurpleCurrencyAmount
   permissions:
     - role: admin
       output:
@@ -541,26 +487,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPurplePenalty
+  name: ModelsCityIataCodeResponseModelPurplePenalty
   fields:
     - name: currencyAmount
-      type: ModelsAirportIataCodeResponseModelPurpleCurrencyAmount!
+      type: ModelsCityIataCodeResponseModelPurpleCurrencyAmount!
     - name: estimatedAmount
       type: Boolean!
     - name: originalPenaltyInfo
-      type: String
+      type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPurplePenalty
-    inputTypeName: ModelsAirportIataCodeResponseModelPurplePenaltyInput
+    typeName: ModelsCityIataCodeResponseModelPurplePenalty
+    inputTypeName: ModelsCityIataCodeResponseModelPurplePenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PurplePenalty
+      dataConnectorObjectType: models_city_iata_code_response_model_PurplePenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPurplePenalty
+  typeName: ModelsCityIataCodeResponseModelPurplePenalty
   permissions:
     - role: admin
       output:
@@ -573,60 +519,63 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPurpleCancelPenalty
+  name: ModelsCityIataCodeResponseModelPurpleCancelPenalty
   fields:
     - name: cancelShortDescription
       type: String!
     - name: deadlineLocal
       type: DateTime!
+    - name: estimatedDeadlineLocal
+      type: Boolean
     - name: penalty
-      type: ModelsAirportIataCodeResponseModelPurplePenalty!
+      type: ModelsCityIataCodeResponseModelPurplePenalty!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPurpleCancelPenalty
-    inputTypeName: ModelsAirportIataCodeResponseModelPurpleCancelPenaltyInput
+    typeName: ModelsCityIataCodeResponseModelPurpleCancelPenalty
+    inputTypeName: ModelsCityIataCodeResponseModelPurpleCancelPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PurpleCancelPenalty
+      dataConnectorObjectType: models_city_iata_code_response_model_PurpleCancelPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPurpleCancelPenalty
+  typeName: ModelsCityIataCodeResponseModelPurpleCancelPenalty
   permissions:
     - role: admin
       output:
         allowedFields:
           - cancelShortDescription
           - deadlineLocal
+          - estimatedDeadlineLocal
           - penalty
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTerms
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTerms
   fields:
     - name: cancelPenalties
-      type: "[ModelsAirportIataCodeResponseModelPurpleCancelPenalty!]!"
+      type: "[ModelsCityIataCodeResponseModelPurpleCancelPenalty!]!"
     - name: customerLoyaltyIdRequiredAtReservation
-      type: Boolean!
+      type: Boolean
     - name: description
       type: "[String!]!"
     - name: guaranteeType
       type: String!
     - name: ratePaymentInfo
-      type: String!
+      type: String
     - name: rateQualificationIdRequiredAtCheckIn
-      type: Boolean!
+      type: Boolean
     - name: refundable
       type: Boolean!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTerms
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTermsInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTerms
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTermsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateTerms
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateTerms
       fieldMapping:
         cancelPenalties:
           column:
@@ -654,7 +603,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTerms
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTerms
   permissions:
     - role: admin
       output:
@@ -671,22 +620,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalPrice
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalPrice
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalPriceInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalPrice
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateTotalPrice
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalPrice
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalPrice
   permissions:
     - role: admin
       output:
@@ -697,22 +646,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalTaxes
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalTaxes
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalTaxesInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalTaxes
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRateTotalTaxes
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRateTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalTaxes
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalTaxes
   permissions:
     - role: admin
       output:
@@ -723,42 +672,42 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRate
+  name: ModelsCityIataCodeResponseModelLowestPrivateAvailableRate
   fields:
     - name: averageNightlyBase
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBase!
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyBase!
     - name: averageNightlyTotalPrice
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice!
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalPrice!
     - name: averageNightlyTotalTaxes
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateAverageNightlyTotalTaxes!
     - name: base
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateBase!
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateBase!
     - name: currencyCode
       type: String!
     - name: rateCodeInfo
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfo!
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateCodeInfo!
     - name: rateKey
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateRateKey!
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateRateKey!
     - name: shortRoomDescription
       type: String!
     - name: terms
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTerms!
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTerms!
     - name: totalPrice
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalPrice!
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalPrice!
     - name: totalTaxes
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateTotalTaxes
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateTotalTaxes!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRate
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRateInput
+    typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRate
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRateInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPrivateAvailableRate
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPrivateAvailableRate
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRate
+  typeName: ModelsCityIataCodeResponseModelLowestPrivateAvailableRate
   permissions:
     - role: admin
       output:
@@ -779,22 +728,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBase
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBase
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBaseInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBase
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateAverageNightlyBase
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateAverageNightlyBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBase
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBase
   permissions:
     - role: admin
       output:
@@ -805,22 +754,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPriceInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateAverageNightlyTotalPrice
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateAverageNightlyTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice
   permissions:
     - role: admin
       output:
@@ -831,22 +780,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxesInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateAverageNightlyTotalTaxes
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateAverageNightlyTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
   permissions:
     - role: admin
       output:
@@ -857,22 +806,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateBase
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateBase
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateBaseInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateBase
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateBase
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateBase
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateBase
   permissions:
     - role: admin
       output:
@@ -883,7 +832,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateCodeInfo
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateCodeInfo
   fields:
     - name: rateCategoryCode
       type: Float!
@@ -892,17 +841,17 @@ definition:
     - name: rateType
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateCodeInfo
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateCodeInfoInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateCodeInfo
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateCodeInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateRateCodeInfo
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateRateCodeInfo
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateCodeInfo
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateCodeInfo
   permissions:
     - role: admin
       output:
@@ -915,24 +864,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateKey
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateKey
   fields:
     - name: authority
       type: String!
     - name: value
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateKey
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateKeyInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateKey
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateKeyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateRateKey
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateRateKey
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateKey
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateKey
   permissions:
     - role: admin
       output:
@@ -944,24 +893,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelFluffyCurrencyAmount
+  name: ModelsCityIataCodeResponseModelFluffyCurrencyAmount
   fields:
     - name: amount
       type: Float!
     - name: currency
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelFluffyCurrencyAmount
-    inputTypeName: ModelsAirportIataCodeResponseModelFluffyCurrencyAmountInput
+    typeName: ModelsCityIataCodeResponseModelFluffyCurrencyAmount
+    inputTypeName: ModelsCityIataCodeResponseModelFluffyCurrencyAmountInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_FluffyCurrencyAmount
+      dataConnectorObjectType: models_city_iata_code_response_model_FluffyCurrencyAmount
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelFluffyCurrencyAmount
+  typeName: ModelsCityIataCodeResponseModelFluffyCurrencyAmount
   permissions:
     - role: admin
       output:
@@ -973,26 +922,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelFluffyPenalty
+  name: ModelsCityIataCodeResponseModelFluffyPenalty
   fields:
     - name: currencyAmount
-      type: ModelsAirportIataCodeResponseModelFluffyCurrencyAmount!
+      type: ModelsCityIataCodeResponseModelFluffyCurrencyAmount!
     - name: estimatedAmount
       type: Boolean!
     - name: originalPenaltyInfo
-      type: String
+      type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelFluffyPenalty
-    inputTypeName: ModelsAirportIataCodeResponseModelFluffyPenaltyInput
+    typeName: ModelsCityIataCodeResponseModelFluffyPenalty
+    inputTypeName: ModelsCityIataCodeResponseModelFluffyPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_FluffyPenalty
+      dataConnectorObjectType: models_city_iata_code_response_model_FluffyPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelFluffyPenalty
+  typeName: ModelsCityIataCodeResponseModelFluffyPenalty
   permissions:
     - role: admin
       output:
@@ -1005,60 +954,63 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelFluffyCancelPenalty
+  name: ModelsCityIataCodeResponseModelFluffyCancelPenalty
   fields:
     - name: cancelShortDescription
       type: String!
     - name: deadlineLocal
       type: DateTime!
+    - name: estimatedDeadlineLocal
+      type: Boolean
     - name: penalty
-      type: ModelsAirportIataCodeResponseModelFluffyPenalty!
+      type: ModelsCityIataCodeResponseModelFluffyPenalty!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelFluffyCancelPenalty
-    inputTypeName: ModelsAirportIataCodeResponseModelFluffyCancelPenaltyInput
+    typeName: ModelsCityIataCodeResponseModelFluffyCancelPenalty
+    inputTypeName: ModelsCityIataCodeResponseModelFluffyCancelPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_FluffyCancelPenalty
+      dataConnectorObjectType: models_city_iata_code_response_model_FluffyCancelPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelFluffyCancelPenalty
+  typeName: ModelsCityIataCodeResponseModelFluffyCancelPenalty
   permissions:
     - role: admin
       output:
         allowedFields:
           - cancelShortDescription
           - deadlineLocal
+          - estimatedDeadlineLocal
           - penalty
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTerms
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTerms
   fields:
     - name: cancelPenalties
-      type: "[ModelsAirportIataCodeResponseModelFluffyCancelPenalty!]!"
+      type: "[ModelsCityIataCodeResponseModelFluffyCancelPenalty!]!"
     - name: customerLoyaltyIdRequiredAtReservation
       type: Boolean
     - name: description
-      type: "[String!]"
+      type: "[String!]!"
     - name: guaranteeType
       type: String!
     - name: ratePaymentInfo
-      type: String!
+      type: String
     - name: rateQualificationIdRequiredAtCheckIn
       type: Boolean
     - name: refundable
       type: Boolean!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTerms
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTermsInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTerms
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTermsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateTerms
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateTerms
       fieldMapping:
         cancelPenalties:
           column:
@@ -1086,7 +1038,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTerms
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTerms
   permissions:
     - role: admin
       output:
@@ -1103,22 +1055,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalPrice
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalPrice
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalPriceInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalPrice
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateTotalPrice
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalPrice
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalPrice
   permissions:
     - role: admin
       output:
@@ -1129,22 +1081,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalTaxes
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalTaxes
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalTaxesInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalTaxes
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRateTotalTaxes
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRateTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalTaxes
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalTaxes
   permissions:
     - role: admin
       output:
@@ -1155,42 +1107,42 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLowestPublicAvailableRate
+  name: ModelsCityIataCodeResponseModelLowestPublicAvailableRate
   fields:
     - name: averageNightlyBase
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBase!
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyBase!
     - name: averageNightlyTotalPrice
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice!
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalPrice!
     - name: averageNightlyTotalTaxes
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateAverageNightlyTotalTaxes!
     - name: base
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateBase!
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateBase!
     - name: currencyCode
       type: String!
     - name: rateCodeInfo
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateCodeInfo!
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateCodeInfo!
     - name: rateKey
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateRateKey!
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateRateKey!
     - name: shortRoomDescription
       type: String!
     - name: terms
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTerms!
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTerms!
     - name: totalPrice
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalPrice!
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalPrice!
     - name: totalTaxes
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateTotalTaxes
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRateTotalTaxes!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRate
-    inputTypeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRateInput
+    typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRate
+    inputTypeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRateInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LowestPublicAvailableRate
+      dataConnectorObjectType: models_city_iata_code_response_model_LowestPublicAvailableRate
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLowestPublicAvailableRate
+  typeName: ModelsCityIataCodeResponseModelLowestPublicAvailableRate
   permissions:
     - role: admin
       output:
@@ -1211,28 +1163,30 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelAddress
+  name: ModelsCityIataCodeResponseModelAddress
   fields:
     - name: city
       type: String!
     - name: countryCode
       type: String!
     - name: postalCode
+      type: String!
+    - name: stateProvince
       type: String
     - name: street
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelAddress
-    inputTypeName: ModelsAirportIataCodeResponseModelAddressInput
+    typeName: ModelsCityIataCodeResponseModelAddress
+    inputTypeName: ModelsCityIataCodeResponseModelAddressInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Address
+      dataConnectorObjectType: models_city_iata_code_response_model_Address
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelAddress
+  typeName: ModelsCityIataCodeResponseModelAddress
   permissions:
     - role: admin
       output:
@@ -1240,13 +1194,14 @@ definition:
           - city
           - countryCode
           - postalCode
+          - stateProvince
           - street
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelAmenity
+  name: ModelsCityIataCodeResponseModelAmenity
   fields:
     - name: category
       type: String!
@@ -1255,17 +1210,17 @@ definition:
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelAmenity
-    inputTypeName: ModelsAirportIataCodeResponseModelAmenityInput
+    typeName: ModelsCityIataCodeResponseModelAmenity
+    inputTypeName: ModelsCityIataCodeResponseModelAmenityInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Amenity
+      dataConnectorObjectType: models_city_iata_code_response_model_Amenity
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelAmenity
+  typeName: ModelsCityIataCodeResponseModelAmenity
   permissions:
     - role: admin
       output:
@@ -1278,24 +1233,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelDistanceFromSearchPoint
+  name: ModelsCityIataCodeResponseModelDistanceFromSearchPoint
   fields:
     - name: unitOfDistance
       type: String!
     - name: value
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelDistanceFromSearchPoint
-    inputTypeName: ModelsAirportIataCodeResponseModelDistanceFromSearchPointInput
+    typeName: ModelsCityIataCodeResponseModelDistanceFromSearchPoint
+    inputTypeName: ModelsCityIataCodeResponseModelDistanceFromSearchPointInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_DistanceFromSearchPoint
+      dataConnectorObjectType: models_city_iata_code_response_model_DistanceFromSearchPoint
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelDistanceFromSearchPoint
+  typeName: ModelsCityIataCodeResponseModelDistanceFromSearchPoint
   permissions:
     - role: admin
       output:
@@ -1307,22 +1262,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelFax
+  name: ModelsCityIataCodeResponseModelFax
   fields:
     - name: phoneNumber
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelFax
-    inputTypeName: ModelsAirportIataCodeResponseModelFaxInput
+    typeName: ModelsCityIataCodeResponseModelFax
+    inputTypeName: ModelsCityIataCodeResponseModelFaxInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Fax
+      dataConnectorObjectType: models_city_iata_code_response_model_Fax
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelFax
+  typeName: ModelsCityIataCodeResponseModelFax
   permissions:
     - role: admin
       output:
@@ -1333,24 +1288,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelCenter
+  name: ModelsCityIataCodeResponseModelCenter
   fields:
     - name: latitude
       type: Float!
     - name: longitude
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelCenter
-    inputTypeName: ModelsAirportIataCodeResponseModelCenterInput
+    typeName: ModelsCityIataCodeResponseModelCenter
+    inputTypeName: ModelsCityIataCodeResponseModelCenterInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Center
+      dataConnectorObjectType: models_city_iata_code_response_model_Center
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelCenter
+  typeName: ModelsCityIataCodeResponseModelCenter
   permissions:
     - role: admin
       output:
@@ -1362,22 +1317,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelGeolocation
+  name: ModelsCityIataCodeResponseModelGeolocation
   fields:
     - name: center
-      type: ModelsAirportIataCodeResponseModelCenter!
+      type: ModelsCityIataCodeResponseModelCenter!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelGeolocation
-    inputTypeName: ModelsAirportIataCodeResponseModelGeolocationInput
+    typeName: ModelsCityIataCodeResponseModelGeolocation
+    inputTypeName: ModelsCityIataCodeResponseModelGeolocationInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Geolocation
+      dataConnectorObjectType: models_city_iata_code_response_model_Geolocation
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelGeolocation
+  typeName: ModelsCityIataCodeResponseModelGeolocation
   permissions:
     - role: admin
       output:
@@ -1388,43 +1343,12 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelDimensions
-  fields:
-    - name: height
-      type: Float!
-    - name: width
-      type: Float!
-  graphql:
-    typeName: ModelsAirportIataCodeResponseModelDimensions
-    inputTypeName: ModelsAirportIataCodeResponseModelDimensionsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Dimensions
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsAirportIataCodeResponseModelDimensions
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - height
-          - width
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsAirportIataCodeResponseModelImageUrl
+  name: ModelsCityIataCodeResponseModelImageUrl
   fields:
     - name: caption
       type: String!
     - name: curatedImage
       type: Boolean!
-    - name: dimensions
-      type: ModelsAirportIataCodeResponseModelDimensions
     - name: imageSize
       type: String!
     - name: pictureCategory
@@ -1432,24 +1356,23 @@ definition:
     - name: url
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelImageUrl
-    inputTypeName: ModelsAirportIataCodeResponseModelImageUrlInput
+    typeName: ModelsCityIataCodeResponseModelImageUrl
+    inputTypeName: ModelsCityIataCodeResponseModelImageUrlInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_ImageURL
+      dataConnectorObjectType: models_city_iata_code_response_model_ImageURL
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelImageUrl
+  typeName: ModelsCityIataCodeResponseModelImageUrl
   permissions:
     - role: admin
       output:
         allowedFields:
           - caption
           - curatedImage
-          - dimensions
           - imageSize
           - pictureCategory
           - url
@@ -1458,22 +1381,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPhone
+  name: ModelsCityIataCodeResponseModelPhone
   fields:
     - name: phoneNumber
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPhone
-    inputTypeName: ModelsAirportIataCodeResponseModelPhoneInput
+    typeName: ModelsCityIataCodeResponseModelPhone
+    inputTypeName: ModelsCityIataCodeResponseModelPhoneInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Phone
+      dataConnectorObjectType: models_city_iata_code_response_model_Phone
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPhone
+  typeName: ModelsCityIataCodeResponseModelPhone
   permissions:
     - role: admin
       output:
@@ -1484,24 +1407,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRating
+  name: ModelsCityIataCodeResponseModelRating
   fields:
     - name: provider
       type: String!
     - name: value
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRating
-    inputTypeName: ModelsAirportIataCodeResponseModelRatingInput
+    typeName: ModelsCityIataCodeResponseModelRating
+    inputTypeName: ModelsCityIataCodeResponseModelRatingInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Rating
+      dataConnectorObjectType: models_city_iata_code_response_model_Rating
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRating
+  typeName: ModelsCityIataCodeResponseModelRating
   permissions:
     - role: admin
       output:
@@ -1513,42 +1436,42 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPropertyInfo
+  name: ModelsCityIataCodeResponseModelPropertyInfo
   fields:
     - name: acceptedCreditCards
       type: "[String!]"
     - name: adaCompliant
       type: Boolean!
     - name: address
-      type: ModelsAirportIataCodeResponseModelAddress!
+      type: ModelsCityIataCodeResponseModelAddress!
     - name: amenities
-      type: "[ModelsAirportIataCodeResponseModelAmenity!]"
+      type: "[ModelsCityIataCodeResponseModelAmenity!]"
     - name: checkInTimeLocal
       type: String
     - name: checkOutTimeLocal
       type: String
     - name: distanceFromSearchPoint
-      type: ModelsAirportIataCodeResponseModelDistanceFromSearchPoint!
+      type: ModelsCityIataCodeResponseModelDistanceFromSearchPoint!
     - name: email
       type: String
     - name: fax
-      type: ModelsAirportIataCodeResponseModelFax
+      type: ModelsCityIataCodeResponseModelFax
     - name: featuredPropertyInd
       type: Boolean!
     - name: geolocation
-      type: ModelsAirportIataCodeResponseModelGeolocation!
+      type: ModelsCityIataCodeResponseModelGeolocation!
     - name: imageUrLs
-      type: "[ModelsAirportIataCodeResponseModelImageUrl!]"
+      type: "[ModelsCityIataCodeResponseModelImageUrl!]"
     - name: phone
-      type: ModelsAirportIataCodeResponseModelPhone
+      type: ModelsCityIataCodeResponseModelPhone
     - name: ratings
-      type: "[ModelsAirportIataCodeResponseModelRating!]"
+      type: "[ModelsCityIataCodeResponseModelRating!]"
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPropertyInfo
-    inputTypeName: ModelsAirportIataCodeResponseModelPropertyInfoInput
+    typeName: ModelsCityIataCodeResponseModelPropertyInfo
+    inputTypeName: ModelsCityIataCodeResponseModelPropertyInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PropertyInfo
+      dataConnectorObjectType: models_city_iata_code_response_model_PropertyInfo
       fieldMapping:
         acceptedCreditCards:
           column:
@@ -1597,7 +1520,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPropertyInfo
+  typeName: ModelsCityIataCodeResponseModelPropertyInfo
   permissions:
     - role: admin
       output:
@@ -1621,7 +1544,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRoomTypeBedType
+  name: ModelsCityIataCodeResponseModelRoomTypeBedType
   fields:
     - name: bedType
       type: String!
@@ -1630,17 +1553,17 @@ definition:
     - name: size
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRoomTypeBedType
-    inputTypeName: ModelsAirportIataCodeResponseModelRoomTypeBedTypeInput
+    typeName: ModelsCityIataCodeResponseModelRoomTypeBedType
+    inputTypeName: ModelsCityIataCodeResponseModelRoomTypeBedTypeInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_RoomTypeBedType
+      dataConnectorObjectType: models_city_iata_code_response_model_RoomTypeBedType
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRoomTypeBedType
+  typeName: ModelsCityIataCodeResponseModelRoomTypeBedType
   permissions:
     - role: admin
       output:
@@ -1653,24 +1576,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelBalconyType
+  name: ModelsCityIataCodeResponseModelBalconyType
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelBalconyType
-    inputTypeName: ModelsAirportIataCodeResponseModelBalconyTypeInput
+    typeName: ModelsCityIataCodeResponseModelBalconyType
+    inputTypeName: ModelsCityIataCodeResponseModelBalconyTypeInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_BalconyType
+      dataConnectorObjectType: models_city_iata_code_response_model_BalconyType
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelBalconyType
+  typeName: ModelsCityIataCodeResponseModelBalconyType
   permissions:
     - role: admin
       output:
@@ -1682,7 +1605,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelCharacteristicsBedType
+  name: ModelsCityIataCodeResponseModelCharacteristicsBedType
   fields:
     - name: bedType
       type: String!
@@ -1691,17 +1614,17 @@ definition:
     - name: size
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelCharacteristicsBedType
-    inputTypeName: ModelsAirportIataCodeResponseModelCharacteristicsBedTypeInput
+    typeName: ModelsCityIataCodeResponseModelCharacteristicsBedType
+    inputTypeName: ModelsCityIataCodeResponseModelCharacteristicsBedTypeInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_CharacteristicsBedType
+      dataConnectorObjectType: models_city_iata_code_response_model_CharacteristicsBedType
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelCharacteristicsBedType
+  typeName: ModelsCityIataCodeResponseModelCharacteristicsBedType
   permissions:
     - role: admin
       output:
@@ -1714,24 +1637,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelCategory
+  name: ModelsCityIataCodeResponseModelCategory
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelCategory
-    inputTypeName: ModelsAirportIataCodeResponseModelCategoryInput
+    typeName: ModelsCityIataCodeResponseModelCategory
+    inputTypeName: ModelsCityIataCodeResponseModelCategoryInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Category
+      dataConnectorObjectType: models_city_iata_code_response_model_Category
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelCategory
+  typeName: ModelsCityIataCodeResponseModelCategory
   permissions:
     - role: admin
       output:
@@ -1743,24 +1666,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelClass
+  name: ModelsCityIataCodeResponseModelClass
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelClass
-    inputTypeName: ModelsAirportIataCodeResponseModelClassInput
+    typeName: ModelsCityIataCodeResponseModelClass
+    inputTypeName: ModelsCityIataCodeResponseModelClassInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Class
+      dataConnectorObjectType: models_city_iata_code_response_model_Class
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelClass
+  typeName: ModelsCityIataCodeResponseModelClass
   permissions:
     - role: admin
       output:
@@ -1772,24 +1695,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelLocationInfo
+  name: ModelsCityIataCodeResponseModelLocationInfo
   fields:
     - name: floor
       type: String
     - name: proximity
       type: String
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelLocationInfo
-    inputTypeName: ModelsAirportIataCodeResponseModelLocationInfoInput
+    typeName: ModelsCityIataCodeResponseModelLocationInfo
+    inputTypeName: ModelsCityIataCodeResponseModelLocationInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_LocationInfo
+      dataConnectorObjectType: models_city_iata_code_response_model_LocationInfo
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelLocationInfo
+  typeName: ModelsCityIataCodeResponseModelLocationInfo
   permissions:
     - role: admin
       output:
@@ -1801,24 +1724,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelCharacteristicsView
+  name: ModelsCityIataCodeResponseModelCharacteristicsView
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelCharacteristicsView
-    inputTypeName: ModelsAirportIataCodeResponseModelCharacteristicsViewInput
+    typeName: ModelsCityIataCodeResponseModelCharacteristicsView
+    inputTypeName: ModelsCityIataCodeResponseModelCharacteristicsViewInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_CharacteristicsView
+      dataConnectorObjectType: models_city_iata_code_response_model_CharacteristicsView
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelCharacteristicsView
+  typeName: ModelsCityIataCodeResponseModelCharacteristicsView
   permissions:
     - role: admin
       output:
@@ -1830,20 +1753,20 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelCharacteristics
+  name: ModelsCityIataCodeResponseModelCharacteristics
   fields:
     - name: accessible
       type: Boolean
     - name: balconyType
-      type: ModelsAirportIataCodeResponseModelBalconyType
+      type: ModelsCityIataCodeResponseModelBalconyType
     - name: bedTypes
-      type: "[ModelsAirportIataCodeResponseModelCharacteristicsBedType!]!"
+      type: "[ModelsCityIataCodeResponseModelCharacteristicsBedType!]!"
     - name: category
-      type: ModelsAirportIataCodeResponseModelCategory!
+      type: ModelsCityIataCodeResponseModelCategory!
     - name: class
-      type: ModelsAirportIataCodeResponseModelClass
+      type: ModelsCityIataCodeResponseModelClass
     - name: locationInfo
-      type: ModelsAirportIataCodeResponseModelLocationInfo
+      type: ModelsCityIataCodeResponseModelLocationInfo
     - name: maxOccupancy
       type: Float
     - name: numberOfBathrooms
@@ -1853,19 +1776,19 @@ definition:
     - name: otherFeatures
       type: "[String!]"
     - name: view
-      type: ModelsAirportIataCodeResponseModelCharacteristicsView
+      type: ModelsCityIataCodeResponseModelCharacteristicsView
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelCharacteristics
-    inputTypeName: ModelsAirportIataCodeResponseModelCharacteristicsInput
+    typeName: ModelsCityIataCodeResponseModelCharacteristics
+    inputTypeName: ModelsCityIataCodeResponseModelCharacteristicsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Characteristics
+      dataConnectorObjectType: models_city_iata_code_response_model_Characteristics
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelCharacteristics
+  typeName: ModelsCityIataCodeResponseModelCharacteristics
   permissions:
     - role: admin
       output:
@@ -1886,24 +1809,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelDataQualityScore
+  name: ModelsCityIataCodeResponseModelDataQualityScore
   fields:
     - name: augmentedRateQualityScore
       type: Float!
     - name: augmentedRoomQualityScore
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelDataQualityScore
-    inputTypeName: ModelsAirportIataCodeResponseModelDataQualityScoreInput
+    typeName: ModelsCityIataCodeResponseModelDataQualityScore
+    inputTypeName: ModelsCityIataCodeResponseModelDataQualityScoreInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_DataQualityScore
+      dataConnectorObjectType: models_city_iata_code_response_model_DataQualityScore
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelDataQualityScore
+  typeName: ModelsCityIataCodeResponseModelDataQualityScore
   permissions:
     - role: admin
       output:
@@ -1915,22 +1838,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPriceBase
+  name: ModelsCityIataCodeResponseModelPriceBase
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPriceBase
-    inputTypeName: ModelsAirportIataCodeResponseModelPriceBaseInput
+    typeName: ModelsCityIataCodeResponseModelPriceBase
+    inputTypeName: ModelsCityIataCodeResponseModelPriceBaseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PriceBase
+      dataConnectorObjectType: models_city_iata_code_response_model_PriceBase
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPriceBase
+  typeName: ModelsCityIataCodeResponseModelPriceBase
   permissions:
     - role: admin
       output:
@@ -1941,7 +1864,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelCommission
+  name: ModelsCityIataCodeResponseModelCommission
   fields:
     - name: application
       type: Boolean!
@@ -1950,17 +1873,17 @@ definition:
     - name: percent
       type: Float
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelCommission
-    inputTypeName: ModelsAirportIataCodeResponseModelCommissionInput
+    typeName: ModelsCityIataCodeResponseModelCommission
+    inputTypeName: ModelsCityIataCodeResponseModelCommissionInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Commission
+      dataConnectorObjectType: models_city_iata_code_response_model_Commission
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelCommission
+  typeName: ModelsCityIataCodeResponseModelCommission
   permissions:
     - role: admin
       output:
@@ -1973,22 +1896,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelNightlyRatesBreakdownTotalPrice
+  name: ModelsCityIataCodeResponseModelNightlyRatesBreakdownTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelNightlyRatesBreakdownTotalPrice
-    inputTypeName: ModelsAirportIataCodeResponseModelNightlyRatesBreakdownTotalPriceInput
+    typeName: ModelsCityIataCodeResponseModelNightlyRatesBreakdownTotalPrice
+    inputTypeName: ModelsCityIataCodeResponseModelNightlyRatesBreakdownTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_NightlyRatesBreakdownTotalPrice
+      dataConnectorObjectType: models_city_iata_code_response_model_NightlyRatesBreakdownTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelNightlyRatesBreakdownTotalPrice
+  typeName: ModelsCityIataCodeResponseModelNightlyRatesBreakdownTotalPrice
   permissions:
     - role: admin
       output:
@@ -1999,24 +1922,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelNightlyRatesBreakdown
+  name: ModelsCityIataCodeResponseModelNightlyRatesBreakdown
   fields:
     - name: localDate
       type: DateTime!
     - name: totalPrice
-      type: ModelsAirportIataCodeResponseModelNightlyRatesBreakdownTotalPrice
+      type: ModelsCityIataCodeResponseModelNightlyRatesBreakdownTotalPrice!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelNightlyRatesBreakdown
-    inputTypeName: ModelsAirportIataCodeResponseModelNightlyRatesBreakdownInput
+    typeName: ModelsCityIataCodeResponseModelNightlyRatesBreakdown
+    inputTypeName: ModelsCityIataCodeResponseModelNightlyRatesBreakdownInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_NightlyRatesBreakdown
+      dataConnectorObjectType: models_city_iata_code_response_model_NightlyRatesBreakdown
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelNightlyRatesBreakdown
+  typeName: ModelsCityIataCodeResponseModelNightlyRatesBreakdown
   permissions:
     - role: admin
       output:
@@ -2028,22 +1951,86 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelValue
+  name: ModelsCityIataCodeResponseModelFeeValue
   fields:
     - name: amount
       type: Float!
+    - name: currency
+      type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelValue
-    inputTypeName: ModelsAirportIataCodeResponseModelValueInput
+    typeName: ModelsCityIataCodeResponseModelFeeValue
+    inputTypeName: ModelsCityIataCodeResponseModelFeeValueInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Value
+      dataConnectorObjectType: models_city_iata_code_response_model_FeeValue
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelValue
+  typeName: ModelsCityIataCodeResponseModelFeeValue
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCityIataCodeResponseModelFee
+  fields:
+    - name: description
+      type: String!
+    - name: purpose
+      type: String!
+    - name: taxCode
+      type: String!
+    - name: value
+      type: ModelsCityIataCodeResponseModelFeeValue!
+  graphql:
+    typeName: ModelsCityIataCodeResponseModelFee
+    inputTypeName: ModelsCityIataCodeResponseModelFeeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_city_iata_code_response_model_Fee
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCityIataCodeResponseModelFee
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - description
+          - purpose
+          - taxCode
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCityIataCodeResponseModelTaxValue
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: ModelsCityIataCodeResponseModelTaxValue
+    inputTypeName: ModelsCityIataCodeResponseModelTaxValueInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_city_iata_code_response_model_TaxValue
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCityIataCodeResponseModelTaxValue
   permissions:
     - role: admin
       output:
@@ -2054,26 +2041,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelTax
+  name: ModelsCityIataCodeResponseModelTax
   fields:
     - name: description
       type: String!
     - name: taxCode
       type: String!
     - name: value
-      type: ModelsAirportIataCodeResponseModelValue
+      type: ModelsCityIataCodeResponseModelTaxValue!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelTax
-    inputTypeName: ModelsAirportIataCodeResponseModelTaxInput
+    typeName: ModelsCityIataCodeResponseModelTax
+    inputTypeName: ModelsCityIataCodeResponseModelTaxInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Tax
+      dataConnectorObjectType: models_city_iata_code_response_model_Tax
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelTax
+  typeName: ModelsCityIataCodeResponseModelTax
   permissions:
     - role: admin
       output:
@@ -2086,48 +2073,51 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPerStayTaxAndFeeBreakdown
+  name: ModelsCityIataCodeResponseModelPerStayTaxAndFeeBreakdown
   fields:
+    - name: fees
+      type: "[ModelsCityIataCodeResponseModelFee!]"
     - name: taxes
-      type: "[ModelsAirportIataCodeResponseModelTax!]!"
+      type: "[ModelsCityIataCodeResponseModelTax!]!"
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPerStayTaxAndFeeBreakdown
-    inputTypeName: ModelsAirportIataCodeResponseModelPerStayTaxAndFeeBreakdownInput
+    typeName: ModelsCityIataCodeResponseModelPerStayTaxAndFeeBreakdown
+    inputTypeName: ModelsCityIataCodeResponseModelPerStayTaxAndFeeBreakdownInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PerStayTaxAndFeeBreakdown
+      dataConnectorObjectType: models_city_iata_code_response_model_PerStayTaxAndFeeBreakdown
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPerStayTaxAndFeeBreakdown
+  typeName: ModelsCityIataCodeResponseModelPerStayTaxAndFeeBreakdown
   permissions:
     - role: admin
       output:
         allowedFields:
+          - fees
           - taxes
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPriceNote
+  name: ModelsCityIataCodeResponseModelPriceNote
   fields:
     - name: message
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPriceNote
-    inputTypeName: ModelsAirportIataCodeResponseModelPriceNoteInput
+    typeName: ModelsCityIataCodeResponseModelPriceNote
+    inputTypeName: ModelsCityIataCodeResponseModelPriceNoteInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PriceNote
+      dataConnectorObjectType: models_city_iata_code_response_model_PriceNote
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPriceNote
+  typeName: ModelsCityIataCodeResponseModelPriceNote
   permissions:
     - role: admin
       output:
@@ -2138,22 +2128,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPriceTotalPrice
+  name: ModelsCityIataCodeResponseModelPriceTotalPrice
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPriceTotalPrice
-    inputTypeName: ModelsAirportIataCodeResponseModelPriceTotalPriceInput
+    typeName: ModelsCityIataCodeResponseModelPriceTotalPrice
+    inputTypeName: ModelsCityIataCodeResponseModelPriceTotalPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PriceTotalPrice
+      dataConnectorObjectType: models_city_iata_code_response_model_PriceTotalPrice
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPriceTotalPrice
+  typeName: ModelsCityIataCodeResponseModelPriceTotalPrice
   permissions:
     - role: admin
       output:
@@ -2164,22 +2154,22 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPriceTotalTaxes
+  name: ModelsCityIataCodeResponseModelPriceTotalTaxes
   fields:
     - name: amount
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPriceTotalTaxes
-    inputTypeName: ModelsAirportIataCodeResponseModelPriceTotalTaxesInput
+    typeName: ModelsCityIataCodeResponseModelPriceTotalTaxes
+    inputTypeName: ModelsCityIataCodeResponseModelPriceTotalTaxesInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PriceTotalTaxes
+      dataConnectorObjectType: models_city_iata_code_response_model_PriceTotalTaxes
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPriceTotalTaxes
+  typeName: ModelsCityIataCodeResponseModelPriceTotalTaxes
   permissions:
     - role: admin
       output:
@@ -2190,38 +2180,38 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPrice
+  name: ModelsCityIataCodeResponseModelPrice
   fields:
     - name: base
-      type: ModelsAirportIataCodeResponseModelPriceBase!
+      type: ModelsCityIataCodeResponseModelPriceBase!
     - name: commission
-      type: ModelsAirportIataCodeResponseModelCommission!
+      type: ModelsCityIataCodeResponseModelCommission!
     - name: currencyCode
       type: String!
     - name: nightlyRatesBreakdown
-      type: "[ModelsAirportIataCodeResponseModelNightlyRatesBreakdown!]!"
+      type: "[ModelsCityIataCodeResponseModelNightlyRatesBreakdown!]!"
     - name: perStayTaxAndFeeBreakdown
-      type: ModelsAirportIataCodeResponseModelPerStayTaxAndFeeBreakdown
+      type: ModelsCityIataCodeResponseModelPerStayTaxAndFeeBreakdown!
     - name: priceNote
-      type: ModelsAirportIataCodeResponseModelPriceNote!
+      type: ModelsCityIataCodeResponseModelPriceNote!
     - name: taxesIncludedInBase
       type: Boolean!
     - name: totalPrice
-      type: ModelsAirportIataCodeResponseModelPriceTotalPrice!
+      type: ModelsCityIataCodeResponseModelPriceTotalPrice!
     - name: totalTaxes
-      type: ModelsAirportIataCodeResponseModelPriceTotalTaxes
+      type: ModelsCityIataCodeResponseModelPriceTotalTaxes!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPrice
-    inputTypeName: ModelsAirportIataCodeResponseModelPriceInput
+    typeName: ModelsCityIataCodeResponseModelPrice
+    inputTypeName: ModelsCityIataCodeResponseModelPriceInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Price
+      dataConnectorObjectType: models_city_iata_code_response_model_Price
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPrice
+  typeName: ModelsCityIataCodeResponseModelPrice
   permissions:
     - role: admin
       output:
@@ -2240,7 +2230,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRateRateCodeInfo
+  name: ModelsCityIataCodeResponseModelRateRateCodeInfo
   fields:
     - name: rateCategory
       type: String
@@ -2250,41 +2240,20 @@ definition:
       type: Float!
     - name: rateCode
       type: String
-    - name: ratePlanId
-      type: String
     - name: rateType
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRateRateCodeInfo
-    inputTypeName: ModelsAirportIataCodeResponseModelRateRateCodeInfoInput
+    typeName: ModelsCityIataCodeResponseModelRateRateCodeInfo
+    inputTypeName: ModelsCityIataCodeResponseModelRateRateCodeInfoInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_RateRateCodeInfo
-      fieldMapping:
-        rateCategory:
-          column:
-            name: rateCategory
-        rateCategoryCode:
-          column:
-            name: rateCategoryCode
-        rateClassificationCode:
-          column:
-            name: rateClassificationCode
-        rateCode:
-          column:
-            name: rateCode
-        ratePlanId:
-          column:
-            name: ratePlanID
-        rateType:
-          column:
-            name: rateType
+      dataConnectorObjectType: models_city_iata_code_response_model_RateRateCodeInfo
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRateRateCodeInfo
+  typeName: ModelsCityIataCodeResponseModelRateRateCodeInfo
   permissions:
     - role: admin
       output:
@@ -2293,31 +2262,30 @@ definition:
           - rateCategoryCode
           - rateClassificationCode
           - rateCode
-          - ratePlanId
           - rateType
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRateRateKey
+  name: ModelsCityIataCodeResponseModelRateRateKey
   fields:
     - name: authority
       type: String!
     - name: value
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRateRateKey
-    inputTypeName: ModelsAirportIataCodeResponseModelRateRateKeyInput
+    typeName: ModelsCityIataCodeResponseModelRateRateKey
+    inputTypeName: ModelsCityIataCodeResponseModelRateRateKeyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_RateRateKey
+      dataConnectorObjectType: models_city_iata_code_response_model_RateRateKey
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRateRateKey
+  typeName: ModelsCityIataCodeResponseModelRateRateKey
   permissions:
     - role: admin
       output:
@@ -2329,24 +2297,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelTentacledCurrencyAmount
+  name: ModelsCityIataCodeResponseModelTentacledCurrencyAmount
   fields:
     - name: amount
       type: Float!
     - name: currency
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelTentacledCurrencyAmount
-    inputTypeName: ModelsAirportIataCodeResponseModelTentacledCurrencyAmountInput
+    typeName: ModelsCityIataCodeResponseModelTentacledCurrencyAmount
+    inputTypeName: ModelsCityIataCodeResponseModelTentacledCurrencyAmountInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_TentacledCurrencyAmount
+      dataConnectorObjectType: models_city_iata_code_response_model_TentacledCurrencyAmount
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelTentacledCurrencyAmount
+  typeName: ModelsCityIataCodeResponseModelTentacledCurrencyAmount
   permissions:
     - role: admin
       output:
@@ -2358,26 +2326,26 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelTentacledPenalty
+  name: ModelsCityIataCodeResponseModelTentacledPenalty
   fields:
     - name: currencyAmount
-      type: ModelsAirportIataCodeResponseModelTentacledCurrencyAmount!
+      type: ModelsCityIataCodeResponseModelTentacledCurrencyAmount!
     - name: estimatedAmount
       type: Boolean!
     - name: originalPenaltyInfo
-      type: String
+      type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelTentacledPenalty
-    inputTypeName: ModelsAirportIataCodeResponseModelTentacledPenaltyInput
+    typeName: ModelsCityIataCodeResponseModelTentacledPenalty
+    inputTypeName: ModelsCityIataCodeResponseModelTentacledPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_TentacledPenalty
+      dataConnectorObjectType: models_city_iata_code_response_model_TentacledPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelTentacledPenalty
+  typeName: ModelsCityIataCodeResponseModelTentacledPenalty
   permissions:
     - role: admin
       output:
@@ -2390,60 +2358,63 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelTentacledCancelPenalty
+  name: ModelsCityIataCodeResponseModelTentacledCancelPenalty
   fields:
     - name: cancelShortDescription
       type: String!
     - name: deadlineLocal
       type: DateTime!
+    - name: estimatedDeadlineLocal
+      type: Boolean
     - name: penalty
-      type: ModelsAirportIataCodeResponseModelTentacledPenalty!
+      type: ModelsCityIataCodeResponseModelTentacledPenalty!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelTentacledCancelPenalty
-    inputTypeName: ModelsAirportIataCodeResponseModelTentacledCancelPenaltyInput
+    typeName: ModelsCityIataCodeResponseModelTentacledCancelPenalty
+    inputTypeName: ModelsCityIataCodeResponseModelTentacledCancelPenaltyInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_TentacledCancelPenalty
+      dataConnectorObjectType: models_city_iata_code_response_model_TentacledCancelPenalty
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelTentacledCancelPenalty
+  typeName: ModelsCityIataCodeResponseModelTentacledCancelPenalty
   permissions:
     - role: admin
       output:
         allowedFields:
           - cancelShortDescription
           - deadlineLocal
+          - estimatedDeadlineLocal
           - penalty
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRateTerms
+  name: ModelsCityIataCodeResponseModelRateTerms
   fields:
     - name: cancelPenalties
-      type: "[ModelsAirportIataCodeResponseModelTentacledCancelPenalty!]!"
+      type: "[ModelsCityIataCodeResponseModelTentacledCancelPenalty!]!"
     - name: customerLoyaltyIdRequiredAtReservation
       type: Boolean
     - name: description
-      type: "[String!]"
+      type: "[String!]!"
     - name: guaranteeType
       type: String!
     - name: ratePaymentInfo
-      type: String!
+      type: String
     - name: rateQualificationIdRequiredAtCheckIn
       type: Boolean
     - name: refundable
       type: Boolean!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRateTerms
-    inputTypeName: ModelsAirportIataCodeResponseModelRateTermsInput
+    typeName: ModelsCityIataCodeResponseModelRateTerms
+    inputTypeName: ModelsCityIataCodeResponseModelRateTermsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_RateTerms
+      dataConnectorObjectType: models_city_iata_code_response_model_RateTerms
       fieldMapping:
         cancelPenalties:
           column:
@@ -2471,7 +2442,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRateTerms
+  typeName: ModelsCityIataCodeResponseModelRateTerms
   permissions:
     - role: admin
       output:
@@ -2488,7 +2459,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRate
+  name: ModelsCityIataCodeResponseModelRate
   fields:
     - name: accessibleRoom
       type: Boolean
@@ -2497,7 +2468,7 @@ definition:
     - name: breakfastIncluded
       type: Boolean
     - name: dataQualityScore
-      type: ModelsAirportIataCodeResponseModelDataQualityScore!
+      type: ModelsCityIataCodeResponseModelDataQualityScore!
     - name: dinnerIncluded
       type: Boolean
     - name: lunchIncluded
@@ -2505,33 +2476,33 @@ definition:
     - name: nonSmoking
       type: Boolean!
     - name: price
-      type: ModelsAirportIataCodeResponseModelPrice!
+      type: ModelsCityIataCodeResponseModelPrice!
     - name: quantity
       type: Float
     - name: rateCodeInfo
-      type: ModelsAirportIataCodeResponseModelRateRateCodeInfo!
+      type: ModelsCityIataCodeResponseModelRateRateCodeInfo!
     - name: rateDescription
       type: String!
     - name: rateKey
-      type: ModelsAirportIataCodeResponseModelRateRateKey!
+      type: ModelsCityIataCodeResponseModelRateRateKey!
     - name: roomDescription
       type: String!
     - name: terms
-      type: ModelsAirportIataCodeResponseModelRateTerms!
+      type: ModelsCityIataCodeResponseModelRateTerms!
     - name: wifiIncluded
       type: Boolean
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRate
-    inputTypeName: ModelsAirportIataCodeResponseModelRateInput
+    typeName: ModelsCityIataCodeResponseModelRate
+    inputTypeName: ModelsCityIataCodeResponseModelRateInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Rate
+      dataConnectorObjectType: models_city_iata_code_response_model_Rate
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRate
+  typeName: ModelsCityIataCodeResponseModelRate
   permissions:
     - role: admin
       output:
@@ -2556,24 +2527,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRoomAmenity
+  name: ModelsCityIataCodeResponseModelRoomAmenity
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRoomAmenity
-    inputTypeName: ModelsAirportIataCodeResponseModelRoomAmenityInput
+    typeName: ModelsCityIataCodeResponseModelRoomAmenity
+    inputTypeName: ModelsCityIataCodeResponseModelRoomAmenityInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_RoomAmenity
+      dataConnectorObjectType: models_city_iata_code_response_model_RoomAmenity
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRoomAmenity
+  typeName: ModelsCityIataCodeResponseModelRoomAmenity
   permissions:
     - role: admin
       output:
@@ -2585,24 +2556,62 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRoomTypeView
+  name: ModelsCityIataCodeResponseModelRoomImageUrl
+  fields:
+    - name: caption
+      type: String!
+    - name: curatedImage
+      type: Boolean!
+    - name: imageSize
+      type: String!
+    - name: pictureCategory
+      type: Float!
+    - name: url
+      type: String!
+  graphql:
+    typeName: ModelsCityIataCodeResponseModelRoomImageUrl
+    inputTypeName: ModelsCityIataCodeResponseModelRoomImageUrlInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_city_iata_code_response_model_RoomImageURL
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsCityIataCodeResponseModelRoomImageUrl
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - caption
+          - curatedImage
+          - imageSize
+          - pictureCategory
+          - url
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsCityIataCodeResponseModelRoomTypeView
   fields:
     - name: code
       type: Float!
     - name: description
       type: String!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRoomTypeView
-    inputTypeName: ModelsAirportIataCodeResponseModelRoomTypeViewInput
+    typeName: ModelsCityIataCodeResponseModelRoomTypeView
+    inputTypeName: ModelsCityIataCodeResponseModelRoomTypeViewInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_RoomTypeView
+      dataConnectorObjectType: models_city_iata_code_response_model_RoomTypeView
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRoomTypeView
+  typeName: ModelsCityIataCodeResponseModelRoomTypeView
   permissions:
     - role: admin
       output:
@@ -2614,30 +2623,32 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelRoomType
+  name: ModelsCityIataCodeResponseModelRoomType
   fields:
     - name: bedTypes
-      type: "[ModelsAirportIataCodeResponseModelRoomTypeBedType!]!"
+      type: "[ModelsCityIataCodeResponseModelRoomTypeBedType!]!"
     - name: characteristics
-      type: ModelsAirportIataCodeResponseModelCharacteristics!
+      type: ModelsCityIataCodeResponseModelCharacteristics!
     - name: estimatedRoomTypeOtaCode
       type: Float!
     - name: maxOccupancy
       type: Float
     - name: rates
-      type: "[ModelsAirportIataCodeResponseModelRate!]!"
+      type: "[ModelsCityIataCodeResponseModelRate!]!"
     - name: roomAmenities
-      type: "[ModelsAirportIataCodeResponseModelRoomAmenity!]"
+      type: "[ModelsCityIataCodeResponseModelRoomAmenity!]"
+    - name: roomImageUrLs
+      type: "[ModelsCityIataCodeResponseModelRoomImageUrl!]"
     - name: shortRoomDescription
       type: String!
     - name: view
-      type: ModelsAirportIataCodeResponseModelRoomTypeView
+      type: ModelsCityIataCodeResponseModelRoomTypeView
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelRoomType
-    inputTypeName: ModelsAirportIataCodeResponseModelRoomTypeInput
+    typeName: ModelsCityIataCodeResponseModelRoomType
+    inputTypeName: ModelsCityIataCodeResponseModelRoomTypeInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_RoomType
+      dataConnectorObjectType: models_city_iata_code_response_model_RoomType
       fieldMapping:
         bedTypes:
           column:
@@ -2657,6 +2668,9 @@ definition:
         roomAmenities:
           column:
             name: roomAmenities
+        roomImageUrLs:
+          column:
+            name: roomImageURLs
         shortRoomDescription:
           column:
             name: shortRoomDescription
@@ -2668,7 +2682,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelRoomType
+  typeName: ModelsCityIataCodeResponseModelRoomType
   permissions:
     - role: admin
       output:
@@ -2679,6 +2693,7 @@ definition:
           - maxOccupancy
           - rates
           - roomAmenities
+          - roomImageUrLs
           - shortRoomDescription
           - view
 
@@ -2686,44 +2701,44 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPropertyItem
+  name: ModelsCityIataCodeResponseModelPropertyItem
   fields:
     - name: availability
       type: Boolean!
     - name: availabilityNotes
-      type: "[ModelsAirportIataCodeResponseModelAvailabilityNote!]"
+      type: "[ModelsCityIataCodeResponseModelAvailabilityNote!]"
     - name: brandCode
       type: String
     - name: chainCode
       type: String!
     - name: dataQualitySummaryScore
-      type: ModelsAirportIataCodeResponseModelDataQualitySummaryScore
+      type: ModelsCityIataCodeResponseModelDataQualitySummaryScore
     - name: longDescription
       type: String
     - name: lowestPrivateAvailableRate
-      type: ModelsAirportIataCodeResponseModelLowestPrivateAvailableRate
+      type: ModelsCityIataCodeResponseModelLowestPrivateAvailableRate
     - name: lowestPublicAvailableRate
-      type: ModelsAirportIataCodeResponseModelLowestPublicAvailableRate
+      type: ModelsCityIataCodeResponseModelLowestPublicAvailableRate
     - name: name
       type: String!
     - name: propertyCode
       type: String!
     - name: propertyInfo
-      type: ModelsAirportIataCodeResponseModelPropertyInfo!
+      type: ModelsCityIataCodeResponseModelPropertyInfo!
     - name: roomTypes
-      type: "[ModelsAirportIataCodeResponseModelRoomType!]"
+      type: "[ModelsCityIataCodeResponseModelRoomType!]"
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPropertyItem
-    inputTypeName: ModelsAirportIataCodeResponseModelPropertyItemInput
+    typeName: ModelsCityIataCodeResponseModelPropertyItem
+    inputTypeName: ModelsCityIataCodeResponseModelPropertyItemInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_PropertyItem
+      dataConnectorObjectType: models_city_iata_code_response_model_PropertyItem
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPropertyItem
+  typeName: ModelsCityIataCodeResponseModelPropertyItem
   permissions:
     - role: admin
       output:
@@ -2745,24 +2760,24 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelSearchPoint
+  name: ModelsCityIataCodeResponseModelSearchPoint
   fields:
     - name: latitude
       type: Float!
     - name: longitude
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelSearchPoint
-    inputTypeName: ModelsAirportIataCodeResponseModelSearchPointInput
+    typeName: ModelsCityIataCodeResponseModelSearchPoint
+    inputTypeName: ModelsCityIataCodeResponseModelSearchPointInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_SearchPoint
+      dataConnectorObjectType: models_city_iata_code_response_model_SearchPoint
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelSearchPoint
+  typeName: ModelsCityIataCodeResponseModelSearchPoint
   permissions:
     - role: admin
       output:
@@ -2774,37 +2789,34 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelHotelsResponse
+  name: ModelsCityIataCodeResponseModelHotelsResponse
   fields:
     - name: checkInDateLocal
       type: DateTime!
     - name: checkOutDateLocal
       type: DateTime!
-    - name: currencyExchangeRates
-      type: "[ModelsAirportIataCodeResponseModelCurrencyExchangeRate!]!"
     - name: propertyItems
-      type: "[ModelsAirportIataCodeResponseModelPropertyItem!]!"
+      type: "[ModelsCityIataCodeResponseModelPropertyItem!]!"
     - name: searchPoint
-      type: ModelsAirportIataCodeResponseModelSearchPoint!
+      type: ModelsCityIataCodeResponseModelSearchPoint!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelHotelsResponse
-    inputTypeName: ModelsAirportIataCodeResponseModelHotelsResponseInput
+    typeName: ModelsCityIataCodeResponseModelHotelsResponse
+    inputTypeName: ModelsCityIataCodeResponseModelHotelsResponseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_HotelsResponse
+      dataConnectorObjectType: models_city_iata_code_response_model_HotelsResponse
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelHotelsResponse
+  typeName: ModelsCityIataCodeResponseModelHotelsResponse
   permissions:
     - role: admin
       output:
         allowedFields:
           - checkInDateLocal
           - checkOutDateLocal
-          - currencyExchangeRates
           - propertyItems
           - searchPoint
 
@@ -2812,7 +2824,7 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: ModelsAirportIataCodeResponseModelPagination
+  name: ModelsCityIataCodeResponseModelPagination
   fields:
     - name: page
       type: Float!
@@ -2825,17 +2837,17 @@ definition:
     - name: totalPages
       type: Float!
   graphql:
-    typeName: ModelsAirportIataCodeResponseModelPagination
-    inputTypeName: ModelsAirportIataCodeResponseModelPaginationInput
+    typeName: ModelsCityIataCodeResponseModelPagination
+    inputTypeName: ModelsCityIataCodeResponseModelPaginationInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_airport_iata_code_response_model_Pagination
+      dataConnectorObjectType: models_city_iata_code_response_model_Pagination
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: ModelsAirportIataCodeResponseModelPagination
+  typeName: ModelsCityIataCodeResponseModelPagination
   permissions:
     - role: admin
       output:
@@ -2850,28 +2862,28 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: AirportIataCodeResponse
+  name: CityIataCodeResponse
   fields:
     - name: hotelsResponse
-      type: ModelsAirportIataCodeResponseModelHotelsResponse!
+      type: ModelsCityIataCodeResponseModelHotelsResponse!
     - name: pagination
-      type: ModelsAirportIataCodeResponseModelPagination!
+      type: ModelsCityIataCodeResponseModelPagination!
     - name: traceId
       type: String!
     - name: transactionId
       type: String!
   graphql:
-    typeName: AirportIataCodeResponse
-    inputTypeName: AirportIataCodeResponseInput
+    typeName: CityIataCodeResponse
+    inputTypeName: CityIataCodeResponseInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodeResponse
+      dataConnectorObjectType: CityIataCodeResponse
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AirportIataCodeResponse
+  typeName: CityIataCodeResponse
   permissions:
     - role: admin
       output:
@@ -2885,24 +2897,24 @@ definition:
 kind: Command
 version: v1
 definition:
-  name: TpTsSearchByAirportIataCode
-  outputType: AirportIataCodeResponse!
+  name: TpSearchHotelsByCityIataCode
+  outputType: CityIataCodeResponse!
   arguments:
     - name: searchParams
-      type: AirportIataCodeHotelSearchRequest!
+      type: CityIataCodeHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:
-      function: tpTsSearchByAirportIataCode
+      function: tpSearchHotelsByCityIataCode
   graphql:
-    rootFieldName: tpTsSearchByAirportIataCode
+    rootFieldName: tpSearchHotelsByCityIataCode
     rootFieldKind: Query
 
 ---
 kind: CommandPermissions
 version: v1
 definition:
-  commandName: TpTsSearchByAirportIataCode
+  commandName: TpSearchHotelsByCityIataCode
   permissions:
     - role: admin
       allowExecution: true

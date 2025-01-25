@@ -1,43 +1,24 @@
 import {
-    StayDetails,
-    RoomFilter,
-    RateFilter,
-    Radius,
-    NegotiatedRates,
-    CustomerLoyaltyCard
-  } from '../base_request';
-  
-  interface CoordinatesLocationDetails {
+    BasePropertyFilter,
+    BaseHotelSearchRequest,
+    Radius
+} from '../base_request';
+
+interface CoordinatesLocationDetails {
     latitude: string;
     longitude: string;
-  }
-  
-  interface CoordinatesLocationType {
+}
+
+interface CoordinatesLocationType {
     type: "coordinates";
     details: CoordinatesLocationDetails;
     radius: Radius;
-  }
-  
-  interface CoordinatesPropertyFilter {
-    maxWaitTime?: number;
+}
+
+interface CoordinatesPropertyFilter extends BasePropertyFilter {
     location: CoordinatesLocationType;
-    chainCodes?: string[];
-    customerLoyaltyCards?: CustomerLoyaltyCard[];
-    hotelNameContains?: string;
-    negotiatedRates?: NegotiatedRates;
-    returnOnlyAvailableProperties: boolean;
-    imageSize?: string;
-    returnAllImageURLs?: boolean;
-    recommendedPropertyAmenitiesInd?: boolean;
-    removeSpecialRates?: boolean;
-    categories?: string[];
-  }
-  
-  export interface CoordinatesHotelSearchRequest {
-    responseFields?: string[];
-    requestedCurrency?: string;
-    stayDetails: StayDetails;
+}
+
+export interface CoordinatesHotelSearchRequest extends BaseHotelSearchRequest {
     propertyFilter: CoordinatesPropertyFilter;
-    roomFilter?: RoomFilter;
-    rateFilter?: RateFilter;
-  }
+}

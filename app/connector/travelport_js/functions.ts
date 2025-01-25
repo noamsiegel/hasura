@@ -23,7 +23,7 @@ import axios, { AxiosInstance } from 'axios';
  * TravelPort API client class
  */
 class TravelPortClient {
-  private static debug: boolean = true;
+  private static debug: boolean = false;
 
   /**
    * Enable or disable debug logging
@@ -174,7 +174,7 @@ class TravelPortClient {
  * Search hotels by coordinates
  */
 /** @readonly */
-export async function tpTsCoordsSearchHotels(
+export async function tpSearchHotelsByCoordinates(
   searchParams: CoordinatesHotelSearchRequest
 ): Promise<CoordinatesResponse> {
   return await TravelPortClient.searchHotels<CoordinatesResponse>(searchParams);
@@ -184,7 +184,7 @@ export async function tpTsCoordsSearchHotels(
  * Search hotels by airport IATA code
  */
 /** @readonly */
-export async function tpTsSearchByAirportIataCode(
+export async function tpSearchHotelsByAirportIataCode(
   searchParams: AirportIataCodeHotelSearchRequest
 ): Promise<AirportIataCodeResponse> {
   return await TravelPortClient.searchHotels<AirportIataCodeResponse>(searchParams);
@@ -194,28 +194,28 @@ export async function tpTsSearchByAirportIataCode(
  * Search hotels by property
  */
 /** @readonly */
-export async function tpTsSearchByProperty(
+export async function tpSearchHotelsByProperty(
   searchParams: PropertyHotelSearchRequest
 ): Promise<PropertyResponse> {
   return await TravelPortClient.searchHotels<PropertyResponse>(searchParams);
 }
 
 /**
- * Search hotels by address
+ * Search hotels by address using custom parameters
  */
 /** @readonly */
-export async function tpTsSearchByAddress(
-  searchParams: AddressHotelSearchRequest
+export async function tpSearchHotelsByAddress(
+    searchParams: AddressHotelSearchRequest
 ): Promise<AddressResponse> {
-  return await TravelPortClient.searchHotels<AddressResponse>(searchParams);
+    return await TravelPortClient.searchHotels<AddressResponse>(searchParams);
 }
 
 /**
- * Search hotels by city IATA code
+ * Search hotels by city IATA code using custom parameters
  */
 /** @readonly */
-export async function tpTsSearchByCityIataCode(
-  searchParams: CityIataCodeHotelSearchRequest
+export async function tpSearchHotelsByCityIataCode(
+    searchParams: CityIataCodeHotelSearchRequest
 ): Promise<CityIataCodeResponse> {
-  return await TravelPortClient.searchHotels<CityIataCodeResponse>(searchParams);
+    return await TravelPortClient.searchHotels<CityIataCodeResponse>(searchParams);
 }

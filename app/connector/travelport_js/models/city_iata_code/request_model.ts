@@ -1,10 +1,7 @@
 import {
-    StayDetails,
-    RoomFilter,
-    RateFilter,
-    Radius,
-    CustomerLoyaltyCard,
-    NegotiatedRates
+    BasePropertyFilter,
+    BaseHotelSearchRequest,
+    Radius
 } from '../base_request';
 
 interface CityIataCodeLocationDetails {
@@ -17,37 +14,10 @@ interface CityIataCodeLocationType {
     radius: Radius;
 }
 
-interface CityIataCodePropertyFilter {
-    maxWaitTime?: number;
+interface CityIataCodePropertyFilter extends BasePropertyFilter {
     location: CityIataCodeLocationType;
-    chainCodes?: string[];
-    customerLoyaltyCards?: CustomerLoyaltyCard[];
-    hotelNameContains?: string;
-    negotiatedRates?: NegotiatedRates;
-    returnOnlyAvailableProperties: boolean;
-    imageSize?: string;
-    returnAllImageURLs?: boolean;
-    recommendedPropertyAmenitiesInd?: boolean;
-    amenityCategories?: string[];
 }
 
-// Extending RoomFilter to add city-specific fields
-interface CityRoomFilter extends RoomFilter {
-    highFloor?: boolean;
-    maxOccupancy?: number;
-}
-
-// Extending RateFilter to add city-specific fields
-interface CityRateFilter extends RateFilter {
-    removeSpecialRates?: boolean;
-    categories?: string[];
-}
-
-export interface CityIataCodeHotelSearchRequest {
-    responseFields?: string[];
-    requestedCurrency?: string;
-    stayDetails: StayDetails;
+export interface CityIataCodeHotelSearchRequest extends BaseHotelSearchRequest {
     propertyFilter: CityIataCodePropertyFilter;
-    roomFilter?: CityRoomFilter;
-    rateFilter?: CityRateFilter;
 }
