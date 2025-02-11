@@ -1,0 +1,157 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: QueSchedulerAudit
+  description: "8"
+  fields:
+    - name: executedAt
+      type: Timestamptz!
+    - name: schedulerJobId
+      type: Int8!
+  graphql:
+    typeName: QueSchedulerAudit
+    inputTypeName: QueSchedulerAuditInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: que_scheduler_audit
+      fieldMapping:
+        executedAt:
+          column:
+            name: executed_at
+        schedulerJobId:
+          column:
+            name: scheduler_job_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: QueSchedulerAudit
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - executedAt
+          - schedulerJobId
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: QueSchedulerAuditBoolExp
+  operand:
+    object:
+      type: QueSchedulerAudit
+      comparableFields:
+        - fieldName: executedAt
+          booleanExpressionType: TimestamptzBoolExp
+        - fieldName: schedulerJobId
+          booleanExpressionType: Int8BoolExp
+      comparableRelationships:
+        - relationshipName: queSchedulerAuditEnqueueds
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: QueSchedulerAuditBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: QueSchedulerAuditAggExp
+  operand:
+    object:
+      aggregatedType: QueSchedulerAudit
+      aggregatableFields:
+        - fieldName: executedAt
+          aggregateExpression: TimestamptzAggExp
+        - fieldName: schedulerJobId
+          aggregateExpression: Int8AggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: QueSchedulerAuditAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: QueSchedulerAuditOrderByExp
+  operand:
+    object:
+      orderedType: QueSchedulerAudit
+      orderableFields:
+        - fieldName: executedAt
+          orderByExpression: TimestamptzOrderByExp
+        - fieldName: schedulerJobId
+          orderByExpression: Int8OrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: QueSchedulerAuditOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: QueSchedulerAudit
+  objectType: QueSchedulerAudit
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: que_scheduler_audit
+  filterExpressionType: QueSchedulerAuditBoolExp
+  aggregateExpression: QueSchedulerAuditAggExp
+  orderByExpression: QueSchedulerAuditOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: queSchedulerAudit
+      subscription:
+        rootField: queSchedulerAudit
+    selectUniques:
+      - queryRootField: queSchedulerAuditBySchedulerJobId
+        uniqueIdentifier:
+          - schedulerJobId
+        subscription:
+          rootField: queSchedulerAuditBySchedulerJobId
+    filterInputTypeName: QueSchedulerAuditFilterInput
+    aggregate:
+      queryRootField: queSchedulerAuditAggregate
+      subscription:
+        rootField: queSchedulerAuditAggregate
+  description: "8"
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: QueSchedulerAudit
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: queSchedulerAuditEnqueueds
+  sourceType: QueSchedulerAudit
+  target:
+    model:
+      name: QueSchedulerAuditEnqueued
+      relationshipType: Array
+      aggregate:
+        aggregateExpression: QueSchedulerAuditEnqueuedAggExp
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: schedulerJobId
+      target:
+        modelField:
+          - fieldName: schedulerJobId
+  graphql:
+    aggregateFieldName: queSchedulerAuditEnqueuedsAggregate
+

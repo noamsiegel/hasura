@@ -1,0 +1,228 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PartnerWebhooks
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: disabledAt
+      type: Timestamp
+    - name: eventTypes
+      type: Jsonb
+    - name: id
+      type: Int8!
+    - name: partnerAccountId
+      type: Int8!
+    - name: publicId
+      type: Citext!
+    - name: secret
+      type: Text
+    - name: status
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+    - name: url
+      type: Text!
+  graphql:
+    typeName: PartnerWebhooks
+    inputTypeName: PartnerWebhooksInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: partner_webhooks
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        disabledAt:
+          column:
+            name: disabled_at
+        eventTypes:
+          column:
+            name: event_types
+        id:
+          column:
+            name: id
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        publicId:
+          column:
+            name: public_id
+        secret:
+          column:
+            name: secret
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PartnerWebhooks
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - disabledAt
+          - eventTypes
+          - id
+          - partnerAccountId
+          - publicId
+          - secret
+          - status
+          - updatedAt
+          - url
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: PartnerWebhooksBoolExp
+  operand:
+    object:
+      type: PartnerWebhooks
+      comparableFields:
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: disabledAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: eventTypes
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: partnerAccountId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: publicId
+          booleanExpressionType: CitextBoolExp
+        - fieldName: secret
+          booleanExpressionType: TextBoolExp
+        - fieldName: status
+          booleanExpressionType: TextBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: url
+          booleanExpressionType: TextBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: PartnerWebhooksBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: PartnerWebhooksAggExp
+  operand:
+    object:
+      aggregatedType: PartnerWebhooks
+      aggregatableFields:
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: disabledAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: eventTypes
+          aggregateExpression: JsonbAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: partnerAccountId
+          aggregateExpression: Int8AggExp
+        - fieldName: publicId
+          aggregateExpression: CitextAggExp
+        - fieldName: secret
+          aggregateExpression: TextAggExp
+        - fieldName: status
+          aggregateExpression: TextAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: url
+          aggregateExpression: TextAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: PartnerWebhooksAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: PartnerWebhooksOrderByExp
+  operand:
+    object:
+      orderedType: PartnerWebhooks
+      orderableFields:
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: disabledAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: eventTypes
+          orderByExpression: JsonbOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: partnerAccountId
+          orderByExpression: Int8OrderByExp
+        - fieldName: publicId
+          orderByExpression: CitextOrderByExp
+        - fieldName: secret
+          orderByExpression: TextOrderByExp
+        - fieldName: status
+          orderByExpression: TextOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: url
+          orderByExpression: TextOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: PartnerWebhooksOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: PartnerWebhooks
+  objectType: PartnerWebhooks
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: partner_webhooks
+  filterExpressionType: PartnerWebhooksBoolExp
+  aggregateExpression: PartnerWebhooksAggExp
+  orderByExpression: PartnerWebhooksOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: partnerWebhooks
+      subscription:
+        rootField: partnerWebhooks
+    selectUniques:
+      - queryRootField: partnerWebhooksById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: partnerWebhooksById
+    filterInputTypeName: PartnerWebhooksFilterInput
+    aggregate:
+      queryRootField: partnerWebhooksAggregate
+      subscription:
+        rootField: partnerWebhooksAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: PartnerWebhooks
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

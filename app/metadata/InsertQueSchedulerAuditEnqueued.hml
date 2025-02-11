@@ -1,0 +1,145 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueSchedulerAuditEnqueuedObject
+  fields:
+    - name: args
+      type: Jsonb!
+    - name: id
+      type: Int8
+    - name: jobClass
+      type: Varchar!
+    - name: jobId
+      type: Int8
+    - name: priority
+      type: Int4
+    - name: queue
+      type: Varchar
+    - name: runAt
+      type: Timestamptz
+    - name: schedulerJobId
+      type: Int8!
+  graphql:
+    typeName: InsertQueSchedulerAuditEnqueuedObject
+    inputTypeName: InsertQueSchedulerAuditEnqueuedObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_scheduler_audit_enqueued_object
+      fieldMapping:
+        args:
+          column:
+            name: args
+        id:
+          column:
+            name: id
+        jobClass:
+          column:
+            name: job_class
+        jobId:
+          column:
+            name: job_id
+        priority:
+          column:
+            name: priority
+        queue:
+          column:
+            name: queue
+        runAt:
+          column:
+            name: run_at
+        schedulerJobId:
+          column:
+            name: scheduler_job_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueSchedulerAuditEnqueuedObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - args
+          - id
+          - jobClass
+          - jobId
+          - priority
+          - queue
+          - runAt
+          - schedulerJobId
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueSchedulerAuditEnqueuedResponse
+  description: Responses from the 'insert_que_scheduler_audit_enqueued' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueSchedulerAuditEnqueued!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertQueSchedulerAuditEnqueuedResponse
+    inputTypeName: InsertQueSchedulerAuditEnqueuedResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_scheduler_audit_enqueued_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueSchedulerAuditEnqueuedResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertQueSchedulerAuditEnqueued
+  outputType: InsertQueSchedulerAuditEnqueuedResponse!
+  arguments:
+    - name: objects
+      type: "[InsertQueSchedulerAuditEnqueuedObject!]!"
+    - name: postCheck
+      type: QueSchedulerAuditEnqueuedBoolExp
+      description: Insert permission predicate over the 'que_scheduler_audit_enqueued'
+        collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_que_scheduler_audit_enqueued
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertQueSchedulerAuditEnqueued
+    rootFieldKind: Mutation
+  description: Insert into the que_scheduler_audit_enqueued table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertQueSchedulerAuditEnqueued
+  permissions:
+    - role: admin
+      allowExecution: true
+

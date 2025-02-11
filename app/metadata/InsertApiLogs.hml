@@ -1,0 +1,138 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertApiLogsObject
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: id
+      type: Int8
+    - name: operation
+      type: Text!
+    - name: request
+      type: Text!
+    - name: reservationId
+      type: Int8!
+    - name: response
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: InsertApiLogsObject
+    inputTypeName: InsertApiLogsObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_api_logs_object
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        operation:
+          column:
+            name: operation
+        request:
+          column:
+            name: request
+        reservationId:
+          column:
+            name: reservation_id
+        response:
+          column:
+            name: response
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertApiLogsObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - id
+          - operation
+          - request
+          - reservationId
+          - response
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertApiLogsResponse
+  description: Responses from the 'insert_api_logs' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ApiLogs!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertApiLogsResponse
+    inputTypeName: InsertApiLogsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_api_logs_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertApiLogsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertApiLogs
+  outputType: InsertApiLogsResponse!
+  arguments:
+    - name: objects
+      type: "[InsertApiLogsObject!]!"
+    - name: postCheck
+      type: ApiLogsBoolExp
+      description: Insert permission predicate over the 'api_logs' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_api_logs
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertApiLogs
+    rootFieldKind: Mutation
+  description: Insert into the api_logs table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertApiLogs
+  permissions:
+    - role: admin
+      allowExecution: true
+

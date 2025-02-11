@@ -1,0 +1,240 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Reservations
+  fields:
+    - name: checkInDate
+      type: Timestamp
+    - name: checkOutDate
+      type: Timestamp
+    - name: createRequest
+      type: Jsonb
+    - name: createdAt
+      type: Timestamp!
+    - name: gdsData
+      type: Jsonb
+    - name: id
+      type: Int8!
+    - name: modifications
+      type: Jsonb
+    - name: partnerAccountId
+      type: Int8!
+    - name: publicId
+      type: Citext!
+    - name: status
+      type: Text
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: Reservations
+    inputTypeName: ReservationsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: reservations
+      fieldMapping:
+        checkInDate:
+          column:
+            name: check_in_date
+        checkOutDate:
+          column:
+            name: check_out_date
+        createRequest:
+          column:
+            name: create_request
+        createdAt:
+          column:
+            name: created_at
+        gdsData:
+          column:
+            name: gds_data
+        id:
+          column:
+            name: id
+        modifications:
+          column:
+            name: modifications
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        publicId:
+          column:
+            name: public_id
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Reservations
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - checkInDate
+          - checkOutDate
+          - createRequest
+          - createdAt
+          - gdsData
+          - id
+          - modifications
+          - partnerAccountId
+          - publicId
+          - status
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: ReservationsBoolExp
+  operand:
+    object:
+      type: Reservations
+      comparableFields:
+        - fieldName: checkInDate
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: checkOutDate
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: createRequest
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: gdsData
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: modifications
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: partnerAccountId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: publicId
+          booleanExpressionType: CitextBoolExp
+        - fieldName: status
+          booleanExpressionType: TextBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: ReservationsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: ReservationsAggExp
+  operand:
+    object:
+      aggregatedType: Reservations
+      aggregatableFields:
+        - fieldName: checkInDate
+          aggregateExpression: TimestampAggExp
+        - fieldName: checkOutDate
+          aggregateExpression: TimestampAggExp
+        - fieldName: createRequest
+          aggregateExpression: JsonbAggExp
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: gdsData
+          aggregateExpression: JsonbAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: modifications
+          aggregateExpression: JsonbAggExp
+        - fieldName: partnerAccountId
+          aggregateExpression: Int8AggExp
+        - fieldName: publicId
+          aggregateExpression: CitextAggExp
+        - fieldName: status
+          aggregateExpression: TextAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: ReservationsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: ReservationsOrderByExp
+  operand:
+    object:
+      orderedType: Reservations
+      orderableFields:
+        - fieldName: checkInDate
+          orderByExpression: TimestampOrderByExp
+        - fieldName: checkOutDate
+          orderByExpression: TimestampOrderByExp
+        - fieldName: createRequest
+          orderByExpression: JsonbOrderByExp
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: gdsData
+          orderByExpression: JsonbOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: modifications
+          orderByExpression: JsonbOrderByExp
+        - fieldName: partnerAccountId
+          orderByExpression: Int8OrderByExp
+        - fieldName: publicId
+          orderByExpression: CitextOrderByExp
+        - fieldName: status
+          orderByExpression: TextOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: ReservationsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: Reservations
+  objectType: Reservations
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: reservations
+  filterExpressionType: ReservationsBoolExp
+  aggregateExpression: ReservationsAggExp
+  orderByExpression: ReservationsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: reservations
+      subscription:
+        rootField: reservations
+    selectUniques:
+      - queryRootField: reservationsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: reservationsById
+    filterInputTypeName: ReservationsFilterInput
+    aggregate:
+      queryRootField: reservationsAggregate
+      subscription:
+        rootField: reservationsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Reservations
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

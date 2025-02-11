@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeletePartnerWebhooksByIdResponse
+  description: Responses from the 'delete_partner_webhooks_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PartnerWebhooks!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeletePartnerWebhooksByIdResponse
+    inputTypeName: DeletePartnerWebhooksByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_partner_webhooks_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeletePartnerWebhooksByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeletePartnerWebhooksById
+  outputType: DeletePartnerWebhooksByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: preCheck
+      type: PartnerWebhooksBoolExp
+      description: Delete permission predicate over the 'partner_webhooks' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_partner_webhooks_by_id
+    argumentMapping:
+      keyId: key_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deletePartnerWebhooksById
+    rootFieldKind: Mutation
+  description: Delete any row on the 'partner_webhooks' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeletePartnerWebhooksById
+  permissions:
+    - role: admin
+      allowExecution: true
+

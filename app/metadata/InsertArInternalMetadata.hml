@@ -1,0 +1,120 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertArInternalMetadataObject
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: key
+      type: Varchar!
+    - name: updatedAt
+      type: Timestamp!
+    - name: value
+      type: Varchar
+  graphql:
+    typeName: InsertArInternalMetadataObject
+    inputTypeName: InsertArInternalMetadataObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_ar_internal_metadata_object
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        key:
+          column:
+            name: key
+        updatedAt:
+          column:
+            name: updated_at
+        value:
+          column:
+            name: value
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertArInternalMetadataObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - key
+          - updatedAt
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertArInternalMetadataResponse
+  description: Responses from the 'insert_ar_internal_metadata' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ArInternalMetadata!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertArInternalMetadataResponse
+    inputTypeName: InsertArInternalMetadataResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_ar_internal_metadata_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertArInternalMetadataResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertArInternalMetadata
+  outputType: InsertArInternalMetadataResponse!
+  arguments:
+    - name: objects
+      type: "[InsertArInternalMetadataObject!]!"
+    - name: postCheck
+      type: ArInternalMetadataBoolExp
+      description: Insert permission predicate over the 'ar_internal_metadata' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_ar_internal_metadata
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertArInternalMetadata
+    rootFieldKind: Mutation
+  description: Insert into the ar_internal_metadata table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertArInternalMetadata
+  permissions:
+    - role: admin
+      allowExecution: true
+

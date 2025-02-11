@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteQueValuesByKeyResponse
+  description: Responses from the 'delete_que_values_by_key' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueValues!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteQueValuesByKeyResponse
+    inputTypeName: DeleteQueValuesByKeyResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_que_values_by_key_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteQueValuesByKeyResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteQueValuesByKey
+  outputType: DeleteQueValuesByKeyResponse!
+  arguments:
+    - name: keyKey
+      type: Text!
+    - name: preCheck
+      type: QueValuesBoolExp
+      description: Delete permission predicate over the 'que_values' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_que_values_by_key
+    argumentMapping:
+      keyKey: key_key
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteQueValuesByKey
+    rootFieldKind: Mutation
+  description: Delete any row on the 'que_values' collection using the 'key' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteQueValuesByKey
+  permissions:
+    - role: admin
+      allowExecution: true
+

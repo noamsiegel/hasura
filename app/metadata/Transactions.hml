@@ -1,0 +1,252 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Transactions
+  fields:
+    - name: amountCents
+      type: Int4!
+    - name: createdAt
+      type: Timestamp!
+    - name: currencyCode
+      type: Text!
+    - name: description
+      type: Text
+    - name: id
+      type: Int8!
+    - name: metadata
+      type: Jsonb
+    - name: parentId
+      type: Int4
+    - name: publicId
+      type: Citext!
+    - name: reservationId
+      type: Int8
+    - name: transactionStatus
+      type: Text!
+    - name: transactionType
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: Transactions
+    inputTypeName: TransactionsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: transactions
+      fieldMapping:
+        amountCents:
+          column:
+            name: amount_cents
+        createdAt:
+          column:
+            name: created_at
+        currencyCode:
+          column:
+            name: currency_code
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        metadata:
+          column:
+            name: metadata
+        parentId:
+          column:
+            name: parent_id
+        publicId:
+          column:
+            name: public_id
+        reservationId:
+          column:
+            name: reservation_id
+        transactionStatus:
+          column:
+            name: transaction_status
+        transactionType:
+          column:
+            name: transaction_type
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Transactions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amountCents
+          - createdAt
+          - currencyCode
+          - description
+          - id
+          - metadata
+          - parentId
+          - publicId
+          - reservationId
+          - transactionStatus
+          - transactionType
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: TransactionsBoolExp
+  operand:
+    object:
+      type: Transactions
+      comparableFields:
+        - fieldName: amountCents
+          booleanExpressionType: Int4BoolExp
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: currencyCode
+          booleanExpressionType: TextBoolExp
+        - fieldName: description
+          booleanExpressionType: TextBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: metadata
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: parentId
+          booleanExpressionType: Int4BoolExp
+        - fieldName: publicId
+          booleanExpressionType: CitextBoolExp
+        - fieldName: reservationId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: transactionStatus
+          booleanExpressionType: TextBoolExp
+        - fieldName: transactionType
+          booleanExpressionType: TextBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: TransactionsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: TransactionsAggExp
+  operand:
+    object:
+      aggregatedType: Transactions
+      aggregatableFields:
+        - fieldName: amountCents
+          aggregateExpression: Int4AggExp
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: currencyCode
+          aggregateExpression: TextAggExp
+        - fieldName: description
+          aggregateExpression: TextAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: metadata
+          aggregateExpression: JsonbAggExp
+        - fieldName: parentId
+          aggregateExpression: Int4AggExp
+        - fieldName: publicId
+          aggregateExpression: CitextAggExp
+        - fieldName: reservationId
+          aggregateExpression: Int8AggExp
+        - fieldName: transactionStatus
+          aggregateExpression: TextAggExp
+        - fieldName: transactionType
+          aggregateExpression: TextAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: TransactionsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: TransactionsOrderByExp
+  operand:
+    object:
+      orderedType: Transactions
+      orderableFields:
+        - fieldName: amountCents
+          orderByExpression: Int4OrderByExp
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: currencyCode
+          orderByExpression: TextOrderByExp
+        - fieldName: description
+          orderByExpression: TextOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: metadata
+          orderByExpression: JsonbOrderByExp
+        - fieldName: parentId
+          orderByExpression: Int4OrderByExp
+        - fieldName: publicId
+          orderByExpression: CitextOrderByExp
+        - fieldName: reservationId
+          orderByExpression: Int8OrderByExp
+        - fieldName: transactionStatus
+          orderByExpression: TextOrderByExp
+        - fieldName: transactionType
+          orderByExpression: TextOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: TransactionsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: Transactions
+  objectType: Transactions
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: transactions
+  filterExpressionType: TransactionsBoolExp
+  aggregateExpression: TransactionsAggExp
+  orderByExpression: TransactionsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: transactions
+      subscription:
+        rootField: transactions
+    selectUniques:
+      - queryRootField: transactionsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: transactionsById
+    filterInputTypeName: TransactionsFilterInput
+    aggregate:
+      queryRootField: transactionsAggregate
+      subscription:
+        rootField: transactionsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Transactions
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

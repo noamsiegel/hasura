@@ -1,0 +1,180 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueJobsObject
+  fields:
+    - name: args
+      type: Jsonb
+    - name: data
+      type: Jsonb
+    - name: errorCount
+      type: Int4
+    - name: expiredAt
+      type: Timestamptz
+    - name: finishedAt
+      type: Timestamptz
+    - name: id
+      type: Int8
+    - name: jobClass
+      type: Text!
+    - name: jobSchemaVersion
+      type: Int4!
+    - name: kwargs
+      type: Jsonb
+    - name: lastErrorBacktrace
+      type: Text
+    - name: lastErrorMessage
+      type: Text
+    - name: priority
+      type: Int2
+    - name: queue
+      type: Text
+    - name: runAt
+      type: Timestamptz
+  graphql:
+    typeName: InsertQueJobsObject
+    inputTypeName: InsertQueJobsObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_jobs_object
+      fieldMapping:
+        args:
+          column:
+            name: args
+        data:
+          column:
+            name: data
+        errorCount:
+          column:
+            name: error_count
+        expiredAt:
+          column:
+            name: expired_at
+        finishedAt:
+          column:
+            name: finished_at
+        id:
+          column:
+            name: id
+        jobClass:
+          column:
+            name: job_class
+        jobSchemaVersion:
+          column:
+            name: job_schema_version
+        kwargs:
+          column:
+            name: kwargs
+        lastErrorBacktrace:
+          column:
+            name: last_error_backtrace
+        lastErrorMessage:
+          column:
+            name: last_error_message
+        priority:
+          column:
+            name: priority
+        queue:
+          column:
+            name: queue
+        runAt:
+          column:
+            name: run_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueJobsObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - args
+          - data
+          - errorCount
+          - expiredAt
+          - finishedAt
+          - id
+          - jobClass
+          - jobSchemaVersion
+          - kwargs
+          - lastErrorBacktrace
+          - lastErrorMessage
+          - priority
+          - queue
+          - runAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueJobsResponse
+  description: Responses from the 'insert_que_jobs' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueJobs!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertQueJobsResponse
+    inputTypeName: InsertQueJobsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_jobs_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueJobsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertQueJobs
+  outputType: InsertQueJobsResponse!
+  arguments:
+    - name: objects
+      type: "[InsertQueJobsObject!]!"
+    - name: postCheck
+      type: QueJobsBoolExp
+      description: Insert permission predicate over the 'que_jobs' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_que_jobs
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertQueJobs
+    rootFieldKind: Mutation
+  description: Insert into the que_jobs table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertQueJobs
+  permissions:
+    - role: admin
+      allowExecution: true
+

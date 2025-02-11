@@ -1,0 +1,535 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsCheckInDate
+  description: Update the 'check_in_date' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Timestamp
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsCheckInDate
+    inputTypeName: UpdateColumnReservationsCheckInDateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_check_in_date
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsCheckInDate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsCheckOutDate
+  description: Update the 'check_out_date' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Timestamp
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsCheckOutDate
+    inputTypeName: UpdateColumnReservationsCheckOutDateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_check_out_date
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsCheckOutDate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsCreateRequest
+  description: Update the 'create_request' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Jsonb
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsCreateRequest
+    inputTypeName: UpdateColumnReservationsCreateRequestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_create_request
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsCreateRequest
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsCreatedAt
+  description: Update the 'created_at' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsCreatedAt
+    inputTypeName: UpdateColumnReservationsCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsGdsData
+  description: Update the 'gds_data' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Jsonb
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsGdsData
+    inputTypeName: UpdateColumnReservationsGdsDataInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_gds_data
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsGdsData
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsId
+  description: Update the 'id' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsId
+    inputTypeName: UpdateColumnReservationsIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsModifications
+  description: Update the 'modifications' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Jsonb
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsModifications
+    inputTypeName: UpdateColumnReservationsModificationsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_modifications
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsModifications
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsPartnerAccountId
+  description: Update the 'partner_account_id' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsPartnerAccountId
+    inputTypeName: UpdateColumnReservationsPartnerAccountIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_partner_account_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsPartnerAccountId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsPublicId
+  description: Update the 'public_id' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Citext!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsPublicId
+    inputTypeName: UpdateColumnReservationsPublicIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_public_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsPublicId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsStatus
+  description: Update the 'status' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Text
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsStatus
+    inputTypeName: UpdateColumnReservationsStatusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_status
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsStatus
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationsUpdatedAt
+  description: Update the 'updated_at' column in the 'reservations' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationsUpdatedAt
+    inputTypeName: UpdateColumnReservationsUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservations_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationsUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateReservationsByIdUpdateColumns
+  description: Update the columns of the 'reservations' collection
+  fields:
+    - name: checkInDate
+      type: UpdateColumnReservationsCheckInDate
+      description: Update the 'check_in_date' column in the 'reservations' collection.
+    - name: checkOutDate
+      type: UpdateColumnReservationsCheckOutDate
+      description: Update the 'check_out_date' column in the 'reservations' collection.
+    - name: createRequest
+      type: UpdateColumnReservationsCreateRequest
+      description: Update the 'create_request' column in the 'reservations' collection.
+    - name: createdAt
+      type: UpdateColumnReservationsCreatedAt
+      description: Update the 'created_at' column in the 'reservations' collection.
+    - name: gdsData
+      type: UpdateColumnReservationsGdsData
+      description: Update the 'gds_data' column in the 'reservations' collection.
+    - name: id
+      type: UpdateColumnReservationsId
+      description: Update the 'id' column in the 'reservations' collection.
+    - name: modifications
+      type: UpdateColumnReservationsModifications
+      description: Update the 'modifications' column in the 'reservations' collection.
+    - name: partnerAccountId
+      type: UpdateColumnReservationsPartnerAccountId
+      description: Update the 'partner_account_id' column in the 'reservations' collection.
+    - name: publicId
+      type: UpdateColumnReservationsPublicId
+      description: Update the 'public_id' column in the 'reservations' collection.
+    - name: status
+      type: UpdateColumnReservationsStatus
+      description: Update the 'status' column in the 'reservations' collection.
+    - name: updatedAt
+      type: UpdateColumnReservationsUpdatedAt
+      description: Update the 'updated_at' column in the 'reservations' collection.
+  graphql:
+    typeName: UpdateReservationsByIdUpdateColumns
+    inputTypeName: UpdateReservationsByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_reservations_by_id_update_columns
+      fieldMapping:
+        checkInDate:
+          column:
+            name: check_in_date
+        checkOutDate:
+          column:
+            name: check_out_date
+        createRequest:
+          column:
+            name: create_request
+        createdAt:
+          column:
+            name: created_at
+        gdsData:
+          column:
+            name: gds_data
+        id:
+          column:
+            name: id
+        modifications:
+          column:
+            name: modifications
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        publicId:
+          column:
+            name: public_id
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateReservationsByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - checkInDate
+          - checkOutDate
+          - createRequest
+          - createdAt
+          - gdsData
+          - id
+          - modifications
+          - partnerAccountId
+          - publicId
+          - status
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateReservationsByIdResponse
+  description: Responses from the 'update_reservations_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Reservations!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateReservationsByIdResponse
+    inputTypeName: UpdateReservationsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_reservations_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateReservationsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateReservationsById
+  outputType: UpdateReservationsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: ReservationsBoolExp
+      description: Update permission post-condition predicate over the 'reservations'
+        collection
+    - name: preCheck
+      type: ReservationsBoolExp
+      description: Update permission pre-condition predicate over the 'reservations'
+        collection
+    - name: updateColumns
+      type: UpdateReservationsByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_reservations_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateReservationsById
+    rootFieldKind: Mutation
+  description: Update any row on the 'reservations' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateReservationsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

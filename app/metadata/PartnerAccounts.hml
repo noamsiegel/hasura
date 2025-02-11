@@ -1,0 +1,204 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PartnerAccounts
+  fields:
+    - name: configuration
+      type: Jsonb
+    - name: createdAt
+      type: Timestamp!
+    - name: id
+      type: Int8!
+    - name: lastAccess
+      type: Timestamp
+    - name: name
+      type: Text!
+    - name: publicId
+      type: Citext!
+    - name: status
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: PartnerAccounts
+    inputTypeName: PartnerAccountsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: partner_accounts
+      fieldMapping:
+        configuration:
+          column:
+            name: configuration
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        lastAccess:
+          column:
+            name: last_access
+        name:
+          column:
+            name: name
+        publicId:
+          column:
+            name: public_id
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PartnerAccounts
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - configuration
+          - createdAt
+          - id
+          - lastAccess
+          - name
+          - publicId
+          - status
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: PartnerAccountsBoolExp
+  operand:
+    object:
+      type: PartnerAccounts
+      comparableFields:
+        - fieldName: configuration
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: lastAccess
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: name
+          booleanExpressionType: TextBoolExp
+        - fieldName: publicId
+          booleanExpressionType: CitextBoolExp
+        - fieldName: status
+          booleanExpressionType: TextBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: PartnerAccountsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: PartnerAccountsAggExp
+  operand:
+    object:
+      aggregatedType: PartnerAccounts
+      aggregatableFields:
+        - fieldName: configuration
+          aggregateExpression: JsonbAggExp
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: lastAccess
+          aggregateExpression: TimestampAggExp
+        - fieldName: name
+          aggregateExpression: TextAggExp
+        - fieldName: publicId
+          aggregateExpression: CitextAggExp
+        - fieldName: status
+          aggregateExpression: TextAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: PartnerAccountsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: PartnerAccountsOrderByExp
+  operand:
+    object:
+      orderedType: PartnerAccounts
+      orderableFields:
+        - fieldName: configuration
+          orderByExpression: JsonbOrderByExp
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: lastAccess
+          orderByExpression: TimestampOrderByExp
+        - fieldName: name
+          orderByExpression: TextOrderByExp
+        - fieldName: publicId
+          orderByExpression: CitextOrderByExp
+        - fieldName: status
+          orderByExpression: TextOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: PartnerAccountsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: PartnerAccounts
+  objectType: PartnerAccounts
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: partner_accounts
+  filterExpressionType: PartnerAccountsBoolExp
+  aggregateExpression: PartnerAccountsAggExp
+  orderByExpression: PartnerAccountsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: partnerAccounts
+      subscription:
+        rootField: partnerAccounts
+    selectUniques:
+      - queryRootField: partnerAccountsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: partnerAccountsById
+    filterInputTypeName: PartnerAccountsFilterInput
+    aggregate:
+      queryRootField: partnerAccountsAggregate
+      subscription:
+        rootField: partnerAccountsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: PartnerAccounts
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

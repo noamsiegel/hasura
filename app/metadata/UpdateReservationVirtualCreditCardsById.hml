@@ -1,0 +1,393 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationVirtualCreditCardsAdyenBalanceAccountId
+  description: Update the 'adyen_balance_account_id' column in the
+    'reservation_virtual_credit_cards' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationVirtualCreditCardsAdyenBalanceAccountId
+    inputTypeName: UpdateColumnReservationVirtualCreditCardsAdyenBalanceAccountIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservation_virtual_credit_cards_adyen_balance_account_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationVirtualCreditCardsAdyenBalanceAccountId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationVirtualCreditCardsAdyenPaymentInstrumentId
+  description: Update the 'adyen_payment_instrument_id' column in the
+    'reservation_virtual_credit_cards' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationVirtualCreditCardsAdyenPaymentInstrumentId
+    inputTypeName: UpdateColumnReservationVirtualCreditCardsAdyenPaymentInstrumentIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservation_virtual_credit_cards_adyen_payment_instrument_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationVirtualCreditCardsAdyenPaymentInstrumentId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationVirtualCreditCardsCreatedAt
+  description: Update the 'created_at' column in the
+    'reservation_virtual_credit_cards' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationVirtualCreditCardsCreatedAt
+    inputTypeName: UpdateColumnReservationVirtualCreditCardsCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservation_virtual_credit_cards_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationVirtualCreditCardsCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationVirtualCreditCardsId
+  description: Update the 'id' column in the 'reservation_virtual_credit_cards' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationVirtualCreditCardsId
+    inputTypeName: UpdateColumnReservationVirtualCreditCardsIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservation_virtual_credit_cards_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationVirtualCreditCardsId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationVirtualCreditCardsLastFour
+  description: Update the 'last_four' column in the
+    'reservation_virtual_credit_cards' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationVirtualCreditCardsLastFour
+    inputTypeName: UpdateColumnReservationVirtualCreditCardsLastFourInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservation_virtual_credit_cards_last_four
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationVirtualCreditCardsLastFour
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationVirtualCreditCardsReservationId
+  description: Update the 'reservation_id' column in the
+    'reservation_virtual_credit_cards' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationVirtualCreditCardsReservationId
+    inputTypeName: UpdateColumnReservationVirtualCreditCardsReservationIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservation_virtual_credit_cards_reservation_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationVirtualCreditCardsReservationId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnReservationVirtualCreditCardsUpdatedAt
+  description: Update the 'updated_at' column in the
+    'reservation_virtual_credit_cards' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnReservationVirtualCreditCardsUpdatedAt
+    inputTypeName: UpdateColumnReservationVirtualCreditCardsUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_reservation_virtual_credit_cards_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnReservationVirtualCreditCardsUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateReservationVirtualCreditCardsByIdUpdateColumns
+  description: Update the columns of the 'reservation_virtual_credit_cards' collection
+  fields:
+    - name: adyenBalanceAccountId
+      type: UpdateColumnReservationVirtualCreditCardsAdyenBalanceAccountId
+      description: Update the 'adyen_balance_account_id' column in the
+        'reservation_virtual_credit_cards' collection.
+    - name: adyenPaymentInstrumentId
+      type: UpdateColumnReservationVirtualCreditCardsAdyenPaymentInstrumentId
+      description: Update the 'adyen_payment_instrument_id' column in the
+        'reservation_virtual_credit_cards' collection.
+    - name: createdAt
+      type: UpdateColumnReservationVirtualCreditCardsCreatedAt
+      description: Update the 'created_at' column in the
+        'reservation_virtual_credit_cards' collection.
+    - name: id
+      type: UpdateColumnReservationVirtualCreditCardsId
+      description: Update the 'id' column in the 'reservation_virtual_credit_cards'
+        collection.
+    - name: lastFour
+      type: UpdateColumnReservationVirtualCreditCardsLastFour
+      description: Update the 'last_four' column in the
+        'reservation_virtual_credit_cards' collection.
+    - name: reservationId
+      type: UpdateColumnReservationVirtualCreditCardsReservationId
+      description: Update the 'reservation_id' column in the
+        'reservation_virtual_credit_cards' collection.
+    - name: updatedAt
+      type: UpdateColumnReservationVirtualCreditCardsUpdatedAt
+      description: Update the 'updated_at' column in the
+        'reservation_virtual_credit_cards' collection.
+  graphql:
+    typeName: UpdateReservationVirtualCreditCardsByIdUpdateColumns
+    inputTypeName: UpdateReservationVirtualCreditCardsByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_reservation_virtual_credit_cards_by_id_update_columns
+      fieldMapping:
+        adyenBalanceAccountId:
+          column:
+            name: adyen_balance_account_id
+        adyenPaymentInstrumentId:
+          column:
+            name: adyen_payment_instrument_id
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        lastFour:
+          column:
+            name: last_four
+        reservationId:
+          column:
+            name: reservation_id
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateReservationVirtualCreditCardsByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - adyenBalanceAccountId
+          - adyenPaymentInstrumentId
+          - createdAt
+          - id
+          - lastFour
+          - reservationId
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateReservationVirtualCreditCardsByIdResponse
+  description: Responses from the 'update_reservation_virtual_credit_cards_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ReservationVirtualCreditCards!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateReservationVirtualCreditCardsByIdResponse
+    inputTypeName: UpdateReservationVirtualCreditCardsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_reservation_virtual_credit_cards_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateReservationVirtualCreditCardsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateReservationVirtualCreditCardsById
+  outputType: UpdateReservationVirtualCreditCardsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: ReservationVirtualCreditCardsBoolExp
+      description: Update permission post-condition predicate over the
+        'reservation_virtual_credit_cards' collection
+    - name: preCheck
+      type: ReservationVirtualCreditCardsBoolExp
+      description: Update permission pre-condition predicate over the
+        'reservation_virtual_credit_cards' collection
+    - name: updateColumns
+      type: UpdateReservationVirtualCreditCardsByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_reservation_virtual_credit_cards_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateReservationVirtualCreditCardsById
+    rootFieldKind: Mutation
+  description: Update any row on the 'reservation_virtual_credit_cards' collection
+    using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateReservationVirtualCreditCardsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

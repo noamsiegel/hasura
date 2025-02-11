@@ -1,0 +1,276 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Users
+  fields:
+    - name: address
+      type: Varchar!
+    - name: city
+      type: Varchar!
+    - name: countryCode
+      type: Varchar!
+    - name: createdAt
+      type: Timestamp!
+    - name: email
+      type: Varchar!
+    - name: firstName
+      type: Varchar!
+    - name: id
+      type: Int8!
+    - name: lastName
+      type: Varchar!
+    - name: phone
+      type: Varchar!
+    - name: publicId
+      type: Citext!
+    - name: state
+      type: Varchar!
+    - name: title
+      type: Varchar
+    - name: updatedAt
+      type: Timestamp!
+    - name: zipCode
+      type: Varchar!
+  graphql:
+    typeName: Users
+    inputTypeName: UsersInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: users
+      fieldMapping:
+        address:
+          column:
+            name: address
+        city:
+          column:
+            name: city
+        countryCode:
+          column:
+            name: country_code
+        createdAt:
+          column:
+            name: created_at
+        email:
+          column:
+            name: email
+        firstName:
+          column:
+            name: first_name
+        id:
+          column:
+            name: id
+        lastName:
+          column:
+            name: last_name
+        phone:
+          column:
+            name: phone
+        publicId:
+          column:
+            name: public_id
+        state:
+          column:
+            name: state
+        title:
+          column:
+            name: title
+        updatedAt:
+          column:
+            name: updated_at
+        zipCode:
+          column:
+            name: zip_code
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Users
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - address
+          - city
+          - countryCode
+          - createdAt
+          - email
+          - firstName
+          - id
+          - lastName
+          - phone
+          - publicId
+          - state
+          - title
+          - updatedAt
+          - zipCode
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: UsersBoolExp
+  operand:
+    object:
+      type: Users
+      comparableFields:
+        - fieldName: address
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: city
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: countryCode
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: email
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: firstName
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: lastName
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: phone
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: publicId
+          booleanExpressionType: CitextBoolExp
+        - fieldName: state
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: title
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: zipCode
+          booleanExpressionType: VarcharBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: UsersBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: UsersAggExp
+  operand:
+    object:
+      aggregatedType: Users
+      aggregatableFields:
+        - fieldName: address
+          aggregateExpression: VarcharAggExp
+        - fieldName: city
+          aggregateExpression: VarcharAggExp
+        - fieldName: countryCode
+          aggregateExpression: VarcharAggExp
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: email
+          aggregateExpression: VarcharAggExp
+        - fieldName: firstName
+          aggregateExpression: VarcharAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: lastName
+          aggregateExpression: VarcharAggExp
+        - fieldName: phone
+          aggregateExpression: VarcharAggExp
+        - fieldName: publicId
+          aggregateExpression: CitextAggExp
+        - fieldName: state
+          aggregateExpression: VarcharAggExp
+        - fieldName: title
+          aggregateExpression: VarcharAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: zipCode
+          aggregateExpression: VarcharAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: UsersAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: UsersOrderByExp
+  operand:
+    object:
+      orderedType: Users
+      orderableFields:
+        - fieldName: address
+          orderByExpression: VarcharOrderByExp
+        - fieldName: city
+          orderByExpression: VarcharOrderByExp
+        - fieldName: countryCode
+          orderByExpression: VarcharOrderByExp
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: email
+          orderByExpression: VarcharOrderByExp
+        - fieldName: firstName
+          orderByExpression: VarcharOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: lastName
+          orderByExpression: VarcharOrderByExp
+        - fieldName: phone
+          orderByExpression: VarcharOrderByExp
+        - fieldName: publicId
+          orderByExpression: CitextOrderByExp
+        - fieldName: state
+          orderByExpression: VarcharOrderByExp
+        - fieldName: title
+          orderByExpression: VarcharOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: zipCode
+          orderByExpression: VarcharOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: UsersOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: Users
+  objectType: Users
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: users
+  filterExpressionType: UsersBoolExp
+  aggregateExpression: UsersAggExp
+  orderByExpression: UsersOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: users
+      subscription:
+        rootField: users
+    selectUniques:
+      - queryRootField: usersById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: usersById
+    filterInputTypeName: UsersFilterInput
+    aggregate:
+      queryRootField: usersAggregate
+      subscription:
+        rootField: usersAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Users
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

@@ -1,0 +1,74 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteQueSchedulerAuditEnqueuedByIdResponse
+  description: Responses from the 'delete_que_scheduler_audit_enqueued_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueSchedulerAuditEnqueued!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteQueSchedulerAuditEnqueuedByIdResponse
+    inputTypeName: DeleteQueSchedulerAuditEnqueuedByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_que_scheduler_audit_enqueued_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteQueSchedulerAuditEnqueuedByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteQueSchedulerAuditEnqueuedById
+  outputType: DeleteQueSchedulerAuditEnqueuedByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: preCheck
+      type: QueSchedulerAuditEnqueuedBoolExp
+      description: Delete permission predicate over the 'que_scheduler_audit_enqueued'
+        collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_que_scheduler_audit_enqueued_by_id
+    argumentMapping:
+      keyId: key_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteQueSchedulerAuditEnqueuedById
+    rootFieldKind: Mutation
+  description: Delete any row on the 'que_scheduler_audit_enqueued' collection
+    using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteQueSchedulerAuditEnqueuedById
+  permissions:
+    - role: admin
+      allowExecution: true
+

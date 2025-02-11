@@ -1,0 +1,288 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WebhookDeliveryLogs
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: eventId
+      type: Citext!
+    - name: eventType
+      type: Text
+    - name: httpStatus
+      type: Int4
+    - name: id
+      type: Int8!
+    - name: lastError
+      type: Text
+    - name: lastErrorAt
+      type: Timestamp
+    - name: nextRetry
+      type: Timestamp
+    - name: partnerAccountId
+      type: Int8
+    - name: payload
+      type: Text
+    - name: reservationId
+      type: Int8
+    - name: retryCount
+      type: Int4
+    - name: status
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+    - name: url
+      type: Text
+  graphql:
+    typeName: WebhookDeliveryLogs
+    inputTypeName: WebhookDeliveryLogsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: webhook_delivery_logs
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        eventId:
+          column:
+            name: event_id
+        eventType:
+          column:
+            name: event_type
+        httpStatus:
+          column:
+            name: http_status
+        id:
+          column:
+            name: id
+        lastError:
+          column:
+            name: last_error
+        lastErrorAt:
+          column:
+            name: last_error_at
+        nextRetry:
+          column:
+            name: next_retry
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        payload:
+          column:
+            name: payload
+        reservationId:
+          column:
+            name: reservation_id
+        retryCount:
+          column:
+            name: retry_count
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WebhookDeliveryLogs
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - eventId
+          - eventType
+          - httpStatus
+          - id
+          - lastError
+          - lastErrorAt
+          - nextRetry
+          - partnerAccountId
+          - payload
+          - reservationId
+          - retryCount
+          - status
+          - updatedAt
+          - url
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: WebhookDeliveryLogsBoolExp
+  operand:
+    object:
+      type: WebhookDeliveryLogs
+      comparableFields:
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: eventId
+          booleanExpressionType: CitextBoolExp
+        - fieldName: eventType
+          booleanExpressionType: TextBoolExp
+        - fieldName: httpStatus
+          booleanExpressionType: Int4BoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: lastError
+          booleanExpressionType: TextBoolExp
+        - fieldName: lastErrorAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: nextRetry
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: partnerAccountId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: payload
+          booleanExpressionType: TextBoolExp
+        - fieldName: reservationId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: retryCount
+          booleanExpressionType: Int4BoolExp
+        - fieldName: status
+          booleanExpressionType: TextBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: url
+          booleanExpressionType: TextBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: WebhookDeliveryLogsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: WebhookDeliveryLogsAggExp
+  operand:
+    object:
+      aggregatedType: WebhookDeliveryLogs
+      aggregatableFields:
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: eventId
+          aggregateExpression: CitextAggExp
+        - fieldName: eventType
+          aggregateExpression: TextAggExp
+        - fieldName: httpStatus
+          aggregateExpression: Int4AggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: lastError
+          aggregateExpression: TextAggExp
+        - fieldName: lastErrorAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: nextRetry
+          aggregateExpression: TimestampAggExp
+        - fieldName: partnerAccountId
+          aggregateExpression: Int8AggExp
+        - fieldName: payload
+          aggregateExpression: TextAggExp
+        - fieldName: reservationId
+          aggregateExpression: Int8AggExp
+        - fieldName: retryCount
+          aggregateExpression: Int4AggExp
+        - fieldName: status
+          aggregateExpression: TextAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: url
+          aggregateExpression: TextAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: WebhookDeliveryLogsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: WebhookDeliveryLogsOrderByExp
+  operand:
+    object:
+      orderedType: WebhookDeliveryLogs
+      orderableFields:
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: eventId
+          orderByExpression: CitextOrderByExp
+        - fieldName: eventType
+          orderByExpression: TextOrderByExp
+        - fieldName: httpStatus
+          orderByExpression: Int4OrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: lastError
+          orderByExpression: TextOrderByExp
+        - fieldName: lastErrorAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: nextRetry
+          orderByExpression: TimestampOrderByExp
+        - fieldName: partnerAccountId
+          orderByExpression: Int8OrderByExp
+        - fieldName: payload
+          orderByExpression: TextOrderByExp
+        - fieldName: reservationId
+          orderByExpression: Int8OrderByExp
+        - fieldName: retryCount
+          orderByExpression: Int4OrderByExp
+        - fieldName: status
+          orderByExpression: TextOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: url
+          orderByExpression: TextOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: WebhookDeliveryLogsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: WebhookDeliveryLogs
+  objectType: WebhookDeliveryLogs
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: webhook_delivery_logs
+  filterExpressionType: WebhookDeliveryLogsBoolExp
+  aggregateExpression: WebhookDeliveryLogsAggExp
+  orderByExpression: WebhookDeliveryLogsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: webhookDeliveryLogs
+      subscription:
+        rootField: webhookDeliveryLogs
+    selectUniques:
+      - queryRootField: webhookDeliveryLogsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: webhookDeliveryLogsById
+    filterInputTypeName: WebhookDeliveryLogsFilterInput
+    aggregate:
+      queryRootField: webhookDeliveryLogsAggregate
+      subscription:
+        rootField: webhookDeliveryLogsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: WebhookDeliveryLogs
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

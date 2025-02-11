@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteQueLockersByPidResponse
+  description: Responses from the 'delete_que_lockers_by_pid' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueLockers!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteQueLockersByPidResponse
+    inputTypeName: DeleteQueLockersByPidResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_que_lockers_by_pid_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteQueLockersByPidResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteQueLockersByPid
+  outputType: DeleteQueLockersByPidResponse!
+  arguments:
+    - name: keyPid
+      type: Int4!
+    - name: preCheck
+      type: QueLockersBoolExp
+      description: Delete permission predicate over the 'que_lockers' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_que_lockers_by_pid
+    argumentMapping:
+      keyPid: key_pid
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteQueLockersByPid
+    rootFieldKind: Mutation
+  description: Delete any row on the 'que_lockers' collection using the 'pid' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteQueLockersByPid
+  permissions:
+    - role: admin
+      allowExecution: true
+

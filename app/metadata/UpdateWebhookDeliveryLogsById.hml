@@ -1,0 +1,697 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsCreatedAt
+  description: Update the 'created_at' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsCreatedAt
+    inputTypeName: UpdateColumnWebhookDeliveryLogsCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsEventId
+  description: Update the 'event_id' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Citext!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsEventId
+    inputTypeName: UpdateColumnWebhookDeliveryLogsEventIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_event_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsEventId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsEventType
+  description: Update the 'event_type' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Text
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsEventType
+    inputTypeName: UpdateColumnWebhookDeliveryLogsEventTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_event_type
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsEventType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsHttpStatus
+  description: Update the 'http_status' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Int4
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsHttpStatus
+    inputTypeName: UpdateColumnWebhookDeliveryLogsHttpStatusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_http_status
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsHttpStatus
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsId
+  description: Update the 'id' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsId
+    inputTypeName: UpdateColumnWebhookDeliveryLogsIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsLastError
+  description: Update the 'last_error' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Text
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsLastError
+    inputTypeName: UpdateColumnWebhookDeliveryLogsLastErrorInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_last_error
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsLastError
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsLastErrorAt
+  description: Update the 'last_error_at' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Timestamp
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsLastErrorAt
+    inputTypeName: UpdateColumnWebhookDeliveryLogsLastErrorAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_last_error_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsLastErrorAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsNextRetry
+  description: Update the 'next_retry' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Timestamp
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsNextRetry
+    inputTypeName: UpdateColumnWebhookDeliveryLogsNextRetryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_next_retry
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsNextRetry
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsPartnerAccountId
+  description: Update the 'partner_account_id' column in the
+    'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Int8
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsPartnerAccountId
+    inputTypeName: UpdateColumnWebhookDeliveryLogsPartnerAccountIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_partner_account_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsPartnerAccountId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsPayload
+  description: Update the 'payload' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Text
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsPayload
+    inputTypeName: UpdateColumnWebhookDeliveryLogsPayloadInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_payload
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsPayload
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsReservationId
+  description: Update the 'reservation_id' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Int8
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsReservationId
+    inputTypeName: UpdateColumnWebhookDeliveryLogsReservationIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_reservation_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsReservationId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsRetryCount
+  description: Update the 'retry_count' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Int4
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsRetryCount
+    inputTypeName: UpdateColumnWebhookDeliveryLogsRetryCountInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_retry_count
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsRetryCount
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsStatus
+  description: Update the 'status' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsStatus
+    inputTypeName: UpdateColumnWebhookDeliveryLogsStatusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_status
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsStatus
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsUpdatedAt
+  description: Update the 'updated_at' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsUpdatedAt
+    inputTypeName: UpdateColumnWebhookDeliveryLogsUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnWebhookDeliveryLogsUrl
+  description: Update the 'url' column in the 'webhook_delivery_logs' collection
+  fields:
+    - name: set
+      type: Text
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnWebhookDeliveryLogsUrl
+    inputTypeName: UpdateColumnWebhookDeliveryLogsUrlInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_webhook_delivery_logs_url
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnWebhookDeliveryLogsUrl
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateWebhookDeliveryLogsByIdUpdateColumns
+  description: Update the columns of the 'webhook_delivery_logs' collection
+  fields:
+    - name: createdAt
+      type: UpdateColumnWebhookDeliveryLogsCreatedAt
+      description: Update the 'created_at' column in the 'webhook_delivery_logs' collection.
+    - name: eventId
+      type: UpdateColumnWebhookDeliveryLogsEventId
+      description: Update the 'event_id' column in the 'webhook_delivery_logs' collection.
+    - name: eventType
+      type: UpdateColumnWebhookDeliveryLogsEventType
+      description: Update the 'event_type' column in the 'webhook_delivery_logs' collection.
+    - name: httpStatus
+      type: UpdateColumnWebhookDeliveryLogsHttpStatus
+      description: Update the 'http_status' column in the 'webhook_delivery_logs'
+        collection.
+    - name: id
+      type: UpdateColumnWebhookDeliveryLogsId
+      description: Update the 'id' column in the 'webhook_delivery_logs' collection.
+    - name: lastError
+      type: UpdateColumnWebhookDeliveryLogsLastError
+      description: Update the 'last_error' column in the 'webhook_delivery_logs' collection.
+    - name: lastErrorAt
+      type: UpdateColumnWebhookDeliveryLogsLastErrorAt
+      description: Update the 'last_error_at' column in the 'webhook_delivery_logs'
+        collection.
+    - name: nextRetry
+      type: UpdateColumnWebhookDeliveryLogsNextRetry
+      description: Update the 'next_retry' column in the 'webhook_delivery_logs' collection.
+    - name: partnerAccountId
+      type: UpdateColumnWebhookDeliveryLogsPartnerAccountId
+      description: Update the 'partner_account_id' column in the
+        'webhook_delivery_logs' collection.
+    - name: payload
+      type: UpdateColumnWebhookDeliveryLogsPayload
+      description: Update the 'payload' column in the 'webhook_delivery_logs' collection.
+    - name: reservationId
+      type: UpdateColumnWebhookDeliveryLogsReservationId
+      description: Update the 'reservation_id' column in the 'webhook_delivery_logs'
+        collection.
+    - name: retryCount
+      type: UpdateColumnWebhookDeliveryLogsRetryCount
+      description: Update the 'retry_count' column in the 'webhook_delivery_logs'
+        collection.
+    - name: status
+      type: UpdateColumnWebhookDeliveryLogsStatus
+      description: Update the 'status' column in the 'webhook_delivery_logs' collection.
+    - name: updatedAt
+      type: UpdateColumnWebhookDeliveryLogsUpdatedAt
+      description: Update the 'updated_at' column in the 'webhook_delivery_logs' collection.
+    - name: url
+      type: UpdateColumnWebhookDeliveryLogsUrl
+      description: Update the 'url' column in the 'webhook_delivery_logs' collection.
+  graphql:
+    typeName: UpdateWebhookDeliveryLogsByIdUpdateColumns
+    inputTypeName: UpdateWebhookDeliveryLogsByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_webhook_delivery_logs_by_id_update_columns
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        eventId:
+          column:
+            name: event_id
+        eventType:
+          column:
+            name: event_type
+        httpStatus:
+          column:
+            name: http_status
+        id:
+          column:
+            name: id
+        lastError:
+          column:
+            name: last_error
+        lastErrorAt:
+          column:
+            name: last_error_at
+        nextRetry:
+          column:
+            name: next_retry
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        payload:
+          column:
+            name: payload
+        reservationId:
+          column:
+            name: reservation_id
+        retryCount:
+          column:
+            name: retry_count
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateWebhookDeliveryLogsByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - eventId
+          - eventType
+          - httpStatus
+          - id
+          - lastError
+          - lastErrorAt
+          - nextRetry
+          - partnerAccountId
+          - payload
+          - reservationId
+          - retryCount
+          - status
+          - updatedAt
+          - url
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateWebhookDeliveryLogsByIdResponse
+  description: Responses from the 'update_webhook_delivery_logs_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[WebhookDeliveryLogs!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateWebhookDeliveryLogsByIdResponse
+    inputTypeName: UpdateWebhookDeliveryLogsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_webhook_delivery_logs_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateWebhookDeliveryLogsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateWebhookDeliveryLogsById
+  outputType: UpdateWebhookDeliveryLogsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: WebhookDeliveryLogsBoolExp
+      description: Update permission post-condition predicate over the
+        'webhook_delivery_logs' collection
+    - name: preCheck
+      type: WebhookDeliveryLogsBoolExp
+      description: Update permission pre-condition predicate over the
+        'webhook_delivery_logs' collection
+    - name: updateColumns
+      type: UpdateWebhookDeliveryLogsByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_webhook_delivery_logs_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateWebhookDeliveryLogsById
+    rootFieldKind: Mutation
+  description: Update any row on the 'webhook_delivery_logs' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateWebhookDeliveryLogsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

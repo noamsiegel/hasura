@@ -1,0 +1,278 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: QueJobs
+  description: "7"
+  fields:
+    - name: args
+      type: Jsonb!
+    - name: data
+      type: Jsonb!
+    - name: errorCount
+      type: Int4!
+    - name: expiredAt
+      type: Timestamptz
+    - name: finishedAt
+      type: Timestamptz
+    - name: id
+      type: Int8!
+    - name: jobClass
+      type: Text!
+    - name: jobSchemaVersion
+      type: Int4!
+    - name: kwargs
+      type: Jsonb!
+    - name: lastErrorBacktrace
+      type: Text
+    - name: lastErrorMessage
+      type: Text
+    - name: priority
+      type: Int2!
+    - name: queue
+      type: Text!
+    - name: runAt
+      type: Timestamptz!
+  graphql:
+    typeName: QueJobs
+    inputTypeName: QueJobsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: que_jobs
+      fieldMapping:
+        args:
+          column:
+            name: args
+        data:
+          column:
+            name: data
+        errorCount:
+          column:
+            name: error_count
+        expiredAt:
+          column:
+            name: expired_at
+        finishedAt:
+          column:
+            name: finished_at
+        id:
+          column:
+            name: id
+        jobClass:
+          column:
+            name: job_class
+        jobSchemaVersion:
+          column:
+            name: job_schema_version
+        kwargs:
+          column:
+            name: kwargs
+        lastErrorBacktrace:
+          column:
+            name: last_error_backtrace
+        lastErrorMessage:
+          column:
+            name: last_error_message
+        priority:
+          column:
+            name: priority
+        queue:
+          column:
+            name: queue
+        runAt:
+          column:
+            name: run_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: QueJobs
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - args
+          - data
+          - errorCount
+          - expiredAt
+          - finishedAt
+          - id
+          - jobClass
+          - jobSchemaVersion
+          - kwargs
+          - lastErrorBacktrace
+          - lastErrorMessage
+          - priority
+          - queue
+          - runAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: QueJobsBoolExp
+  operand:
+    object:
+      type: QueJobs
+      comparableFields:
+        - fieldName: args
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: data
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: errorCount
+          booleanExpressionType: Int4BoolExp
+        - fieldName: expiredAt
+          booleanExpressionType: TimestamptzBoolExp
+        - fieldName: finishedAt
+          booleanExpressionType: TimestamptzBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: jobClass
+          booleanExpressionType: TextBoolExp
+        - fieldName: jobSchemaVersion
+          booleanExpressionType: Int4BoolExp
+        - fieldName: kwargs
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: lastErrorBacktrace
+          booleanExpressionType: TextBoolExp
+        - fieldName: lastErrorMessage
+          booleanExpressionType: TextBoolExp
+        - fieldName: priority
+          booleanExpressionType: Int2BoolExp
+        - fieldName: queue
+          booleanExpressionType: TextBoolExp
+        - fieldName: runAt
+          booleanExpressionType: TimestamptzBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: QueJobsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: QueJobsAggExp
+  operand:
+    object:
+      aggregatedType: QueJobs
+      aggregatableFields:
+        - fieldName: args
+          aggregateExpression: JsonbAggExp
+        - fieldName: data
+          aggregateExpression: JsonbAggExp
+        - fieldName: errorCount
+          aggregateExpression: Int4AggExp
+        - fieldName: expiredAt
+          aggregateExpression: TimestamptzAggExp
+        - fieldName: finishedAt
+          aggregateExpression: TimestamptzAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: jobClass
+          aggregateExpression: TextAggExp
+        - fieldName: jobSchemaVersion
+          aggregateExpression: Int4AggExp
+        - fieldName: kwargs
+          aggregateExpression: JsonbAggExp
+        - fieldName: lastErrorBacktrace
+          aggregateExpression: TextAggExp
+        - fieldName: lastErrorMessage
+          aggregateExpression: TextAggExp
+        - fieldName: priority
+          aggregateExpression: Int2AggExp
+        - fieldName: queue
+          aggregateExpression: TextAggExp
+        - fieldName: runAt
+          aggregateExpression: TimestamptzAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: QueJobsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: QueJobsOrderByExp
+  operand:
+    object:
+      orderedType: QueJobs
+      orderableFields:
+        - fieldName: args
+          orderByExpression: JsonbOrderByExp
+        - fieldName: data
+          orderByExpression: JsonbOrderByExp
+        - fieldName: errorCount
+          orderByExpression: Int4OrderByExp
+        - fieldName: expiredAt
+          orderByExpression: TimestamptzOrderByExp
+        - fieldName: finishedAt
+          orderByExpression: TimestamptzOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: jobClass
+          orderByExpression: TextOrderByExp
+        - fieldName: jobSchemaVersion
+          orderByExpression: Int4OrderByExp
+        - fieldName: kwargs
+          orderByExpression: JsonbOrderByExp
+        - fieldName: lastErrorBacktrace
+          orderByExpression: TextOrderByExp
+        - fieldName: lastErrorMessage
+          orderByExpression: TextOrderByExp
+        - fieldName: priority
+          orderByExpression: Int2OrderByExp
+        - fieldName: queue
+          orderByExpression: TextOrderByExp
+        - fieldName: runAt
+          orderByExpression: TimestamptzOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: QueJobsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: QueJobs
+  objectType: QueJobs
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: que_jobs
+  filterExpressionType: QueJobsBoolExp
+  aggregateExpression: QueJobsAggExp
+  orderByExpression: QueJobsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: queJobs
+      subscription:
+        rootField: queJobs
+    selectUniques:
+      - queryRootField: queJobsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: queJobsById
+    filterInputTypeName: QueJobsFilterInput
+    aggregate:
+      queryRootField: queJobsAggregate
+      subscription:
+        rootField: queJobsAggregate
+  description: "7"
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: QueJobs
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

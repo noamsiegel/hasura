@@ -1,0 +1,125 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: QueValues
+  fields:
+    - name: key
+      type: Text!
+    - name: value
+      type: Jsonb!
+  graphql:
+    typeName: QueValues
+    inputTypeName: QueValuesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: que_values
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: QueValues
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - key
+          - value
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: QueValuesBoolExp
+  operand:
+    object:
+      type: QueValues
+      comparableFields:
+        - fieldName: key
+          booleanExpressionType: TextBoolExp
+        - fieldName: value
+          booleanExpressionType: JsonbBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: QueValuesBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: QueValuesAggExp
+  operand:
+    object:
+      aggregatedType: QueValues
+      aggregatableFields:
+        - fieldName: key
+          aggregateExpression: TextAggExp
+        - fieldName: value
+          aggregateExpression: JsonbAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: QueValuesAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: QueValuesOrderByExp
+  operand:
+    object:
+      orderedType: QueValues
+      orderableFields:
+        - fieldName: key
+          orderByExpression: TextOrderByExp
+        - fieldName: value
+          orderByExpression: JsonbOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: QueValuesOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: QueValues
+  objectType: QueValues
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: que_values
+  filterExpressionType: QueValuesBoolExp
+  aggregateExpression: QueValuesAggExp
+  orderByExpression: QueValuesOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: queValues
+      subscription:
+        rootField: queValues
+    selectUniques:
+      - queryRootField: queValuesByKey
+        uniqueIdentifier:
+          - key
+        subscription:
+          rootField: queValuesByKey
+    filterInputTypeName: QueValuesFilterInput
+    aggregate:
+      queryRootField: queValuesAggregate
+      subscription:
+        rootField: queValuesAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: QueValues
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

@@ -1,0 +1,500 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensAmountCollectedCents
+  description: Update the 'amount_collected_cents' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Int4
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensAmountCollectedCents
+    inputTypeName: UpdateColumnPaymentTokensAmountCollectedCentsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_amount_collected_cents
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensAmountCollectedCents
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensCreatedAt
+  description: Update the 'created_at' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensCreatedAt
+    inputTypeName: UpdateColumnPaymentTokensCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensId
+  description: Update the 'id' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensId
+    inputTypeName: UpdateColumnPaymentTokensIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensInitialTransactionId
+  description: Update the 'initial_transaction_id' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensInitialTransactionId
+    inputTypeName: UpdateColumnPaymentTokensInitialTransactionIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_initial_transaction_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensInitialTransactionId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensMetadata
+  description: Update the 'metadata' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Jsonb
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensMetadata
+    inputTypeName: UpdateColumnPaymentTokensMetadataInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_metadata
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensMetadata
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensPayerType
+  description: Update the 'payer_type' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Text
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensPayerType
+    inputTypeName: UpdateColumnPaymentTokensPayerTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_payer_type
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensPayerType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensReservationVirtualCreditCardId
+  description: Update the 'reservation_virtual_credit_card_id' column in the
+    'payment_tokens' collection
+  fields:
+    - name: set
+      type: Int8
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensReservationVirtualCreditCardId
+    inputTypeName: UpdateColumnPaymentTokensReservationVirtualCreditCardIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_reservation_virtual_credit_card_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensReservationVirtualCreditCardId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensStatus
+  description: Update the 'status' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensStatus
+    inputTypeName: UpdateColumnPaymentTokensStatusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_status
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensStatus
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensUpdatedAt
+  description: Update the 'updated_at' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensUpdatedAt
+    inputTypeName: UpdateColumnPaymentTokensUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPaymentTokensValue
+  description: Update the 'value' column in the 'payment_tokens' collection
+  fields:
+    - name: set
+      type: Citext!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPaymentTokensValue
+    inputTypeName: UpdateColumnPaymentTokensValueInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_payment_tokens_value
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPaymentTokensValue
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdatePaymentTokensByIdUpdateColumns
+  description: Update the columns of the 'payment_tokens' collection
+  fields:
+    - name: amountCollectedCents
+      type: UpdateColumnPaymentTokensAmountCollectedCents
+      description: Update the 'amount_collected_cents' column in the 'payment_tokens'
+        collection.
+    - name: createdAt
+      type: UpdateColumnPaymentTokensCreatedAt
+      description: Update the 'created_at' column in the 'payment_tokens' collection.
+    - name: id
+      type: UpdateColumnPaymentTokensId
+      description: Update the 'id' column in the 'payment_tokens' collection.
+    - name: initialTransactionId
+      type: UpdateColumnPaymentTokensInitialTransactionId
+      description: Update the 'initial_transaction_id' column in the 'payment_tokens'
+        collection.
+    - name: metadata
+      type: UpdateColumnPaymentTokensMetadata
+      description: Update the 'metadata' column in the 'payment_tokens' collection.
+    - name: payerType
+      type: UpdateColumnPaymentTokensPayerType
+      description: Update the 'payer_type' column in the 'payment_tokens' collection.
+    - name: reservationVirtualCreditCardId
+      type: UpdateColumnPaymentTokensReservationVirtualCreditCardId
+      description: Update the 'reservation_virtual_credit_card_id' column in the
+        'payment_tokens' collection.
+    - name: status
+      type: UpdateColumnPaymentTokensStatus
+      description: Update the 'status' column in the 'payment_tokens' collection.
+    - name: updatedAt
+      type: UpdateColumnPaymentTokensUpdatedAt
+      description: Update the 'updated_at' column in the 'payment_tokens' collection.
+    - name: value
+      type: UpdateColumnPaymentTokensValue
+      description: Update the 'value' column in the 'payment_tokens' collection.
+  graphql:
+    typeName: UpdatePaymentTokensByIdUpdateColumns
+    inputTypeName: UpdatePaymentTokensByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_payment_tokens_by_id_update_columns
+      fieldMapping:
+        amountCollectedCents:
+          column:
+            name: amount_collected_cents
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        initialTransactionId:
+          column:
+            name: initial_transaction_id
+        metadata:
+          column:
+            name: metadata
+        payerType:
+          column:
+            name: payer_type
+        reservationVirtualCreditCardId:
+          column:
+            name: reservation_virtual_credit_card_id
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        value:
+          column:
+            name: value
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdatePaymentTokensByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amountCollectedCents
+          - createdAt
+          - id
+          - initialTransactionId
+          - metadata
+          - payerType
+          - reservationVirtualCreditCardId
+          - status
+          - updatedAt
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdatePaymentTokensByIdResponse
+  description: Responses from the 'update_payment_tokens_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PaymentTokens!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdatePaymentTokensByIdResponse
+    inputTypeName: UpdatePaymentTokensByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_payment_tokens_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdatePaymentTokensByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdatePaymentTokensById
+  outputType: UpdatePaymentTokensByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: PaymentTokensBoolExp
+      description: Update permission post-condition predicate over the
+        'payment_tokens' collection
+    - name: preCheck
+      type: PaymentTokensBoolExp
+      description: Update permission pre-condition predicate over the 'payment_tokens'
+        collection
+    - name: updateColumns
+      type: UpdatePaymentTokensByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_payment_tokens_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updatePaymentTokensById
+    rootFieldKind: Mutation
+  description: Update any row on the 'payment_tokens' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdatePaymentTokensById
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,168 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertTransactionsObject
+  fields:
+    - name: amountCents
+      type: Int4
+    - name: createdAt
+      type: Timestamp!
+    - name: currencyCode
+      type: Text!
+    - name: description
+      type: Text
+    - name: id
+      type: Int8
+    - name: metadata
+      type: Jsonb
+    - name: parentId
+      type: Int4
+    - name: publicId
+      type: Citext!
+    - name: reservationId
+      type: Int8
+    - name: transactionStatus
+      type: Text
+    - name: transactionType
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: InsertTransactionsObject
+    inputTypeName: InsertTransactionsObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_transactions_object
+      fieldMapping:
+        amountCents:
+          column:
+            name: amount_cents
+        createdAt:
+          column:
+            name: created_at
+        currencyCode:
+          column:
+            name: currency_code
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        metadata:
+          column:
+            name: metadata
+        parentId:
+          column:
+            name: parent_id
+        publicId:
+          column:
+            name: public_id
+        reservationId:
+          column:
+            name: reservation_id
+        transactionStatus:
+          column:
+            name: transaction_status
+        transactionType:
+          column:
+            name: transaction_type
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertTransactionsObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amountCents
+          - createdAt
+          - currencyCode
+          - description
+          - id
+          - metadata
+          - parentId
+          - publicId
+          - reservationId
+          - transactionStatus
+          - transactionType
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertTransactionsResponse
+  description: Responses from the 'insert_transactions' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Transactions!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertTransactionsResponse
+    inputTypeName: InsertTransactionsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_transactions_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertTransactionsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertTransactions
+  outputType: InsertTransactionsResponse!
+  arguments:
+    - name: objects
+      type: "[InsertTransactionsObject!]!"
+    - name: postCheck
+      type: TransactionsBoolExp
+      description: Insert permission predicate over the 'transactions' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_transactions
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertTransactions
+    rootFieldKind: Mutation
+  description: Insert into the transactions table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertTransactions
+  permissions:
+    - role: admin
+      allowExecution: true
+

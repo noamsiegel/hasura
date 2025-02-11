@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@neondatabase/api-client": "^1.12.0"
+  }
+}

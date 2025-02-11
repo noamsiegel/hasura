@@ -1,0 +1,192 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ReservationVirtualCreditCards
+  fields:
+    - name: adyenBalanceAccountId
+      type: Text!
+    - name: adyenPaymentInstrumentId
+      type: Text!
+    - name: createdAt
+      type: Timestamp!
+    - name: id
+      type: Int8!
+    - name: lastFour
+      type: Text!
+    - name: reservationId
+      type: Int8!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: ReservationVirtualCreditCards
+    inputTypeName: ReservationVirtualCreditCardsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: reservation_virtual_credit_cards
+      fieldMapping:
+        adyenBalanceAccountId:
+          column:
+            name: adyen_balance_account_id
+        adyenPaymentInstrumentId:
+          column:
+            name: adyen_payment_instrument_id
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        lastFour:
+          column:
+            name: last_four
+        reservationId:
+          column:
+            name: reservation_id
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ReservationVirtualCreditCards
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - adyenBalanceAccountId
+          - adyenPaymentInstrumentId
+          - createdAt
+          - id
+          - lastFour
+          - reservationId
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: ReservationVirtualCreditCardsBoolExp
+  operand:
+    object:
+      type: ReservationVirtualCreditCards
+      comparableFields:
+        - fieldName: adyenBalanceAccountId
+          booleanExpressionType: TextBoolExp
+        - fieldName: adyenPaymentInstrumentId
+          booleanExpressionType: TextBoolExp
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: lastFour
+          booleanExpressionType: TextBoolExp
+        - fieldName: reservationId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: ReservationVirtualCreditCardsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: ReservationVirtualCreditCardsAggExp
+  operand:
+    object:
+      aggregatedType: ReservationVirtualCreditCards
+      aggregatableFields:
+        - fieldName: adyenBalanceAccountId
+          aggregateExpression: TextAggExp
+        - fieldName: adyenPaymentInstrumentId
+          aggregateExpression: TextAggExp
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: lastFour
+          aggregateExpression: TextAggExp
+        - fieldName: reservationId
+          aggregateExpression: Int8AggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: ReservationVirtualCreditCardsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: ReservationVirtualCreditCardsOrderByExp
+  operand:
+    object:
+      orderedType: ReservationVirtualCreditCards
+      orderableFields:
+        - fieldName: adyenBalanceAccountId
+          orderByExpression: TextOrderByExp
+        - fieldName: adyenPaymentInstrumentId
+          orderByExpression: TextOrderByExp
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: lastFour
+          orderByExpression: TextOrderByExp
+        - fieldName: reservationId
+          orderByExpression: Int8OrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: ReservationVirtualCreditCardsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: ReservationVirtualCreditCards
+  objectType: ReservationVirtualCreditCards
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: reservation_virtual_credit_cards
+  filterExpressionType: ReservationVirtualCreditCardsBoolExp
+  aggregateExpression: ReservationVirtualCreditCardsAggExp
+  orderByExpression: ReservationVirtualCreditCardsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: reservationVirtualCreditCards
+      subscription:
+        rootField: reservationVirtualCreditCards
+    selectUniques:
+      - queryRootField: reservationVirtualCreditCardsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: reservationVirtualCreditCardsById
+    filterInputTypeName: ReservationVirtualCreditCardsFilterInput
+    aggregate:
+      queryRootField: reservationVirtualCreditCardsAggregate
+      subscription:
+        rootField: reservationVirtualCreditCardsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: ReservationVirtualCreditCards
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@hasura/ndc-lambda-sdk": "1.10.0",
+    "@neondatabase/serverless": "^0.10.4",
     "axios": "^1.6.7"
   },
   "devDependencies": {

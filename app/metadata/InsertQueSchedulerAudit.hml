@@ -1,0 +1,108 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueSchedulerAuditObject
+  fields:
+    - name: executedAt
+      type: Timestamptz!
+    - name: schedulerJobId
+      type: Int8!
+  graphql:
+    typeName: InsertQueSchedulerAuditObject
+    inputTypeName: InsertQueSchedulerAuditObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_scheduler_audit_object
+      fieldMapping:
+        executedAt:
+          column:
+            name: executed_at
+        schedulerJobId:
+          column:
+            name: scheduler_job_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueSchedulerAuditObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - executedAt
+          - schedulerJobId
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueSchedulerAuditResponse
+  description: Responses from the 'insert_que_scheduler_audit' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueSchedulerAudit!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertQueSchedulerAuditResponse
+    inputTypeName: InsertQueSchedulerAuditResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_scheduler_audit_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueSchedulerAuditResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertQueSchedulerAudit
+  outputType: InsertQueSchedulerAuditResponse!
+  arguments:
+    - name: objects
+      type: "[InsertQueSchedulerAuditObject!]!"
+    - name: postCheck
+      type: QueSchedulerAuditBoolExp
+      description: Insert permission predicate over the 'que_scheduler_audit' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_que_scheduler_audit
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertQueSchedulerAudit
+    rootFieldKind: Mutation
+  description: Insert into the que_scheduler_audit table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertQueSchedulerAudit
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,262 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnArInternalMetadataCreatedAt
+  description: Update the 'created_at' column in the 'ar_internal_metadata' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnArInternalMetadataCreatedAt
+    inputTypeName: UpdateColumnArInternalMetadataCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_ar_internal_metadata_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnArInternalMetadataCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnArInternalMetadataKey
+  description: Update the 'key' column in the 'ar_internal_metadata' collection
+  fields:
+    - name: set
+      type: Varchar!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnArInternalMetadataKey
+    inputTypeName: UpdateColumnArInternalMetadataKeyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_ar_internal_metadata_key
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnArInternalMetadataKey
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnArInternalMetadataUpdatedAt
+  description: Update the 'updated_at' column in the 'ar_internal_metadata' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnArInternalMetadataUpdatedAt
+    inputTypeName: UpdateColumnArInternalMetadataUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_ar_internal_metadata_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnArInternalMetadataUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnArInternalMetadataValue
+  description: Update the 'value' column in the 'ar_internal_metadata' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnArInternalMetadataValue
+    inputTypeName: UpdateColumnArInternalMetadataValueInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_ar_internal_metadata_value
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnArInternalMetadataValue
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateArInternalMetadataByKeyUpdateColumns
+  description: Update the columns of the 'ar_internal_metadata' collection
+  fields:
+    - name: createdAt
+      type: UpdateColumnArInternalMetadataCreatedAt
+      description: Update the 'created_at' column in the 'ar_internal_metadata' collection.
+    - name: key
+      type: UpdateColumnArInternalMetadataKey
+      description: Update the 'key' column in the 'ar_internal_metadata' collection.
+    - name: updatedAt
+      type: UpdateColumnArInternalMetadataUpdatedAt
+      description: Update the 'updated_at' column in the 'ar_internal_metadata' collection.
+    - name: value
+      type: UpdateColumnArInternalMetadataValue
+      description: Update the 'value' column in the 'ar_internal_metadata' collection.
+  graphql:
+    typeName: UpdateArInternalMetadataByKeyUpdateColumns
+    inputTypeName: UpdateArInternalMetadataByKeyUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_ar_internal_metadata_by_key_update_columns
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        key:
+          column:
+            name: key
+        updatedAt:
+          column:
+            name: updated_at
+        value:
+          column:
+            name: value
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateArInternalMetadataByKeyUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - key
+          - updatedAt
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateArInternalMetadataByKeyResponse
+  description: Responses from the 'update_ar_internal_metadata_by_key' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ArInternalMetadata!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateArInternalMetadataByKeyResponse
+    inputTypeName: UpdateArInternalMetadataByKeyResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_ar_internal_metadata_by_key_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateArInternalMetadataByKeyResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateArInternalMetadataByKey
+  outputType: UpdateArInternalMetadataByKeyResponse!
+  arguments:
+    - name: keyKey
+      type: Varchar!
+    - name: postCheck
+      type: ArInternalMetadataBoolExp
+      description: Update permission post-condition predicate over the
+        'ar_internal_metadata' collection
+    - name: preCheck
+      type: ArInternalMetadataBoolExp
+      description: Update permission pre-condition predicate over the
+        'ar_internal_metadata' collection
+    - name: updateColumns
+      type: UpdateArInternalMetadataByKeyUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_ar_internal_metadata_by_key
+    argumentMapping:
+      keyKey: key_key
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateArInternalMetadataByKey
+    rootFieldKind: Mutation
+  description: Update any row on the 'ar_internal_metadata' collection using the 'key' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateArInternalMetadataByKey
+  permissions:
+    - role: admin
+      allowExecution: true
+

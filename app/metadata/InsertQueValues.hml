@@ -1,0 +1,101 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueValuesObject
+  fields:
+    - name: key
+      type: Text!
+    - name: value
+      type: Jsonb
+  graphql:
+    typeName: InsertQueValuesObject
+    inputTypeName: InsertQueValuesObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_values_object
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueValuesObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - key
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueValuesResponse
+  description: Responses from the 'insert_que_values' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueValues!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertQueValuesResponse
+    inputTypeName: InsertQueValuesResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_values_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueValuesResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertQueValues
+  outputType: InsertQueValuesResponse!
+  arguments:
+    - name: objects
+      type: "[InsertQueValuesObject!]!"
+    - name: postCheck
+      type: QueValuesBoolExp
+      description: Insert permission predicate over the 'que_values' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_que_values
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertQueValues
+    rootFieldKind: Mutation
+  description: Insert into the que_values table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertQueValues
+  permissions:
+    - role: admin
+      allowExecution: true
+

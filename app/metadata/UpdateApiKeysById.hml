@@ -1,0 +1,416 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiKeysCreatedAt
+  description: Update the 'created_at' column in the 'api_keys' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiKeysCreatedAt
+    inputTypeName: UpdateColumnApiKeysCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_keys_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiKeysCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiKeysExpiresAt
+  description: Update the 'expires_at' column in the 'api_keys' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiKeysExpiresAt
+    inputTypeName: UpdateColumnApiKeysExpiresAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_keys_expires_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiKeysExpiresAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiKeysId
+  description: Update the 'id' column in the 'api_keys' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiKeysId
+    inputTypeName: UpdateColumnApiKeysIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_keys_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiKeysId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiKeysName
+  description: Update the 'name' column in the 'api_keys' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiKeysName
+    inputTypeName: UpdateColumnApiKeysNameInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_keys_name
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiKeysName
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiKeysPartnerAccountId
+  description: Update the 'partner_account_id' column in the 'api_keys' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiKeysPartnerAccountId
+    inputTypeName: UpdateColumnApiKeysPartnerAccountIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_keys_partner_account_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiKeysPartnerAccountId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiKeysStatus
+  description: Update the 'status' column in the 'api_keys' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiKeysStatus
+    inputTypeName: UpdateColumnApiKeysStatusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_keys_status
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiKeysStatus
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiKeysToken
+  description: Update the 'token' column in the 'api_keys' collection
+  fields:
+    - name: set
+      type: Citext!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiKeysToken
+    inputTypeName: UpdateColumnApiKeysTokenInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_keys_token
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiKeysToken
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiKeysUpdatedAt
+  description: Update the 'updated_at' column in the 'api_keys' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiKeysUpdatedAt
+    inputTypeName: UpdateColumnApiKeysUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_keys_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiKeysUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateApiKeysByIdUpdateColumns
+  description: Update the columns of the 'api_keys' collection
+  fields:
+    - name: createdAt
+      type: UpdateColumnApiKeysCreatedAt
+      description: Update the 'created_at' column in the 'api_keys' collection.
+    - name: expiresAt
+      type: UpdateColumnApiKeysExpiresAt
+      description: Update the 'expires_at' column in the 'api_keys' collection.
+    - name: id
+      type: UpdateColumnApiKeysId
+      description: Update the 'id' column in the 'api_keys' collection.
+    - name: name
+      type: UpdateColumnApiKeysName
+      description: Update the 'name' column in the 'api_keys' collection.
+    - name: partnerAccountId
+      type: UpdateColumnApiKeysPartnerAccountId
+      description: Update the 'partner_account_id' column in the 'api_keys' collection.
+    - name: status
+      type: UpdateColumnApiKeysStatus
+      description: Update the 'status' column in the 'api_keys' collection.
+    - name: token
+      type: UpdateColumnApiKeysToken
+      description: Update the 'token' column in the 'api_keys' collection.
+    - name: updatedAt
+      type: UpdateColumnApiKeysUpdatedAt
+      description: Update the 'updated_at' column in the 'api_keys' collection.
+  graphql:
+    typeName: UpdateApiKeysByIdUpdateColumns
+    inputTypeName: UpdateApiKeysByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_api_keys_by_id_update_columns
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        expiresAt:
+          column:
+            name: expires_at
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        status:
+          column:
+            name: status
+        token:
+          column:
+            name: token
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateApiKeysByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - expiresAt
+          - id
+          - name
+          - partnerAccountId
+          - status
+          - token
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateApiKeysByIdResponse
+  description: Responses from the 'update_api_keys_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ApiKeys!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateApiKeysByIdResponse
+    inputTypeName: UpdateApiKeysByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_api_keys_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateApiKeysByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateApiKeysById
+  outputType: UpdateApiKeysByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: ApiKeysBoolExp
+      description: Update permission post-condition predicate over the 'api_keys' collection
+    - name: preCheck
+      type: ApiKeysBoolExp
+      description: Update permission pre-condition predicate over the 'api_keys' collection
+    - name: updateColumns
+      type: UpdateApiKeysByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_api_keys_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateApiKeysById
+    rootFieldKind: Mutation
+  description: Update any row on the 'api_keys' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateApiKeysById
+  permissions:
+    - role: admin
+      allowExecution: true
+

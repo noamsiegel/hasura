@@ -1,0 +1,574 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsAmountCents
+  description: Update the 'amount_cents' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Int4!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsAmountCents
+    inputTypeName: UpdateColumnTransactionsAmountCentsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_amount_cents
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsAmountCents
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsCreatedAt
+  description: Update the 'created_at' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsCreatedAt
+    inputTypeName: UpdateColumnTransactionsCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsCurrencyCode
+  description: Update the 'currency_code' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsCurrencyCode
+    inputTypeName: UpdateColumnTransactionsCurrencyCodeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_currency_code
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsCurrencyCode
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsDescription
+  description: Update the 'description' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Text
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsDescription
+    inputTypeName: UpdateColumnTransactionsDescriptionInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_description
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsDescription
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsId
+  description: Update the 'id' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsId
+    inputTypeName: UpdateColumnTransactionsIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsMetadata
+  description: Update the 'metadata' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Jsonb
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsMetadata
+    inputTypeName: UpdateColumnTransactionsMetadataInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_metadata
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsMetadata
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsParentId
+  description: Update the 'parent_id' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Int4
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsParentId
+    inputTypeName: UpdateColumnTransactionsParentIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_parent_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsParentId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsPublicId
+  description: Update the 'public_id' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Citext!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsPublicId
+    inputTypeName: UpdateColumnTransactionsPublicIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_public_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsPublicId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsReservationId
+  description: Update the 'reservation_id' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Int8
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsReservationId
+    inputTypeName: UpdateColumnTransactionsReservationIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_reservation_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsReservationId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsTransactionStatus
+  description: Update the 'transaction_status' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsTransactionStatus
+    inputTypeName: UpdateColumnTransactionsTransactionStatusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_transaction_status
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsTransactionStatus
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsTransactionType
+  description: Update the 'transaction_type' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsTransactionType
+    inputTypeName: UpdateColumnTransactionsTransactionTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_transaction_type
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsTransactionType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnTransactionsUpdatedAt
+  description: Update the 'updated_at' column in the 'transactions' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnTransactionsUpdatedAt
+    inputTypeName: UpdateColumnTransactionsUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_transactions_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnTransactionsUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateTransactionsByIdUpdateColumns
+  description: Update the columns of the 'transactions' collection
+  fields:
+    - name: amountCents
+      type: UpdateColumnTransactionsAmountCents
+      description: Update the 'amount_cents' column in the 'transactions' collection.
+    - name: createdAt
+      type: UpdateColumnTransactionsCreatedAt
+      description: Update the 'created_at' column in the 'transactions' collection.
+    - name: currencyCode
+      type: UpdateColumnTransactionsCurrencyCode
+      description: Update the 'currency_code' column in the 'transactions' collection.
+    - name: description
+      type: UpdateColumnTransactionsDescription
+      description: Update the 'description' column in the 'transactions' collection.
+    - name: id
+      type: UpdateColumnTransactionsId
+      description: Update the 'id' column in the 'transactions' collection.
+    - name: metadata
+      type: UpdateColumnTransactionsMetadata
+      description: Update the 'metadata' column in the 'transactions' collection.
+    - name: parentId
+      type: UpdateColumnTransactionsParentId
+      description: Update the 'parent_id' column in the 'transactions' collection.
+    - name: publicId
+      type: UpdateColumnTransactionsPublicId
+      description: Update the 'public_id' column in the 'transactions' collection.
+    - name: reservationId
+      type: UpdateColumnTransactionsReservationId
+      description: Update the 'reservation_id' column in the 'transactions' collection.
+    - name: transactionStatus
+      type: UpdateColumnTransactionsTransactionStatus
+      description: Update the 'transaction_status' column in the 'transactions' collection.
+    - name: transactionType
+      type: UpdateColumnTransactionsTransactionType
+      description: Update the 'transaction_type' column in the 'transactions' collection.
+    - name: updatedAt
+      type: UpdateColumnTransactionsUpdatedAt
+      description: Update the 'updated_at' column in the 'transactions' collection.
+  graphql:
+    typeName: UpdateTransactionsByIdUpdateColumns
+    inputTypeName: UpdateTransactionsByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_transactions_by_id_update_columns
+      fieldMapping:
+        amountCents:
+          column:
+            name: amount_cents
+        createdAt:
+          column:
+            name: created_at
+        currencyCode:
+          column:
+            name: currency_code
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        metadata:
+          column:
+            name: metadata
+        parentId:
+          column:
+            name: parent_id
+        publicId:
+          column:
+            name: public_id
+        reservationId:
+          column:
+            name: reservation_id
+        transactionStatus:
+          column:
+            name: transaction_status
+        transactionType:
+          column:
+            name: transaction_type
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateTransactionsByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amountCents
+          - createdAt
+          - currencyCode
+          - description
+          - id
+          - metadata
+          - parentId
+          - publicId
+          - reservationId
+          - transactionStatus
+          - transactionType
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateTransactionsByIdResponse
+  description: Responses from the 'update_transactions_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Transactions!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateTransactionsByIdResponse
+    inputTypeName: UpdateTransactionsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_transactions_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateTransactionsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateTransactionsById
+  outputType: UpdateTransactionsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: TransactionsBoolExp
+      description: Update permission post-condition predicate over the 'transactions'
+        collection
+    - name: preCheck
+      type: TransactionsBoolExp
+      description: Update permission pre-condition predicate over the 'transactions'
+        collection
+    - name: updateColumns
+      type: UpdateTransactionsByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_transactions_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateTransactionsById
+    rootFieldKind: Mutation
+  description: Update any row on the 'transactions' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateTransactionsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

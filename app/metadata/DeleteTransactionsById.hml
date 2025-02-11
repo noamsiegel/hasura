@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteTransactionsByIdResponse
+  description: Responses from the 'delete_transactions_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Transactions!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteTransactionsByIdResponse
+    inputTypeName: DeleteTransactionsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_transactions_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteTransactionsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteTransactionsById
+  outputType: DeleteTransactionsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: preCheck
+      type: TransactionsBoolExp
+      description: Delete permission predicate over the 'transactions' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_transactions_by_id
+    argumentMapping:
+      keyId: key_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteTransactionsById
+    rootFieldKind: Mutation
+  description: Delete any row on the 'transactions' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteTransactionsById
+  permissions:
+    - role: admin
+      allowExecution: true
+
