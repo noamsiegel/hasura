@@ -3,3 +3,4 @@ engine/build
 /.env.*
 .cursorignore
 .codebasenotes-annotations.json
+.node_modules/
