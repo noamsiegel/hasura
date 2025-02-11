@@ -1,0 +1,139 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertReservationVirtualCreditCardsObject
+  fields:
+    - name: adyenBalanceAccountId
+      type: Text!
+    - name: adyenPaymentInstrumentId
+      type: Text!
+    - name: createdAt
+      type: Timestamp!
+    - name: id
+      type: Int8
+    - name: lastFour
+      type: Text!
+    - name: reservationId
+      type: Int8!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: InsertReservationVirtualCreditCardsObject
+    inputTypeName: InsertReservationVirtualCreditCardsObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_reservation_virtual_credit_cards_object
+      fieldMapping:
+        adyenBalanceAccountId:
+          column:
+            name: adyen_balance_account_id
+        adyenPaymentInstrumentId:
+          column:
+            name: adyen_payment_instrument_id
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        lastFour:
+          column:
+            name: last_four
+        reservationId:
+          column:
+            name: reservation_id
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertReservationVirtualCreditCardsObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - adyenBalanceAccountId
+          - adyenPaymentInstrumentId
+          - createdAt
+          - id
+          - lastFour
+          - reservationId
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertReservationVirtualCreditCardsResponse
+  description: Responses from the 'insert_reservation_virtual_credit_cards' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ReservationVirtualCreditCards!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertReservationVirtualCreditCardsResponse
+    inputTypeName: InsertReservationVirtualCreditCardsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_reservation_virtual_credit_cards_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertReservationVirtualCreditCardsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertReservationVirtualCreditCards
+  outputType: InsertReservationVirtualCreditCardsResponse!
+  arguments:
+    - name: objects
+      type: "[InsertReservationVirtualCreditCardsObject!]!"
+    - name: postCheck
+      type: ReservationVirtualCreditCardsBoolExp
+      description: Insert permission predicate over the
+        'reservation_virtual_credit_cards' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_reservation_virtual_credit_cards
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertReservationVirtualCreditCards
+    rootFieldKind: Mutation
+  description: Insert into the reservation_virtual_credit_cards table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertReservationVirtualCreditCards
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,156 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertPaymentTokensObject
+  fields:
+    - name: amountCollectedCents
+      type: Int4
+    - name: createdAt
+      type: Timestamp!
+    - name: id
+      type: Int8
+    - name: initialTransactionId
+      type: Int8!
+    - name: metadata
+      type: Jsonb
+    - name: payerType
+      type: Text
+    - name: reservationVirtualCreditCardId
+      type: Int8
+    - name: status
+      type: Text
+    - name: updatedAt
+      type: Timestamp!
+    - name: value
+      type: Citext!
+  graphql:
+    typeName: InsertPaymentTokensObject
+    inputTypeName: InsertPaymentTokensObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_payment_tokens_object
+      fieldMapping:
+        amountCollectedCents:
+          column:
+            name: amount_collected_cents
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        initialTransactionId:
+          column:
+            name: initial_transaction_id
+        metadata:
+          column:
+            name: metadata
+        payerType:
+          column:
+            name: payer_type
+        reservationVirtualCreditCardId:
+          column:
+            name: reservation_virtual_credit_card_id
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        value:
+          column:
+            name: value
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertPaymentTokensObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amountCollectedCents
+          - createdAt
+          - id
+          - initialTransactionId
+          - metadata
+          - payerType
+          - reservationVirtualCreditCardId
+          - status
+          - updatedAt
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertPaymentTokensResponse
+  description: Responses from the 'insert_payment_tokens' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PaymentTokens!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertPaymentTokensResponse
+    inputTypeName: InsertPaymentTokensResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_payment_tokens_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertPaymentTokensResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertPaymentTokens
+  outputType: InsertPaymentTokensResponse!
+  arguments:
+    - name: objects
+      type: "[InsertPaymentTokensObject!]!"
+    - name: postCheck
+      type: PaymentTokensBoolExp
+      description: Insert permission predicate over the 'payment_tokens' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_payment_tokens
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertPaymentTokens
+    rootFieldKind: Mutation
+  description: Insert into the payment_tokens table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertPaymentTokens
+  permissions:
+    - role: admin
+      allowExecution: true
+

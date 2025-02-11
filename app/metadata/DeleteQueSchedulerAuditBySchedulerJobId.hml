@@ -1,0 +1,73 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteQueSchedulerAuditBySchedulerJobIdResponse
+  description: Responses from the 'delete_que_scheduler_audit_by_scheduler_job_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueSchedulerAudit!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteQueSchedulerAuditBySchedulerJobIdResponse
+    inputTypeName: DeleteQueSchedulerAuditBySchedulerJobIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_que_scheduler_audit_by_scheduler_job_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteQueSchedulerAuditBySchedulerJobIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteQueSchedulerAuditBySchedulerJobId
+  outputType: DeleteQueSchedulerAuditBySchedulerJobIdResponse!
+  arguments:
+    - name: keySchedulerJobId
+      type: Int8!
+    - name: preCheck
+      type: QueSchedulerAuditBoolExp
+      description: Delete permission predicate over the 'que_scheduler_audit' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_que_scheduler_audit_by_scheduler_job_id
+    argumentMapping:
+      keySchedulerJobId: key_scheduler_job_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteQueSchedulerAuditBySchedulerJobId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'que_scheduler_audit' collection using the
+    'scheduler_job_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteQueSchedulerAuditBySchedulerJobId
+  permissions:
+    - role: admin
+      allowExecution: true
+

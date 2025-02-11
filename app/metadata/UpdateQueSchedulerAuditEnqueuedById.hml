@@ -1,0 +1,428 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnQueSchedulerAuditEnqueuedArgs
+  description: Update the 'args' column in the 'que_scheduler_audit_enqueued' collection
+  fields:
+    - name: set
+      type: Jsonb!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnQueSchedulerAuditEnqueuedArgs
+    inputTypeName: UpdateColumnQueSchedulerAuditEnqueuedArgsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_que_scheduler_audit_enqueued_args
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnQueSchedulerAuditEnqueuedArgs
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnQueSchedulerAuditEnqueuedId
+  description: Update the 'id' column in the 'que_scheduler_audit_enqueued' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnQueSchedulerAuditEnqueuedId
+    inputTypeName: UpdateColumnQueSchedulerAuditEnqueuedIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_que_scheduler_audit_enqueued_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnQueSchedulerAuditEnqueuedId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnQueSchedulerAuditEnqueuedJobClass
+  description: Update the 'job_class' column in the 'que_scheduler_audit_enqueued'
+    collection
+  fields:
+    - name: set
+      type: Varchar!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnQueSchedulerAuditEnqueuedJobClass
+    inputTypeName: UpdateColumnQueSchedulerAuditEnqueuedJobClassInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_que_scheduler_audit_enqueued_job_class
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnQueSchedulerAuditEnqueuedJobClass
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnQueSchedulerAuditEnqueuedJobId
+  description: Update the 'job_id' column in the 'que_scheduler_audit_enqueued' collection
+  fields:
+    - name: set
+      type: Int8
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnQueSchedulerAuditEnqueuedJobId
+    inputTypeName: UpdateColumnQueSchedulerAuditEnqueuedJobIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_que_scheduler_audit_enqueued_job_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnQueSchedulerAuditEnqueuedJobId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnQueSchedulerAuditEnqueuedPriority
+  description: Update the 'priority' column in the 'que_scheduler_audit_enqueued' collection
+  fields:
+    - name: set
+      type: Int4
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnQueSchedulerAuditEnqueuedPriority
+    inputTypeName: UpdateColumnQueSchedulerAuditEnqueuedPriorityInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_que_scheduler_audit_enqueued_priority
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnQueSchedulerAuditEnqueuedPriority
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnQueSchedulerAuditEnqueuedQueue
+  description: Update the 'queue' column in the 'que_scheduler_audit_enqueued' collection
+  fields:
+    - name: set
+      type: Varchar
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnQueSchedulerAuditEnqueuedQueue
+    inputTypeName: UpdateColumnQueSchedulerAuditEnqueuedQueueInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_que_scheduler_audit_enqueued_queue
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnQueSchedulerAuditEnqueuedQueue
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnQueSchedulerAuditEnqueuedRunAt
+  description: Update the 'run_at' column in the 'que_scheduler_audit_enqueued' collection
+  fields:
+    - name: set
+      type: Timestamptz
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnQueSchedulerAuditEnqueuedRunAt
+    inputTypeName: UpdateColumnQueSchedulerAuditEnqueuedRunAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_que_scheduler_audit_enqueued_run_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnQueSchedulerAuditEnqueuedRunAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnQueSchedulerAuditEnqueuedSchedulerJobId
+  description: Update the 'scheduler_job_id' column in the
+    'que_scheduler_audit_enqueued' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnQueSchedulerAuditEnqueuedSchedulerJobId
+    inputTypeName: UpdateColumnQueSchedulerAuditEnqueuedSchedulerJobIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_que_scheduler_audit_enqueued_scheduler_job_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnQueSchedulerAuditEnqueuedSchedulerJobId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateQueSchedulerAuditEnqueuedByIdUpdateColumns
+  description: Update the columns of the 'que_scheduler_audit_enqueued' collection
+  fields:
+    - name: args
+      type: UpdateColumnQueSchedulerAuditEnqueuedArgs
+      description: Update the 'args' column in the 'que_scheduler_audit_enqueued'
+        collection.
+    - name: id
+      type: UpdateColumnQueSchedulerAuditEnqueuedId
+      description: Update the 'id' column in the 'que_scheduler_audit_enqueued' collection.
+    - name: jobClass
+      type: UpdateColumnQueSchedulerAuditEnqueuedJobClass
+      description: Update the 'job_class' column in the 'que_scheduler_audit_enqueued'
+        collection.
+    - name: jobId
+      type: UpdateColumnQueSchedulerAuditEnqueuedJobId
+      description: Update the 'job_id' column in the 'que_scheduler_audit_enqueued'
+        collection.
+    - name: priority
+      type: UpdateColumnQueSchedulerAuditEnqueuedPriority
+      description: Update the 'priority' column in the 'que_scheduler_audit_enqueued'
+        collection.
+    - name: queue
+      type: UpdateColumnQueSchedulerAuditEnqueuedQueue
+      description: Update the 'queue' column in the 'que_scheduler_audit_enqueued'
+        collection.
+    - name: runAt
+      type: UpdateColumnQueSchedulerAuditEnqueuedRunAt
+      description: Update the 'run_at' column in the 'que_scheduler_audit_enqueued'
+        collection.
+    - name: schedulerJobId
+      type: UpdateColumnQueSchedulerAuditEnqueuedSchedulerJobId
+      description: Update the 'scheduler_job_id' column in the
+        'que_scheduler_audit_enqueued' collection.
+  graphql:
+    typeName: UpdateQueSchedulerAuditEnqueuedByIdUpdateColumns
+    inputTypeName: UpdateQueSchedulerAuditEnqueuedByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_que_scheduler_audit_enqueued_by_id_update_columns
+      fieldMapping:
+        args:
+          column:
+            name: args
+        id:
+          column:
+            name: id
+        jobClass:
+          column:
+            name: job_class
+        jobId:
+          column:
+            name: job_id
+        priority:
+          column:
+            name: priority
+        queue:
+          column:
+            name: queue
+        runAt:
+          column:
+            name: run_at
+        schedulerJobId:
+          column:
+            name: scheduler_job_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateQueSchedulerAuditEnqueuedByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - args
+          - id
+          - jobClass
+          - jobId
+          - priority
+          - queue
+          - runAt
+          - schedulerJobId
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateQueSchedulerAuditEnqueuedByIdResponse
+  description: Responses from the 'update_que_scheduler_audit_enqueued_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueSchedulerAuditEnqueued!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateQueSchedulerAuditEnqueuedByIdResponse
+    inputTypeName: UpdateQueSchedulerAuditEnqueuedByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_que_scheduler_audit_enqueued_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateQueSchedulerAuditEnqueuedByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateQueSchedulerAuditEnqueuedById
+  outputType: UpdateQueSchedulerAuditEnqueuedByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: QueSchedulerAuditEnqueuedBoolExp
+      description: Update permission post-condition predicate over the
+        'que_scheduler_audit_enqueued' collection
+    - name: preCheck
+      type: QueSchedulerAuditEnqueuedBoolExp
+      description: Update permission pre-condition predicate over the
+        'que_scheduler_audit_enqueued' collection
+    - name: updateColumns
+      type: UpdateQueSchedulerAuditEnqueuedByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_que_scheduler_audit_enqueued_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateQueSchedulerAuditEnqueuedById
+    rootFieldKind: Mutation
+  description: Update any row on the 'que_scheduler_audit_enqueued' collection
+    using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateQueSchedulerAuditEnqueuedById
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,4 +1,4 @@
-travelport_js:
+travelport:
 	ddn connector introspect travelport_js
 	ddn command add travelport_js "*"
 	ddn supergraph build local

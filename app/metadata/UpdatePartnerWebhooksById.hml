@@ -1,0 +1,497 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksCreatedAt
+  description: Update the 'created_at' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksCreatedAt
+    inputTypeName: UpdateColumnPartnerWebhooksCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksDisabledAt
+  description: Update the 'disabled_at' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Timestamp
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksDisabledAt
+    inputTypeName: UpdateColumnPartnerWebhooksDisabledAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_disabled_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksDisabledAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksEventTypes
+  description: Update the 'event_types' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Jsonb
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksEventTypes
+    inputTypeName: UpdateColumnPartnerWebhooksEventTypesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_event_types
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksEventTypes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksId
+  description: Update the 'id' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksId
+    inputTypeName: UpdateColumnPartnerWebhooksIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksPartnerAccountId
+  description: Update the 'partner_account_id' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksPartnerAccountId
+    inputTypeName: UpdateColumnPartnerWebhooksPartnerAccountIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_partner_account_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksPartnerAccountId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksPublicId
+  description: Update the 'public_id' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Citext!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksPublicId
+    inputTypeName: UpdateColumnPartnerWebhooksPublicIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_public_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksPublicId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksSecret
+  description: Update the 'secret' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Text
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksSecret
+    inputTypeName: UpdateColumnPartnerWebhooksSecretInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_secret
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksSecret
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksStatus
+  description: Update the 'status' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksStatus
+    inputTypeName: UpdateColumnPartnerWebhooksStatusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_status
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksStatus
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksUpdatedAt
+  description: Update the 'updated_at' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksUpdatedAt
+    inputTypeName: UpdateColumnPartnerWebhooksUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnPartnerWebhooksUrl
+  description: Update the 'url' column in the 'partner_webhooks' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnPartnerWebhooksUrl
+    inputTypeName: UpdateColumnPartnerWebhooksUrlInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_partner_webhooks_url
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnPartnerWebhooksUrl
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdatePartnerWebhooksByIdUpdateColumns
+  description: Update the columns of the 'partner_webhooks' collection
+  fields:
+    - name: createdAt
+      type: UpdateColumnPartnerWebhooksCreatedAt
+      description: Update the 'created_at' column in the 'partner_webhooks' collection.
+    - name: disabledAt
+      type: UpdateColumnPartnerWebhooksDisabledAt
+      description: Update the 'disabled_at' column in the 'partner_webhooks' collection.
+    - name: eventTypes
+      type: UpdateColumnPartnerWebhooksEventTypes
+      description: Update the 'event_types' column in the 'partner_webhooks' collection.
+    - name: id
+      type: UpdateColumnPartnerWebhooksId
+      description: Update the 'id' column in the 'partner_webhooks' collection.
+    - name: partnerAccountId
+      type: UpdateColumnPartnerWebhooksPartnerAccountId
+      description: Update the 'partner_account_id' column in the 'partner_webhooks'
+        collection.
+    - name: publicId
+      type: UpdateColumnPartnerWebhooksPublicId
+      description: Update the 'public_id' column in the 'partner_webhooks' collection.
+    - name: secret
+      type: UpdateColumnPartnerWebhooksSecret
+      description: Update the 'secret' column in the 'partner_webhooks' collection.
+    - name: status
+      type: UpdateColumnPartnerWebhooksStatus
+      description: Update the 'status' column in the 'partner_webhooks' collection.
+    - name: updatedAt
+      type: UpdateColumnPartnerWebhooksUpdatedAt
+      description: Update the 'updated_at' column in the 'partner_webhooks' collection.
+    - name: url
+      type: UpdateColumnPartnerWebhooksUrl
+      description: Update the 'url' column in the 'partner_webhooks' collection.
+  graphql:
+    typeName: UpdatePartnerWebhooksByIdUpdateColumns
+    inputTypeName: UpdatePartnerWebhooksByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_partner_webhooks_by_id_update_columns
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        disabledAt:
+          column:
+            name: disabled_at
+        eventTypes:
+          column:
+            name: event_types
+        id:
+          column:
+            name: id
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        publicId:
+          column:
+            name: public_id
+        secret:
+          column:
+            name: secret
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdatePartnerWebhooksByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - disabledAt
+          - eventTypes
+          - id
+          - partnerAccountId
+          - publicId
+          - secret
+          - status
+          - updatedAt
+          - url
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdatePartnerWebhooksByIdResponse
+  description: Responses from the 'update_partner_webhooks_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PartnerWebhooks!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdatePartnerWebhooksByIdResponse
+    inputTypeName: UpdatePartnerWebhooksByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_partner_webhooks_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdatePartnerWebhooksByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdatePartnerWebhooksById
+  outputType: UpdatePartnerWebhooksByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: PartnerWebhooksBoolExp
+      description: Update permission post-condition predicate over the
+        'partner_webhooks' collection
+    - name: preCheck
+      type: PartnerWebhooksBoolExp
+      description: Update permission pre-condition predicate over the
+        'partner_webhooks' collection
+    - name: updateColumns
+      type: UpdatePartnerWebhooksByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_partner_webhooks_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updatePartnerWebhooksById
+    rootFieldKind: Mutation
+  description: Update any row on the 'partner_webhooks' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdatePartnerWebhooksById
+  permissions:
+    - role: admin
+      allowExecution: true
+

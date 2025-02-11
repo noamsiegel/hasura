@@ -1,0 +1,186 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertWebhookDeliveryLogsObject
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: eventId
+      type: Citext!
+    - name: eventType
+      type: Text
+    - name: httpStatus
+      type: Int4
+    - name: id
+      type: Int8
+    - name: lastError
+      type: Text
+    - name: lastErrorAt
+      type: Timestamp
+    - name: nextRetry
+      type: Timestamp
+    - name: partnerAccountId
+      type: Int8
+    - name: payload
+      type: Text
+    - name: reservationId
+      type: Int8
+    - name: retryCount
+      type: Int4
+    - name: status
+      type: Text
+    - name: updatedAt
+      type: Timestamp!
+    - name: url
+      type: Text
+  graphql:
+    typeName: InsertWebhookDeliveryLogsObject
+    inputTypeName: InsertWebhookDeliveryLogsObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_webhook_delivery_logs_object
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        eventId:
+          column:
+            name: event_id
+        eventType:
+          column:
+            name: event_type
+        httpStatus:
+          column:
+            name: http_status
+        id:
+          column:
+            name: id
+        lastError:
+          column:
+            name: last_error
+        lastErrorAt:
+          column:
+            name: last_error_at
+        nextRetry:
+          column:
+            name: next_retry
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        payload:
+          column:
+            name: payload
+        reservationId:
+          column:
+            name: reservation_id
+        retryCount:
+          column:
+            name: retry_count
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertWebhookDeliveryLogsObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - eventId
+          - eventType
+          - httpStatus
+          - id
+          - lastError
+          - lastErrorAt
+          - nextRetry
+          - partnerAccountId
+          - payload
+          - reservationId
+          - retryCount
+          - status
+          - updatedAt
+          - url
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertWebhookDeliveryLogsResponse
+  description: Responses from the 'insert_webhook_delivery_logs' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[WebhookDeliveryLogs!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertWebhookDeliveryLogsResponse
+    inputTypeName: InsertWebhookDeliveryLogsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_webhook_delivery_logs_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertWebhookDeliveryLogsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertWebhookDeliveryLogs
+  outputType: InsertWebhookDeliveryLogsResponse!
+  arguments:
+    - name: objects
+      type: "[InsertWebhookDeliveryLogsObject!]!"
+    - name: postCheck
+      type: WebhookDeliveryLogsBoolExp
+      description: Insert permission predicate over the 'webhook_delivery_logs' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_webhook_delivery_logs
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertWebhookDeliveryLogs
+    rootFieldKind: Mutation
+  description: Insert into the webhook_delivery_logs table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertWebhookDeliveryLogs
+  permissions:
+    - role: admin
+      allowExecution: true
+

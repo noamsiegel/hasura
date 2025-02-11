@@ -1,5 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
 import { UnprocessableContent } from './errors';
+import { neon } from '@neondatabase/serverless';
+
+
+const sql = neon(process.env.NEON_DATABASE_URL ?? '');
 
 /**
  * TravelPort API client class
@@ -126,6 +130,16 @@ export class TravelPortClient {
               }]
             }
           );
+
+					try {
+						await sql`
+							INSERT INTO travelport_payloads (payload, created_at)
+							VALUES (${response.data}, NOW())
+						`;
+						this.log('Response saved to Neon database\n');
+					} catch (error) {
+						this.log('Error inserting payload into Neon:\n' + JSON.stringify(error, null, 2) + '\n');
+					}
           this.log('Response received successfully\n');
           return response.data as T;
         } catch (axiosError: any) {

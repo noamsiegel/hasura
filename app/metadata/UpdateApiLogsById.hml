@@ -1,0 +1,377 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiLogsCreatedAt
+  description: Update the 'created_at' column in the 'api_logs' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiLogsCreatedAt
+    inputTypeName: UpdateColumnApiLogsCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_logs_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiLogsCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiLogsId
+  description: Update the 'id' column in the 'api_logs' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiLogsId
+    inputTypeName: UpdateColumnApiLogsIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_logs_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiLogsId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiLogsOperation
+  description: Update the 'operation' column in the 'api_logs' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiLogsOperation
+    inputTypeName: UpdateColumnApiLogsOperationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_logs_operation
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiLogsOperation
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiLogsRequest
+  description: Update the 'request' column in the 'api_logs' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiLogsRequest
+    inputTypeName: UpdateColumnApiLogsRequestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_logs_request
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiLogsRequest
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiLogsReservationId
+  description: Update the 'reservation_id' column in the 'api_logs' collection
+  fields:
+    - name: set
+      type: Int8!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiLogsReservationId
+    inputTypeName: UpdateColumnApiLogsReservationIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_logs_reservation_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiLogsReservationId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiLogsResponse
+  description: Update the 'response' column in the 'api_logs' collection
+  fields:
+    - name: set
+      type: Text!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiLogsResponse
+    inputTypeName: UpdateColumnApiLogsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_logs_response
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiLogsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnApiLogsUpdatedAt
+  description: Update the 'updated_at' column in the 'api_logs' collection
+  fields:
+    - name: set
+      type: Timestamp!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnApiLogsUpdatedAt
+    inputTypeName: UpdateColumnApiLogsUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_column_api_logs_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnApiLogsUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateApiLogsByIdUpdateColumns
+  description: Update the columns of the 'api_logs' collection
+  fields:
+    - name: createdAt
+      type: UpdateColumnApiLogsCreatedAt
+      description: Update the 'created_at' column in the 'api_logs' collection.
+    - name: id
+      type: UpdateColumnApiLogsId
+      description: Update the 'id' column in the 'api_logs' collection.
+    - name: operation
+      type: UpdateColumnApiLogsOperation
+      description: Update the 'operation' column in the 'api_logs' collection.
+    - name: request
+      type: UpdateColumnApiLogsRequest
+      description: Update the 'request' column in the 'api_logs' collection.
+    - name: reservationId
+      type: UpdateColumnApiLogsReservationId
+      description: Update the 'reservation_id' column in the 'api_logs' collection.
+    - name: response
+      type: UpdateColumnApiLogsResponse
+      description: Update the 'response' column in the 'api_logs' collection.
+    - name: updatedAt
+      type: UpdateColumnApiLogsUpdatedAt
+      description: Update the 'updated_at' column in the 'api_logs' collection.
+  graphql:
+    typeName: UpdateApiLogsByIdUpdateColumns
+    inputTypeName: UpdateApiLogsByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_api_logs_by_id_update_columns
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        operation:
+          column:
+            name: operation
+        request:
+          column:
+            name: request
+        reservationId:
+          column:
+            name: reservation_id
+        response:
+          column:
+            name: response
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateApiLogsByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - id
+          - operation
+          - request
+          - reservationId
+          - response
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateApiLogsByIdResponse
+  description: Responses from the 'update_api_logs_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ApiLogs!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateApiLogsByIdResponse
+    inputTypeName: UpdateApiLogsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: update_api_logs_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateApiLogsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateApiLogsById
+  outputType: UpdateApiLogsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: postCheck
+      type: ApiLogsBoolExp
+      description: Update permission post-condition predicate over the 'api_logs' collection
+    - name: preCheck
+      type: ApiLogsBoolExp
+      description: Update permission pre-condition predicate over the 'api_logs' collection
+    - name: updateColumns
+      type: UpdateApiLogsByIdUpdateColumns!
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: update_api_logs_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateApiLogsById
+    rootFieldKind: Mutation
+  description: Update any row on the 'api_logs' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateApiLogsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

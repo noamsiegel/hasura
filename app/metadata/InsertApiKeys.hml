@@ -1,0 +1,144 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertApiKeysObject
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: expiresAt
+      type: Timestamp!
+    - name: id
+      type: Int8
+    - name: name
+      type: Text!
+    - name: partnerAccountId
+      type: Int8!
+    - name: status
+      type: Text!
+    - name: token
+      type: Citext!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: InsertApiKeysObject
+    inputTypeName: InsertApiKeysObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_api_keys_object
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        expiresAt:
+          column:
+            name: expires_at
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        status:
+          column:
+            name: status
+        token:
+          column:
+            name: token
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertApiKeysObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - expiresAt
+          - id
+          - name
+          - partnerAccountId
+          - status
+          - token
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertApiKeysResponse
+  description: Responses from the 'insert_api_keys' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ApiKeys!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertApiKeysResponse
+    inputTypeName: InsertApiKeysResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_api_keys_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertApiKeysResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertApiKeys
+  outputType: InsertApiKeysResponse!
+  arguments:
+    - name: objects
+      type: "[InsertApiKeysObject!]!"
+    - name: postCheck
+      type: ApiKeysBoolExp
+      description: Insert permission predicate over the 'api_keys' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_api_keys
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertApiKeys
+    rootFieldKind: Mutation
+  description: Insert into the api_keys table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertApiKeys
+  permissions:
+    - role: admin
+      allowExecution: true
+

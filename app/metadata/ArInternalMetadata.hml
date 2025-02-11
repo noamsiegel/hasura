@@ -1,0 +1,156 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ArInternalMetadata
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: key
+      type: Varchar!
+    - name: updatedAt
+      type: Timestamp!
+    - name: value
+      type: Varchar
+  graphql:
+    typeName: ArInternalMetadata
+    inputTypeName: ArInternalMetadataInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: ar_internal_metadata
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        key:
+          column:
+            name: key
+        updatedAt:
+          column:
+            name: updated_at
+        value:
+          column:
+            name: value
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ArInternalMetadata
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - key
+          - updatedAt
+          - value
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: ArInternalMetadataBoolExp
+  operand:
+    object:
+      type: ArInternalMetadata
+      comparableFields:
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: key
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: value
+          booleanExpressionType: VarcharBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: ArInternalMetadataBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: ArInternalMetadataAggExp
+  operand:
+    object:
+      aggregatedType: ArInternalMetadata
+      aggregatableFields:
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: key
+          aggregateExpression: VarcharAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: value
+          aggregateExpression: VarcharAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: ArInternalMetadataAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: ArInternalMetadataOrderByExp
+  operand:
+    object:
+      orderedType: ArInternalMetadata
+      orderableFields:
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: key
+          orderByExpression: VarcharOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: value
+          orderByExpression: VarcharOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: ArInternalMetadataOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: ArInternalMetadata
+  objectType: ArInternalMetadata
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: ar_internal_metadata
+  filterExpressionType: ArInternalMetadataBoolExp
+  aggregateExpression: ArInternalMetadataAggExp
+  orderByExpression: ArInternalMetadataOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: arInternalMetadata
+      subscription:
+        rootField: arInternalMetadata
+    selectUniques:
+      - queryRootField: arInternalMetadataByKey
+        uniqueIdentifier:
+          - key
+        subscription:
+          rootField: arInternalMetadataByKey
+    filterInputTypeName: ArInternalMetadataFilterInput
+    aggregate:
+      queryRootField: arInternalMetadataAggregate
+      subscription:
+        rootField: arInternalMetadataAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: ArInternalMetadata
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

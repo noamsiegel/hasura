@@ -1,0 +1,156 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertPartnerWebhooksObject
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: disabledAt
+      type: Timestamp
+    - name: eventTypes
+      type: Jsonb
+    - name: id
+      type: Int8
+    - name: partnerAccountId
+      type: Int8!
+    - name: publicId
+      type: Citext!
+    - name: secret
+      type: Text
+    - name: status
+      type: Text
+    - name: updatedAt
+      type: Timestamp!
+    - name: url
+      type: Text!
+  graphql:
+    typeName: InsertPartnerWebhooksObject
+    inputTypeName: InsertPartnerWebhooksObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_partner_webhooks_object
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        disabledAt:
+          column:
+            name: disabled_at
+        eventTypes:
+          column:
+            name: event_types
+        id:
+          column:
+            name: id
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        publicId:
+          column:
+            name: public_id
+        secret:
+          column:
+            name: secret
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertPartnerWebhooksObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - disabledAt
+          - eventTypes
+          - id
+          - partnerAccountId
+          - publicId
+          - secret
+          - status
+          - updatedAt
+          - url
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertPartnerWebhooksResponse
+  description: Responses from the 'insert_partner_webhooks' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PartnerWebhooks!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertPartnerWebhooksResponse
+    inputTypeName: InsertPartnerWebhooksResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_partner_webhooks_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertPartnerWebhooksResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertPartnerWebhooks
+  outputType: InsertPartnerWebhooksResponse!
+  arguments:
+    - name: objects
+      type: "[InsertPartnerWebhooksObject!]!"
+    - name: postCheck
+      type: PartnerWebhooksBoolExp
+      description: Insert permission predicate over the 'partner_webhooks' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_partner_webhooks
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertPartnerWebhooks
+    rootFieldKind: Mutation
+  description: Insert into the partner_webhooks table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertPartnerWebhooks
+  permissions:
+    - role: admin
+      allowExecution: true
+

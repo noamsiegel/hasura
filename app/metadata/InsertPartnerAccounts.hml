@@ -1,0 +1,144 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertPartnerAccountsObject
+  fields:
+    - name: configuration
+      type: Jsonb
+    - name: createdAt
+      type: Timestamp!
+    - name: id
+      type: Int8
+    - name: lastAccess
+      type: Timestamp
+    - name: name
+      type: Text!
+    - name: publicId
+      type: Citext!
+    - name: status
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: InsertPartnerAccountsObject
+    inputTypeName: InsertPartnerAccountsObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_partner_accounts_object
+      fieldMapping:
+        configuration:
+          column:
+            name: configuration
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        lastAccess:
+          column:
+            name: last_access
+        name:
+          column:
+            name: name
+        publicId:
+          column:
+            name: public_id
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertPartnerAccountsObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - configuration
+          - createdAt
+          - id
+          - lastAccess
+          - name
+          - publicId
+          - status
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertPartnerAccountsResponse
+  description: Responses from the 'insert_partner_accounts' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PartnerAccounts!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertPartnerAccountsResponse
+    inputTypeName: InsertPartnerAccountsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_partner_accounts_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertPartnerAccountsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertPartnerAccounts
+  outputType: InsertPartnerAccountsResponse!
+  arguments:
+    - name: objects
+      type: "[InsertPartnerAccountsObject!]!"
+    - name: postCheck
+      type: PartnerAccountsBoolExp
+      description: Insert permission predicate over the 'partner_accounts' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_partner_accounts
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertPartnerAccounts
+    rootFieldKind: Mutation
+  description: Insert into the partner_accounts table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertPartnerAccounts
+  permissions:
+    - role: admin
+      allowExecution: true
+

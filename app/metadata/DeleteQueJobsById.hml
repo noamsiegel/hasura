@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteQueJobsByIdResponse
+  description: Responses from the 'delete_que_jobs_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueJobs!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteQueJobsByIdResponse
+    inputTypeName: DeleteQueJobsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_que_jobs_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteQueJobsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteQueJobsById
+  outputType: DeleteQueJobsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: preCheck
+      type: QueJobsBoolExp
+      description: Delete permission predicate over the 'que_jobs' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_que_jobs_by_id
+    argumentMapping:
+      keyId: key_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteQueJobsById
+    rootFieldKind: Mutation
+  description: Delete any row on the 'que_jobs' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteQueJobsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

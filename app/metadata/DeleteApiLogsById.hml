@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteApiLogsByIdResponse
+  description: Responses from the 'delete_api_logs_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ApiLogs!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteApiLogsByIdResponse
+    inputTypeName: DeleteApiLogsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_api_logs_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteApiLogsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteApiLogsById
+  outputType: DeleteApiLogsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: preCheck
+      type: ApiLogsBoolExp
+      description: Delete permission predicate over the 'api_logs' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_api_logs_by_id
+    argumentMapping:
+      keyId: key_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteApiLogsById
+    rootFieldKind: Mutation
+  description: Delete any row on the 'api_logs' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteApiLogsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

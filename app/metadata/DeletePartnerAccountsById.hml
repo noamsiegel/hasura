@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeletePartnerAccountsByIdResponse
+  description: Responses from the 'delete_partner_accounts_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PartnerAccounts!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeletePartnerAccountsByIdResponse
+    inputTypeName: DeletePartnerAccountsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_partner_accounts_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeletePartnerAccountsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeletePartnerAccountsById
+  outputType: DeletePartnerAccountsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: preCheck
+      type: PartnerAccountsBoolExp
+      description: Delete permission predicate over the 'partner_accounts' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_partner_accounts_by_id
+    argumentMapping:
+      keyId: key_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deletePartnerAccountsById
+    rootFieldKind: Mutation
+  description: Delete any row on the 'partner_accounts' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeletePartnerAccountsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteArInternalMetadataByKeyResponse
+  description: Responses from the 'delete_ar_internal_metadata_by_key' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[ArInternalMetadata!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteArInternalMetadataByKeyResponse
+    inputTypeName: DeleteArInternalMetadataByKeyResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_ar_internal_metadata_by_key_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteArInternalMetadataByKeyResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteArInternalMetadataByKey
+  outputType: DeleteArInternalMetadataByKeyResponse!
+  arguments:
+    - name: keyKey
+      type: Varchar!
+    - name: preCheck
+      type: ArInternalMetadataBoolExp
+      description: Delete permission predicate over the 'ar_internal_metadata' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_ar_internal_metadata_by_key
+    argumentMapping:
+      keyKey: key_key
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteArInternalMetadataByKey
+    rootFieldKind: Mutation
+  description: Delete any row on the 'ar_internal_metadata' collection using the 'key' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteArInternalMetadataByKey
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,204 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ApiKeys
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: expiresAt
+      type: Timestamp!
+    - name: id
+      type: Int8!
+    - name: name
+      type: Text!
+    - name: partnerAccountId
+      type: Int8!
+    - name: status
+      type: Text!
+    - name: token
+      type: Citext!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: ApiKeys
+    inputTypeName: ApiKeysInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: api_keys
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        expiresAt:
+          column:
+            name: expires_at
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        partnerAccountId:
+          column:
+            name: partner_account_id
+        status:
+          column:
+            name: status
+        token:
+          column:
+            name: token
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ApiKeys
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - expiresAt
+          - id
+          - name
+          - partnerAccountId
+          - status
+          - token
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: ApiKeysBoolExp
+  operand:
+    object:
+      type: ApiKeys
+      comparableFields:
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: expiresAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: name
+          booleanExpressionType: TextBoolExp
+        - fieldName: partnerAccountId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: status
+          booleanExpressionType: TextBoolExp
+        - fieldName: token
+          booleanExpressionType: CitextBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: ApiKeysBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: ApiKeysAggExp
+  operand:
+    object:
+      aggregatedType: ApiKeys
+      aggregatableFields:
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: expiresAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: name
+          aggregateExpression: TextAggExp
+        - fieldName: partnerAccountId
+          aggregateExpression: Int8AggExp
+        - fieldName: status
+          aggregateExpression: TextAggExp
+        - fieldName: token
+          aggregateExpression: CitextAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: ApiKeysAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: ApiKeysOrderByExp
+  operand:
+    object:
+      orderedType: ApiKeys
+      orderableFields:
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: expiresAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: name
+          orderByExpression: TextOrderByExp
+        - fieldName: partnerAccountId
+          orderByExpression: Int8OrderByExp
+        - fieldName: status
+          orderByExpression: TextOrderByExp
+        - fieldName: token
+          orderByExpression: CitextOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: ApiKeysOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: ApiKeys
+  objectType: ApiKeys
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: api_keys
+  filterExpressionType: ApiKeysBoolExp
+  aggregateExpression: ApiKeysAggExp
+  orderByExpression: ApiKeysOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: apiKeys
+      subscription:
+        rootField: apiKeys
+    selectUniques:
+      - queryRootField: apiKeysById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: apiKeysById
+    filterInputTypeName: ApiKeysFilterInput
+    aggregate:
+      queryRootField: apiKeysAggregate
+      subscription:
+        rootField: apiKeysAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: ApiKeys
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

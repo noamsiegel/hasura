@@ -1,0 +1,144 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueLockersObject
+  fields:
+    - name: jobSchemaVersion
+      type: Int4
+    - name: listening
+      type: Bool!
+    - name: pid
+      type: Int4!
+    - name: queues
+      type: "[Text]!"
+    - name: rubyHostname
+      type: Text!
+    - name: rubyPid
+      type: Int4!
+    - name: workerCount
+      type: Int4!
+    - name: workerPriorities
+      type: "[Int4]!"
+  graphql:
+    typeName: InsertQueLockersObject
+    inputTypeName: InsertQueLockersObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_lockers_object
+      fieldMapping:
+        jobSchemaVersion:
+          column:
+            name: job_schema_version
+        listening:
+          column:
+            name: listening
+        pid:
+          column:
+            name: pid
+        queues:
+          column:
+            name: queues
+        rubyHostname:
+          column:
+            name: ruby_hostname
+        rubyPid:
+          column:
+            name: ruby_pid
+        workerCount:
+          column:
+            name: worker_count
+        workerPriorities:
+          column:
+            name: worker_priorities
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueLockersObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - jobSchemaVersion
+          - listening
+          - pid
+          - queues
+          - rubyHostname
+          - rubyPid
+          - workerCount
+          - workerPriorities
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertQueLockersResponse
+  description: Responses from the 'insert_que_lockers' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[QueLockers!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertQueLockersResponse
+    inputTypeName: InsertQueLockersResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: insert_que_lockers_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertQueLockersResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertQueLockers
+  outputType: InsertQueLockersResponse!
+  arguments:
+    - name: objects
+      type: "[InsertQueLockersObject!]!"
+    - name: postCheck
+      type: QueLockersBoolExp
+      description: Insert permission predicate over the 'que_lockers' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: insert_que_lockers
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertQueLockers
+    rootFieldKind: Mutation
+  description: Insert into the que_lockers table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertQueLockers
+  permissions:
+    - role: admin
+      allowExecution: true
+

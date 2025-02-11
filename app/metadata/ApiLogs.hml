@@ -1,0 +1,192 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ApiLogs
+  fields:
+    - name: createdAt
+      type: Timestamp!
+    - name: id
+      type: Int8!
+    - name: operation
+      type: Text!
+    - name: request
+      type: Text!
+    - name: reservationId
+      type: Int8!
+    - name: response
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+  graphql:
+    typeName: ApiLogs
+    inputTypeName: ApiLogsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: api_logs
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        operation:
+          column:
+            name: operation
+        request:
+          column:
+            name: request
+        reservationId:
+          column:
+            name: reservation_id
+        response:
+          column:
+            name: response
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ApiLogs
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - id
+          - operation
+          - request
+          - reservationId
+          - response
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: ApiLogsBoolExp
+  operand:
+    object:
+      type: ApiLogs
+      comparableFields:
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: operation
+          booleanExpressionType: TextBoolExp
+        - fieldName: request
+          booleanExpressionType: TextBoolExp
+        - fieldName: reservationId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: response
+          booleanExpressionType: TextBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: ApiLogsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: ApiLogsAggExp
+  operand:
+    object:
+      aggregatedType: ApiLogs
+      aggregatableFields:
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: operation
+          aggregateExpression: TextAggExp
+        - fieldName: request
+          aggregateExpression: TextAggExp
+        - fieldName: reservationId
+          aggregateExpression: Int8AggExp
+        - fieldName: response
+          aggregateExpression: TextAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: ApiLogsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: ApiLogsOrderByExp
+  operand:
+    object:
+      orderedType: ApiLogs
+      orderableFields:
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: operation
+          orderByExpression: TextOrderByExp
+        - fieldName: request
+          orderByExpression: TextOrderByExp
+        - fieldName: reservationId
+          orderByExpression: Int8OrderByExp
+        - fieldName: response
+          orderByExpression: TextOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: ApiLogsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: ApiLogs
+  objectType: ApiLogs
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: api_logs
+  filterExpressionType: ApiLogsBoolExp
+  aggregateExpression: ApiLogsAggExp
+  orderByExpression: ApiLogsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: apiLogs
+      subscription:
+        rootField: apiLogs
+    selectUniques:
+      - queryRootField: apiLogsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: apiLogsById
+    filterInputTypeName: ApiLogsFilterInput
+    aggregate:
+      queryRootField: apiLogsAggregate
+      subscription:
+        rootField: apiLogsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: ApiLogs
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

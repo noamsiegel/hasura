@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeletePaymentTokensByIdResponse
+  description: Responses from the 'delete_payment_tokens_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[PaymentTokens!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeletePaymentTokensByIdResponse
+    inputTypeName: DeletePaymentTokensByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: delete_payment_tokens_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeletePaymentTokensByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeletePaymentTokensById
+  outputType: DeletePaymentTokensByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int8!
+    - name: preCheck
+      type: PaymentTokensBoolExp
+      description: Delete permission predicate over the 'payment_tokens' collection
+  source:
+    dataConnectorName: sb_api_postgres
+    dataConnectorCommand:
+      procedure: delete_payment_tokens_by_id
+    argumentMapping:
+      keyId: key_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deletePaymentTokensById
+    rootFieldKind: Mutation
+  description: Delete any row on the 'payment_tokens' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeletePaymentTokensById
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,228 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PaymentTokens
+  fields:
+    - name: amountCollectedCents
+      type: Int4
+    - name: createdAt
+      type: Timestamp!
+    - name: id
+      type: Int8!
+    - name: initialTransactionId
+      type: Int8!
+    - name: metadata
+      type: Jsonb
+    - name: payerType
+      type: Text
+    - name: reservationVirtualCreditCardId
+      type: Int8
+    - name: status
+      type: Text!
+    - name: updatedAt
+      type: Timestamp!
+    - name: value
+      type: Citext!
+  graphql:
+    typeName: PaymentTokens
+    inputTypeName: PaymentTokensInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: sb_api_postgres
+      dataConnectorObjectType: payment_tokens
+      fieldMapping:
+        amountCollectedCents:
+          column:
+            name: amount_collected_cents
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        initialTransactionId:
+          column:
+            name: initial_transaction_id
+        metadata:
+          column:
+            name: metadata
+        payerType:
+          column:
+            name: payer_type
+        reservationVirtualCreditCardId:
+          column:
+            name: reservation_virtual_credit_card_id
+        status:
+          column:
+            name: status
+        updatedAt:
+          column:
+            name: updated_at
+        value:
+          column:
+            name: value
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PaymentTokens
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amountCollectedCents
+          - createdAt
+          - id
+          - initialTransactionId
+          - metadata
+          - payerType
+          - reservationVirtualCreditCardId
+          - status
+          - updatedAt
+          - value
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: PaymentTokensBoolExp
+  operand:
+    object:
+      type: PaymentTokens
+      comparableFields:
+        - fieldName: amountCollectedCents
+          booleanExpressionType: Int4BoolExp
+        - fieldName: createdAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: id
+          booleanExpressionType: Int8BoolExp
+        - fieldName: initialTransactionId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: metadata
+          booleanExpressionType: JsonbBoolExp
+        - fieldName: payerType
+          booleanExpressionType: TextBoolExp
+        - fieldName: reservationVirtualCreditCardId
+          booleanExpressionType: Int8BoolExp
+        - fieldName: status
+          booleanExpressionType: TextBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: value
+          booleanExpressionType: CitextBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: PaymentTokensBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: PaymentTokensAggExp
+  operand:
+    object:
+      aggregatedType: PaymentTokens
+      aggregatableFields:
+        - fieldName: amountCollectedCents
+          aggregateExpression: Int4AggExp
+        - fieldName: createdAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: id
+          aggregateExpression: Int8AggExp
+        - fieldName: initialTransactionId
+          aggregateExpression: Int8AggExp
+        - fieldName: metadata
+          aggregateExpression: JsonbAggExp
+        - fieldName: payerType
+          aggregateExpression: TextAggExp
+        - fieldName: reservationVirtualCreditCardId
+          aggregateExpression: Int8AggExp
+        - fieldName: status
+          aggregateExpression: TextAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestampAggExp
+        - fieldName: value
+          aggregateExpression: CitextAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: PaymentTokensAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: PaymentTokensOrderByExp
+  operand:
+    object:
+      orderedType: PaymentTokens
+      orderableFields:
+        - fieldName: amountCollectedCents
+          orderByExpression: Int4OrderByExp
+        - fieldName: createdAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: id
+          orderByExpression: Int8OrderByExp
+        - fieldName: initialTransactionId
+          orderByExpression: Int8OrderByExp
+        - fieldName: metadata
+          orderByExpression: JsonbOrderByExp
+        - fieldName: payerType
+          orderByExpression: TextOrderByExp
+        - fieldName: reservationVirtualCreditCardId
+          orderByExpression: Int8OrderByExp
+        - fieldName: status
+          orderByExpression: TextOrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestampOrderByExp
+        - fieldName: value
+          orderByExpression: CitextOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: PaymentTokensOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: PaymentTokens
+  objectType: PaymentTokens
+  source:
+    dataConnectorName: sb_api_postgres
+    collection: payment_tokens
+  filterExpressionType: PaymentTokensBoolExp
+  aggregateExpression: PaymentTokensAggExp
+  orderByExpression: PaymentTokensOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: paymentTokens
+      subscription:
+        rootField: paymentTokens
+    selectUniques:
+      - queryRootField: paymentTokensById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: paymentTokensById
+    filterInputTypeName: PaymentTokensFilterInput
+    aggregate:
+      queryRootField: paymentTokensAggregate
+      subscription:
+        rootField: paymentTokensAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: PaymentTokens
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+
