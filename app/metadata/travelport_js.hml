@@ -62,144 +62,6 @@ definition:
               type:
                 type: named
                 name: String
-        AirportIataCodeHotelSearchRequest:
-          fields:
-            propertyFilter:
-              type:
-                type: named
-                name: AirportIataCodePropertyFilter
-            rateFilter:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RateFilter
-            requestedCurrency:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            responseFields:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            returnCompleteNightlyRateBreakdown:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            roomFilter:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RoomFilter
-            stayDetails:
-              type:
-                type: named
-                name: StayDetails
-        AirportIataCodeLocationDetails:
-          fields:
-            iataCode:
-              type:
-                type: named
-                name: String
-        AirportIataCodeLocationType:
-          fields:
-            details:
-              type:
-                type: named
-                name: AirportIataCodeLocationDetails
-            radius:
-              type:
-                type: named
-                name: Radius
-            type:
-              type:
-                type: named
-                name: String
-        AirportIataCodePropertyFilter:
-          fields:
-            categories:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            chainCodes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            customerLoyaltyCards:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: CustomerLoyaltyCard
-            hotelNameContains:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            imageSize:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            location:
-              type:
-                type: named
-                name: AirportIataCodeLocationType
-            maxWaitTime:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            negotiatedRates:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: NegotiatedRates
-            recommendedPropertyAmenitiesInd:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            removeSpecialRates:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            returnAllImageURLs:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            returnOnlyAvailableProperties:
-              type:
-                type: named
-                name: Boolean
         AirportIataCodeResponse:
           fields:
             hotelsResponse:
@@ -400,6 +262,58 @@ definition:
               type:
                 type: named
                 name: String
+        CustomAirportIataCodeHotelSearchRequest:
+          fields:
+            airport_iata_code:
+              type:
+                type: named
+                name: String
+            check_in_date:
+              type:
+                type: named
+                name: String
+            check_out_date:
+              type:
+                type: named
+                name: String
+            guests:
+              type:
+                type: named
+                name: CustomAirportIataCodeHotelSearchRequest_guests
+            hotel_name_contains:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            num_rooms:
+              type:
+                type: named
+                name: Float
+            return_only_available:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            search_radius:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Radius
+        CustomAirportIataCodeHotelSearchRequest_guests:
+          fields:
+            adults:
+              type:
+                type: named
+                name: Float
+            children:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
         CustomCityIataCodeHotelSearchRequest:
           fields:
             check_in_date:
@@ -413,7 +327,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomHotelCodeHotelSearchRequest_guests
+                name: CustomAirportIataCodeHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -447,7 +361,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomHotelCodeHotelSearchRequest_guests
+                name: CustomAirportIataCodeHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -470,18 +384,6 @@ definition:
                 underlying_type:
                   type: named
                   name: Radius
-        CustomHotelCodeHotelSearchRequest_guests:
-          fields:
-            adults:
-              type:
-                type: named
-                name: Float
-            children:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
         CustomHotelSearchRequest:
           fields:
             check_in_date:
@@ -503,7 +405,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomHotelCodeHotelSearchRequest_guests
+                name: CustomAirportIataCodeHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -7166,7 +7068,7 @@ definition:
             searchParams:
               type:
                 type: named
-                name: AirportIataCodeHotelSearchRequest
+                name: CustomAirportIataCodeHotelSearchRequest
           result_type:
             type: named
             name: AirportIataCodeResponse

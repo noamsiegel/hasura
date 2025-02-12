@@ -2,199 +2,102 @@
 kind: ObjectType
 version: v1
 definition:
-  name: AirportIataCodeLocationDetails
+  name: CustomAirportIataCodeHotelSearchRequestGuests
   fields:
-    - name: iataCode
-      type: String!
+    - name: adults
+      type: Float!
+    - name: children
+      type: String
   graphql:
-    typeName: AirportIataCodeLocationDetails
-    inputTypeName: AirportIataCodeLocationDetailsInput
+    typeName: CustomAirportIataCodeHotelSearchRequestGuests
+    inputTypeName: CustomAirportIataCodeHotelSearchRequestGuestsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodeLocationDetails
+      dataConnectorObjectType: CustomAirportIataCodeHotelSearchRequest_guests
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AirportIataCodeLocationDetails
+  typeName: CustomAirportIataCodeHotelSearchRequestGuests
   permissions:
     - role: admin
       output:
         allowedFields:
-          - iataCode
+          - adults
+          - children
 
 ---
 kind: ObjectType
 version: v1
 definition:
-  name: AirportIataCodeLocationType
+  name: CustomAirportIataCodeHotelSearchRequest
   fields:
-    - name: details
-      type: AirportIataCodeLocationDetails!
-    - name: radius
-      type: Radius!
-    - name: type
+    - name: airportIataCode
       type: String!
-  graphql:
-    typeName: AirportIataCodeLocationType
-    inputTypeName: AirportIataCodeLocationTypeInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodeLocationType
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: AirportIataCodeLocationType
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - details
-          - radius
-          - type
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: AirportIataCodePropertyFilter
-  fields:
-    - name: categories
-      type: "[String!]"
-    - name: chainCodes
-      type: "[String!]"
-    - name: customerLoyaltyCards
-      type: "[CustomerLoyaltyCard!]"
+    - name: checkInDate
+      type: String!
+    - name: checkOutDate
+      type: String!
+    - name: guests
+      type: CustomAirportIataCodeHotelSearchRequestGuests!
     - name: hotelNameContains
       type: String
-    - name: imageSize
-      type: String
-    - name: location
-      type: AirportIataCodeLocationType!
-    - name: maxWaitTime
-      type: Float
-    - name: negotiatedRates
-      type: NegotiatedRates
-    - name: recommendedPropertyAmenitiesInd
+    - name: numRooms
+      type: Float!
+    - name: returnOnlyAvailable
       type: Boolean
-    - name: removeSpecialRates
-      type: Boolean
-    - name: returnAllImageUrLs
-      type: Boolean
-    - name: returnOnlyAvailableProperties
-      type: Boolean!
+    - name: searchRadius
+      type: Radius
   graphql:
-    typeName: AirportIataCodePropertyFilter
-    inputTypeName: AirportIataCodePropertyFilterInput
+    typeName: CustomAirportIataCodeHotelSearchRequest
+    inputTypeName: CustomAirportIataCodeHotelSearchRequestInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodePropertyFilter
+      dataConnectorObjectType: CustomAirportIataCodeHotelSearchRequest
       fieldMapping:
-        categories:
+        airportIataCode:
           column:
-            name: categories
-        chainCodes:
+            name: airport_iata_code
+        checkInDate:
           column:
-            name: chainCodes
-        customerLoyaltyCards:
+            name: check_in_date
+        checkOutDate:
           column:
-            name: customerLoyaltyCards
+            name: check_out_date
+        guests:
+          column:
+            name: guests
         hotelNameContains:
           column:
-            name: hotelNameContains
-        imageSize:
+            name: hotel_name_contains
+        numRooms:
           column:
-            name: imageSize
-        location:
+            name: num_rooms
+        returnOnlyAvailable:
           column:
-            name: location
-        maxWaitTime:
+            name: return_only_available
+        searchRadius:
           column:
-            name: maxWaitTime
-        negotiatedRates:
-          column:
-            name: negotiatedRates
-        recommendedPropertyAmenitiesInd:
-          column:
-            name: recommendedPropertyAmenitiesInd
-        removeSpecialRates:
-          column:
-            name: removeSpecialRates
-        returnAllImageUrLs:
-          column:
-            name: returnAllImageURLs
-        returnOnlyAvailableProperties:
-          column:
-            name: returnOnlyAvailableProperties
+            name: search_radius
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: AirportIataCodePropertyFilter
+  typeName: CustomAirportIataCodeHotelSearchRequest
   permissions:
     - role: admin
       output:
         allowedFields:
-          - categories
-          - chainCodes
-          - customerLoyaltyCards
+          - airportIataCode
+          - checkInDate
+          - checkOutDate
+          - guests
           - hotelNameContains
-          - imageSize
-          - location
-          - maxWaitTime
-          - negotiatedRates
-          - recommendedPropertyAmenitiesInd
-          - removeSpecialRates
-          - returnAllImageUrLs
-          - returnOnlyAvailableProperties
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: AirportIataCodeHotelSearchRequest
-  fields:
-    - name: propertyFilter
-      type: AirportIataCodePropertyFilter!
-    - name: rateFilter
-      type: RateFilter
-    - name: requestedCurrency
-      type: String
-    - name: responseFields
-      type: "[String!]"
-    - name: returnCompleteNightlyRateBreakdown
-      type: Boolean
-    - name: roomFilter
-      type: RoomFilter
-    - name: stayDetails
-      type: StayDetails!
-  graphql:
-    typeName: AirportIataCodeHotelSearchRequest
-    inputTypeName: AirportIataCodeHotelSearchRequestInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: AirportIataCodeHotelSearchRequest
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: AirportIataCodeHotelSearchRequest
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - propertyFilter
-          - rateFilter
-          - requestedCurrency
-          - responseFields
-          - returnCompleteNightlyRateBreakdown
-          - roomFilter
-          - stayDetails
+          - numRooms
+          - returnOnlyAvailable
+          - searchRadius
 
 ---
 kind: ObjectType
@@ -2892,7 +2795,7 @@ definition:
   outputType: AirportIataCodeResponse!
   arguments:
     - name: searchParams
-      type: AirportIataCodeHotelSearchRequest!
+      type: CustomAirportIataCodeHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:
