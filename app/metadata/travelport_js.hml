@@ -80,16 +80,6 @@ definition:
               type:
                 type: named
                 name: String
-        BedConfiguration:
-          fields:
-            minimumQuantity:
-              type:
-                type: named
-                name: Float
-            type:
-              type:
-                type: named
-                name: String
         CityIataCodeResponse:
           fields:
             hotelsResponse:
@@ -108,142 +98,6 @@ definition:
               type:
                 type: named
                 name: String
-        CoordinatesHotelSearchRequest:
-          fields:
-            propertyFilter:
-              type:
-                type: named
-                name: CoordinatesPropertyFilter
-            rateFilter:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RateFilter
-            requestedCurrency:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            responseFields:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            roomFilter:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RoomFilter
-            stayDetails:
-              type:
-                type: named
-                name: StayDetails
-        CoordinatesLocationDetails:
-          fields:
-            latitude:
-              type:
-                type: named
-                name: String
-            longitude:
-              type:
-                type: named
-                name: String
-        CoordinatesLocationType:
-          fields:
-            details:
-              type:
-                type: named
-                name: CoordinatesLocationDetails
-            radius:
-              type:
-                type: named
-                name: Radius
-            type:
-              type:
-                type: named
-                name: String
-        CoordinatesPropertyFilter:
-          fields:
-            categories:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            chainCodes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            customerLoyaltyCards:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: CustomerLoyaltyCard
-            hotelNameContains:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            imageSize:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            location:
-              type:
-                type: named
-                name: CoordinatesLocationType
-            maxWaitTime:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            negotiatedRates:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: NegotiatedRates
-            recommendedPropertyAmenitiesInd:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            removeSpecialRates:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            returnAllImageURLs:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            returnOnlyAvailableProperties:
-              type:
-                type: named
-                name: Boolean
         CoordinatesResponse:
           fields:
             hotelsResponse:
@@ -279,7 +133,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomAirportIataCodeHotelSearchRequest_guests
+                name: CustomCoordinatesHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -302,18 +156,6 @@ definition:
                 underlying_type:
                   type: named
                   name: Radius
-        CustomAirportIataCodeHotelSearchRequest_guests:
-          fields:
-            adults:
-              type:
-                type: named
-                name: Float
-            children:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
         CustomCityIataCodeHotelSearchRequest:
           fields:
             check_in_date:
@@ -327,7 +169,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomAirportIataCodeHotelSearchRequest_guests
+                name: CustomCoordinatesHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -348,6 +190,62 @@ definition:
                 underlying_type:
                   type: named
                   name: Radius
+        CustomCoordinatesHotelSearchRequest:
+          fields:
+            check_in_date:
+              type:
+                type: named
+                name: String
+            check_out_date:
+              type:
+                type: named
+                name: String
+            guests:
+              type:
+                type: named
+                name: CustomCoordinatesHotelSearchRequest_guests
+            hotel_name_contains:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            latitude:
+              type:
+                type: named
+                name: String
+            longitude:
+              type:
+                type: named
+                name: String
+            num_rooms:
+              type:
+                type: named
+                name: Float
+            return_only_available:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            search_radius:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Radius
+        CustomCoordinatesHotelSearchRequest_guests:
+          fields:
+            adults:
+              type:
+                type: named
+                name: Float
+            children:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
         CustomHotelCodeHotelSearchRequest:
           fields:
             check_in_date:
@@ -361,7 +259,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomAirportIataCodeHotelSearchRequest_guests
+                name: CustomCoordinatesHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -405,7 +303,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomAirportIataCodeHotelSearchRequest_guests
+                name: CustomCoordinatesHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -426,40 +324,6 @@ definition:
               type:
                 type: named
                 name: String
-        CustomerLoyaltyCard:
-          fields:
-            supplierCode:
-              type:
-                type: named
-                name: String
-            supplierType:
-              type:
-                type: named
-                name: String
-            value:
-              type:
-                type: named
-                name: String
-        Guest:
-          fields:
-            age:
-              type:
-                type: named
-                name: Float
-        Guests:
-          fields:
-            adults:
-              type:
-                type: named
-                name: Float
-            children:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: Guest
         ImageURLDimensions:
           fields:
             height:
@@ -470,22 +334,6 @@ definition:
               type:
                 type: named
                 name: Float
-        NegotiatedRates:
-          fields:
-            masterRateCode:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            rateCodes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
         PropertyResponse:
           fields:
             hotelsResponse:
@@ -514,124 +362,6 @@ definition:
               type:
                 type: named
                 name: Float
-        RateFilter:
-          fields:
-            publicRateBlacklist:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            rateFlags:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RateFlags
-        RateFlags:
-          fields:
-            breakfast:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            commissionable:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            deposit:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            dinner:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            lunch:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            postpay:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            prepay:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            refundable:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-        RoomFilter:
-          fields:
-            accessible:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            amenityCodes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: Float
-            balcony:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            bedConfiguration:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: BedConfiguration
-            connecting:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            family:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            nonSmoking:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            recommendedRoomAmenitiesInd:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
         RoomImageURLDimensions:
           fields:
             height:
@@ -639,24 +369,6 @@ definition:
                 type: named
                 name: Float
             width:
-              type:
-                type: named
-                name: Float
-        StayDetails:
-          fields:
-            checkInDateLocal:
-              type:
-                type: named
-                name: String
-            checkOutDateLocal:
-              type:
-                type: named
-                name: String
-            guests:
-              type:
-                type: named
-                name: Guests
-            rooms:
               type:
                 type: named
                 name: Float
@@ -7059,7 +6771,7 @@ definition:
             searchParams:
               type:
                 type: named
-                name: CoordinatesHotelSearchRequest
+                name: CustomCoordinatesHotelSearchRequest
           result_type:
             type: named
             name: CoordinatesResponse

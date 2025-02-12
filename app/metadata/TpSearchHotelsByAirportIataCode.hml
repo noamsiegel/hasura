@@ -2,35 +2,6 @@
 kind: ObjectType
 version: v1
 definition:
-  name: CustomAirportIataCodeHotelSearchRequestGuests
-  fields:
-    - name: adults
-      type: Float!
-    - name: children
-      type: String
-  graphql:
-    typeName: CustomAirportIataCodeHotelSearchRequestGuests
-    inputTypeName: CustomAirportIataCodeHotelSearchRequestGuestsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: CustomAirportIataCodeHotelSearchRequest_guests
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: CustomAirportIataCodeHotelSearchRequestGuests
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - adults
-          - children
-
----
-kind: ObjectType
-version: v1
-definition:
   name: CustomAirportIataCodeHotelSearchRequest
   fields:
     - name: airportIataCode
@@ -40,7 +11,7 @@ definition:
     - name: checkOutDate
       type: String!
     - name: guests
-      type: CustomAirportIataCodeHotelSearchRequestGuests!
+      type: CustomCoordinatesHotelSearchRequestGuests!
     - name: hotelNameContains
       type: String
     - name: numRooms

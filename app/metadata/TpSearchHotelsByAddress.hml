@@ -13,7 +13,7 @@ definition:
     - name: countryCode
       type: String!
     - name: guests
-      type: CustomAirportIataCodeHotelSearchRequestGuests!
+      type: CustomCoordinatesHotelSearchRequestGuests!
     - name: hotelNameContains
       type: String
     - name: numRooms

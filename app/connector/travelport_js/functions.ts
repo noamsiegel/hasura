@@ -1,6 +1,5 @@
 // requests
-import { CoordinatesHotelSearchRequest } from './models/coordinates/request_model';
-// import { AirportIataCodeHotelSearchRequest } from './models/airport_iata_code/request_model';
+import { CustomCoordinatesHotelSearchRequest, mapCustomToCoordinatesRequest } from './models/coordinates/custom_request_model';
 import { CustomAirportIataCodeHotelSearchRequest, mapCustomToAirportIataCodeRequest } from './models/airport_iata_code/custom_request_model';
 import { CustomHotelSearchRequest, mapCustomToAddressRequest } from './models/address/custom_request_model';
 import { CustomCityIataCodeHotelSearchRequest, mapCustomToCityIataCodeRequest } from './models/city_iata_code/custom_request_model';
@@ -21,10 +20,12 @@ import { TravelPortClient } from './client';
  */
 /** @readonly */
 export async function tpSearchHotelsByCoordinates(
-    searchParams: CoordinatesHotelSearchRequest
+    searchParams: CustomCoordinatesHotelSearchRequest
 ): Promise<CoordinatesResponse> {
     console.log('searchParams', searchParams);
-    return await TravelPortClient.searchHotels<CoordinatesResponse>(searchParams);
+    const transformedRequest = mapCustomToCoordinatesRequest(searchParams);
+    console.log('transformedRequest', transformedRequest);
+    return await TravelPortClient.searchHotels<CoordinatesResponse>(transformedRequest);
 }
 
 /**

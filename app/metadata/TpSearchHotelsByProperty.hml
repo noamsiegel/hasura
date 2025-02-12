@@ -38,7 +38,7 @@ definition:
     - name: checkOutDate
       type: String!
     - name: guests
-      type: CustomAirportIataCodeHotelSearchRequestGuests!
+      type: CustomCoordinatesHotelSearchRequestGuests!
     - name: hotelNameContains
       type: String
     - name: hotels
