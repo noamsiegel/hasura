@@ -1,8 +1,8 @@
-interface Guest {
+export interface Guest {
     age: number;
 }
 
-interface Guests {
+export interface Guests {
     adults: number;
     children?: Guest[];
 }

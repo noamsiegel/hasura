@@ -2,6 +2,113 @@
 kind: ObjectType
 version: v1
 definition:
+  name: CustomHotelSearchRequestGuests
+  fields:
+    - name: adults
+      type: Float!
+    - name: children
+      type: String
+  graphql:
+    typeName: CustomHotelSearchRequestGuests
+    inputTypeName: CustomHotelSearchRequestGuestsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CustomHotelSearchRequest_guests
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CustomHotelSearchRequestGuests
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - adults
+          - children
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CustomHotelSearchRequest
+  fields:
+    - name: checkInDate
+      type: String!
+    - name: checkOutDate
+      type: String!
+    - name: cityName
+      type: String!
+    - name: countryCode
+      type: String!
+    - name: guests
+      type: CustomHotelSearchRequestGuests!
+    - name: hotelNameContains
+      type: String
+    - name: numRooms
+      type: Float!
+    - name: searchRadius
+      type: Radius
+    - name: stateProvince
+      type: String!
+  graphql:
+    typeName: CustomHotelSearchRequest
+    inputTypeName: CustomHotelSearchRequestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CustomHotelSearchRequest
+      fieldMapping:
+        checkInDate:
+          column:
+            name: check_in_date
+        checkOutDate:
+          column:
+            name: check_out_date
+        cityName:
+          column:
+            name: city_name
+        countryCode:
+          column:
+            name: country_code
+        guests:
+          column:
+            name: guests
+        hotelNameContains:
+          column:
+            name: hotel_name_contains
+        numRooms:
+          column:
+            name: num_rooms
+        searchRadius:
+          column:
+            name: search_radius
+        stateProvince:
+          column:
+            name: state_province
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CustomHotelSearchRequest
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - checkInDate
+          - checkOutDate
+          - cityName
+          - countryCode
+          - guests
+          - hotelNameContains
+          - numRooms
+          - searchRadius
+          - stateProvince
+
+---
+kind: ObjectType
+version: v1
+definition:
   name: ModelsAddressResponseModelPropertySummary
   fields:
     - name: averageAugmentedRateQualityScore
@@ -2656,7 +2763,7 @@ definition:
   outputType: AddressResponse!
   arguments:
     - name: searchParams
-      type: AddressHotelSearchRequest!
+      type: CustomHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:
@@ -2673,205 +2780,4 @@ definition:
   permissions:
     - role: admin
       allowExecution: true
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: AddressLocationDetails
-  fields:
-    - name: cityName
-      type: String!
-    - name: countryCode
-      type: String!
-    - name: stateProvince
-      type: String!
-  graphql:
-    typeName: AddressLocationDetails
-    inputTypeName: AddressLocationDetailsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressLocationDetails
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: AddressLocationDetails
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - cityName
-          - countryCode
-          - stateProvince
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: AddressLocationType
-  fields:
-    - name: details
-      type: AddressLocationDetails!
-    - name: radius
-      type: Radius!
-    - name: type
-      type: String!
-  graphql:
-    typeName: AddressLocationType
-    inputTypeName: AddressLocationTypeInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressLocationType
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: AddressLocationType
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - details
-          - radius
-          - type
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: AddressPropertyFilter
-  fields:
-    - name: categories
-      type: "[String!]"
-    - name: chainCodes
-      type: "[String!]"
-    - name: customerLoyaltyCards
-      type: "[CustomerLoyaltyCard!]"
-    - name: hotelNameContains
-      type: String
-    - name: imageSize
-      type: String
-    - name: location
-      type: AddressLocationType!
-    - name: maxWaitTime
-      type: Float
-    - name: negotiatedRates
-      type: NegotiatedRates
-    - name: recommendedPropertyAmenitiesInd
-      type: Boolean
-    - name: removeSpecialRates
-      type: Boolean
-    - name: returnAllImageUrLs
-      type: Boolean
-    - name: returnOnlyAvailableProperties
-      type: Boolean!
-  graphql:
-    typeName: AddressPropertyFilter
-    inputTypeName: AddressPropertyFilterInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressPropertyFilter
-      fieldMapping:
-        categories:
-          column:
-            name: categories
-        chainCodes:
-          column:
-            name: chainCodes
-        customerLoyaltyCards:
-          column:
-            name: customerLoyaltyCards
-        hotelNameContains:
-          column:
-            name: hotelNameContains
-        imageSize:
-          column:
-            name: imageSize
-        location:
-          column:
-            name: location
-        maxWaitTime:
-          column:
-            name: maxWaitTime
-        negotiatedRates:
-          column:
-            name: negotiatedRates
-        recommendedPropertyAmenitiesInd:
-          column:
-            name: recommendedPropertyAmenitiesInd
-        removeSpecialRates:
-          column:
-            name: removeSpecialRates
-        returnAllImageUrLs:
-          column:
-            name: returnAllImageURLs
-        returnOnlyAvailableProperties:
-          column:
-            name: returnOnlyAvailableProperties
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: AddressPropertyFilter
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - categories
-          - chainCodes
-          - customerLoyaltyCards
-          - hotelNameContains
-          - imageSize
-          - location
-          - maxWaitTime
-          - negotiatedRates
-          - recommendedPropertyAmenitiesInd
-          - removeSpecialRates
-          - returnAllImageUrLs
-          - returnOnlyAvailableProperties
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: AddressHotelSearchRequest
-  fields:
-    - name: propertyFilter
-      type: AddressPropertyFilter!
-    - name: rateFilter
-      type: RateFilter
-    - name: requestedCurrency
-      type: String
-    - name: responseFields
-      type: "[String!]"
-    - name: roomFilter
-      type: RoomFilter
-    - name: stayDetails
-      type: StayDetails!
-  graphql:
-    typeName: AddressHotelSearchRequest
-    inputTypeName: AddressHotelSearchRequestInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: AddressHotelSearchRequest
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: AddressHotelSearchRequest
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - propertyFilter
-          - rateFilter
-          - requestedCurrency
-          - responseFields
-          - roomFilter
-          - stayDetails
 
