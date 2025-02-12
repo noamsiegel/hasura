@@ -1,10 +1,10 @@
 // requests
 import { CoordinatesHotelSearchRequest } from './models/coordinates/request_model';
 import { AirportIataCodeHotelSearchRequest } from './models/airport_iata_code/request_model';
-import { PropertyHotelSearchRequest } from './models/property/request_model';
+// import { PropertyHotelSearchRequest } from './models/property/request_model';
 import { CustomHotelSearchRequest, mapCustomToAddressRequest } from './models/address/custom_request_model';
 import { CustomCityIataCodeHotelSearchRequest, mapCustomToCityIataCodeRequest } from './models/city_iata_code/custom_request_model';
-
+import { CustomHotelCodeHotelSearchRequest, mapCustomToHotelCodeRequest } from './models/property/custom_request_model';
 // responses
 import { AddressResponse } from './models/address/response_model';
 import { AirportIataCodeResponse } from './models/airport_iata_code/response_model';
@@ -41,9 +41,12 @@ export async function tpSearchHotelsByAirportIataCode(
  */
 /** @readonly */
 export async function tpSearchHotelsByProperty(
-    searchParams: PropertyHotelSearchRequest
+    searchParams: CustomHotelCodeHotelSearchRequest
 ): Promise<PropertyResponse> {
-    return await TravelPortClient.searchHotels<PropertyResponse>(searchParams);
+    console.log('searchParams', searchParams);
+    const transformedRequest = mapCustomToHotelCodeRequest(searchParams);
+    console.log('transformedRequest', transformedRequest);
+    return await TravelPortClient.searchHotels<PropertyResponse>(transformedRequest);
 }
 
 /**

@@ -2,35 +2,6 @@
 kind: ObjectType
 version: v1
 definition:
-  name: CustomHotelSearchRequestGuests
-  fields:
-    - name: adults
-      type: Float!
-    - name: children
-      type: String
-  graphql:
-    typeName: CustomHotelSearchRequestGuests
-    inputTypeName: CustomHotelSearchRequestGuestsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: CustomHotelSearchRequest_guests
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: CustomHotelSearchRequestGuests
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - adults
-          - children
-
----
-kind: ObjectType
-version: v1
-definition:
   name: CustomHotelSearchRequest
   fields:
     - name: checkInDate
@@ -42,7 +13,7 @@ definition:
     - name: countryCode
       type: String!
     - name: guests
-      type: CustomHotelSearchRequestGuests!
+      type: CustomHotelCodeHotelSearchRequestGuests!
     - name: hotelNameContains
       type: String
     - name: numRooms

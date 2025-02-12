@@ -9,7 +9,7 @@ definition:
     - name: checkOutDate
       type: String!
     - name: guests
-      type: CustomHotelSearchRequestGuests!
+      type: CustomHotelCodeHotelSearchRequestGuests!
     - name: hotelNameContains
       type: String
     - name: iataCode

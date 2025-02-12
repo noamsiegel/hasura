@@ -413,7 +413,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomHotelSearchRequest_guests
+                name: CustomHotelCodeHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -434,6 +434,54 @@ definition:
                 underlying_type:
                   type: named
                   name: Radius
+        CustomHotelCodeHotelSearchRequest:
+          fields:
+            check_in_date:
+              type:
+                type: named
+                name: String
+            check_out_date:
+              type:
+                type: named
+                name: String
+            guests:
+              type:
+                type: named
+                name: CustomHotelCodeHotelSearchRequest_guests
+            hotel_name_contains:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            hotels:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: array
+            num_rooms:
+              type:
+                type: named
+                name: Float
+            search_radius:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Radius
+        CustomHotelCodeHotelSearchRequest_guests:
+          fields:
+            adults:
+              type:
+                type: named
+                name: Float
+            children:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
         CustomHotelSearchRequest:
           fields:
             check_in_date:
@@ -455,7 +503,7 @@ definition:
             guests:
               type:
                 type: named
-                name: CustomHotelSearchRequest_guests
+                name: CustomHotelCodeHotelSearchRequest_guests
             hotel_name_contains:
               type:
                 type: nullable
@@ -476,18 +524,6 @@ definition:
               type:
                 type: named
                 name: String
-        CustomHotelSearchRequest_guests:
-          fields:
-            adults:
-              type:
-                type: named
-                name: Float
-            children:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
         CustomerLoyaltyCard:
           fields:
             supplierCode:
@@ -548,122 +584,6 @@ definition:
                   element_type:
                     type: named
                     name: String
-        PropertyFilter:
-          fields:
-            categories:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            customerLoyaltyCards:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: CustomerLoyaltyCard
-            hotelNameContains:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            imageSize:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            maxWaitTime:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            negotiatedRates:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: NegotiatedRates
-            propertyKeys:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: PropertyKey
-            recommendedPropertyAmenitiesInd:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            removeSpecialRates:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            returnAllImageURLs:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            returnOnlyAvailableProperties:
-              type:
-                type: named
-                name: Boolean
-        PropertyHotelSearchRequest:
-          fields:
-            propertyFilter:
-              type:
-                type: named
-                name: PropertyFilter
-            rateFilter:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RateFilter
-            requestedCurrency:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            responseFields:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            roomFilter:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RoomFilter
-            stayDetails:
-              type:
-                type: named
-                name: StayDetails
-        PropertyKey:
-          fields:
-            chainCode:
-              type:
-                type: named
-                name: String
-            propertyCode:
-              type:
-                type: named
-                name: String
         PropertyResponse:
           fields:
             hotelsResponse:
@@ -838,6 +758,16 @@ definition:
               type:
                 type: named
                 name: Float
+        array:
+          fields:
+            chainCode:
+              type:
+                type: named
+                name: String
+            propertyCode:
+              type:
+                type: named
+                name: String
         models_address_response_model_Address:
           fields:
             city:
@@ -7245,7 +7175,7 @@ definition:
             searchParams:
               type:
                 type: named
-                name: PropertyHotelSearchRequest
+                name: CustomHotelCodeHotelSearchRequest
           result_type:
             type: named
             name: PropertyResponse
