@@ -2,24 +2,24 @@
 kind: ObjectType
 version: v1
 definition:
-  name: PropertyKey
+  name: PropertyDetails
   fields:
     - name: chainCode
       type: String!
     - name: propertyCode
       type: String!
   graphql:
-    typeName: PropertyKey
-    inputTypeName: PropertyKeyInput
+    typeName: PropertyDetails
+    inputTypeName: PropertyDetailsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: PropertyKey
+      dataConnectorObjectType: PropertyDetails
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: PropertyKey
+  typeName: PropertyDetails
   permissions:
     - role: admin
       output:
@@ -31,132 +31,67 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: PropertyFilter
+  name: CustomHotelCodeHotelSearchRequest
   fields:
-    - name: categories
-      type: "[String!]"
-    - name: customerLoyaltyCards
-      type: "[CustomerLoyaltyCard!]"
+    - name: checkInDate
+      type: String!
+    - name: checkOutDate
+      type: String!
+    - name: guests
+      type: CustomCoordinatesHotelSearchRequestGuests!
     - name: hotelNameContains
       type: String
-    - name: imageSize
-      type: String
-    - name: maxWaitTime
-      type: Float
-    - name: negotiatedRates
-      type: NegotiatedRates
-    - name: propertyKeys
-      type: "[PropertyKey!]!"
-    - name: recommendedPropertyAmenitiesInd
-      type: Boolean
-    - name: removeSpecialRates
-      type: Boolean
-    - name: returnAllImageUrLs
-      type: Boolean
-    - name: returnOnlyAvailableProperties
-      type: Boolean!
+    - name: hotels
+      type: "[PropertyDetails!]!"
+    - name: numRooms
+      type: Float!
+    - name: searchRadius
+      type: Radius
   graphql:
-    typeName: PropertyFilter
-    inputTypeName: PropertyFilterInput
+    typeName: CustomHotelCodeHotelSearchRequest
+    inputTypeName: CustomHotelCodeHotelSearchRequestInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: PropertyFilter
+      dataConnectorObjectType: CustomHotelCodeHotelSearchRequest
       fieldMapping:
-        categories:
+        checkInDate:
           column:
-            name: categories
-        customerLoyaltyCards:
+            name: check_in_date
+        checkOutDate:
           column:
-            name: customerLoyaltyCards
+            name: check_out_date
+        guests:
+          column:
+            name: guests
         hotelNameContains:
           column:
-            name: hotelNameContains
-        imageSize:
+            name: hotel_name_contains
+        hotels:
           column:
-            name: imageSize
-        maxWaitTime:
+            name: hotels
+        numRooms:
           column:
-            name: maxWaitTime
-        negotiatedRates:
+            name: num_rooms
+        searchRadius:
           column:
-            name: negotiatedRates
-        propertyKeys:
-          column:
-            name: propertyKeys
-        recommendedPropertyAmenitiesInd:
-          column:
-            name: recommendedPropertyAmenitiesInd
-        removeSpecialRates:
-          column:
-            name: removeSpecialRates
-        returnAllImageUrLs:
-          column:
-            name: returnAllImageURLs
-        returnOnlyAvailableProperties:
-          column:
-            name: returnOnlyAvailableProperties
+            name: search_radius
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: PropertyFilter
+  typeName: CustomHotelCodeHotelSearchRequest
   permissions:
     - role: admin
       output:
         allowedFields:
-          - categories
-          - customerLoyaltyCards
+          - checkInDate
+          - checkOutDate
+          - guests
           - hotelNameContains
-          - imageSize
-          - maxWaitTime
-          - negotiatedRates
-          - propertyKeys
-          - recommendedPropertyAmenitiesInd
-          - removeSpecialRates
-          - returnAllImageUrLs
-          - returnOnlyAvailableProperties
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: PropertyHotelSearchRequest
-  fields:
-    - name: propertyFilter
-      type: PropertyFilter!
-    - name: rateFilter
-      type: RateFilter
-    - name: requestedCurrency
-      type: String
-    - name: responseFields
-      type: "[String!]"
-    - name: roomFilter
-      type: RoomFilter
-    - name: stayDetails
-      type: StayDetails!
-  graphql:
-    typeName: PropertyHotelSearchRequest
-    inputTypeName: PropertyHotelSearchRequestInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: PropertyHotelSearchRequest
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: PropertyHotelSearchRequest
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - propertyFilter
-          - rateFilter
-          - requestedCurrency
-          - responseFields
-          - roomFilter
-          - stayDetails
+          - hotels
+          - numRooms
+          - searchRadius
 
 ---
 kind: ObjectType
@@ -2582,7 +2517,7 @@ definition:
   outputType: PropertyResponse!
   arguments:
     - name: searchParams
-      type: PropertyHotelSearchRequest!
+      type: CustomHotelCodeHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:

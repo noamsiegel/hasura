@@ -2,62 +2,30 @@
 kind: ObjectType
 version: v1
 definition:
-  name: CustomerLoyaltyCard
+  name: CustomCoordinatesHotelSearchRequestGuests
   fields:
-    - name: supplierCode
-      type: String!
-    - name: supplierType
-      type: String!
-    - name: value
-      type: String!
+    - name: adults
+      type: Float!
+    - name: children
+      type: String
   graphql:
-    typeName: CustomerLoyaltyCard
-    inputTypeName: CustomerLoyaltyCardInput
+    typeName: CustomCoordinatesHotelSearchRequestGuests
+    inputTypeName: CustomCoordinatesHotelSearchRequestGuestsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: CustomerLoyaltyCard
+      dataConnectorObjectType: CustomCoordinatesHotelSearchRequest_guests
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: CustomerLoyaltyCard
+  typeName: CustomCoordinatesHotelSearchRequestGuests
   permissions:
     - role: admin
       output:
         allowedFields:
-          - supplierCode
-          - supplierType
-          - value
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: CoordinatesLocationDetails
-  fields:
-    - name: latitude
-      type: String!
-    - name: longitude
-      type: String!
-  graphql:
-    typeName: CoordinatesLocationDetails
-    inputTypeName: CoordinatesLocationDetailsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: CoordinatesLocationDetails
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: CoordinatesLocationDetails
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - latitude
-          - longitude
+          - adults
+          - children
 
 ---
 kind: ObjectType
@@ -92,441 +60,79 @@ definition:
 kind: ObjectType
 version: v1
 definition:
-  name: CoordinatesLocationType
+  name: CustomCoordinatesHotelSearchRequest
   fields:
-    - name: details
-      type: CoordinatesLocationDetails!
-    - name: radius
-      type: Radius!
-    - name: type
+    - name: checkInDate
       type: String!
-  graphql:
-    typeName: CoordinatesLocationType
-    inputTypeName: CoordinatesLocationTypeInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: CoordinatesLocationType
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: CoordinatesLocationType
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - details
-          - radius
-          - type
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: NegotiatedRates
-  fields:
-    - name: masterRateCode
-      type: String
-    - name: rateCodes
-      type: "[String!]"
-  graphql:
-    typeName: NegotiatedRates
-    inputTypeName: NegotiatedRatesInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: NegotiatedRates
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: NegotiatedRates
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - masterRateCode
-          - rateCodes
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: CoordinatesPropertyFilter
-  fields:
-    - name: categories
-      type: "[String!]"
-    - name: chainCodes
-      type: "[String!]"
-    - name: customerLoyaltyCards
-      type: "[CustomerLoyaltyCard!]"
-    - name: hotelNameContains
-      type: String
-    - name: imageSize
-      type: String
-    - name: location
-      type: CoordinatesLocationType!
-    - name: maxWaitTime
-      type: Float
-    - name: negotiatedRates
-      type: NegotiatedRates
-    - name: recommendedPropertyAmenitiesInd
-      type: Boolean
-    - name: removeSpecialRates
-      type: Boolean
-    - name: returnAllImageUrLs
-      type: Boolean
-    - name: returnOnlyAvailableProperties
-      type: Boolean!
-  graphql:
-    typeName: CoordinatesPropertyFilter
-    inputTypeName: CoordinatesPropertyFilterInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: CoordinatesPropertyFilter
-      fieldMapping:
-        categories:
-          column:
-            name: categories
-        chainCodes:
-          column:
-            name: chainCodes
-        customerLoyaltyCards:
-          column:
-            name: customerLoyaltyCards
-        hotelNameContains:
-          column:
-            name: hotelNameContains
-        imageSize:
-          column:
-            name: imageSize
-        location:
-          column:
-            name: location
-        maxWaitTime:
-          column:
-            name: maxWaitTime
-        negotiatedRates:
-          column:
-            name: negotiatedRates
-        recommendedPropertyAmenitiesInd:
-          column:
-            name: recommendedPropertyAmenitiesInd
-        removeSpecialRates:
-          column:
-            name: removeSpecialRates
-        returnAllImageUrLs:
-          column:
-            name: returnAllImageURLs
-        returnOnlyAvailableProperties:
-          column:
-            name: returnOnlyAvailableProperties
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: CoordinatesPropertyFilter
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - categories
-          - chainCodes
-          - customerLoyaltyCards
-          - hotelNameContains
-          - imageSize
-          - location
-          - maxWaitTime
-          - negotiatedRates
-          - recommendedPropertyAmenitiesInd
-          - removeSpecialRates
-          - returnAllImageUrLs
-          - returnOnlyAvailableProperties
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: RateFlags
-  fields:
-    - name: breakfast
-      type: Boolean
-    - name: commissionable
-      type: Boolean
-    - name: deposit
-      type: Boolean
-    - name: dinner
-      type: Boolean
-    - name: lunch
-      type: Boolean
-    - name: postpay
-      type: Boolean
-    - name: prepay
-      type: Boolean
-    - name: refundable
-      type: Boolean
-  graphql:
-    typeName: RateFlags
-    inputTypeName: RateFlagsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: RateFlags
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: RateFlags
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - breakfast
-          - commissionable
-          - deposit
-          - dinner
-          - lunch
-          - postpay
-          - prepay
-          - refundable
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: RateFilter
-  fields:
-    - name: publicRateBlacklist
-      type: "[String!]"
-    - name: rateFlags
-      type: RateFlags
-  graphql:
-    typeName: RateFilter
-    inputTypeName: RateFilterInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: RateFilter
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: RateFilter
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - publicRateBlacklist
-          - rateFlags
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: BedConfiguration
-  fields:
-    - name: minimumQuantity
-      type: Float!
-    - name: type
-      type: String!
-  graphql:
-    typeName: BedConfiguration
-    inputTypeName: BedConfigurationInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: BedConfiguration
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: BedConfiguration
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - minimumQuantity
-          - type
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: RoomFilter
-  fields:
-    - name: accessible
-      type: Boolean
-    - name: amenityCodes
-      type: "[Float!]"
-    - name: balcony
-      type: Boolean
-    - name: bedConfiguration
-      type: BedConfiguration
-    - name: connecting
-      type: Boolean
-    - name: family
-      type: Boolean
-    - name: nonSmoking
-      type: Boolean
-    - name: recommendedRoomAmenitiesInd
-      type: Boolean
-  graphql:
-    typeName: RoomFilter
-    inputTypeName: RoomFilterInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: RoomFilter
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: RoomFilter
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - accessible
-          - amenityCodes
-          - balcony
-          - bedConfiguration
-          - connecting
-          - family
-          - nonSmoking
-          - recommendedRoomAmenitiesInd
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: Guest
-  fields:
-    - name: age
-      type: Float!
-  graphql:
-    typeName: Guest
-    inputTypeName: GuestInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: Guest
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: Guest
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - age
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: Guests
-  fields:
-    - name: adults
-      type: Float!
-    - name: children
-      type: "[Guest!]"
-  graphql:
-    typeName: Guests
-    inputTypeName: GuestsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: Guests
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: Guests
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - adults
-          - children
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: StayDetails
-  fields:
-    - name: checkInDateLocal
-      type: String!
-    - name: checkOutDateLocal
+    - name: checkOutDate
       type: String!
     - name: guests
-      type: Guests!
-    - name: rooms
-      type: Float!
-  graphql:
-    typeName: StayDetails
-    inputTypeName: StayDetailsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: StayDetails
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: StayDetails
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - checkInDateLocal
-          - checkOutDateLocal
-          - guests
-          - rooms
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: CoordinatesHotelSearchRequest
-  fields:
-    - name: propertyFilter
-      type: CoordinatesPropertyFilter!
-    - name: rateFilter
-      type: RateFilter
-    - name: requestedCurrency
+      type: CustomCoordinatesHotelSearchRequestGuests!
+    - name: hotelNameContains
       type: String
-    - name: responseFields
-      type: "[String!]"
-    - name: roomFilter
-      type: RoomFilter
-    - name: stayDetails
-      type: StayDetails!
+    - name: latitude
+      type: String!
+    - name: longitude
+      type: String!
+    - name: numRooms
+      type: Float!
+    - name: returnOnlyAvailable
+      type: Boolean
+    - name: searchRadius
+      type: Radius
   graphql:
-    typeName: CoordinatesHotelSearchRequest
-    inputTypeName: CoordinatesHotelSearchRequestInput
+    typeName: CustomCoordinatesHotelSearchRequest
+    inputTypeName: CustomCoordinatesHotelSearchRequestInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: CoordinatesHotelSearchRequest
+      dataConnectorObjectType: CustomCoordinatesHotelSearchRequest
+      fieldMapping:
+        checkInDate:
+          column:
+            name: check_in_date
+        checkOutDate:
+          column:
+            name: check_out_date
+        guests:
+          column:
+            name: guests
+        hotelNameContains:
+          column:
+            name: hotel_name_contains
+        latitude:
+          column:
+            name: latitude
+        longitude:
+          column:
+            name: longitude
+        numRooms:
+          column:
+            name: num_rooms
+        returnOnlyAvailable:
+          column:
+            name: return_only_available
+        searchRadius:
+          column:
+            name: search_radius
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: CoordinatesHotelSearchRequest
+  typeName: CustomCoordinatesHotelSearchRequest
   permissions:
     - role: admin
       output:
         allowedFields:
-          - propertyFilter
-          - rateFilter
-          - requestedCurrency
-          - responseFields
-          - roomFilter
-          - stayDetails
+          - checkInDate
+          - checkOutDate
+          - guests
+          - hotelNameContains
+          - latitude
+          - longitude
+          - numRooms
+          - returnOnlyAvailable
+          - searchRadius
 
 ---
 kind: ObjectType
@@ -3285,7 +2891,7 @@ definition:
   outputType: CoordinatesResponse!
   arguments:
     - name: searchParams
-      type: CoordinatesHotelSearchRequest!
+      type: CustomCoordinatesHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:

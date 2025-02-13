@@ -2,196 +2,67 @@
 kind: ObjectType
 version: v1
 definition:
-  name: CityIataCodeLocationDetails
+  name: CustomCityIataCodeHotelSearchRequest
   fields:
-    - name: iataCode
+    - name: checkInDate
       type: String!
-  graphql:
-    typeName: CityIataCodeLocationDetails
-    inputTypeName: CityIataCodeLocationDetailsInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: CityIataCodeLocationDetails
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: CityIataCodeLocationDetails
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - iataCode
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: CityIataCodeLocationType
-  fields:
-    - name: details
-      type: CityIataCodeLocationDetails!
-    - name: radius
-      type: Radius!
-    - name: type
+    - name: checkOutDate
       type: String!
-  graphql:
-    typeName: CityIataCodeLocationType
-    inputTypeName: CityIataCodeLocationTypeInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: CityIataCodeLocationType
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: CityIataCodeLocationType
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - details
-          - radius
-          - type
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: CityIataCodePropertyFilter
-  fields:
-    - name: categories
-      type: "[String!]"
-    - name: chainCodes
-      type: "[String!]"
-    - name: customerLoyaltyCards
-      type: "[CustomerLoyaltyCard!]"
+    - name: guests
+      type: CustomCoordinatesHotelSearchRequestGuests!
     - name: hotelNameContains
       type: String
-    - name: imageSize
-      type: String
-    - name: location
-      type: CityIataCodeLocationType!
-    - name: maxWaitTime
-      type: Float
-    - name: negotiatedRates
-      type: NegotiatedRates
-    - name: recommendedPropertyAmenitiesInd
-      type: Boolean
-    - name: removeSpecialRates
-      type: Boolean
-    - name: returnAllImageUrLs
-      type: Boolean
-    - name: returnOnlyAvailableProperties
-      type: Boolean!
+    - name: iataCode
+      type: String!
+    - name: numRooms
+      type: Float!
+    - name: searchRadius
+      type: Radius
   graphql:
-    typeName: CityIataCodePropertyFilter
-    inputTypeName: CityIataCodePropertyFilterInput
+    typeName: CustomCityIataCodeHotelSearchRequest
+    inputTypeName: CustomCityIataCodeHotelSearchRequestInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: CityIataCodePropertyFilter
+      dataConnectorObjectType: CustomCityIataCodeHotelSearchRequest
       fieldMapping:
-        categories:
+        checkInDate:
           column:
-            name: categories
-        chainCodes:
+            name: check_in_date
+        checkOutDate:
           column:
-            name: chainCodes
-        customerLoyaltyCards:
+            name: check_out_date
+        guests:
           column:
-            name: customerLoyaltyCards
+            name: guests
         hotelNameContains:
           column:
-            name: hotelNameContains
-        imageSize:
+            name: hotel_name_contains
+        iataCode:
           column:
-            name: imageSize
-        location:
+            name: iata_code
+        numRooms:
           column:
-            name: location
-        maxWaitTime:
+            name: num_rooms
+        searchRadius:
           column:
-            name: maxWaitTime
-        negotiatedRates:
-          column:
-            name: negotiatedRates
-        recommendedPropertyAmenitiesInd:
-          column:
-            name: recommendedPropertyAmenitiesInd
-        removeSpecialRates:
-          column:
-            name: removeSpecialRates
-        returnAllImageUrLs:
-          column:
-            name: returnAllImageURLs
-        returnOnlyAvailableProperties:
-          column:
-            name: returnOnlyAvailableProperties
+            name: search_radius
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: CityIataCodePropertyFilter
+  typeName: CustomCityIataCodeHotelSearchRequest
   permissions:
     - role: admin
       output:
         allowedFields:
-          - categories
-          - chainCodes
-          - customerLoyaltyCards
+          - checkInDate
+          - checkOutDate
+          - guests
           - hotelNameContains
-          - imageSize
-          - location
-          - maxWaitTime
-          - negotiatedRates
-          - recommendedPropertyAmenitiesInd
-          - removeSpecialRates
-          - returnAllImageUrLs
-          - returnOnlyAvailableProperties
-
----
-kind: ObjectType
-version: v1
-definition:
-  name: CityIataCodeHotelSearchRequest
-  fields:
-    - name: propertyFilter
-      type: CityIataCodePropertyFilter!
-    - name: rateFilter
-      type: RateFilter
-    - name: requestedCurrency
-      type: String
-    - name: responseFields
-      type: "[String!]"
-    - name: roomFilter
-      type: RoomFilter
-    - name: stayDetails
-      type: StayDetails!
-  graphql:
-    typeName: CityIataCodeHotelSearchRequest
-    inputTypeName: CityIataCodeHotelSearchRequestInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: CityIataCodeHotelSearchRequest
-
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: CityIataCodeHotelSearchRequest
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - propertyFilter
-          - rateFilter
-          - requestedCurrency
-          - responseFields
-          - roomFilter
-          - stayDetails
+          - iataCode
+          - numRooms
+          - searchRadius
 
 ---
 kind: ObjectType
@@ -2901,7 +2772,7 @@ definition:
   outputType: CityIataCodeResponse!
   arguments:
     - name: searchParams
-      type: CityIataCodeHotelSearchRequest!
+      type: CustomCityIataCodeHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:

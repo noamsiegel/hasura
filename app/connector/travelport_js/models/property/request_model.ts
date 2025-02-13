@@ -1,16 +1,16 @@
 import {
     BasePropertyFilter,
-    BaseHotelSearchRequest
+    BaseHotelSearchRequest,
 } from '../base_request';
 
-interface PropertyKey {
+export interface PropertyDetails {
     chainCode: string;
     propertyCode: string;
 }
 
 // Note: Property search is slightly different as it uses propertyKeys instead of location
-interface PropertyFilter extends Omit<BasePropertyFilter, 'chainCodes'> {
-    propertyKeys: PropertyKey[];
+export interface PropertyFilter extends BasePropertyFilter {
+    propertyKeys: PropertyDetails[];
 }
 
 export interface PropertyHotelSearchRequest extends BaseHotelSearchRequest {

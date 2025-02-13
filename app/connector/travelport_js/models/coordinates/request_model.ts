@@ -15,7 +15,7 @@ interface CoordinatesLocationType {
     radius: Radius;
 }
 
-interface CoordinatesPropertyFilter extends BasePropertyFilter {
+export interface CoordinatesPropertyFilter extends BasePropertyFilter {
     location: CoordinatesLocationType;
 }
 

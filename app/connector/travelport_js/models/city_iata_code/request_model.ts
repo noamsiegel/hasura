@@ -1,23 +1,19 @@
 import {
-    BasePropertyFilter,
-    BaseHotelSearchRequest,
-    Radius
-} from '../base_request';
+    LocationDetailsBase,
+    LocationTypeBase,
+    PropertyFilterWithLocation,
+    HotelSearchRequestWithLocation
+} from '../base_location_request_model';
 
-interface CityIataCodeLocationDetails {
+
+export interface CityIataCodeLocationDetails extends LocationDetailsBase {
     iataCode: string;
 }
 
-interface CityIataCodeLocationType {
+export interface CityIataCodeLocationType extends LocationTypeBase<CityIataCodeLocationDetails> {
     type: "cityIATACode";
-    details: CityIataCodeLocationDetails;
-    radius: Radius;
 }
 
-interface CityIataCodePropertyFilter extends BasePropertyFilter {
-    location: CityIataCodeLocationType;
-}
+export interface CityIataCodePropertyFilter extends PropertyFilterWithLocation<CityIataCodeLocationType> {}
 
-export interface CityIataCodeHotelSearchRequest extends BaseHotelSearchRequest {
-    propertyFilter: CityIataCodePropertyFilter;
-}
+export interface CityIataCodeHotelSearchRequest extends HotelSearchRequestWithLocation<CityIataCodePropertyFilter> {}
