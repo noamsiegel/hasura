@@ -1,6 +1,7 @@
 import {
-    HotelCodeHotelSearchRequest,
-    HotelCodePropertyFilter
+    PropertyHotelSearchRequest,
+    PropertyFilter,
+    PropertyDetails
 } from './request_model';
 
 import {
@@ -18,15 +19,12 @@ export interface CustomHotelCodeHotelSearchRequest {
     num_rooms: number;
     check_in_date: string;
     check_out_date: string;
-    hotels: {
-        chainCode: string;
-        propertyCode: string;
-    }[];
+    hotels: PropertyDetails[];
     search_radius?: Radius;
     hotel_name_contains?: string;
 }
 
-export function mapCustomToHotelCodeRequest(customRequest: CustomHotelCodeHotelSearchRequest): HotelCodeHotelSearchRequest {
+export function mapCustomToHotelCodeRequest(customRequest: CustomHotelCodeHotelSearchRequest): PropertyHotelSearchRequest{
     const guests = {
         adults: customRequest.guests.adults,
         ...(customRequest.guests.children && {
@@ -36,25 +34,18 @@ export function mapCustomToHotelCodeRequest(customRequest: CustomHotelCodeHotelS
         })
     };
 
-    // Transform hotels array into propertyKeys format
-    const propertyKeys = customRequest.hotels.map(hotel => ({
-        chainCode: hotel.chainCode,
-        propertyCode: hotel.propertyCode
-    }));
-
-    const hotelCodePropertyFilter: HotelCodePropertyFilter = {
-        propertyKeys,
-        returnOnlyAvailableProperties: true,
+    const hotelCodePropertyFilter: PropertyFilter = {
+        propertyKeys: customRequest.hotels,
         hotelNameContains: customRequest.hotel_name_contains,
     };
 
     return {
-        propertyFilter: hotelCodePropertyFilter,
         stayDetails: {
             checkInDateLocal: customRequest.check_in_date,
             checkOutDateLocal: customRequest.check_out_date,
             rooms: customRequest.num_rooms,
             guests
-        }
+        },
+        propertyFilter: hotelCodePropertyFilter
     };
 }

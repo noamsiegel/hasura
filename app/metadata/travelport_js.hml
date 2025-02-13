@@ -271,7 +271,7 @@ definition:
                 type: array
                 element_type:
                   type: named
-                  name: array
+                  name: PropertyDetails
             num_rooms:
               type:
                 type: named
@@ -334,6 +334,16 @@ definition:
               type:
                 type: named
                 name: Float
+        PropertyDetails:
+          fields:
+            chainCode:
+              type:
+                type: named
+                name: String
+            propertyCode:
+              type:
+                type: named
+                name: String
         PropertyResponse:
           fields:
             hotelsResponse:
@@ -372,16 +382,6 @@ definition:
               type:
                 type: named
                 name: Float
-        array:
-          fields:
-            chainCode:
-              type:
-                type: named
-                name: String
-            propertyCode:
-              type:
-                type: named
-                name: String
         models_address_response_model_Address:
           fields:
             city:

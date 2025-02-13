@@ -68,7 +68,7 @@ export interface BasePropertyFilter {
     customerLoyaltyCards?: CustomerLoyaltyCard[];
     hotelNameContains?: string;
     negotiatedRates?: NegotiatedRates;
-    returnOnlyAvailableProperties: boolean;
+    returnOnlyAvailableProperties?: boolean;
     imageSize?: string;
     returnAllImageURLs?: boolean;
     recommendedPropertyAmenitiesInd?: boolean;
@@ -77,9 +77,9 @@ export interface BasePropertyFilter {
 }
 
 export interface BaseHotelSearchRequest {
+    stayDetails: StayDetails;
     responseFields?: string[];
     requestedCurrency?: string;
-    stayDetails: StayDetails;
     roomFilter?: RoomFilter;
     rateFilter?: RateFilter;
 }

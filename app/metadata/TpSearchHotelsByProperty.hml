@@ -2,24 +2,24 @@
 kind: ObjectType
 version: v1
 definition:
-  name: Array
+  name: PropertyDetails
   fields:
     - name: chainCode
       type: String!
     - name: propertyCode
       type: String!
   graphql:
-    typeName: Array
-    inputTypeName: ArrayInput
+    typeName: PropertyDetails
+    inputTypeName: PropertyDetailsInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: array
+      dataConnectorObjectType: PropertyDetails
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: Array
+  typeName: PropertyDetails
   permissions:
     - role: admin
       output:
@@ -42,7 +42,7 @@ definition:
     - name: hotelNameContains
       type: String
     - name: hotels
-      type: "[Array!]!"
+      type: "[PropertyDetails!]!"
     - name: numRooms
       type: Float!
     - name: searchRadius
