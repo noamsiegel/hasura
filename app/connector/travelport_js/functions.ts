@@ -5,12 +5,12 @@ import { CustomHotelSearchRequest, mapCustomToAddressRequest } from './models/ad
 import { CustomCityIataCodeHotelSearchRequest, mapCustomToCityIataCodeRequest } from './models/city_iata_code/custom_request_model';
 import { CustomHotelCodeHotelSearchRequest, mapCustomToHotelCodeRequest } from './models/property/custom_request_model';
 // responses
-import { AddressResponse } from './models/address/response_model';
-import { AirportIataCodeResponse } from './models/airport_iata_code/response_model';
-import { CityIataCodeResponse } from './models/city_iata_code/response_model';
-import { CoordinatesResponse } from './models/coordinates/response_model';
-import { PropertyResponse } from './models/property/response_model';
-
+// import { AddressResponse } from './models/address/response_model';
+// import { AirportIataCodeResponse } from './models/airport_iata_code/response_model';
+// import { CityIataCodeResponse } from './models/city_iata_code/response_model';
+// import { CoordinatesResponse } from './models/coordinates/response_model';
+// import { PropertyResponse } from './models/property/response_model';
+import { TravelportResponse } from './models/base_response';
 import { TravelPortClient } from './client';
 
 // TODO make business logic make sure that checkin and checkout dates are valid (on or after today)
@@ -21,11 +21,11 @@ import { TravelPortClient } from './client';
 /** @readonly */
 export async function tpSearchHotelsByCoordinates(
     searchParams: CustomCoordinatesHotelSearchRequest
-): Promise<CoordinatesResponse> {
+): Promise<TravelportResponse> {
     console.log('searchParams', searchParams);
     const transformedRequest = mapCustomToCoordinatesRequest(searchParams);
     console.log('transformedRequest', transformedRequest);
-    return await TravelPortClient.searchHotels<CoordinatesResponse>(transformedRequest);
+    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
 }
 
 /**
@@ -34,11 +34,11 @@ export async function tpSearchHotelsByCoordinates(
 /** @readonly */
 export async function tpSearchHotelsByAirportIataCode(
     searchParams: CustomAirportIataCodeHotelSearchRequest
-): Promise<AirportIataCodeResponse> {
+): Promise<TravelportResponse> {
     console.log('searchParams', searchParams);
     const transformedRequest = mapCustomToAirportIataCodeRequest(searchParams);
     console.log('transformedRequest', transformedRequest);
-    return await TravelPortClient.searchHotels<AirportIataCodeResponse>(transformedRequest);
+    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
 }
 
 /**
@@ -47,11 +47,11 @@ export async function tpSearchHotelsByAirportIataCode(
 /** @readonly */
 export async function tpSearchHotelsByProperty(
     searchParams: CustomHotelCodeHotelSearchRequest
-): Promise<PropertyResponse> {
+): Promise<TravelportResponse> {
     console.log('searchParams', searchParams);
     const transformedRequest = mapCustomToHotelCodeRequest(searchParams);
     console.log('transformedRequest', transformedRequest);
-    return await TravelPortClient.searchHotels<PropertyResponse>(transformedRequest);
+    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
 }
 
 /**
@@ -60,10 +60,10 @@ export async function tpSearchHotelsByProperty(
 /** @readonly */
 export async function tpSearchHotelsByAddress(
     searchParams: CustomHotelSearchRequest
-): Promise<AddressResponse> {
+): Promise<TravelportResponse> {
     const transformedRequest = mapCustomToAddressRequest(searchParams);
     console.log('transformedRequest', transformedRequest);
-    return await TravelPortClient.searchHotels<AddressResponse>(transformedRequest);
+    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
 }
 
 /**
@@ -72,7 +72,7 @@ export async function tpSearchHotelsByAddress(
 /** @readonly */
 export async function tpSearchHotelsByCityIataCode(
     searchParams: CustomCityIataCodeHotelSearchRequest
-): Promise<CityIataCodeResponse> {
+): Promise<TravelportResponse> {
     const transformedRequest = mapCustomToCityIataCodeRequest(searchParams);
-    return await TravelPortClient.searchHotels<CityIataCodeResponse>(transformedRequest);
+    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
 }
