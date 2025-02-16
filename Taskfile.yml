@@ -1,0 +1,46 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+  CONNECTORS:
+    - travelport_js
+    - sb_api_postgres
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  help:
+    desc: Display this help
+    cmds:
+      - task -l
+
+  travelport:
+    desc: Setup and run Travelport integration
+    cmds:
+      - ddn connector introspect travelport_js
+      - ddn model add travelport_js "*"
+      - ddn command add travelport_js "*"
+      - ddn relationship add travelport_js "*"
+      - ddn supergraph build local --log-level DEBUG
+      - ddn run docker-start --log-level DEBUG
+
+  travelport-rebuild:
+    desc: Rebuild and run Travelport integration
+    cmds:
+      - ddn supergraph build local --log-level DEBUG
+      - ddn run docker-start --log-level DEBUG
+
+  start:
+    desc: Start the application with Docker
+    cmds:
+      - HASURA_DDN_PAT=$(ddn auth print-pat) PROMPTQL_SECRET_KEY=$(ddn auth print-promptql-secret-key) docker compose -f compose.yaml --env-file .env up --build --pull always
+
+  build:
+    desc: Build the supergraph
+    cmds:
+      - ddn supergraph build local
