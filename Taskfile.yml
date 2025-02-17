@@ -14,7 +14,7 @@ tasks:
     cmds:
       - task -l
 
-  travelport:
+  travelport-rebuild:
     desc: Setup and run Travelport integration
     cmds:
       - ddn connector introspect travelport_js
@@ -24,7 +24,7 @@ tasks:
       - ddn supergraph build local --log-level DEBUG
       - ddn run docker-start --log-level DEBUG
 
-  travelport-rebuild:
+  travelport-start:
     desc: Rebuild and run Travelport integration
     cmds:
       - ddn supergraph build local --log-level DEBUG
