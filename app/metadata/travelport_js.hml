@@ -320,6 +320,12 @@ definition:
               type:
                 type: named
                 name: Float
+            return_only_available:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
             search_radius:
               type:
                 type: nullable
