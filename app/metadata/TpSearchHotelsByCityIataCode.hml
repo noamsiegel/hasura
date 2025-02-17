@@ -18,6 +18,8 @@ definition:
       type: Float!
     - name: searchRadius
       type: Radius
+    - name: returnOnlyAvailable
+      type: Boolean
   graphql:
     typeName: CustomCityIataCodeHotelSearchRequest
     inputTypeName: CustomCityIataCodeHotelSearchRequestInput
@@ -46,6 +48,9 @@ definition:
         searchRadius:
           column:
             name: search_radius
+        returnOnlyAvailable:
+          column:
+            name: return_only_available
 
 ---
 kind: TypePermissions
@@ -63,6 +68,7 @@ definition:
           - iataCode
           - numRooms
           - searchRadius
+          - returnOnlyAvailable
 
 ---
 kind: Command
