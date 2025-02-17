@@ -9,11 +9,6 @@ vars:
     - sb_api_postgres
 
 tasks:
-  default:
-    cmds:
-      - echo "{{.GREETING}}"
-    silent: true
-
   help:
     desc: Display this help
     cmds:
