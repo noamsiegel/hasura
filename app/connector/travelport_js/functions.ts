@@ -1,13 +1,15 @@
 // requests
 import { CustomCoordinatesHotelSearchRequest, mapCustomToCoordinatesRequest } from './models/coordinates/request_model';
-import { CustomAirportIataCodeHotelSearchRequest, mapCustomToAirportIataCodeRequest } from './models/airport_iata_code/custom_request_model';
+import { CustomAirportIataCodeHotelSearchRequest, mapCustomToAirportIataCodeRequest } from './models/airport_iata_code/request_model';
 import { CustomHotelSearchRequest, mapCustomToAddressRequest } from './models/address/custom_request_model';
 import { CustomCityIataCodeHotelSearchRequest, mapCustomToCityIataCodeRequest } from './models/city_iata_code/custom_request_model';
 import { CustomHotelCodeHotelSearchRequest, mapCustomToHotelCodeRequest } from './models/property/request_model';
 // responses
 import { TravelportResponse } from './models/base_response';
 import { TravelPortClient } from './client';
-
+// import { mapTravelportToCustomResponse } from './models/response_mapper';
+// import { CustomResponse } from './models/custom_response';
+// Hasura SDK
 import * as sdk from "@hasura/ndc-lambda-sdk";
 
 // TODO make business logic make sure that checkin and checkout dates are valid (on or after today)
@@ -26,6 +28,8 @@ export async function tpSearchHotelsByCoordinates(
     }
     const transformedRequest = mapCustomToCoordinatesRequest(searchParams);
     return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    // const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    // return mapTravelportToCustomResponse(travelportResponse);
 }
 
 /**
