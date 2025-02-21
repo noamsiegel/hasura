@@ -1,8 +1,3 @@
-// import {
-    // AirportIataCodeHotelSearchRequest,
-    // AirportIataCodePropertyFilter
-// } from './request_model';
-
 import {
     Radius,
     BasePropertyFilter,
