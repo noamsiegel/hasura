@@ -2,7 +2,7 @@
 import { CustomCoordinatesHotelSearchRequest, mapCustomToCoordinatesRequest } from './models/coordinates/request_model';
 import { CustomAirportIataCodeHotelSearchRequest, mapCustomToAirportIataCodeRequest } from './models/airport_iata_code/request_model';
 import { CustomAddressHotelSearchRequest, mapCustomToAddressRequest } from './models/address/custom_request_model';
-import { CustomCityIataCodeHotelSearchRequest, mapCustomToCityIataCodeRequest } from './models/city_iata_code/custom_request_model';
+import { CustomCityIataCodeHotelSearchRequest, mapCustomToCityIataCodeRequest } from './models/city_iata_code/request_model';
 import { CustomHotelCodeHotelSearchRequest, mapCustomToHotelCodeRequest } from './models/property/request_model';
 // responses
 import { TravelportResponse } from './models/base_response';
