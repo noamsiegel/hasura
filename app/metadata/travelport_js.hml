@@ -1928,7 +1928,7 @@ definition:
                 name: CustomHotelCodeHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
         - name: tpSearchHotelsByAddress
           arguments:
             searchParams:

@@ -39,7 +39,6 @@ export async function tpSearchHotelsByAirportIataCode(
     searchParams: CustomAirportIataCodeHotelSearchRequest
 ): Promise<CustomResponse> {
     const transformedRequest = mapCustomToAirportIataCodeRequest(searchParams);
-    // return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
     const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
     return mapTravelportToCustomResponse(travelportResponse);
 }
@@ -50,9 +49,10 @@ export async function tpSearchHotelsByAirportIataCode(
 /** @readonly */
 export async function tpSearchHotelsByProperty(
     searchParams: CustomHotelCodeHotelSearchRequest
-): Promise<TravelportResponse> {
+): Promise<CustomResponse> {
     const transformedRequest = mapCustomToHotelCodeRequest(searchParams);
-    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    return mapTravelportToCustomResponse(travelportResponse);
 }
 
 /**
