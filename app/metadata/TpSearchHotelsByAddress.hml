@@ -2,7 +2,7 @@
 kind: ObjectType
 version: v1
 definition:
-  name: CustomHotelSearchRequest
+  name: CustomAddressHotelSearchRequest
   fields:
     - name: checkInDate
       type: String!
@@ -23,11 +23,11 @@ definition:
     - name: stateProvince
       type: String!
   graphql:
-    typeName: CustomHotelSearchRequest
-    inputTypeName: CustomHotelSearchRequestInput
+    typeName: CustomAddressHotelSearchRequest
+    inputTypeName: CustomAddressHotelSearchRequestInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: CustomHotelSearchRequest
+      dataConnectorObjectType: CustomAddressHotelSearchRequest
       fieldMapping:
         checkInDate:
           column:
@@ -61,7 +61,7 @@ definition:
 kind: TypePermissions
 version: v1
 definition:
-  typeName: CustomHotelSearchRequest
+  typeName: CustomAddressHotelSearchRequest
   permissions:
     - role: admin
       output:
@@ -84,7 +84,7 @@ definition:
   outputType: CustomResponse!
   arguments:
     - name: searchParams
-      type: CustomHotelSearchRequest!
+      type: CustomAddressHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:

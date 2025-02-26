@@ -1,7 +1,7 @@
 // requests
 import { CustomCoordinatesHotelSearchRequest, mapCustomToCoordinatesRequest } from './models/coordinates/request_model';
 import { CustomAirportIataCodeHotelSearchRequest, mapCustomToAirportIataCodeRequest } from './models/airport_iata_code/request_model';
-import { CustomHotelSearchRequest, mapCustomToAddressRequest } from './models/address/custom_request_model';
+import { CustomAddressHotelSearchRequest, mapCustomToAddressRequest } from './models/address/custom_request_model';
 import { CustomCityIataCodeHotelSearchRequest, mapCustomToCityIataCodeRequest } from './models/city_iata_code/custom_request_model';
 import { CustomHotelCodeHotelSearchRequest, mapCustomToHotelCodeRequest } from './models/property/request_model';
 // responses
@@ -60,7 +60,7 @@ export async function tpSearchHotelsByProperty(
  */
 /** @readonly */
 export async function tpSearchHotelsByAddress(
-    searchParams: CustomHotelSearchRequest
+    searchParams: CustomAddressHotelSearchRequest
 ): Promise<CustomResponse> {
     const transformedRequest = mapCustomToAddressRequest(searchParams);
     const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);

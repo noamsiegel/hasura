@@ -276,6 +276,48 @@ definition:
               type:
                 type: named
                 name: String
+        CustomAddressHotelSearchRequest:
+          fields:
+            check_in_date:
+              type:
+                type: named
+                name: String
+            check_out_date:
+              type:
+                type: named
+                name: String
+            city_name:
+              type:
+                type: named
+                name: String
+            country_code:
+              type:
+                type: named
+                name: String
+            guests:
+              type:
+                type: named
+                name: CustomCoordinatesHotelSearchRequest_guests
+            hotel_name_contains:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            num_rooms:
+              type:
+                type: named
+                name: Float
+            search_radius:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Radius
+            state_province:
+              type:
+                type: named
+                name: String
         CustomAirportIataCodeHotelSearchRequest:
           fields:
             airport_iata_code:
@@ -448,48 +490,6 @@ definition:
                 underlying_type:
                   type: named
                   name: Radius
-        CustomHotelSearchRequest:
-          fields:
-            check_in_date:
-              type:
-                type: named
-                name: String
-            check_out_date:
-              type:
-                type: named
-                name: String
-            city_name:
-              type:
-                type: named
-                name: String
-            country_code:
-              type:
-                type: named
-                name: String
-            guests:
-              type:
-                type: named
-                name: CustomCoordinatesHotelSearchRequest_guests
-            hotel_name_contains:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            num_rooms:
-              type:
-                type: named
-                name: Float
-            search_radius:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Radius
-            state_province:
-              type:
-                type: named
-                name: String
         CustomResponse:
           fields:
             data:
@@ -1934,7 +1934,7 @@ definition:
             searchParams:
               type:
                 type: named
-                name: CustomHotelSearchRequest
+                name: CustomAddressHotelSearchRequest
           result_type:
             type: named
             name: CustomResponse
