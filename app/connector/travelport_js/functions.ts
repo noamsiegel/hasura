@@ -14,15 +14,13 @@ import * as sdk from "@hasura/ndc-lambda-sdk";
 
 // TODO make business logic make sure that checkin and checkout dates are valid (on or after today)
 
-/**
- * Search hotels by coordinates
- */
+/* Search hotels by coordinates */
 /** @readonly */
 export async function tpSearchHotelsByCoordinates(
     searchParams: CustomCoordinatesHotelSearchRequest
 ): Promise<CustomResponse> {
     if (searchParams.search_radius?.value && searchParams.search_radius.value > 25) {
-        throw new sdk.UnprocessableContent("Search radius cannot be greater than 25", {
+        throw new sdk.UnprocessableContent("Search radius cannot be greater than 25",{
             search_radius: searchParams.search_radius.value
         });
     }
@@ -31,9 +29,7 @@ export async function tpSearchHotelsByCoordinates(
     return mapTravelportToCustomResponse(travelportResponse);
 }
 
-/**
- * Search hotels by airport IATA code
- */
+/* Search hotels by airport IATA code */
 /** @readonly */
 export async function tpSearchHotelsByAirportIataCode(
     searchParams: CustomAirportIataCodeHotelSearchRequest
@@ -43,9 +39,8 @@ export async function tpSearchHotelsByAirportIataCode(
     return mapTravelportToCustomResponse(travelportResponse);
 }
 
-/**
- * Search hotels by property
- */
+/* Search hotels by property */
+// TODO fix response mapping, roomTypes are not being mapped correctly
 /** @readonly */
 export async function tpSearchHotelsByProperty(
     searchParams: CustomHotelCodeHotelSearchRequest
@@ -55,9 +50,7 @@ export async function tpSearchHotelsByProperty(
     return mapTravelportToCustomResponse(travelportResponse);
 }
 
-/**
- * Search hotels by address
- */
+/* Search hotels by address */
 /** @readonly */
 export async function tpSearchHotelsByAddress(
     searchParams: CustomAddressHotelSearchRequest
@@ -67,13 +60,12 @@ export async function tpSearchHotelsByAddress(
     return mapTravelportToCustomResponse(travelportResponse);
 }
 
-/**
- * Search hotels by city IATA
- */
+/* Search hotels by city IATA */
 /** @readonly */
 export async function tpSearchHotelsByCityIataCode(
     searchParams: CustomCityIataCodeHotelSearchRequest
-): Promise<TravelportResponse> {
+): Promise<CustomResponse> {
     const transformedRequest = mapCustomToCityIataCodeRequest(searchParams);
-    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    return mapTravelportToCustomResponse(travelportResponse);
 }
