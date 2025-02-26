@@ -262,34 +262,34 @@ definition:
           - hotelRemarks
           - refundableTag
 
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsCustomResponseCommission
-  fields:
-    - name: amount
-      type: Float!
-    - name: currency
-      type: String!
-  graphql:
-    typeName: ModelsCustomResponseCommission
-    inputTypeName: ModelsCustomResponseCommissionInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_custom_response_Commission
+# ---
+# kind: ObjectType
+# version: v1
+# definition:
+#   name: ModelsCustomResponseCommission
+#   fields:
+#     - name: amount
+#       type: Float!
+#     - name: currency
+#       type: String!
+#   graphql:
+#     typeName: ModelsCustomResponseCommission
+#     inputTypeName: ModelsCustomResponseCommissionInput
+#   dataConnectorTypeMapping:
+#     - dataConnectorName: travelport_js
+#       dataConnectorObjectType: models_custom_response_Commission
 
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsCustomResponseCommission
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - amount
-          - currency
+# ---
+# kind: TypePermissions
+# version: v1
+# definition:
+#   typeName: ModelsCustomResponseCommission
+#   permissions:
+#     - role: admin
+#       output:
+#         allowedFields:
+#           - amount
+#           - currency
 
 ---
 kind: ObjectType
@@ -448,67 +448,67 @@ definition:
           - taxesAndFees
           - total
 
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsCustomResponseRate
-  fields:
-    - name: adultCount
-      type: Float!
-    - name: boardName
-      type: String!
-    - name: boardType
-      type: String!
-    - name: cancellationPolicies
-      type: CancellationPolicies!
-    - name: childCount
-      type: Float!
-    - name: commission
-      type: "[ModelsCustomResponseCommission!]!"
-    - name: maxOccupancy
-      type: Float!
-    - name: name
-      type: String!
-    - name: occupancyNumber
-      type: Float!
-    - name: priceType
-      type: String!
-    - name: rateId
-      type: String!
-    - name: remarks
-      type: String!
-    - name: retailRate
-      type: RetailRate!
-  graphql:
-    typeName: ModelsCustomResponseRate
-    inputTypeName: ModelsCustomResponseRateInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_custom_response_Rate
+# ---
+# kind: ObjectType
+# version: v1
+# definition:
+#   name: ModelsCustomResponseRate
+#   fields:
+#     - name: adultCount
+#       type: Float!
+#     - name: boardName
+#       type: String!
+#     - name: boardType
+#       type: String!
+#     - name: cancellationPolicies
+#       type: CancellationPolicies!
+#     - name: childCount
+#       type: Float!
+#     - name: commission
+#       type: "[ModelsCustomResponseCommission!]!"
+#     - name: maxOccupancy
+#       type: Float!
+#     - name: name
+#       type: String!
+#     - name: occupancyNumber
+#       type: Float!
+#     - name: priceType
+#       type: String!
+#     - name: rateId
+#       type: String!
+#     - name: remarks
+#       type: String!
+#     - name: retailRate
+#       type: RetailRate!
+#   graphql:
+#     typeName: ModelsCustomResponseRate
+#     inputTypeName: ModelsCustomResponseRateInput
+#   dataConnectorTypeMapping:
+#     - dataConnectorName: travelport_js
+#       dataConnectorObjectType: models_custom_response_Rate
 
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsCustomResponseRate
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - adultCount
-          - boardName
-          - boardType
-          - cancellationPolicies
-          - childCount
-          - commission
-          - maxOccupancy
-          - name
-          - occupancyNumber
-          - priceType
-          - rateId
-          - remarks
-          - retailRate
+# ---
+# kind: TypePermissions
+# version: v1
+# definition:
+#   typeName: ModelsCustomResponseRate
+#   permissions:
+#     - role: admin
+#       output:
+#         allowedFields:
+#           - adultCount
+#           - boardName
+#           - boardType
+#           - cancellationPolicies
+#           - childCount
+#           - commission
+#           - maxOccupancy
+#           - name
+#           - occupancyNumber
+#           - priceType
+#           - rateId
+#           - remarks
+#           - retailRate
 
 ---
 kind: ObjectType
@@ -539,58 +539,58 @@ definition:
           - amount
           - currency
 
----
-kind: ObjectType
-version: v1
-definition:
-  name: ModelsCustomResponseRoomType
-  fields:
-    - name: offerId
-      type: String!
-    - name: offerInitialPrice
-      type: OfferInitialPrice!
-    - name: offerRetailRate
-      type: OfferRetailRate!
-    - name: priceType
-      type: String!
-    - name: rateType
-      type: String!
-    - name: rates
-      type: "[ModelsCustomResponseRate!]!"
-    - name: roomTypeId
-      type: String!
-    - name: suggestedSellingPrice
-      type: SuggestedSellingPrice2!
-    - name: supplier
-      type: String!
-    - name: supplierId
-      type: Float!
-  graphql:
-    typeName: ModelsCustomResponseRoomType
-    inputTypeName: ModelsCustomResponseRoomTypeInput
-  dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
-      dataConnectorObjectType: models_custom_response_RoomType
+# ---
+# kind: ObjectType
+# version: v1
+# definition:
+#   name: ModelsCustomResponseRoomType
+#   fields:
+#     - name: offerId
+#       type: String!
+#     - name: offerInitialPrice
+#       type: OfferInitialPrice!
+#     - name: offerRetailRate
+#       type: OfferRetailRate!
+#     - name: priceType
+#       type: String!
+#     - name: rateType
+#       type: String!
+#     - name: rates
+#       type: "[ModelsCustomResponseRate!]!"
+#     - name: roomTypeId
+#       type: String!
+#     - name: suggestedSellingPrice
+#       type: SuggestedSellingPrice2!
+#     - name: supplier
+#       type: String!
+#     - name: supplierId
+#       type: Float!
+#   graphql:
+#     typeName: ModelsCustomResponseRoomType
+#     inputTypeName: ModelsCustomResponseRoomTypeInput
+#   dataConnectorTypeMapping:
+#     - dataConnectorName: travelport_js
+#       dataConnectorObjectType: models_custom_response_RoomType
 
----
-kind: TypePermissions
-version: v1
-definition:
-  typeName: ModelsCustomResponseRoomType
-  permissions:
-    - role: admin
-      output:
-        allowedFields:
-          - offerId
-          - offerInitialPrice
-          - offerRetailRate
-          - priceType
-          - rateType
-          - rates
-          - roomTypeId
-          - suggestedSellingPrice
-          - supplier
-          - supplierId
+# ---
+# kind: TypePermissions
+# version: v1
+# definition:
+#   typeName: ModelsCustomResponseRoomType
+#   permissions:
+#     - role: admin
+#       output:
+#         allowedFields:
+#           - offerId
+#           - offerInitialPrice
+#           - offerRetailRate
+#           - priceType
+#           - rateType
+#           - rates
+#           - roomTypeId
+#           - suggestedSellingPrice
+#           - supplier
+#           - supplierId
 
 ---
 kind: ObjectType
@@ -601,7 +601,7 @@ definition:
     - name: hotelId
       type: String!
     - name: roomTypes
-      type: "[ModelsCustomResponseRoomType!]!"
+      type: "[RoomType!]!"
   graphql:
     typeName: HotelData
     inputTypeName: HotelDataInput
@@ -675,4 +675,148 @@ definition:
   permissions:
     - role: admin
       allowExecution: true
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Commission
+  fields:
+    - name: amount
+      type: Float!
+    - name: currency
+      type: String!
+  graphql:
+    typeName: Commission
+    inputTypeName: CommissionInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Commission
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Commission
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Rate
+  fields:
+    - name: adultCount
+      type: Float!
+    - name: boardName
+      type: String!
+    - name: boardType
+      type: String!
+    - name: cancellationPolicies
+      type: CancellationPolicies!
+    - name: childCount
+      type: Float!
+    - name: commission
+      type: "[Commission!]!"
+    - name: maxOccupancy
+      type: Float!
+    - name: name
+      type: String!
+    - name: occupancyNumber
+      type: Float!
+    - name: priceType
+      type: String!
+    - name: rateId
+      type: String!
+    - name: remarks
+      type: String!
+    - name: retailRate
+      type: RetailRate!
+  graphql:
+    typeName: Rate
+    inputTypeName: RateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Rate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Rate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - adultCount
+          - boardName
+          - boardType
+          - cancellationPolicies
+          - childCount
+          - commission
+          - maxOccupancy
+          - name
+          - occupancyNumber
+          - priceType
+          - rateId
+          - remarks
+          - retailRate
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RoomType
+  fields:
+    - name: offerId
+      type: String!
+    - name: offerInitialPrice
+      type: OfferInitialPrice!
+    - name: offerRetailRate
+      type: OfferRetailRate!
+    - name: priceType
+      type: String!
+    - name: rateType
+      type: String!
+    - name: rates
+      type: "[Rate!]!"
+    - name: roomTypeId
+      type: String!
+    - name: suggestedSellingPrice
+      type: SuggestedSellingPrice2!
+    - name: supplier
+      type: String!
+    - name: supplierId
+      type: Float!
+  graphql:
+    typeName: RoomType
+    inputTypeName: RoomTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RoomType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RoomType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - offerId
+          - offerInitialPrice
+          - offerRetailRate
+          - priceType
+          - rateType
+          - rates
+          - roomTypeId
+          - suggestedSellingPrice
+          - supplier
+          - supplierId
 
