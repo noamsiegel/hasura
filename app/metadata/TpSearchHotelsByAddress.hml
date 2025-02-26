@@ -22,6 +22,8 @@ definition:
       type: Radius
     - name: stateProvince
       type: String!
+    - name: returnOnlyAvailable
+      type: Boolean
   graphql:
     typeName: CustomAddressHotelSearchRequest
     inputTypeName: CustomAddressHotelSearchRequestInput
@@ -56,6 +58,9 @@ definition:
         stateProvince:
           column:
             name: state_province
+        returnOnlyAvailable:
+          column:
+            name: return_only_available
 
 ---
 kind: TypePermissions
@@ -75,6 +80,7 @@ definition:
           - numRooms
           - searchRadius
           - stateProvince
+          - returnOnlyAvailable
 
 ---
 kind: Command
