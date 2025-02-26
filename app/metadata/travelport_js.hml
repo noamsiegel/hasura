@@ -1919,7 +1919,7 @@ definition:
                 name: CustomAirportIataCodeHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
         - name: tpSearchHotelsByProperty
           arguments:
             searchParams:
