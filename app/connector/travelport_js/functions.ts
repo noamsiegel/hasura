@@ -7,8 +7,8 @@ import { CustomHotelCodeHotelSearchRequest, mapCustomToHotelCodeRequest } from '
 // responses
 import { TravelportResponse } from './models/base_response';
 import { TravelPortClient } from './client';
-// import { mapTravelportToCustomResponse } from './models/response_mapper';
-// import { CustomResponse } from './models/custom_response';
+import { mapTravelportToCustomResponse } from './models/custom_response_mapper';
+import { CustomResponse } from './models/custom_response';
 // Hasura SDK
 import * as sdk from "@hasura/ndc-lambda-sdk";
 
@@ -20,16 +20,15 @@ import * as sdk from "@hasura/ndc-lambda-sdk";
 /** @readonly */
 export async function tpSearchHotelsByCoordinates(
     searchParams: CustomCoordinatesHotelSearchRequest
-): Promise<TravelportResponse> {
+): Promise<CustomResponse> {
     if (searchParams.search_radius?.value && searchParams.search_radius.value > 25) {
         throw new sdk.UnprocessableContent("Search radius cannot be greater than 25", {
             search_radius: searchParams.search_radius.value
         });
     }
     const transformedRequest = mapCustomToCoordinatesRequest(searchParams);
-    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
-    // const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
-    // return mapTravelportToCustomResponse(travelportResponse);
+    const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    return mapTravelportToCustomResponse(travelportResponse);
 }
 
 /**

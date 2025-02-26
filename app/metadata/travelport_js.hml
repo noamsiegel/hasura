@@ -98,6 +98,48 @@ definition:
               type:
                 type: named
                 name: String
+        CancelPolicyInfo:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            cancelTime:
+              type:
+                type: named
+                name: String
+            currency:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            timezone:
+              type:
+                type: named
+                name: String
+            type:
+              type:
+                type: named
+                name: String
+        CancellationPolicies:
+          fields:
+            cancelPolicyInfos:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: CancelPolicyInfo
+            hotelRemarks:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: String
+            refundableTag:
+              type:
+                type: named
+                name: String
         Category:
           fields:
             code:
@@ -220,24 +262,6 @@ definition:
               type:
                 type: named
                 name: String
-        Commission:
-          fields:
-            application:
-              type:
-                type: named
-                name: Boolean
-            estimatedPercent:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            percent:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
         CurrencyExchangeRate:
           fields:
             conversionFactor:
@@ -466,6 +490,18 @@ definition:
               type:
                 type: named
                 name: String
+        CustomResponse:
+          fields:
+            data:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: HotelData
+            guestLevel:
+              type:
+                type: named
+                name: Float
         DataQualityScore:
           fields:
             augmentedRateQualityScore:
@@ -554,6 +590,18 @@ definition:
               type:
                 type: named
                 name: Center
+        HotelData:
+          fields:
+            hotelId:
+              type:
+                type: named
+                name: String
+            roomTypes:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: models_custom_response_RoomType
         HotelsResponse:
           fields:
             checkInDateLocal:
@@ -603,6 +651,16 @@ definition:
                 type: named
                 name: Float
             url:
+              type:
+                type: named
+                name: String
+        InitialPrice:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
               type:
                 type: named
                 name: String
@@ -948,6 +1006,26 @@ definition:
               type:
                 type: named
                 name: Float
+        OfferInitialPrice:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
+        OfferRetailRate:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
         Pagination:
           fields:
             page:
@@ -993,7 +1071,7 @@ definition:
             commission:
               type:
                 type: named
-                name: Commission
+                name: models_base_response_Commission
             currencyCode:
               type:
                 type: named
@@ -1213,7 +1291,7 @@ definition:
                   type: array
                   element_type:
                     type: named
-                    name: RoomType
+                    name: models_base_response_RoomType
         PropertySummary:
           fields:
             averageAugmentedRateQualityScore:
@@ -1282,80 +1360,6 @@ definition:
               type:
                 type: named
                 name: Float
-        Rate:
-          fields:
-            accessibleRoom:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            bookingCode:
-              type:
-                type: named
-                name: String
-            breakfastIncluded:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            dataQualityScore:
-              type:
-                type: named
-                name: DataQualityScore
-            dinnerIncluded:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            lunchIncluded:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            nonSmoking:
-              type:
-                type: named
-                name: Boolean
-            price:
-              type:
-                type: named
-                name: Price
-            quantity:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            rateCodeInfo:
-              type:
-                type: named
-                name: RateRateCodeInfo
-            rateDescription:
-              type:
-                type: named
-                name: String
-            rateKey:
-              type:
-                type: named
-                name: RateRateKey
-            roomDescription:
-              type:
-                type: named
-                name: String
-            terms:
-              type:
-                type: named
-                name: RateTerms
-            wifiIncluded:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
         RateRateCodeInfo:
           fields:
             rateCategory:
@@ -1448,6 +1452,34 @@ definition:
               type:
                 type: named
                 name: Float
+        RetailRate:
+          fields:
+            initialPrice:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: InitialPrice
+            suggestedSellingPrice:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: SuggestedSellingPrice
+            taxesAndFees:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: TaxesAndFee
+            total:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Total
         RoomAmenity:
           fields:
             code:
@@ -1458,52 +1490,6 @@ definition:
               type:
                 type: named
                 name: String
-        RoomType:
-          fields:
-            bedTypes:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: RoomTypeBedType
-            characteristics:
-              type:
-                type: named
-                name: Characteristics
-            estimatedRoomTypeOTACode:
-              type:
-                type: named
-                name: Float
-            maxOccupancy:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            rates:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: Rate
-            roomAmenities:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: RoomAmenity
-            shortRoomDescription:
-              type:
-                type: named
-                name: String
-            view:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RoomTypeView
         RoomTypeBedType:
           fields:
             bedType:
@@ -1538,6 +1524,26 @@ definition:
               type:
                 type: named
                 name: Float
+        SuggestedSellingPrice:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
+        SuggestedSellingPrice2:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
         Tax:
           fields:
             description:
@@ -1554,6 +1560,24 @@ definition:
                 underlying_type:
                   type: named
                   name: Value
+        TaxesAndFee:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
+            description:
+              type:
+                type: named
+                name: String
+            included:
+              type:
+                type: named
+                name: Boolean
         TentacledCancelPenalty:
           fields:
             cancelShortDescription:
@@ -1594,6 +1618,16 @@ definition:
                 underlying_type:
                   type: named
                   name: String
+        Total:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
         TravelportResponse:
           fields:
             hotelsResponse:
@@ -1618,6 +1652,254 @@ definition:
               type:
                 type: named
                 name: Float
+        models_base_response_Commission:
+          fields:
+            application:
+              type:
+                type: named
+                name: Boolean
+            estimatedPercent:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            percent:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Float
+        models_base_response_Rate:
+          fields:
+            accessibleRoom:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            bookingCode:
+              type:
+                type: named
+                name: String
+            breakfastIncluded:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            dataQualityScore:
+              type:
+                type: named
+                name: DataQualityScore
+            dinnerIncluded:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            lunchIncluded:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            nonSmoking:
+              type:
+                type: named
+                name: Boolean
+            price:
+              type:
+                type: named
+                name: Price
+            quantity:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Float
+            rateCodeInfo:
+              type:
+                type: named
+                name: RateRateCodeInfo
+            rateDescription:
+              type:
+                type: named
+                name: String
+            rateKey:
+              type:
+                type: named
+                name: RateRateKey
+            roomDescription:
+              type:
+                type: named
+                name: String
+            terms:
+              type:
+                type: named
+                name: RateTerms
+            wifiIncluded:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        models_base_response_RoomType:
+          fields:
+            bedTypes:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: RoomTypeBedType
+            characteristics:
+              type:
+                type: named
+                name: Characteristics
+            estimatedRoomTypeOTACode:
+              type:
+                type: named
+                name: Float
+            maxOccupancy:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Float
+            rates:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: models_base_response_Rate
+            roomAmenities:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: RoomAmenity
+            shortRoomDescription:
+              type:
+                type: named
+                name: String
+            view:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: RoomTypeView
+        models_custom_response_Commission:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
+        models_custom_response_Rate:
+          fields:
+            adultCount:
+              type:
+                type: named
+                name: Float
+            boardName:
+              type:
+                type: named
+                name: String
+            boardType:
+              type:
+                type: named
+                name: String
+            cancellationPolicies:
+              type:
+                type: named
+                name: CancellationPolicies
+            childCount:
+              type:
+                type: named
+                name: Float
+            commission:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: models_custom_response_Commission
+            maxOccupancy:
+              type:
+                type: named
+                name: Float
+            name:
+              type:
+                type: named
+                name: String
+            occupancyNumber:
+              type:
+                type: named
+                name: Float
+            priceType:
+              type:
+                type: named
+                name: String
+            rateId:
+              type:
+                type: named
+                name: String
+            remarks:
+              type:
+                type: named
+                name: String
+            retailRate:
+              type:
+                type: named
+                name: RetailRate
+        models_custom_response_RoomType:
+          fields:
+            offerId:
+              type:
+                type: named
+                name: String
+            offerInitialPrice:
+              type:
+                type: named
+                name: OfferInitialPrice
+            offerRetailRate:
+              type:
+                type: named
+                name: OfferRetailRate
+            priceType:
+              type:
+                type: named
+                name: String
+            rateType:
+              type:
+                type: named
+                name: String
+            rates:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: models_custom_response_Rate
+            roomTypeId:
+              type:
+                type: named
+                name: String
+            suggestedSellingPrice:
+              type:
+                type: named
+                name: SuggestedSellingPrice2
+            supplier:
+              type:
+                type: named
+                name: String
+            supplierId:
+              type:
+                type: named
+                name: Float
       collections: []
       functions:
         - name: tpSearchHotelsByCoordinates
@@ -1628,7 +1910,7 @@ definition:
                 name: CustomCoordinatesHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
         - name: tpSearchHotelsByAirportIataCode
           arguments:
             searchParams:

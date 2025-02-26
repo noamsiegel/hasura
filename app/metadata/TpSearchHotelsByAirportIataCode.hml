@@ -96,3 +96,2691 @@ definition:
     - role: admin
       allowExecution: true
 
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CurrencyExchangeRate
+  fields:
+    - name: conversionFactor
+      type: Float!
+    - name: sourceCurrency
+      type: String!
+    - name: targetCurrency
+      type: String!
+  graphql:
+    typeName: CurrencyExchangeRate
+    inputTypeName: CurrencyExchangeRateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CurrencyExchangeRate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CurrencyExchangeRate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - conversionFactor
+          - sourceCurrency
+          - targetCurrency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: AvailabilityNote
+  fields:
+    - name: authority
+      type: String!
+    - name: message
+      type: String!
+  graphql:
+    typeName: AvailabilityNote
+    inputTypeName: AvailabilityNoteInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: AvailabilityNote
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: AvailabilityNote
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authority
+          - message
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PropertySummary
+  fields:
+    - name: averageAugmentedRateQualityScore
+      type: Float!
+    - name: averageAugmentedRoomQualityScore
+      type: Float!
+    - name: merchandisingQualityScore
+      type: Float!
+    - name: propertyContentQualityScore
+      type: Float!
+  graphql:
+    typeName: PropertySummary
+    inputTypeName: PropertySummaryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PropertySummary
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PropertySummary
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - averageAugmentedRateQualityScore
+          - averageAugmentedRoomQualityScore
+          - merchandisingQualityScore
+          - propertyContentQualityScore
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DataQualitySummaryScore
+  fields:
+    - name: propertySummary
+      type: PropertySummary!
+  graphql:
+    typeName: DataQualitySummaryScore
+    inputTypeName: DataQualitySummaryScoreInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: DataQualitySummaryScore
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DataQualitySummaryScore
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - propertySummary
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateAverageNightlyBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPrivateAvailableRateAverageNightlyBase
+    inputTypeName: LowestPrivateAvailableRateAverageNightlyBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateAverageNightlyBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateAverageNightlyBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateAverageNightlyTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPrivateAvailableRateAverageNightlyTotalPrice
+    inputTypeName: LowestPrivateAvailableRateAverageNightlyTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateAverageNightlyTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateAverageNightlyTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateAverageNightlyTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPrivateAvailableRateAverageNightlyTotalTaxes
+    inputTypeName: LowestPrivateAvailableRateAverageNightlyTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateAverageNightlyTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateAverageNightlyTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPrivateAvailableRateBase
+    inputTypeName: LowestPrivateAvailableRateBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateRateCodeInfo
+  fields:
+    - name: rateCategory
+      type: String!
+    - name: rateCategoryCode
+      type: Float!
+    - name: rateClassificationCode
+      type: Float!
+    - name: rateCode
+      type: String
+    - name: ratePlanId
+      type: String
+    - name: rateType
+      type: String!
+  graphql:
+    typeName: LowestPrivateAvailableRateRateCodeInfo
+    inputTypeName: LowestPrivateAvailableRateRateCodeInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateRateCodeInfo
+      fieldMapping:
+        rateCategory:
+          column:
+            name: rateCategory
+        rateCategoryCode:
+          column:
+            name: rateCategoryCode
+        rateClassificationCode:
+          column:
+            name: rateClassificationCode
+        rateCode:
+          column:
+            name: rateCode
+        ratePlanId:
+          column:
+            name: ratePlanID
+        rateType:
+          column:
+            name: rateType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateRateCodeInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - rateCategory
+          - rateCategoryCode
+          - rateClassificationCode
+          - rateCode
+          - ratePlanId
+          - rateType
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateRateKey
+  fields:
+    - name: authority
+      type: String!
+    - name: value
+      type: String!
+  graphql:
+    typeName: LowestPrivateAvailableRateRateKey
+    inputTypeName: LowestPrivateAvailableRateRateKeyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateRateKey
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateRateKey
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authority
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PurpleCurrencyAmount
+  fields:
+    - name: amount
+      type: Float!
+    - name: currency
+      type: String!
+  graphql:
+    typeName: PurpleCurrencyAmount
+    inputTypeName: PurpleCurrencyAmountInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PurpleCurrencyAmount
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PurpleCurrencyAmount
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PurplePenalty
+  fields:
+    - name: currencyAmount
+      type: PurpleCurrencyAmount!
+    - name: estimatedAmount
+      type: Boolean!
+    - name: originalPenaltyInfo
+      type: String
+  graphql:
+    typeName: PurplePenalty
+    inputTypeName: PurplePenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PurplePenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PurplePenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - currencyAmount
+          - estimatedAmount
+          - originalPenaltyInfo
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PurpleCancelPenalty
+  fields:
+    - name: cancelShortDescription
+      type: String!
+    - name: deadlineLocal
+      type: DateTime!
+    - name: penalty
+      type: PurplePenalty!
+  graphql:
+    typeName: PurpleCancelPenalty
+    inputTypeName: PurpleCancelPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PurpleCancelPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PurpleCancelPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelShortDescription
+          - deadlineLocal
+          - penalty
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateTerms
+  fields:
+    - name: cancelPenalties
+      type: "[PurpleCancelPenalty!]!"
+    - name: customerLoyaltyIdRequiredAtReservation
+      type: Boolean!
+    - name: description
+      type: "[String!]!"
+    - name: guaranteeType
+      type: String!
+    - name: ratePaymentInfo
+      type: String!
+    - name: rateQualificationIdRequiredAtCheckIn
+      type: Boolean!
+    - name: refundable
+      type: Boolean!
+  graphql:
+    typeName: LowestPrivateAvailableRateTerms
+    inputTypeName: LowestPrivateAvailableRateTermsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateTerms
+      fieldMapping:
+        cancelPenalties:
+          column:
+            name: cancelPenalties
+        customerLoyaltyIdRequiredAtReservation:
+          column:
+            name: customerLoyaltyIDRequiredAtReservation
+        description:
+          column:
+            name: description
+        guaranteeType:
+          column:
+            name: guaranteeType
+        ratePaymentInfo:
+          column:
+            name: ratePaymentInfo
+        rateQualificationIdRequiredAtCheckIn:
+          column:
+            name: rateQualificationIDRequiredAtCheckIn
+        refundable:
+          column:
+            name: refundable
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateTerms
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelPenalties
+          - customerLoyaltyIdRequiredAtReservation
+          - description
+          - guaranteeType
+          - ratePaymentInfo
+          - rateQualificationIdRequiredAtCheckIn
+          - refundable
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPrivateAvailableRateTotalPrice
+    inputTypeName: LowestPrivateAvailableRateTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRateTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPrivateAvailableRateTotalTaxes
+    inputTypeName: LowestPrivateAvailableRateTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRateTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRateTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPrivateAvailableRate
+  fields:
+    - name: averageNightlyBase
+      type: LowestPrivateAvailableRateAverageNightlyBase!
+    - name: averageNightlyTotalPrice
+      type: LowestPrivateAvailableRateAverageNightlyTotalPrice!
+    - name: averageNightlyTotalTaxes
+      type: LowestPrivateAvailableRateAverageNightlyTotalTaxes
+    - name: base
+      type: LowestPrivateAvailableRateBase!
+    - name: currencyCode
+      type: String!
+    - name: rateCodeInfo
+      type: LowestPrivateAvailableRateRateCodeInfo!
+    - name: rateKey
+      type: LowestPrivateAvailableRateRateKey!
+    - name: shortRoomDescription
+      type: String!
+    - name: terms
+      type: LowestPrivateAvailableRateTerms!
+    - name: totalPrice
+      type: LowestPrivateAvailableRateTotalPrice!
+    - name: totalTaxes
+      type: LowestPrivateAvailableRateTotalTaxes
+  graphql:
+    typeName: LowestPrivateAvailableRate
+    inputTypeName: LowestPrivateAvailableRateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPrivateAvailableRate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPrivateAvailableRate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - averageNightlyBase
+          - averageNightlyTotalPrice
+          - averageNightlyTotalTaxes
+          - base
+          - currencyCode
+          - rateCodeInfo
+          - rateKey
+          - shortRoomDescription
+          - terms
+          - totalPrice
+          - totalTaxes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateAverageNightlyBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPublicAvailableRateAverageNightlyBase
+    inputTypeName: LowestPublicAvailableRateAverageNightlyBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateAverageNightlyBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateAverageNightlyBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateAverageNightlyTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPublicAvailableRateAverageNightlyTotalPrice
+    inputTypeName: LowestPublicAvailableRateAverageNightlyTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateAverageNightlyTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateAverageNightlyTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateAverageNightlyTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPublicAvailableRateAverageNightlyTotalTaxes
+    inputTypeName: LowestPublicAvailableRateAverageNightlyTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateAverageNightlyTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateAverageNightlyTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPublicAvailableRateBase
+    inputTypeName: LowestPublicAvailableRateBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateRateCodeInfo
+  fields:
+    - name: rateCategoryCode
+      type: Float!
+    - name: rateClassificationCode
+      type: Float!
+    - name: rateType
+      type: String!
+  graphql:
+    typeName: LowestPublicAvailableRateRateCodeInfo
+    inputTypeName: LowestPublicAvailableRateRateCodeInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateRateCodeInfo
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateRateCodeInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - rateCategoryCode
+          - rateClassificationCode
+          - rateType
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateRateKey
+  fields:
+    - name: authority
+      type: String!
+    - name: value
+      type: String!
+  graphql:
+    typeName: LowestPublicAvailableRateRateKey
+    inputTypeName: LowestPublicAvailableRateRateKeyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateRateKey
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateRateKey
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authority
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: FluffyCurrencyAmount
+  fields:
+    - name: amount
+      type: Float!
+    - name: currency
+      type: String!
+  graphql:
+    typeName: FluffyCurrencyAmount
+    inputTypeName: FluffyCurrencyAmountInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: FluffyCurrencyAmount
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: FluffyCurrencyAmount
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: FluffyPenalty
+  fields:
+    - name: currencyAmount
+      type: FluffyCurrencyAmount!
+    - name: estimatedAmount
+      type: Boolean!
+    - name: originalPenaltyInfo
+      type: String
+  graphql:
+    typeName: FluffyPenalty
+    inputTypeName: FluffyPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: FluffyPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: FluffyPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - currencyAmount
+          - estimatedAmount
+          - originalPenaltyInfo
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: FluffyCancelPenalty
+  fields:
+    - name: cancelShortDescription
+      type: String!
+    - name: deadlineLocal
+      type: DateTime!
+    - name: penalty
+      type: FluffyPenalty!
+  graphql:
+    typeName: FluffyCancelPenalty
+    inputTypeName: FluffyCancelPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: FluffyCancelPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: FluffyCancelPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelShortDescription
+          - deadlineLocal
+          - penalty
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateTerms
+  fields:
+    - name: cancelPenalties
+      type: "[FluffyCancelPenalty!]!"
+    - name: customerLoyaltyIdRequiredAtReservation
+      type: Boolean
+    - name: description
+      type: "[String!]"
+    - name: guaranteeType
+      type: String!
+    - name: ratePaymentInfo
+      type: String!
+    - name: rateQualificationIdRequiredAtCheckIn
+      type: Boolean
+    - name: refundable
+      type: Boolean!
+  graphql:
+    typeName: LowestPublicAvailableRateTerms
+    inputTypeName: LowestPublicAvailableRateTermsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateTerms
+      fieldMapping:
+        cancelPenalties:
+          column:
+            name: cancelPenalties
+        customerLoyaltyIdRequiredAtReservation:
+          column:
+            name: customerLoyaltyIDRequiredAtReservation
+        description:
+          column:
+            name: description
+        guaranteeType:
+          column:
+            name: guaranteeType
+        ratePaymentInfo:
+          column:
+            name: ratePaymentInfo
+        rateQualificationIdRequiredAtCheckIn:
+          column:
+            name: rateQualificationIDRequiredAtCheckIn
+        refundable:
+          column:
+            name: refundable
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateTerms
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelPenalties
+          - customerLoyaltyIdRequiredAtReservation
+          - description
+          - guaranteeType
+          - ratePaymentInfo
+          - rateQualificationIdRequiredAtCheckIn
+          - refundable
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPublicAvailableRateTotalPrice
+    inputTypeName: LowestPublicAvailableRateTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRateTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: LowestPublicAvailableRateTotalTaxes
+    inputTypeName: LowestPublicAvailableRateTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRateTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRateTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LowestPublicAvailableRate
+  fields:
+    - name: averageNightlyBase
+      type: LowestPublicAvailableRateAverageNightlyBase!
+    - name: averageNightlyTotalPrice
+      type: LowestPublicAvailableRateAverageNightlyTotalPrice!
+    - name: averageNightlyTotalTaxes
+      type: LowestPublicAvailableRateAverageNightlyTotalTaxes
+    - name: base
+      type: LowestPublicAvailableRateBase!
+    - name: currencyCode
+      type: String!
+    - name: rateCodeInfo
+      type: LowestPublicAvailableRateRateCodeInfo!
+    - name: rateKey
+      type: LowestPublicAvailableRateRateKey!
+    - name: shortRoomDescription
+      type: String!
+    - name: terms
+      type: LowestPublicAvailableRateTerms!
+    - name: totalPrice
+      type: LowestPublicAvailableRateTotalPrice!
+    - name: totalTaxes
+      type: LowestPublicAvailableRateTotalTaxes
+  graphql:
+    typeName: LowestPublicAvailableRate
+    inputTypeName: LowestPublicAvailableRateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LowestPublicAvailableRate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LowestPublicAvailableRate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - averageNightlyBase
+          - averageNightlyTotalPrice
+          - averageNightlyTotalTaxes
+          - base
+          - currencyCode
+          - rateCodeInfo
+          - rateKey
+          - shortRoomDescription
+          - terms
+          - totalPrice
+          - totalTaxes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Address
+  fields:
+    - name: city
+      type: String!
+    - name: countryCode
+      type: String!
+    - name: postalCode
+      type: String
+    - name: street
+      type: String!
+  graphql:
+    typeName: Address
+    inputTypeName: AddressInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Address
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Address
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - city
+          - countryCode
+          - postalCode
+          - street
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Amenity
+  fields:
+    - name: category
+      type: String!
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: Amenity
+    inputTypeName: AmenityInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Amenity
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Amenity
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - category
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DistanceFromSearchPoint
+  fields:
+    - name: unitOfDistance
+      type: String!
+    - name: value
+      type: Float!
+  graphql:
+    typeName: DistanceFromSearchPoint
+    inputTypeName: DistanceFromSearchPointInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: DistanceFromSearchPoint
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DistanceFromSearchPoint
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - unitOfDistance
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Fax
+  fields:
+    - name: phoneNumber
+      type: String!
+  graphql:
+    typeName: Fax
+    inputTypeName: FaxInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Fax
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Fax
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - phoneNumber
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Center
+  fields:
+    - name: latitude
+      type: Float!
+    - name: longitude
+      type: Float!
+  graphql:
+    typeName: Center
+    inputTypeName: CenterInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Center
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Center
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - latitude
+          - longitude
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Geolocation
+  fields:
+    - name: center
+      type: Center!
+  graphql:
+    typeName: Geolocation
+    inputTypeName: GeolocationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Geolocation
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Geolocation
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - center
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Dimensions
+  fields:
+    - name: height
+      type: Float!
+    - name: width
+      type: Float!
+  graphql:
+    typeName: Dimensions
+    inputTypeName: DimensionsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Dimensions
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Dimensions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - height
+          - width
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ImageUrl
+  fields:
+    - name: caption
+      type: String!
+    - name: curatedImage
+      type: Boolean!
+    - name: dimensions
+      type: Dimensions!
+    - name: imageSize
+      type: String!
+    - name: pictureCategory
+      type: Float!
+    - name: url
+      type: String!
+  graphql:
+    typeName: ImageUrl
+    inputTypeName: ImageUrlInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: ImageURL
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ImageUrl
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - caption
+          - curatedImage
+          - dimensions
+          - imageSize
+          - pictureCategory
+          - url
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Phone
+  fields:
+    - name: phoneNumber
+      type: String!
+  graphql:
+    typeName: Phone
+    inputTypeName: PhoneInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Phone
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Phone
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - phoneNumber
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Rating
+  fields:
+    - name: provider
+      type: String!
+    - name: value
+      type: Float!
+  graphql:
+    typeName: Rating
+    inputTypeName: RatingInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Rating
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Rating
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - provider
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PropertyInfo
+  fields:
+    - name: acceptedCreditCards
+      type: "[String!]"
+    - name: adaCompliant
+      type: Boolean!
+    - name: address
+      type: Address!
+    - name: amenities
+      type: "[Amenity!]"
+    - name: checkInTimeLocal
+      type: String
+    - name: checkOutTimeLocal
+      type: String
+    - name: distanceFromSearchPoint
+      type: DistanceFromSearchPoint!
+    - name: email
+      type: String
+    - name: fax
+      type: Fax
+    - name: featuredPropertyInd
+      type: Boolean!
+    - name: geolocation
+      type: Geolocation!
+    - name: imageUrLs
+      type: "[ImageUrl!]"
+    - name: phone
+      type: Phone
+    - name: ratings
+      type: "[Rating!]"
+  graphql:
+    typeName: PropertyInfo
+    inputTypeName: PropertyInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PropertyInfo
+      fieldMapping:
+        acceptedCreditCards:
+          column:
+            name: acceptedCreditCards
+        adaCompliant:
+          column:
+            name: adaCompliant
+        address:
+          column:
+            name: address
+        amenities:
+          column:
+            name: amenities
+        checkInTimeLocal:
+          column:
+            name: checkInTimeLocal
+        checkOutTimeLocal:
+          column:
+            name: checkOutTimeLocal
+        distanceFromSearchPoint:
+          column:
+            name: distanceFromSearchPoint
+        email:
+          column:
+            name: email
+        fax:
+          column:
+            name: fax
+        featuredPropertyInd:
+          column:
+            name: featuredPropertyInd
+        geolocation:
+          column:
+            name: geolocation
+        imageUrLs:
+          column:
+            name: imageURLs
+        phone:
+          column:
+            name: phone
+        ratings:
+          column:
+            name: ratings
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PropertyInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - acceptedCreditCards
+          - adaCompliant
+          - address
+          - amenities
+          - checkInTimeLocal
+          - checkOutTimeLocal
+          - distanceFromSearchPoint
+          - email
+          - fax
+          - featuredPropertyInd
+          - geolocation
+          - imageUrLs
+          - phone
+          - ratings
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RoomTypeBedType
+  fields:
+    - name: bedType
+      type: String!
+    - name: quantity
+      type: Float!
+    - name: size
+      type: String!
+  graphql:
+    typeName: RoomTypeBedType
+    inputTypeName: RoomTypeBedTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RoomTypeBedType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RoomTypeBedType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - bedType
+          - quantity
+          - size
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: BalconyType
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: BalconyType
+    inputTypeName: BalconyTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: BalconyType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: BalconyType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CharacteristicsBedType
+  fields:
+    - name: bedType
+      type: String!
+    - name: quantity
+      type: Float!
+    - name: size
+      type: String!
+  graphql:
+    typeName: CharacteristicsBedType
+    inputTypeName: CharacteristicsBedTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CharacteristicsBedType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CharacteristicsBedType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - bedType
+          - quantity
+          - size
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Category
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: Category
+    inputTypeName: CategoryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Category
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Category
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Class
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: Class
+    inputTypeName: ClassInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Class
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Class
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: LocationInfo
+  fields:
+    - name: floor
+      type: String
+    - name: proximity
+      type: String
+  graphql:
+    typeName: LocationInfo
+    inputTypeName: LocationInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: LocationInfo
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: LocationInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - floor
+          - proximity
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CharacteristicsView
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: CharacteristicsView
+    inputTypeName: CharacteristicsViewInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: CharacteristicsView
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CharacteristicsView
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Characteristics
+  fields:
+    - name: accessible
+      type: Boolean
+    - name: balconyType
+      type: BalconyType
+    - name: bedTypes
+      type: "[CharacteristicsBedType!]!"
+    - name: category
+      type: Category!
+    - name: class
+      type: Class
+    - name: locationInfo
+      type: LocationInfo
+    - name: maxOccupancy
+      type: Float
+    - name: numberOfBathrooms
+      type: Float
+    - name: numberOfBedrooms
+      type: Float
+    - name: otherFeatures
+      type: "[String!]"
+    - name: view
+      type: CharacteristicsView
+  graphql:
+    typeName: Characteristics
+    inputTypeName: CharacteristicsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Characteristics
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Characteristics
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - accessible
+          - balconyType
+          - bedTypes
+          - category
+          - class
+          - locationInfo
+          - maxOccupancy
+          - numberOfBathrooms
+          - numberOfBedrooms
+          - otherFeatures
+          - view
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DataQualityScore
+  fields:
+    - name: augmentedRateQualityScore
+      type: Float!
+    - name: augmentedRoomQualityScore
+      type: Float!
+  graphql:
+    typeName: DataQualityScore
+    inputTypeName: DataQualityScoreInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: DataQualityScore
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DataQualityScore
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - augmentedRateQualityScore
+          - augmentedRoomQualityScore
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PriceBase
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: PriceBase
+    inputTypeName: PriceBaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PriceBase
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PriceBase
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsBaseResponseCommission
+  fields:
+    - name: application
+      type: Boolean!
+    - name: estimatedPercent
+      type: Boolean
+    - name: percent
+      type: Float
+  graphql:
+    typeName: ModelsBaseResponseCommission
+    inputTypeName: ModelsBaseResponseCommissionInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_base_response_Commission
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsBaseResponseCommission
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - application
+          - estimatedPercent
+          - percent
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: NightlyRatesBreakdownTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: NightlyRatesBreakdownTotalPrice
+    inputTypeName: NightlyRatesBreakdownTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: NightlyRatesBreakdownTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: NightlyRatesBreakdownTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: NightlyRatesBreakdown
+  fields:
+    - name: localDate
+      type: DateTime!
+    - name: totalPrice
+      type: NightlyRatesBreakdownTotalPrice
+  graphql:
+    typeName: NightlyRatesBreakdown
+    inputTypeName: NightlyRatesBreakdownInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: NightlyRatesBreakdown
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: NightlyRatesBreakdown
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - localDate
+          - totalPrice
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Value
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: Value
+    inputTypeName: ValueInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Value
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Value
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Tax
+  fields:
+    - name: description
+      type: String!
+    - name: taxCode
+      type: String!
+    - name: value
+      type: Value
+  graphql:
+    typeName: Tax
+    inputTypeName: TaxInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Tax
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Tax
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - description
+          - taxCode
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PerStayTaxAndFeeBreakdown
+  fields:
+    - name: taxes
+      type: "[Tax!]!"
+  graphql:
+    typeName: PerStayTaxAndFeeBreakdown
+    inputTypeName: PerStayTaxAndFeeBreakdownInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PerStayTaxAndFeeBreakdown
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PerStayTaxAndFeeBreakdown
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - taxes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PriceNote
+  fields:
+    - name: message
+      type: String!
+  graphql:
+    typeName: PriceNote
+    inputTypeName: PriceNoteInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PriceNote
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PriceNote
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - message
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PriceTotalPrice
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: PriceTotalPrice
+    inputTypeName: PriceTotalPriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PriceTotalPrice
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PriceTotalPrice
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PriceTotalTaxes
+  fields:
+    - name: amount
+      type: Float!
+  graphql:
+    typeName: PriceTotalTaxes
+    inputTypeName: PriceTotalTaxesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PriceTotalTaxes
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PriceTotalTaxes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Price
+  fields:
+    - name: base
+      type: PriceBase!
+    - name: commission
+      type: ModelsBaseResponseCommission!
+    - name: currencyCode
+      type: String!
+    - name: nightlyRatesBreakdown
+      type: "[NightlyRatesBreakdown!]!"
+    - name: perStayTaxAndFeeBreakdown
+      type: PerStayTaxAndFeeBreakdown
+    - name: priceNote
+      type: PriceNote!
+    - name: taxesIncludedInBase
+      type: Boolean!
+    - name: totalPrice
+      type: PriceTotalPrice!
+    - name: totalTaxes
+      type: PriceTotalTaxes
+  graphql:
+    typeName: Price
+    inputTypeName: PriceInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Price
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Price
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - base
+          - commission
+          - currencyCode
+          - nightlyRatesBreakdown
+          - perStayTaxAndFeeBreakdown
+          - priceNote
+          - taxesIncludedInBase
+          - totalPrice
+          - totalTaxes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RateRateCodeInfo
+  fields:
+    - name: rateCategory
+      type: String
+    - name: rateCategoryCode
+      type: Float!
+    - name: rateClassificationCode
+      type: Float!
+    - name: rateCode
+      type: String
+    - name: ratePlanId
+      type: String
+    - name: rateType
+      type: String!
+  graphql:
+    typeName: RateRateCodeInfo
+    inputTypeName: RateRateCodeInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RateRateCodeInfo
+      fieldMapping:
+        rateCategory:
+          column:
+            name: rateCategory
+        rateCategoryCode:
+          column:
+            name: rateCategoryCode
+        rateClassificationCode:
+          column:
+            name: rateClassificationCode
+        rateCode:
+          column:
+            name: rateCode
+        ratePlanId:
+          column:
+            name: ratePlanID
+        rateType:
+          column:
+            name: rateType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RateRateCodeInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - rateCategory
+          - rateCategoryCode
+          - rateClassificationCode
+          - rateCode
+          - ratePlanId
+          - rateType
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RateRateKey
+  fields:
+    - name: authority
+      type: String!
+    - name: value
+      type: String!
+  graphql:
+    typeName: RateRateKey
+    inputTypeName: RateRateKeyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RateRateKey
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RateRateKey
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authority
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: TentacledCurrencyAmount
+  fields:
+    - name: amount
+      type: Float!
+    - name: currency
+      type: String!
+  graphql:
+    typeName: TentacledCurrencyAmount
+    inputTypeName: TentacledCurrencyAmountInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: TentacledCurrencyAmount
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: TentacledCurrencyAmount
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - currency
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: TentacledPenalty
+  fields:
+    - name: currencyAmount
+      type: TentacledCurrencyAmount!
+    - name: estimatedAmount
+      type: Boolean!
+    - name: originalPenaltyInfo
+      type: String
+  graphql:
+    typeName: TentacledPenalty
+    inputTypeName: TentacledPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: TentacledPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: TentacledPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - currencyAmount
+          - estimatedAmount
+          - originalPenaltyInfo
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: TentacledCancelPenalty
+  fields:
+    - name: cancelShortDescription
+      type: String!
+    - name: deadlineLocal
+      type: DateTime!
+    - name: penalty
+      type: TentacledPenalty!
+  graphql:
+    typeName: TentacledCancelPenalty
+    inputTypeName: TentacledCancelPenaltyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: TentacledCancelPenalty
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: TentacledCancelPenalty
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelShortDescription
+          - deadlineLocal
+          - penalty
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RateTerms
+  fields:
+    - name: cancelPenalties
+      type: "[TentacledCancelPenalty!]!"
+    - name: customerLoyaltyIdRequiredAtReservation
+      type: Boolean
+    - name: description
+      type: "[String!]"
+    - name: guaranteeType
+      type: String!
+    - name: ratePaymentInfo
+      type: String!
+    - name: rateQualificationIdRequiredAtCheckIn
+      type: Boolean
+    - name: refundable
+      type: Boolean!
+  graphql:
+    typeName: RateTerms
+    inputTypeName: RateTermsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RateTerms
+      fieldMapping:
+        cancelPenalties:
+          column:
+            name: cancelPenalties
+        customerLoyaltyIdRequiredAtReservation:
+          column:
+            name: customerLoyaltyIDRequiredAtReservation
+        description:
+          column:
+            name: description
+        guaranteeType:
+          column:
+            name: guaranteeType
+        ratePaymentInfo:
+          column:
+            name: ratePaymentInfo
+        rateQualificationIdRequiredAtCheckIn:
+          column:
+            name: rateQualificationIDRequiredAtCheckIn
+        refundable:
+          column:
+            name: refundable
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RateTerms
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cancelPenalties
+          - customerLoyaltyIdRequiredAtReservation
+          - description
+          - guaranteeType
+          - ratePaymentInfo
+          - rateQualificationIdRequiredAtCheckIn
+          - refundable
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsBaseResponseRate
+  fields:
+    - name: accessibleRoom
+      type: Boolean
+    - name: bookingCode
+      type: String!
+    - name: breakfastIncluded
+      type: Boolean
+    - name: dataQualityScore
+      type: DataQualityScore!
+    - name: dinnerIncluded
+      type: Boolean
+    - name: lunchIncluded
+      type: Boolean
+    - name: nonSmoking
+      type: Boolean!
+    - name: price
+      type: Price!
+    - name: quantity
+      type: Float
+    - name: rateCodeInfo
+      type: RateRateCodeInfo!
+    - name: rateDescription
+      type: String!
+    - name: rateKey
+      type: RateRateKey!
+    - name: roomDescription
+      type: String!
+    - name: terms
+      type: RateTerms!
+    - name: wifiIncluded
+      type: Boolean
+  graphql:
+    typeName: ModelsBaseResponseRate
+    inputTypeName: ModelsBaseResponseRateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_base_response_Rate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsBaseResponseRate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - accessibleRoom
+          - bookingCode
+          - breakfastIncluded
+          - dataQualityScore
+          - dinnerIncluded
+          - lunchIncluded
+          - nonSmoking
+          - price
+          - quantity
+          - rateCodeInfo
+          - rateDescription
+          - rateKey
+          - roomDescription
+          - terms
+          - wifiIncluded
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RoomAmenity
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: RoomAmenity
+    inputTypeName: RoomAmenityInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RoomAmenity
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RoomAmenity
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RoomTypeView
+  fields:
+    - name: code
+      type: Float!
+    - name: description
+      type: String!
+  graphql:
+    typeName: RoomTypeView
+    inputTypeName: RoomTypeViewInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: RoomTypeView
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RoomTypeView
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelsBaseResponseRoomType
+  fields:
+    - name: bedTypes
+      type: "[RoomTypeBedType!]!"
+    - name: characteristics
+      type: Characteristics!
+    - name: estimatedRoomTypeOtaCode
+      type: Float!
+    - name: maxOccupancy
+      type: Float
+    - name: rates
+      type: "[ModelsBaseResponseRate!]!"
+    - name: roomAmenities
+      type: "[RoomAmenity!]"
+    - name: shortRoomDescription
+      type: String!
+    - name: view
+      type: RoomTypeView
+  graphql:
+    typeName: ModelsBaseResponseRoomType
+    inputTypeName: ModelsBaseResponseRoomTypeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: models_base_response_RoomType
+      fieldMapping:
+        bedTypes:
+          column:
+            name: bedTypes
+        characteristics:
+          column:
+            name: characteristics
+        estimatedRoomTypeOtaCode:
+          column:
+            name: estimatedRoomTypeOTACode
+        maxOccupancy:
+          column:
+            name: maxOccupancy
+        rates:
+          column:
+            name: rates
+        roomAmenities:
+          column:
+            name: roomAmenities
+        shortRoomDescription:
+          column:
+            name: shortRoomDescription
+        view:
+          column:
+            name: view
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelsBaseResponseRoomType
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - bedTypes
+          - characteristics
+          - estimatedRoomTypeOtaCode
+          - maxOccupancy
+          - rates
+          - roomAmenities
+          - shortRoomDescription
+          - view
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PropertyItem
+  fields:
+    - name: availability
+      type: Boolean!
+    - name: availabilityNotes
+      type: "[AvailabilityNote!]"
+    - name: brandCode
+      type: String
+    - name: chainCode
+      type: String!
+    - name: dataQualitySummaryScore
+      type: DataQualitySummaryScore
+    - name: longDescription
+      type: String
+    - name: lowestPrivateAvailableRate
+      type: LowestPrivateAvailableRate
+    - name: lowestPublicAvailableRate
+      type: LowestPublicAvailableRate
+    - name: name
+      type: String!
+    - name: propertyCode
+      type: String!
+    - name: propertyInfo
+      type: PropertyInfo!
+    - name: roomTypes
+      type: "[ModelsBaseResponseRoomType!]"
+  graphql:
+    typeName: PropertyItem
+    inputTypeName: PropertyItemInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: PropertyItem
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PropertyItem
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - availability
+          - availabilityNotes
+          - brandCode
+          - chainCode
+          - dataQualitySummaryScore
+          - longDescription
+          - lowestPrivateAvailableRate
+          - lowestPublicAvailableRate
+          - name
+          - propertyCode
+          - propertyInfo
+          - roomTypes
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: SearchPoint
+  fields:
+    - name: latitude
+      type: Float!
+    - name: longitude
+      type: Float!
+  graphql:
+    typeName: SearchPoint
+    inputTypeName: SearchPointInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: SearchPoint
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: SearchPoint
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - latitude
+          - longitude
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: HotelsResponse
+  fields:
+    - name: checkInDateLocal
+      type: DateTime!
+    - name: checkOutDateLocal
+      type: DateTime!
+    - name: currencyExchangeRates
+      type: "[CurrencyExchangeRate!]!"
+    - name: propertyItems
+      type: "[PropertyItem!]!"
+    - name: searchPoint
+      type: SearchPoint!
+  graphql:
+    typeName: HotelsResponse
+    inputTypeName: HotelsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: HotelsResponse
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: HotelsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - checkInDateLocal
+          - checkOutDateLocal
+          - currencyExchangeRates
+          - propertyItems
+          - searchPoint
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Pagination
+  fields:
+    - name: page
+      type: Float!
+    - name: pageSize
+      type: Float!
+    - name: paginationToken
+      type: String!
+    - name: totalItems
+      type: Float!
+    - name: totalPages
+      type: Float!
+  graphql:
+    typeName: Pagination
+    inputTypeName: PaginationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: Pagination
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Pagination
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - page
+          - pageSize
+          - paginationToken
+          - totalItems
+          - totalPages
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: TravelportResponse
+  fields:
+    - name: hotelsResponse
+      type: HotelsResponse!
+    - name: pagination
+      type: Pagination!
+    - name: traceId
+      type: String!
+    - name: transactionId
+      type: String!
+  graphql:
+    typeName: TravelportResponse
+    inputTypeName: TravelportResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: TravelportResponse
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: TravelportResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - hotelsResponse
+          - pagination
+          - traceId
+          - transactionId
+
