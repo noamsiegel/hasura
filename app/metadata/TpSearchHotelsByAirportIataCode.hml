@@ -75,7 +75,7 @@ kind: Command
 version: v1
 definition:
   name: TpSearchHotelsByAirportIataCode
-  outputType: TravelportResponse!
+  outputType: CustomResponse!
   arguments:
     - name: searchParams
       type: CustomAirportIataCodeHotelSearchRequest!

@@ -2,7 +2,7 @@
 kind: ObjectType
 version: v1
 definition:
-  name: CustomHotelSearchRequest
+  name: CustomAddressHotelSearchRequest
   fields:
     - name: checkInDate
       type: String!
@@ -22,12 +22,14 @@ definition:
       type: Radius
     - name: stateProvince
       type: String!
+    - name: returnOnlyAvailable
+      type: Boolean
   graphql:
-    typeName: CustomHotelSearchRequest
-    inputTypeName: CustomHotelSearchRequestInput
+    typeName: CustomAddressHotelSearchRequest
+    inputTypeName: CustomAddressHotelSearchRequestInput
   dataConnectorTypeMapping:
     - dataConnectorName: travelport_js
-      dataConnectorObjectType: CustomHotelSearchRequest
+      dataConnectorObjectType: CustomAddressHotelSearchRequest
       fieldMapping:
         checkInDate:
           column:
@@ -56,12 +58,15 @@ definition:
         stateProvince:
           column:
             name: state_province
+        returnOnlyAvailable:
+          column:
+            name: return_only_available
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: CustomHotelSearchRequest
+  typeName: CustomAddressHotelSearchRequest
   permissions:
     - role: admin
       output:
@@ -75,16 +80,17 @@ definition:
           - numRooms
           - searchRadius
           - stateProvince
+          - returnOnlyAvailable
 
 ---
 kind: Command
 version: v1
 definition:
   name: TpSearchHotelsByAddress
-  outputType: TravelportResponse!
+  outputType: CustomResponse!
   arguments:
     - name: searchParams
-      type: CustomHotelSearchRequest!
+      type: CustomAddressHotelSearchRequest!
   source:
     dataConnectorName: travelport_js
     dataConnectorCommand:

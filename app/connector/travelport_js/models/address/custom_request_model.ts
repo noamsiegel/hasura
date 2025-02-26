@@ -14,7 +14,7 @@ import {
 
 
 
-export interface CustomHotelSearchRequest {
+export interface CustomAddressHotelSearchRequest {
     // hotelIds?: string[];
     guests: {
         adults: number;
@@ -75,7 +75,7 @@ export interface CustomHotelSearchRequest {
     // weatherInfo?: boolean;
 }
 
-export function mapCustomToAddressRequest(customRequest: CustomHotelSearchRequest): AddressHotelSearchRequest {
+export function mapCustomToAddressRequest(customRequest: CustomAddressHotelSearchRequest): AddressHotelSearchRequest {
     const locationDetails: AddressLocationDetails = {
         type: "address",
         countryCode: customRequest.country_code,

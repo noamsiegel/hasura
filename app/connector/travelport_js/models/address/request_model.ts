@@ -1,48 +1,79 @@
-// import {
-//     Radius,
-//     BasePropertyFilter,
-//     BaseHotelSearchRequest
-// } from '../base_request';
-
 import {
-    LocationDetailsBase,
-    LocationTypeBase,
-    PropertyFilterWithLocation,
-    HotelSearchRequestWithLocation
-} from '../base_location_request_model';
+    Radius,
+    BasePropertyFilter,
+    BaseHotelSearchRequest,
+    StayDetails
+} from '../base_request';
 
-// export interface AddressLocationDetails {
-//     countryCode: string;
-//     stateProvince: string;
-//     cityName: string;
-// }
-
-// export interface AddressLocationType {
-//     type: "address";
-//     details: AddressLocationDetails;
-//     radius: Radius;
-// }
-
-// export interface AddressPropertyFilter extends BasePropertyFilter {
-//     location: AddressLocationType;
-// }
-
-// export interface AddressHotelSearchRequest extends BaseHotelSearchRequest {
-//     propertyFilter: AddressPropertyFilter;
-// }
-
-// ... existing code ...
-
-export interface AddressLocationDetails extends LocationDetailsBase {
+interface AddressLocationDetails {
     countryCode: string;
     stateProvince: string;
     cityName: string;
 }
 
-export interface AddressLocationType extends LocationTypeBase<AddressLocationDetails> {
+interface AddressLocationType {
     type: "address";
+    details: AddressLocationDetails;
+    radius: Radius;
 }
 
-export interface AddressPropertyFilter extends PropertyFilterWithLocation<AddressLocationType> {}
+export interface AddressPropertyFilter extends BasePropertyFilter {
+    location: AddressLocationType;
+}
 
-export interface AddressHotelSearchRequest extends HotelSearchRequestWithLocation<AddressPropertyFilter> {}
+export interface AddressHotelSearchRequest extends BaseHotelSearchRequest {
+    propertyFilter: AddressPropertyFilter;
+}
+
+
+
+export interface CustomAddressHotelSearchRequest {
+    guests: {
+        adults: number;
+        children?: string; // comma separated list of ages
+    };
+    num_rooms: number;
+    check_in_date: string;
+    check_out_date: string;
+    country_code: string;
+    state_province: string;
+    city_name: string;
+    search_radius?: Radius;
+    hotel_name_contains?: string;
+    return_only_available?: boolean;
+}
+
+export function mapCustomToAddressRequest(customRequest: CustomAddressHotelSearchRequest): AddressHotelSearchRequest {
+    const guests = {
+        adults: customRequest.guests.adults,
+        ...(customRequest.guests.children && {
+            children: customRequest.guests.children
+                ?.split(',')
+                .map(age => ({ age: parseInt(age.trim()) }))
+        })
+    };
+
+    const addressPropertyFilter: AddressPropertyFilter = {
+        location: {
+            type: "address",
+            details: {
+                countryCode: customRequest.country_code,
+                stateProvince: customRequest.state_province,
+                cityName: customRequest.city_name
+            },
+            radius: customRequest.search_radius || { value: 15, unit: "km" } // Default radius if not provided
+        },
+        returnOnlyAvailableProperties: customRequest.return_only_available ?? true,
+        hotelNameContains: customRequest.hotel_name_contains
+    };
+
+    return {
+        propertyFilter: addressPropertyFilter,
+        stayDetails: {
+            checkInDateLocal: customRequest.check_in_date,
+            checkOutDateLocal: customRequest.check_out_date,
+            rooms: customRequest.num_rooms,
+            guests
+        } as StayDetails,
+    };
+}

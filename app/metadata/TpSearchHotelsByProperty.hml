@@ -98,7 +98,7 @@ kind: Command
 version: v1
 definition:
   name: TpSearchHotelsByProperty
-  outputType: TravelportResponse!
+  outputType: CustomResponse!
   arguments:
     - name: searchParams
       type: CustomHotelCodeHotelSearchRequest!

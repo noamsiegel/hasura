@@ -22,13 +22,6 @@ definition:
           comparison_operators:
             _eq:
               type: equal
-        DateTime:
-          representation:
-            type: timestamp
-          aggregate_functions: {}
-          comparison_operators:
-            _eq:
-              type: equal
         Float:
           representation:
             type: float64
@@ -44,211 +37,103 @@ definition:
             _eq:
               type: equal
       object_types:
-        Address:
+        CancelPolicyInfo:
           fields:
-            city:
+            amount:
+              type:
+                type: named
+                name: Float
+            cancelTime:
               type:
                 type: named
                 name: String
-            countryCode:
-              type:
-                type: named
-                name: String
-            postalCode:
+            currency:
               type:
                 type: nullable
                 underlying_type:
                   type: named
                   name: String
-            street:
+            timezone:
               type:
                 type: named
                 name: String
-        Amenity:
+            type:
+              type:
+                type: named
+                name: String
+        CancellationPolicies:
           fields:
-            category:
-              type:
-                type: named
-                name: String
-            code:
-              type:
-                type: named
-                name: Float
-            description:
-              type:
-                type: named
-                name: String
-        AvailabilityNote:
-          fields:
-            authority:
-              type:
-                type: named
-                name: String
-            message:
-              type:
-                type: named
-                name: String
-        BalconyType:
-          fields:
-            code:
-              type:
-                type: named
-                name: Float
-            description:
-              type:
-                type: named
-                name: String
-        Category:
-          fields:
-            code:
-              type:
-                type: named
-                name: Float
-            description:
-              type:
-                type: named
-                name: String
-        Center:
-          fields:
-            latitude:
-              type:
-                type: named
-                name: Float
-            longitude:
-              type:
-                type: named
-                name: Float
-        Characteristics:
-          fields:
-            accessible:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            balconyType:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: BalconyType
-            bedTypes:
+            cancelPolicyInfos:
               type:
                 type: array
                 element_type:
                   type: named
-                  name: CharacteristicsBedType
-            category:
+                  name: CancelPolicyInfo
+            hotelRemarks:
               type:
-                type: named
-                name: Category
-            class:
-              type:
-                type: nullable
-                underlying_type:
+                type: array
+                element_type:
                   type: named
-                  name: Class
-            locationInfo:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: LocationInfo
-            maxOccupancy:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            numberOfBathrooms:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            numberOfBedrooms:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            otherFeatures:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            view:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: CharacteristicsView
-        CharacteristicsBedType:
-          fields:
-            bedType:
-              type:
-                type: named
-                name: String
-            quantity:
-              type:
-                type: named
-                name: Float
-            size:
-              type:
-                type: named
-                name: String
-        CharacteristicsView:
-          fields:
-            code:
-              type:
-                type: named
-                name: Float
-            description:
-              type:
-                type: named
-                name: String
-        Class:
-          fields:
-            code:
-              type:
-                type: named
-                name: Float
-            description:
+                  name: String
+            refundableTag:
               type:
                 type: named
                 name: String
         Commission:
           fields:
-            application:
+            amount:
               type:
                 type: named
-                name: Boolean
-            estimatedPercent:
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
+        CustomAddressHotelSearchRequest:
+          fields:
+            check_in_date:
+              type:
+                type: named
+                name: String
+            check_out_date:
+              type:
+                type: named
+                name: String
+            city_name:
+              type:
+                type: named
+                name: String
+            country_code:
+              type:
+                type: named
+                name: String
+            guests:
+              type:
+                type: named
+                name: CustomCoordinatesHotelSearchRequest_guests
+            hotel_name_contains:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            num_rooms:
+              type:
+                type: named
+                name: Float
+            return_only_available:
               type:
                 type: nullable
                 underlying_type:
                   type: named
                   name: Boolean
-            percent:
+            search_radius:
               type:
                 type: nullable
                 underlying_type:
                   type: named
-                  name: Float
-        CurrencyExchangeRate:
-          fields:
-            conversionFactor:
-              type:
-                type: named
-                name: Float
-            sourceCurrency:
-              type:
-                type: named
-                name: String
-            targetCurrency:
+                  name: Radius
+            state_province:
               type:
                 type: named
                 name: String
@@ -424,105 +309,31 @@ definition:
                 underlying_type:
                   type: named
                   name: Radius
-        CustomHotelSearchRequest:
+        CustomResponse:
           fields:
-            check_in_date:
+            data:
               type:
-                type: named
-                name: String
-            check_out_date:
-              type:
-                type: named
-                name: String
-            city_name:
-              type:
-                type: named
-                name: String
-            country_code:
-              type:
-                type: named
-                name: String
-            guests:
-              type:
-                type: named
-                name: CustomCoordinatesHotelSearchRequest_guests
-            hotel_name_contains:
-              type:
-                type: nullable
-                underlying_type:
+                type: array
+                element_type:
                   type: named
-                  name: String
-            num_rooms:
+                  name: HotelData
+            guestLevel:
               type:
                 type: named
                 name: Float
-            search_radius:
+        HotelData:
+          fields:
+            hotelId:
               type:
-                type: nullable
-                underlying_type:
+                type: named
+                name: String
+            roomTypes:
+              type:
+                type: array
+                element_type:
                   type: named
-                  name: Radius
-            state_province:
-              type:
-                type: named
-                name: String
-        DataQualityScore:
-          fields:
-            augmentedRateQualityScore:
-              type:
-                type: named
-                name: Float
-            augmentedRoomQualityScore:
-              type:
-                type: named
-                name: Float
-        DataQualitySummaryScore:
-          fields:
-            propertySummary:
-              type:
-                type: named
-                name: PropertySummary
-        Dimensions:
-          fields:
-            height:
-              type:
-                type: named
-                name: Float
-            width:
-              type:
-                type: named
-                name: Float
-        DistanceFromSearchPoint:
-          fields:
-            unitOfDistance:
-              type:
-                type: named
-                name: String
-            value:
-              type:
-                type: named
-                name: Float
-        Fax:
-          fields:
-            phoneNumber:
-              type:
-                type: named
-                name: String
-        FluffyCancelPenalty:
-          fields:
-            cancelShortDescription:
-              type:
-                type: named
-                name: String
-            deadlineLocal:
-              type:
-                type: named
-                name: DateTime
-            penalty:
-              type:
-                type: named
-                name: FluffyPenalty
-        FluffyCurrencyAmount:
+                  name: RoomType
+        InitialPrice:
           fields:
             amount:
               type:
@@ -532,526 +343,26 @@ definition:
               type:
                 type: named
                 name: String
-        FluffyPenalty:
-          fields:
-            currencyAmount:
-              type:
-                type: named
-                name: FluffyCurrencyAmount
-            estimatedAmount:
-              type:
-                type: named
-                name: Boolean
-            originalPenaltyInfo:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-        Geolocation:
-          fields:
-            center:
-              type:
-                type: named
-                name: Center
-        HotelsResponse:
-          fields:
-            checkInDateLocal:
-              type:
-                type: named
-                name: DateTime
-            checkOutDateLocal:
-              type:
-                type: named
-                name: DateTime
-            currencyExchangeRates:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: CurrencyExchangeRate
-            propertyItems:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: PropertyItem
-            searchPoint:
-              type:
-                type: named
-                name: SearchPoint
-        ImageURL:
-          fields:
-            caption:
-              type:
-                type: named
-                name: String
-            curatedImage:
-              type:
-                type: named
-                name: Boolean
-            dimensions:
-              type:
-                type: named
-                name: Dimensions
-            imageSize:
-              type:
-                type: named
-                name: String
-            pictureCategory:
-              type:
-                type: named
-                name: Float
-            url:
-              type:
-                type: named
-                name: String
-        LocationInfo:
-          fields:
-            floor:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            proximity:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-        LowestPrivateAvailableRate:
-          fields:
-            averageNightlyBase:
-              type:
-                type: named
-                name: LowestPrivateAvailableRateAverageNightlyBase
-            averageNightlyTotalPrice:
-              type:
-                type: named
-                name: LowestPrivateAvailableRateAverageNightlyTotalPrice
-            averageNightlyTotalTaxes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: LowestPrivateAvailableRateAverageNightlyTotalTaxes
-            base:
-              type:
-                type: named
-                name: LowestPrivateAvailableRateBase
-            currencyCode:
-              type:
-                type: named
-                name: String
-            rateCodeInfo:
-              type:
-                type: named
-                name: LowestPrivateAvailableRateRateCodeInfo
-            rateKey:
-              type:
-                type: named
-                name: LowestPrivateAvailableRateRateKey
-            shortRoomDescription:
-              type:
-                type: named
-                name: String
-            terms:
-              type:
-                type: named
-                name: LowestPrivateAvailableRateTerms
-            totalPrice:
-              type:
-                type: named
-                name: LowestPrivateAvailableRateTotalPrice
-            totalTaxes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: LowestPrivateAvailableRateTotalTaxes
-        LowestPrivateAvailableRateAverageNightlyBase:
+        OfferInitialPrice:
           fields:
             amount:
               type:
                 type: named
                 name: Float
-        LowestPrivateAvailableRateAverageNightlyTotalPrice:
+            currency:
+              type:
+                type: named
+                name: String
+        OfferRetailRate:
           fields:
             amount:
               type:
                 type: named
                 name: Float
-        LowestPrivateAvailableRateAverageNightlyTotalTaxes:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPrivateAvailableRateBase:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPrivateAvailableRateRateCodeInfo:
-          fields:
-            rateCategory:
+            currency:
               type:
                 type: named
                 name: String
-            rateCategoryCode:
-              type:
-                type: named
-                name: Float
-            rateClassificationCode:
-              type:
-                type: named
-                name: Float
-            rateCode:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            ratePlanID:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            rateType:
-              type:
-                type: named
-                name: String
-        LowestPrivateAvailableRateRateKey:
-          fields:
-            authority:
-              type:
-                type: named
-                name: String
-            value:
-              type:
-                type: named
-                name: String
-        LowestPrivateAvailableRateTerms:
-          fields:
-            cancelPenalties:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: PurpleCancelPenalty
-            customerLoyaltyIDRequiredAtReservation:
-              type:
-                type: named
-                name: Boolean
-            description:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: String
-            guaranteeType:
-              type:
-                type: named
-                name: String
-            ratePaymentInfo:
-              type:
-                type: named
-                name: String
-            rateQualificationIDRequiredAtCheckIn:
-              type:
-                type: named
-                name: Boolean
-            refundable:
-              type:
-                type: named
-                name: Boolean
-        LowestPrivateAvailableRateTotalPrice:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPrivateAvailableRateTotalTaxes:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPublicAvailableRate:
-          fields:
-            averageNightlyBase:
-              type:
-                type: named
-                name: LowestPublicAvailableRateAverageNightlyBase
-            averageNightlyTotalPrice:
-              type:
-                type: named
-                name: LowestPublicAvailableRateAverageNightlyTotalPrice
-            averageNightlyTotalTaxes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: LowestPublicAvailableRateAverageNightlyTotalTaxes
-            base:
-              type:
-                type: named
-                name: LowestPublicAvailableRateBase
-            currencyCode:
-              type:
-                type: named
-                name: String
-            rateCodeInfo:
-              type:
-                type: named
-                name: LowestPublicAvailableRateRateCodeInfo
-            rateKey:
-              type:
-                type: named
-                name: LowestPublicAvailableRateRateKey
-            shortRoomDescription:
-              type:
-                type: named
-                name: String
-            terms:
-              type:
-                type: named
-                name: LowestPublicAvailableRateTerms
-            totalPrice:
-              type:
-                type: named
-                name: LowestPublicAvailableRateTotalPrice
-            totalTaxes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: LowestPublicAvailableRateTotalTaxes
-        LowestPublicAvailableRateAverageNightlyBase:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPublicAvailableRateAverageNightlyTotalPrice:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPublicAvailableRateAverageNightlyTotalTaxes:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPublicAvailableRateBase:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPublicAvailableRateRateCodeInfo:
-          fields:
-            rateCategoryCode:
-              type:
-                type: named
-                name: Float
-            rateClassificationCode:
-              type:
-                type: named
-                name: Float
-            rateType:
-              type:
-                type: named
-                name: String
-        LowestPublicAvailableRateRateKey:
-          fields:
-            authority:
-              type:
-                type: named
-                name: String
-            value:
-              type:
-                type: named
-                name: String
-        LowestPublicAvailableRateTerms:
-          fields:
-            cancelPenalties:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: FluffyCancelPenalty
-            customerLoyaltyIDRequiredAtReservation:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            description:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            guaranteeType:
-              type:
-                type: named
-                name: String
-            ratePaymentInfo:
-              type:
-                type: named
-                name: String
-            rateQualificationIDRequiredAtCheckIn:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            refundable:
-              type:
-                type: named
-                name: Boolean
-        LowestPublicAvailableRateTotalPrice:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        LowestPublicAvailableRateTotalTaxes:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        NightlyRatesBreakdown:
-          fields:
-            localDate:
-              type:
-                type: named
-                name: DateTime
-            totalPrice:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: NightlyRatesBreakdownTotalPrice
-        NightlyRatesBreakdownTotalPrice:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        Pagination:
-          fields:
-            page:
-              type:
-                type: named
-                name: Float
-            pageSize:
-              type:
-                type: named
-                name: Float
-            paginationToken:
-              type:
-                type: named
-                name: String
-            totalItems:
-              type:
-                type: named
-                name: Float
-            totalPages:
-              type:
-                type: named
-                name: Float
-        PerStayTaxAndFeeBreakdown:
-          fields:
-            taxes:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: Tax
-        Phone:
-          fields:
-            phoneNumber:
-              type:
-                type: named
-                name: String
-        Price:
-          fields:
-            base:
-              type:
-                type: named
-                name: PriceBase
-            commission:
-              type:
-                type: named
-                name: Commission
-            currencyCode:
-              type:
-                type: named
-                name: String
-            nightlyRatesBreakdown:
-              type:
-                type: array
-                element_type:
-                  type: named
-                  name: NightlyRatesBreakdown
-            perStayTaxAndFeeBreakdown:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: PerStayTaxAndFeeBreakdown
-            priceNote:
-              type:
-                type: named
-                name: PriceNote
-            taxesIncludedInBase:
-              type:
-                type: named
-                name: Boolean
-            totalPrice:
-              type:
-                type: named
-                name: PriceTotalPrice
-            totalTaxes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: PriceTotalTaxes
-        PriceBase:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        PriceNote:
-          fields:
-            message:
-              type:
-                type: named
-                name: String
-        PriceTotalPrice:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-        PriceTotalTaxes:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
         PropertyDetails:
           fields:
             chainCode:
@@ -1062,216 +373,6 @@ definition:
               type:
                 type: named
                 name: String
-        PropertyInfo:
-          fields:
-            acceptedCreditCards:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: String
-            adaCompliant:
-              type:
-                type: named
-                name: Boolean
-            address:
-              type:
-                type: named
-                name: Address
-            amenities:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: Amenity
-            checkInTimeLocal:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            checkOutTimeLocal:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            distanceFromSearchPoint:
-              type:
-                type: named
-                name: DistanceFromSearchPoint
-            email:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            fax:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Fax
-            featuredPropertyInd:
-              type:
-                type: named
-                name: Boolean
-            geolocation:
-              type:
-                type: named
-                name: Geolocation
-            imageURLs:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: ImageURL
-            phone:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Phone
-            ratings:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: Rating
-        PropertyItem:
-          fields:
-            availability:
-              type:
-                type: named
-                name: Boolean
-            availabilityNotes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: AvailabilityNote
-            brandCode:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            chainCode:
-              type:
-                type: named
-                name: String
-            dataQualitySummaryScore:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: DataQualitySummaryScore
-            longDescription:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            lowestPrivateAvailableRate:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: LowestPrivateAvailableRate
-            lowestPublicAvailableRate:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: LowestPublicAvailableRate
-            name:
-              type:
-                type: named
-                name: String
-            propertyCode:
-              type:
-                type: named
-                name: String
-            propertyInfo:
-              type:
-                type: named
-                name: PropertyInfo
-            roomTypes:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: RoomType
-        PropertySummary:
-          fields:
-            averageAugmentedRateQualityScore:
-              type:
-                type: named
-                name: Float
-            averageAugmentedRoomQualityScore:
-              type:
-                type: named
-                name: Float
-            merchandisingQualityScore:
-              type:
-                type: named
-                name: Float
-            propertyContentQualityScore:
-              type:
-                type: named
-                name: Float
-        PurpleCancelPenalty:
-          fields:
-            cancelShortDescription:
-              type:
-                type: named
-                name: String
-            deadlineLocal:
-              type:
-                type: named
-                name: DateTime
-            penalty:
-              type:
-                type: named
-                name: PurplePenalty
-        PurpleCurrencyAmount:
-          fields:
-            amount:
-              type:
-                type: named
-                name: Float
-            currency:
-              type:
-                type: named
-                name: String
-        PurplePenalty:
-          fields:
-            currencyAmount:
-              type:
-                type: named
-                name: PurpleCurrencyAmount
-            estimatedAmount:
-              type:
-                type: named
-                name: Boolean
-            originalPenaltyInfo:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
         Radius:
           fields:
             unit:
@@ -1284,291 +385,133 @@ definition:
                 name: Float
         Rate:
           fields:
-            accessibleRoom:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            bookingCode:
-              type:
-                type: named
-                name: String
-            breakfastIncluded:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            dataQualityScore:
-              type:
-                type: named
-                name: DataQualityScore
-            dinnerIncluded:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            lunchIncluded:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            nonSmoking:
-              type:
-                type: named
-                name: Boolean
-            price:
-              type:
-                type: named
-                name: Price
-            quantity:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
-            rateCodeInfo:
-              type:
-                type: named
-                name: RateRateCodeInfo
-            rateDescription:
-              type:
-                type: named
-                name: String
-            rateKey:
-              type:
-                type: named
-                name: RateRateKey
-            roomDescription:
-              type:
-                type: named
-                name: String
-            terms:
-              type:
-                type: named
-                name: RateTerms
-            wifiIncluded:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-        RateRateCodeInfo:
-          fields:
-            rateCategory:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            rateCategoryCode:
+            adultCount:
               type:
                 type: named
                 name: Float
-            rateClassificationCode:
+            boardName:
+              type:
+                type: named
+                name: String
+            boardType:
+              type:
+                type: named
+                name: String
+            cancellationPolicies:
+              type:
+                type: named
+                name: CancellationPolicies
+            childCount:
               type:
                 type: named
                 name: Float
-            rateCode:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            ratePlanID:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            rateType:
-              type:
-                type: named
-                name: String
-        RateRateKey:
-          fields:
-            authority:
-              type:
-                type: named
-                name: String
-            value:
-              type:
-                type: named
-                name: String
-        RateTerms:
-          fields:
-            cancelPenalties:
+            commission:
               type:
                 type: array
                 element_type:
                   type: named
-                  name: TentacledCancelPenalty
-            customerLoyaltyIDRequiredAtReservation:
+                  name: Commission
+            maxOccupancy:
               type:
-                type: nullable
-                underlying_type:
+                type: named
+                name: Float
+            name:
+              type:
+                type: named
+                name: String
+            occupancyNumber:
+              type:
+                type: named
+                name: Float
+            priceType:
+              type:
+                type: named
+                name: String
+            rateId:
+              type:
+                type: named
+                name: String
+            remarks:
+              type:
+                type: named
+                name: String
+            retailRate:
+              type:
+                type: named
+                name: RetailRate
+        RetailRate:
+          fields:
+            initialPrice:
+              type:
+                type: array
+                element_type:
                   type: named
-                  name: Boolean
-            description:
+                  name: InitialPrice
+            suggestedSellingPrice:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: SuggestedSellingPrice
+            taxesAndFees:
               type:
                 type: nullable
                 underlying_type:
                   type: array
                   element_type:
                     type: named
-                    name: String
-            guaranteeType:
-              type:
-                type: named
-                name: String
-            ratePaymentInfo:
-              type:
-                type: named
-                name: String
-            rateQualificationIDRequiredAtCheckIn:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Boolean
-            refundable:
-              type:
-                type: named
-                name: Boolean
-        Rating:
-          fields:
-            provider:
-              type:
-                type: named
-                name: String
-            value:
-              type:
-                type: named
-                name: Float
-        RoomAmenity:
-          fields:
-            code:
-              type:
-                type: named
-                name: Float
-            description:
-              type:
-                type: named
-                name: String
-        RoomType:
-          fields:
-            bedTypes:
+                    name: TaxesAndFee
+            total:
               type:
                 type: array
                 element_type:
                   type: named
-                  name: RoomTypeBedType
-            characteristics:
+                  name: Total
+        RoomType:
+          fields:
+            offerId:
               type:
                 type: named
-                name: Characteristics
-            estimatedRoomTypeOTACode:
+                name: String
+            offerInitialPrice:
               type:
                 type: named
-                name: Float
-            maxOccupancy:
+                name: OfferInitialPrice
+            offerRetailRate:
               type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Float
+                type: named
+                name: OfferRetailRate
+            priceType:
+              type:
+                type: named
+                name: String
+            rateType:
+              type:
+                type: named
+                name: String
             rates:
               type:
                 type: array
                 element_type:
                   type: named
                   name: Rate
-            roomAmenities:
-              type:
-                type: nullable
-                underlying_type:
-                  type: array
-                  element_type:
-                    type: named
-                    name: RoomAmenity
-            shortRoomDescription:
+            roomTypeId:
               type:
                 type: named
                 name: String
-            view:
+            suggestedSellingPrice:
               type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: RoomTypeView
-        RoomTypeBedType:
-          fields:
-            bedType:
+                type: named
+                name: SuggestedSellingPrice2
+            supplier:
               type:
                 type: named
                 name: String
-            quantity:
+            supplierId:
               type:
                 type: named
                 name: Float
-            size:
-              type:
-                type: named
-                name: String
-        RoomTypeView:
-          fields:
-            code:
-              type:
-                type: named
-                name: Float
-            description:
-              type:
-                type: named
-                name: String
-        SearchPoint:
-          fields:
-            latitude:
-              type:
-                type: named
-                name: Float
-            longitude:
-              type:
-                type: named
-                name: Float
-        Tax:
-          fields:
-            description:
-              type:
-                type: named
-                name: String
-            taxCode:
-              type:
-                type: named
-                name: String
-            value:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: Value
-        TentacledCancelPenalty:
-          fields:
-            cancelShortDescription:
-              type:
-                type: named
-                name: String
-            deadlineLocal:
-              type:
-                type: named
-                name: DateTime
-            penalty:
-              type:
-                type: named
-                name: TentacledPenalty
-        TentacledCurrencyAmount:
+        SuggestedSellingPrice:
           fields:
             amount:
               type:
@@ -1578,46 +521,44 @@ definition:
               type:
                 type: named
                 name: String
-        TentacledPenalty:
-          fields:
-            currencyAmount:
-              type:
-                type: named
-                name: TentacledCurrencyAmount
-            estimatedAmount:
-              type:
-                type: named
-                name: Boolean
-            originalPenaltyInfo:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-        TravelportResponse:
-          fields:
-            hotelsResponse:
-              type:
-                type: named
-                name: HotelsResponse
-            pagination:
-              type:
-                type: named
-                name: Pagination
-            traceId:
-              type:
-                type: named
-                name: String
-            transactionId:
-              type:
-                type: named
-                name: String
-        Value:
+        SuggestedSellingPrice2:
           fields:
             amount:
               type:
                 type: named
                 name: Float
+            currency:
+              type:
+                type: named
+                name: String
+        TaxesAndFee:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
+            description:
+              type:
+                type: named
+                name: String
+            included:
+              type:
+                type: named
+                name: Boolean
+        Total:
+          fields:
+            amount:
+              type:
+                type: named
+                name: Float
+            currency:
+              type:
+                type: named
+                name: String
       collections: []
       functions:
         - name: tpSearchHotelsByCoordinates
@@ -1628,7 +569,7 @@ definition:
                 name: CustomCoordinatesHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
         - name: tpSearchHotelsByAirportIataCode
           arguments:
             searchParams:
@@ -1637,7 +578,7 @@ definition:
                 name: CustomAirportIataCodeHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
         - name: tpSearchHotelsByProperty
           arguments:
             searchParams:
@@ -1646,16 +587,16 @@ definition:
                 name: CustomHotelCodeHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
         - name: tpSearchHotelsByAddress
           arguments:
             searchParams:
               type:
                 type: named
-                name: CustomHotelSearchRequest
+                name: CustomAddressHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
         - name: tpSearchHotelsByCityIataCode
           arguments:
             searchParams:
@@ -1664,7 +605,7 @@ definition:
                 name: CustomCityIataCodeHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
       procedures: []
     capabilities:
       version: 0.1.6

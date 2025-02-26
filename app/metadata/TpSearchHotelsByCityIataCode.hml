@@ -16,10 +16,10 @@ definition:
       type: String!
     - name: numRooms
       type: Float!
-    - name: searchRadius
-      type: Radius
     - name: returnOnlyAvailable
       type: Boolean
+    - name: searchRadius
+      type: Radius
   graphql:
     typeName: CustomCityIataCodeHotelSearchRequest
     inputTypeName: CustomCityIataCodeHotelSearchRequestInput
@@ -45,12 +45,12 @@ definition:
         numRooms:
           column:
             name: num_rooms
-        searchRadius:
-          column:
-            name: search_radius
         returnOnlyAvailable:
           column:
             name: return_only_available
+        searchRadius:
+          column:
+            name: search_radius
 
 ---
 kind: TypePermissions
@@ -67,15 +67,15 @@ definition:
           - hotelNameContains
           - iataCode
           - numRooms
-          - searchRadius
           - returnOnlyAvailable
+          - searchRadius
 
 ---
 kind: Command
 version: v1
 definition:
   name: TpSearchHotelsByCityIataCode
-  outputType: TravelportResponse!
+  outputType: CustomResponse!
   arguments:
     - name: searchParams
       type: CustomCityIataCodeHotelSearchRequest!
