@@ -61,9 +61,10 @@ export async function tpSearchHotelsByProperty(
 /** @readonly */
 export async function tpSearchHotelsByAddress(
     searchParams: CustomHotelSearchRequest
-): Promise<TravelportResponse> {
+): Promise<CustomResponse> {
     const transformedRequest = mapCustomToAddressRequest(searchParams);
-    return await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
+    return mapTravelportToCustomResponse(travelportResponse);
 }
 
 /**

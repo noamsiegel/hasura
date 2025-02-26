@@ -1937,7 +1937,7 @@ definition:
                 name: CustomHotelSearchRequest
           result_type:
             type: named
-            name: TravelportResponse
+            name: CustomResponse
         - name: tpSearchHotelsByCityIataCode
           arguments:
             searchParams:
