@@ -6,9 +6,15 @@ import { CustomCityIataCodeHotelSearchRequest,mapCustomToCityIataCodeRequest } f
 import { CustomHotelCodeHotelSearchRequest,mapCustomToHotelCodeRequest } from './models/property/request_model';
 // responses
 import { TravelportResponse } from './models/base_response';
-import { TravelPortClient } from './client';
 import { mapTravelportToCustomResponse } from './models/custom_response_mapper';
 import { CustomResponse } from './models/custom_response';
+// weather
+import { getWeatherData as fetchWeatherData } from './weather/main';
+import { WeatherDataParams,WeatherDataResponse } from './weather/types';
+
+// Travelport client
+import { TravelPortClient } from './client';
+
 // Hasura SDK
 import * as sdk from "@hasura/ndc-lambda-sdk";
 
@@ -68,4 +74,12 @@ export async function tpSearchHotelsByCityIataCode(
     const transformedRequest = mapCustomToCityIataCodeRequest(searchParams);
     const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
     return mapTravelportToCustomResponse(travelportResponse);
+}
+
+/* Get weather data for a location */
+/** @readonly */
+export async function getWeatherData(
+    searchParams: WeatherDataParams
+): Promise<WeatherDataResponse> {
+    return await fetchWeatherData(searchParams);
 }

@@ -1,4 +1,4 @@
-import { WeatherDataParams, WeatherDataResponse } from './types';
+import { WeatherDataParams,WeatherDataResponse } from './types';
 
 const params = {
     "latitude": 52.52,
@@ -57,8 +57,8 @@ function getDatePlusDays(days: number): string {
 // Helper function to format a date as YYYY-MM-DD
 function formatDate(date: Date): string {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2,'0');
+    const day = String(date.getDate()).padStart(2,'0');
     return `${year}-${month}-${day}`;
 }
 
@@ -145,11 +145,48 @@ interface RawWeatherData {
     };
 }
 
+// Helper function to validate date range
+function validateDateRange(date: string): boolean {
+    const minDate = new Date('2016-01-01');
+    const maxDate = new Date('2025-03-14');
+    const checkDate = new Date(date);
+    
+    return checkDate >= minDate && checkDate <= maxDate;
+}
+
+// Helper function to validate check-in and check-out dates
+function validateBookingDates(checkInDate: string, checkOutDate: string): void {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set to beginning of day for accurate comparison
+    
+    const checkIn = new Date(checkInDate);
+    checkIn.setHours(0, 0, 0, 0);
+    
+    const checkOut = new Date(checkOutDate);
+    checkOut.setHours(0, 0, 0, 0);
+    
+    // Calculate date 15 days from check-in date, not from today
+    const maxDate = new Date(checkIn);
+    maxDate.setDate(checkIn.getDate() + 15);
+    
+    if (checkIn < today) {
+        throw new Error(`Check-in date (${checkInDate}) cannot be before today (${formatDate(today)})`);
+    }
+    
+    if (checkOut > maxDate) {
+        throw new Error(`Check-out date (${checkOutDate}) cannot be more than 15 days from check-in date (${formatDate(maxDate)})`);
+    }
+    
+    if (checkIn > checkOut) {
+        throw new Error(`Check-in date (${checkInDate}) cannot be after check-out date (${checkOutDate})`);
+    }
+}
+
 // Export the function so it can be imported by other files
 export async function getWeatherData(
-    startDate?: string, 
-    endDate?: string, 
-    inputLatitude?: number, 
+    startDate?: string,
+    endDate?: string,
+    inputLatitude?: number,
     inputLongitude?: number,
     temperatureUnit?: string,
     windSpeedUnit?: string,
@@ -181,10 +218,11 @@ export async function getWeatherData(
 
         if (startDateOrParams && typeof startDateOrParams === 'object') {
             // Using params object
-            start = startDateOrParams.startDate;
-            end = startDateOrParams.endDate;
-            lat = startDateOrParams.inputLatitude;
-            lon = startDateOrParams.inputLongitude;
+            start = startDateOrParams.checkInDate;
+            end = startDateOrParams.checkOutDate;
+            // Convert string latitude/longitude to numbers
+            lat = startDateOrParams.latitude ? parseFloat(startDateOrParams.latitude) : undefined;
+            lon = startDateOrParams.longitude ? parseFloat(startDateOrParams.longitude) : undefined;
             tempUnit = startDateOrParams.temperatureUnit;
             windUnit = startDateOrParams.windSpeedUnit;
             precipUnit = startDateOrParams.precipitationUnit;
@@ -208,18 +246,30 @@ export async function getWeatherData(
         const finalWindUnit = windUnit || params.wind_speed_unit;
         const finalPrecipUnit = precipUnit || params.precipitation_unit;
 
+        // Validate date range for API compatibility
+        if (!validateDateRange(finalStart)) {
+            throw new Error(`Start date ${finalStart} is out of allowed range (2016-01-01 to 2025-03-14)`);
+        }
+        
+        if (!validateDateRange(finalEnd)) {
+            throw new Error(`End date ${finalEnd} is out of allowed range (2016-01-01 to 2025-03-14)`);
+        }
+        
+        // Validate check-in and check-out dates for business rules
+        validateBookingDates(finalStart, finalEnd);
+
         console.log(`Fetching weather data for: Lat ${finalLat}, Lon ${finalLon}, from ${finalStart} to ${finalEnd}`);
         console.log(`Units: Temp: ${finalTempUnit}, Wind: ${finalWindUnit}, Precip: ${finalPrecipUnit}`);
 
         // Make a direct fetch to the API to get the raw JSON response
         // This allows us to access the sunrise and sunset string values directly
         const directResponse = await fetch(`${url}?latitude=${finalLat}&longitude=${finalLon}&daily=sunrise,sunset&timezone=${params.timezone}&timeformat=${params.timeformat}&start_date=${finalStart}&end_date=${finalEnd}`);
-        
+
         if (!directResponse.ok) {
             const errorText = await directResponse.text();
             throw new Error(`API error (sunrise/sunset): ${directResponse.status} - ${errorText}`);
         }
-        
+
         const directData = await directResponse.json() as {
             daily?: {
                 sunrise?: string[];
@@ -228,7 +278,7 @@ export async function getWeatherData(
             error?: boolean,
             reason?: string
         };
-        
+
         // Check for API error response
         if (directData.error) {
             throw new Error(`API error: ${directData.reason || 'Unknown error'}`);
@@ -241,7 +291,7 @@ export async function getWeatherData(
         // Replace SDK call with direct fetch for all weather data
         const dailyParams = params.daily.join(',');
         const mainResponse = await fetch(`${url}?latitude=${finalLat}&longitude=${finalLon}&daily=${dailyParams}&temperature_unit=${finalTempUnit}&wind_speed_unit=${finalWindUnit}&precipitation_unit=${finalPrecipUnit}&timezone=${params.timezone}&timeformat=${params.timeformat}&start_date=${finalStart}&end_date=${finalEnd}`);
-        
+
         if (!mainResponse.ok) {
             const errorText = await mainResponse.text();
             throw new Error(`API error (main): ${mainResponse.status} - ${errorText}`);
@@ -289,7 +339,7 @@ export async function getWeatherData(
         const weatherData = await mainResponse.json() as OpenMeteoResponse;
 
         // Log the raw response for debugging
-        console.log("Weather data response:", JSON.stringify(weatherData, null, 2));
+        console.log("Weather data response:",JSON.stringify(weatherData,null,2));
 
         // Check for API error response
         if (weatherData.error) {
@@ -363,7 +413,7 @@ export async function getWeatherData(
     }
 }
 
-function createCleanDailyItems(rawWeatherData: RawWeatherData, utcOffsetSeconds: number) {
+function createCleanDailyItems(rawWeatherData: RawWeatherData,utcOffsetSeconds: number) {
     // utcOffsetSeconds is used to adjust UNIX timestamps when timeformat is 'unixtime'
     // According to Open-Meteo docs: "For daily values with unix timestamps, please apply utc_offset_seconds again to get the correct date"
     const dailyItems = [];
@@ -378,8 +428,8 @@ function createCleanDailyItems(rawWeatherData: RawWeatherData, utcOffsetSeconds:
 
         // If the timeformat is unixtime, apply the UTC offset to get the correct date
         if (params.timeformat === "unixtime") {
-            sunriseTime = convertUnixTimeToISOString(sunriseTime, utcOffsetSeconds);
-            sunsetTime = convertUnixTimeToISOString(sunsetTime, utcOffsetSeconds);
+            sunriseTime = convertUnixTimeToISOString(sunriseTime,utcOffsetSeconds);
+            sunsetTime = convertUnixTimeToISOString(sunsetTime,utcOffsetSeconds);
         }
 
         const dailyItem = {

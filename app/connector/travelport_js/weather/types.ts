@@ -11,25 +11,27 @@ export interface WeatherDataParams {
    * Start date for weather forecast in YYYY-MM-DD format
    * If not provided, defaults to current date
    */
-  startDate?: string;
+  checkInDate: string;
   
   /**
    * End date for weather forecast in YYYY-MM-DD format
    * If not provided, defaults to current date + 3 days
    */
-  endDate?: string;
+  checkOutDate: string;
   
   /**
-   * Latitude coordinate for location
-   * If not provided, defaults to 52.52 (Berlin)
+   * Latitude coordinate for location as a string
+   * If not provided, defaults to "52.52" (Berlin)
+   * Will be converted to a number internally
    */
-  inputLatitude?: number;
+  latitude: string;
   
   /**
-   * Longitude coordinate for location
-   * If not provided, defaults to 13.41 (Berlin)
+   * Longitude coordinate for location as a string
+   * If not provided, defaults to "13.41" (Berlin)
+   * Will be converted to a number internally
    */
-  inputLongitude?: number;
+  longitude: string;
   
   /**
    * Temperature unit to use

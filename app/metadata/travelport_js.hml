@@ -321,6 +321,106 @@ definition:
               type:
                 type: named
                 name: Float
+        DailyWeatherItem:
+          fields:
+            clouds:
+              type:
+                type: named
+                name: String
+            date:
+              type:
+                type: named
+                name: String
+            feels_like:
+              type:
+                type: named
+                name: DailyWeatherItem_feels_like
+            pop:
+              type:
+                type: named
+                name: String
+            summary:
+              type:
+                type: named
+                name: String
+            sunrise:
+              type:
+                type: named
+                name: String
+            sunset:
+              type:
+                type: named
+                name: String
+            temp:
+              type:
+                type: named
+                name: DailyWeatherItem_temp
+            uvi:
+              type:
+                type: named
+                name: String
+            weather:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: WeatherCondition
+            wind_deg:
+              type:
+                type: named
+                name: String
+            wind_gust:
+              type:
+                type: named
+                name: String
+            wind_speed:
+              type:
+                type: named
+                name: String
+        DailyWeatherItem_feels_like:
+          fields:
+            day:
+              type:
+                type: named
+                name: String
+            eve:
+              type:
+                type: named
+                name: String
+            morn:
+              type:
+                type: named
+                name: String
+            night:
+              type:
+                type: named
+                name: String
+        DailyWeatherItem_temp:
+          fields:
+            day:
+              type:
+                type: named
+                name: String
+            eve:
+              type:
+                type: named
+                name: String
+            max:
+              type:
+                type: named
+                name: String
+            min:
+              type:
+                type: named
+                name: String
+            morn:
+              type:
+                type: named
+                name: String
+            night:
+              type:
+                type: named
+                name: String
         HotelData:
           fields:
             hotelId:
@@ -559,6 +659,118 @@ definition:
               type:
                 type: named
                 name: String
+        WeatherCondition:
+          fields:
+            description:
+              type:
+                type: named
+                name: String
+            icon:
+              type:
+                type: named
+                name: String
+            id:
+              type:
+                type: named
+                name: String
+            main:
+              type:
+                type: named
+                name: String
+        WeatherDataParams:
+          description: Parameters for the getWeatherData function
+          fields:
+            checkInDate:
+              description: |-
+                Start date for weather forecast in YYYY-MM-DD format
+                If not provided, defaults to current date
+              type:
+                type: named
+                name: String
+            checkOutDate:
+              description: |-
+                End date for weather forecast in YYYY-MM-DD format
+                If not provided, defaults to current date + 3 days
+              type:
+                type: named
+                name: String
+            latitude:
+              description: |-
+                Latitude coordinate for location as a string
+                If not provided, defaults to "52.52" (Berlin)
+                Will be converted to a number internally
+              type:
+                type: named
+                name: String
+            longitude:
+              description: |-
+                Longitude coordinate for location as a string
+                If not provided, defaults to "13.41" (Berlin)
+                Will be converted to a number internally
+              type:
+                type: named
+                name: String
+            precipitationUnit:
+              description: |-
+                Precipitation unit to use
+                Options: "mm", "inch"
+                If not provided, defaults to "inch"
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            temperatureUnit:
+              description: |-
+                Temperature unit to use
+                Options: "celsius", "fahrenheit"
+                If not provided, defaults to "fahrenheit"
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            windSpeedUnit:
+              description: |-
+                Wind speed unit to use
+                Options: "kmh" (kilometers per hour), "ms" (meters per second), "mph" (miles per hour), "kn" (knots)
+                If not provided, defaults to "ms"
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+        WeatherDataResponse:
+          description: Weather data response interfaces
+          fields:
+            weatherData:
+              type:
+                type: named
+                name: WeatherDataResponse_weatherData
+        WeatherDataResponse_weatherData:
+          fields:
+            daily:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: DailyWeatherItem
+            lat:
+              type:
+                type: named
+                name: String
+            lon:
+              type:
+                type: named
+                name: String
+            timezone:
+              type:
+                type: named
+                name: String
+            timezone_offset:
+              type:
+                type: named
+                name: String
       collections: []
       functions:
         - name: tpSearchHotelsByCoordinates
@@ -606,6 +818,15 @@ definition:
           result_type:
             type: named
             name: CustomResponse
+        - name: getWeatherData
+          arguments:
+            searchParams:
+              type:
+                type: named
+                name: WeatherDataParams
+          result_type:
+            type: named
+            name: WeatherDataResponse
       procedures: []
     capabilities:
       version: 0.1.6
