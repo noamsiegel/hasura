@@ -1,0 +1,311 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Open-Meteo JSON Response Schema",
+    "type": "object",
+    "properties": {
+        "detailedWeatherData": {
+            "type": "object",
+            "properties": {
+                "lat": {
+                    "type": "number"
+                },
+                "lon": {
+                    "type": "number"
+                },
+                "timezone": {
+                    "type": "string"
+                },
+                "timezone_offset": {
+                    "type": "number"
+                },
+                "daily": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "date": {
+                                "type": "string"
+                            },
+                            "sunrise": {
+                                "type": "string"
+                            },
+                            "sunset": {
+                                "type": "string"
+                            },
+                            "moonrise": {
+                                "type": "string"
+                            },
+                            "moonset": {
+                                "type": "string"
+                            },
+                            "moon_phase": {
+                                "type": "number"
+                            },
+                            "summary": {
+                                "type": "string"
+                            },
+                            "temp": {
+                                "type": "object",
+                                "properties": {
+                                    "day": {
+                                        "type": "number"
+                                    },
+                                    "min": {
+                                        "type": "number"
+                                    },
+                                    "max": {
+                                        "type": "number"
+                                    },
+                                    "night": {
+                                        "type": "number"
+                                    },
+                                    "eve": {
+                                        "type": "number"
+                                    },
+                                    "morn": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "day",
+                                    "min",
+                                    "max",
+                                    "night",
+                                    "eve",
+                                    "morn"
+                                ]
+                            },
+                            "feels_like": {
+                                "type": "object",
+                                "properties": {
+                                    "day": {
+                                        "type": "number"
+                                    },
+                                    "night": {
+                                        "type": "number"
+                                    },
+                                    "eve": {
+                                        "type": "number"
+                                    },
+                                    "morn": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "day",
+                                    "night",
+                                    "eve",
+                                    "morn"
+                                ]
+                            },
+                            "pressure": {
+                                "type": "number"
+                            },
+                            "humidity": {
+                                "type": "number"
+                            },
+                            "dew_point": {
+                                "type": "number"
+                            },
+                            "wind_speed": {
+                                "type": "number"
+                            },
+                            "wind_deg": {
+                                "type": "number"
+                            },
+                            "wind_gust": {
+                                "type": "number"
+                            },
+                            "weather": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "main": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "icon": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "main",
+                                        "description",
+                                        "icon"
+                                    ]
+                                }
+                            },
+                            "clouds": {
+                                "type": "number"
+                            },
+                            "pop": {
+                                "type": "number"
+                            },
+                            "uvi": {
+                                "type": "number"
+                            }
+                        },
+                        "required": [
+                            "date",
+                            "sunrise",
+                            "sunset",
+                            "moonrise",
+                            "moonset",
+                            "moon_phase",
+                            "summary",
+                            "temp",
+                            "feels_like",
+                            "pressure",
+                            "humidity",
+                            "dew_point",
+                            "wind_speed",
+                            "wind_deg",
+                            "wind_gust",
+                            "weather",
+                            "clouds",
+                            "pop",
+                            "uvi"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "lat",
+                "lon",
+                "timezone",
+                "timezone_offset",
+                "daily"
+            ]
+        },
+        "dailyWeather": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "units": {
+                    "type": "string"
+                },
+                "cloud_cover": {
+                    "type": "object",
+                    "properties": {
+                        "afternoon": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "afternoon"
+                    ]
+                },
+                "humidity": {
+                    "type": "object",
+                    "properties": {
+                        "afternoon": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "afternoon"
+                    ]
+                },
+                "precipitation": {
+                    "type": "object",
+                    "properties": {
+                        "total": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "total"
+                    ]
+                },
+                "temperature": {
+                    "type": "object",
+                    "properties": {
+                        "min": {
+                            "type": "number"
+                        },
+                        "max": {
+                            "type": "number"
+                        },
+                        "afternoon": {
+                            "type": "number"
+                        },
+                        "night": {
+                            "type": "number"
+                        },
+                        "evening": {
+                            "type": "number"
+                        },
+                        "morning": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "min",
+                        "max",
+                        "afternoon",
+                        "night",
+                        "evening",
+                        "morning"
+                    ]
+                },
+                "pressure": {
+                    "type": "object",
+                    "properties": {
+                        "afternoon": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "afternoon"
+                    ]
+                },
+                "wind": {
+                    "type": "object",
+                    "properties": {
+                        "max": {
+                            "type": "object",
+                            "properties": {
+                                "speed": {
+                                    "type": "number"
+                                },
+                                "direction": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "speed",
+                                "direction"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "max"
+                    ]
+                }
+            },
+            "required": [
+                "date",
+                "units",
+                "cloud_cover",
+                "humidity",
+                "precipitation",
+                "temperature",
+                "pressure",
+                "wind"
+            ]
+        }
+    },
+    "required": [
+        "detailedWeatherData",
+        "dailyWeather"
+    ]
+}
