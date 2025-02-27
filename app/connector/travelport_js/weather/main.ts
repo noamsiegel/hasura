@@ -150,33 +150,33 @@ function validateDateRange(date: string): boolean {
     const minDate = new Date('2016-01-01');
     const maxDate = new Date('2025-03-14');
     const checkDate = new Date(date);
-    
+
     return checkDate >= minDate && checkDate <= maxDate;
 }
 
 // Helper function to validate check-in and check-out dates
-function validateBookingDates(checkInDate: string, checkOutDate: string): void {
+function validateBookingDates(checkInDate: string,checkOutDate: string): void {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Set to beginning of day for accurate comparison
-    
+    today.setHours(0,0,0,0); // Set to beginning of day for accurate comparison
+
     const checkIn = new Date(checkInDate);
-    checkIn.setHours(0, 0, 0, 0);
-    
+    checkIn.setHours(0,0,0,0);
+
     const checkOut = new Date(checkOutDate);
-    checkOut.setHours(0, 0, 0, 0);
-    
+    checkOut.setHours(0,0,0,0);
+
     // Calculate date 15 days from check-in date, not from today
     const maxDate = new Date(checkIn);
     maxDate.setDate(checkIn.getDate() + 15);
-    
+
     if (checkIn < today) {
         throw new Error(`Check-in date (${checkInDate}) cannot be before today (${formatDate(today)})`);
     }
-    
+
     if (checkOut > maxDate) {
         throw new Error(`Check-out date (${checkOutDate}) cannot be more than 15 days from check-in date (${formatDate(maxDate)})`);
     }
-    
+
     if (checkIn > checkOut) {
         throw new Error(`Check-in date (${checkInDate}) cannot be after check-out date (${checkOutDate})`);
     }
@@ -240,6 +240,21 @@ export async function getWeatherData(
         // Use provided parameters or fall back to default values from params
         const finalStart = start || params.start_date;
         const finalEnd = end || params.end_date;
+
+        // Check if start date is more than 15 days from today
+        const today = new Date();
+        today.setHours(0,0,0,0); // Set to beginning of day for accurate comparison
+
+        const startDateObj = new Date(finalStart);
+        startDateObj.setHours(0,0,0,0);
+
+        const maxFutureDate = new Date(today);
+        maxFutureDate.setDate(today.getDate() + 15);
+
+        if (startDateObj > maxFutureDate) {
+            throw new Error(`Start date (${finalStart}) cannot be more than 15 days from today (${formatDate(maxFutureDate)})`);
+        }
+
         const finalLat = lat !== undefined ? lat : params.latitude;
         const finalLon = lon !== undefined ? lon : params.longitude;
         const finalTempUnit = tempUnit || params.temperature_unit;
@@ -250,13 +265,13 @@ export async function getWeatherData(
         if (!validateDateRange(finalStart)) {
             throw new Error(`Start date ${finalStart} is out of allowed range (2016-01-01 to 2025-03-14)`);
         }
-        
+
         if (!validateDateRange(finalEnd)) {
             throw new Error(`End date ${finalEnd} is out of allowed range (2016-01-01 to 2025-03-14)`);
         }
-        
+
         // Validate check-in and check-out dates for business rules
-        validateBookingDates(finalStart, finalEnd);
+        validateBookingDates(finalStart,finalEnd);
 
         console.log(`Fetching weather data for: Lat ${finalLat}, Lon ${finalLon}, from ${finalStart} to ${finalEnd}`);
         console.log(`Units: Temp: ${finalTempUnit}, Wind: ${finalWindUnit}, Precip: ${finalPrecipUnit}`);

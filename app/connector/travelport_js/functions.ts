@@ -11,10 +11,8 @@ import { CustomResponse } from './models/custom_response';
 // weather
 import { getWeatherData as fetchWeatherData } from './weather/main';
 import { WeatherDataParams,WeatherDataResponse } from './weather/types';
-
 // Travelport client
 import { TravelPortClient } from './client';
-
 // Hasura SDK
 import * as sdk from "@hasura/ndc-lambda-sdk";
 
@@ -81,5 +79,19 @@ export async function tpSearchHotelsByCityIataCode(
 export async function getWeatherData(
     searchParams: WeatherDataParams
 ): Promise<WeatherDataResponse> {
-    return await fetchWeatherData(searchParams);
+    try {
+        return await fetchWeatherData(searchParams);
+    } catch (error) {
+        // Convert the error to a properly formatted Hasura SDK error
+        if (error instanceof Error) {
+            throw new sdk.UnprocessableContent(error.message,{
+                weatherParams: searchParams
+            });
+        } else {
+            // For non-Error objects, provide a generic message
+            throw new sdk.UnprocessableContent("An error occurred while fetching weather data",{
+                weatherParams: searchParams
+            });
+        }
+    }
 }
