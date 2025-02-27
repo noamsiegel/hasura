@@ -1,0 +1,391 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WeatherDataParams
+  description: Parameters for the getWeatherData function
+  fields:
+    - name: checkInDate
+      type: String!
+      description: |-
+        Start date for weather forecast in YYYY-MM-DD format
+        If not provided, defaults to current date
+    - name: checkOutDate
+      type: String!
+      description: |-
+        End date for weather forecast in YYYY-MM-DD format
+        If not provided, defaults to current date + 3 days
+    - name: latitude
+      type: String!
+      description: |-
+        Latitude coordinate for location
+        If not provided, defaults to 52.52 (Berlin)
+    - name: longitude
+      type: String!
+      description: |-
+        Longitude coordinate for location
+        If not provided, defaults to 13.41 (Berlin)
+    - name: precipitationUnit
+      type: String
+      description: |-
+        Precipitation unit to use
+        Options: "mm", "inch"
+        If not provided, defaults to "inch"
+    - name: temperatureUnit
+      type: String
+      description: |-
+        Temperature unit to use
+        Options: "celsius", "fahrenheit"
+        If not provided, defaults to "fahrenheit"
+    - name: windSpeedUnit
+      type: String
+      description: >-
+        Wind speed unit to use
+
+        Options: "kmh" (kilometers per hour), "ms" (meters per second), "mph" (miles per hour), "kn" (knots)
+
+        If not provided, defaults to "ms"
+  graphql:
+    typeName: WeatherDataParams
+    inputTypeName: WeatherDataParamsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: WeatherDataParams
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WeatherDataParams
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - checkInDate
+          - checkOutDate
+          - latitude
+          - longitude
+          - precipitationUnit
+          - temperatureUnit
+          - windSpeedUnit
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DailyWeatherItemFeelsLike
+  fields:
+    - name: day
+      type: String!
+    - name: eve
+      type: String!
+    - name: morn
+      type: String!
+    - name: night
+      type: String!
+  graphql:
+    typeName: DailyWeatherItemFeelsLike
+    inputTypeName: DailyWeatherItemFeelsLikeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: DailyWeatherItem_feels_like
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DailyWeatherItemFeelsLike
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - day
+          - eve
+          - morn
+          - night
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DailyWeatherItemTemp
+  fields:
+    - name: day
+      type: String!
+    - name: eve
+      type: String!
+    - name: max
+      type: String!
+    - name: min
+      type: String!
+    - name: morn
+      type: String!
+    - name: night
+      type: String!
+  graphql:
+    typeName: DailyWeatherItemTemp
+    inputTypeName: DailyWeatherItemTempInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: DailyWeatherItem_temp
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DailyWeatherItemTemp
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - day
+          - eve
+          - max
+          - min
+          - morn
+          - night
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WeatherCondition
+  fields:
+    - name: description
+      type: String!
+    - name: icon
+      type: String!
+    - name: id
+      type: String!
+    - name: main
+      type: String!
+  graphql:
+    typeName: WeatherCondition
+    inputTypeName: WeatherConditionInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: WeatherCondition
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WeatherCondition
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - description
+          - icon
+          - id
+          - main
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DailyWeatherItem
+  fields:
+    - name: clouds
+      type: String!
+    - name: date
+      type: String!
+    - name: feelsLike
+      type: DailyWeatherItemFeelsLike!
+    - name: pop
+      type: String!
+    - name: summary
+      type: String!
+    - name: sunrise
+      type: String!
+    - name: sunset
+      type: String!
+    - name: temp
+      type: DailyWeatherItemTemp!
+    - name: uvi
+      type: String!
+    - name: weather
+      type: "[WeatherCondition!]!"
+    - name: windDeg
+      type: String!
+    - name: windGust
+      type: String!
+    - name: windSpeed
+      type: String!
+  graphql:
+    typeName: DailyWeatherItem
+    inputTypeName: DailyWeatherItemInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: DailyWeatherItem
+      fieldMapping:
+        clouds:
+          column:
+            name: clouds
+        date:
+          column:
+            name: date
+        feelsLike:
+          column:
+            name: feels_like
+        pop:
+          column:
+            name: pop
+        summary:
+          column:
+            name: summary
+        sunrise:
+          column:
+            name: sunrise
+        sunset:
+          column:
+            name: sunset
+        temp:
+          column:
+            name: temp
+        uvi:
+          column:
+            name: uvi
+        weather:
+          column:
+            name: weather
+        windDeg:
+          column:
+            name: wind_deg
+        windGust:
+          column:
+            name: wind_gust
+        windSpeed:
+          column:
+            name: wind_speed
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DailyWeatherItem
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - clouds
+          - date
+          - feelsLike
+          - pop
+          - summary
+          - sunrise
+          - sunset
+          - temp
+          - uvi
+          - weather
+          - windDeg
+          - windGust
+          - windSpeed
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WeatherDataResponseWeatherData
+  fields:
+    - name: daily
+      type: "[DailyWeatherItem!]!"
+    - name: lat
+      type: String!
+    - name: lon
+      type: String!
+    - name: timezone
+      type: String!
+    - name: timezoneOffset
+      type: String!
+  graphql:
+    typeName: WeatherDataResponseWeatherData
+    inputTypeName: WeatherDataResponseWeatherDataInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: WeatherDataResponse_weatherData
+      fieldMapping:
+        daily:
+          column:
+            name: daily
+        lat:
+          column:
+            name: lat
+        lon:
+          column:
+            name: lon
+        timezone:
+          column:
+            name: timezone
+        timezoneOffset:
+          column:
+            name: timezone_offset
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WeatherDataResponseWeatherData
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - daily
+          - lat
+          - lon
+          - timezone
+          - timezoneOffset
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WeatherDataResponse
+  description: Weather data response interfaces
+  fields:
+    - name: weatherData
+      type: WeatherDataResponseWeatherData!
+  graphql:
+    typeName: WeatherDataResponse
+    inputTypeName: WeatherDataResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_js
+      dataConnectorObjectType: WeatherDataResponse
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WeatherDataResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - weatherData
+
+---
+kind: Command
+version: v1
+definition:
+  name: GetWeatherData
+  outputType: WeatherDataResponse!
+  arguments:
+    - name: searchParams
+      type: WeatherDataParams!
+  source:
+    dataConnectorName: travelport_js
+    dataConnectorCommand:
+      function: getWeatherData
+  graphql:
+    rootFieldName: getWeatherData
+    rootFieldKind: Query
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: GetWeatherData
+  permissions:
+    - role: admin
+      allowExecution: true
+

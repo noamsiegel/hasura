@@ -6,9 +6,13 @@ import { CustomCityIataCodeHotelSearchRequest,mapCustomToCityIataCodeRequest } f
 import { CustomHotelCodeHotelSearchRequest,mapCustomToHotelCodeRequest } from './models/property/request_model';
 // responses
 import { TravelportResponse } from './models/base_response';
-import { TravelPortClient } from './client';
 import { mapTravelportToCustomResponse } from './models/custom_response_mapper';
 import { CustomResponse } from './models/custom_response';
+// weather
+import { getWeatherData as fetchWeatherData } from './weather/main';
+import { WeatherDataParams,WeatherDataResponse } from './weather/types';
+// Travelport client
+import { TravelPortClient } from './client';
 // Hasura SDK
 import * as sdk from "@hasura/ndc-lambda-sdk";
 
@@ -68,4 +72,26 @@ export async function tpSearchHotelsByCityIataCode(
     const transformedRequest = mapCustomToCityIataCodeRequest(searchParams);
     const travelportResponse = await TravelPortClient.searchHotels<TravelportResponse>(transformedRequest);
     return mapTravelportToCustomResponse(travelportResponse);
+}
+
+/* Get weather data for a location */
+/** @readonly */
+export async function getWeatherData(
+    searchParams: WeatherDataParams
+): Promise<WeatherDataResponse> {
+    try {
+        return await fetchWeatherData(searchParams);
+    } catch (error) {
+        // Convert the error to a properly formatted Hasura SDK error
+        if (error instanceof Error) {
+            throw new sdk.UnprocessableContent(error.message,{
+                weatherParams: searchParams
+            });
+        } else {
+            // For non-Error objects, provide a generic message
+            throw new sdk.UnprocessableContent("An error occurred while fetching weather data",{
+                weatherParams: searchParams
+            });
+        }
+    }
 }
