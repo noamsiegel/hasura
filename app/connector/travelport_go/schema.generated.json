@@ -1,0 +1,325 @@
+{
+  "collections": [],
+  "functions": [
+    {
+      "arguments": {
+        "checkInDate": {
+          "type": {
+            "type": "nullable",
+            "underlying_type": {
+              "name": "String",
+              "type": "named"
+            }
+          }
+        },
+        "checkOutDate": {
+          "type": {
+            "type": "nullable",
+            "underlying_type": {
+              "name": "String",
+              "type": "named"
+            }
+          }
+        },
+        "latitude": {
+          "type": {
+            "type": "nullable",
+            "underlying_type": {
+              "name": "String",
+              "type": "named"
+            }
+          }
+        },
+        "longitude": {
+          "type": {
+            "type": "nullable",
+            "underlying_type": {
+              "name": "String",
+              "type": "named"
+            }
+          }
+        },
+        "precipitationUnit": {
+          "type": {
+            "type": "nullable",
+            "underlying_type": {
+              "name": "String",
+              "type": "named"
+            }
+          }
+        },
+        "temperatureUnit": {
+          "type": {
+            "type": "nullable",
+            "underlying_type": {
+              "name": "String",
+              "type": "named"
+            }
+          }
+        },
+        "windSpeedUnit": {
+          "type": {
+            "type": "nullable",
+            "underlying_type": {
+              "name": "String",
+              "type": "named"
+            }
+          }
+        }
+      },
+      "name": "getWeather",
+      "result_type": {
+        "type": "nullable",
+        "underlying_type": {
+          "name": "WeatherDataResponse",
+          "type": "named"
+        }
+      }
+    }
+  ],
+  "object_types": {
+    "DailyItem": {
+      "description": "represents daily weather information",
+      "fields": {
+        "clouds": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "date": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "feels_like": {
+          "type": {
+            "name": "FeelsLike",
+            "type": "named"
+          }
+        },
+        "pop": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "summary": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "sunrise": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "sunset": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "temp": {
+          "type": {
+            "name": "Temperature",
+            "type": "named"
+          }
+        },
+        "uvi": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "weather": {
+          "type": {
+            "element_type": {
+              "name": "WeatherInfo",
+              "type": "named"
+            },
+            "type": "array"
+          }
+        },
+        "wind_deg": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "wind_gust": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "wind_speed": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        }
+      }
+    },
+    "FeelsLike": {
+      "description": "represents \"feels like\" temperature information",
+      "fields": {
+        "day": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "eve": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "morn": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "night": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        }
+      }
+    },
+    "Temperature": {
+      "description": "represents temperature information",
+      "fields": {
+        "day": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "eve": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "max": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "min": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "morn": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "night": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        }
+      }
+    },
+    "WeatherDataResponse": {
+      "description": "represents the response from the weather service",
+      "fields": {
+        "weatherData": {
+          "type": {
+            "name": "WeatherDataResponseWeatherData",
+            "type": "named"
+          }
+        }
+      }
+    },
+    "WeatherDataResponseWeatherData": {
+      "fields": {
+        "daily": {
+          "type": {
+            "element_type": {
+              "name": "DailyItem",
+              "type": "named"
+            },
+            "type": "array"
+          }
+        },
+        "lat": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "lon": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "timezone": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "timezone_offset": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        }
+      }
+    },
+    "WeatherInfo": {
+      "description": "represents weather condition information",
+      "fields": {
+        "description": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "icon": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "id": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        },
+        "main": {
+          "type": {
+            "name": "String",
+            "type": "named"
+          }
+        }
+      }
+    }
+  },
+  "procedures": [],
+  "scalar_types": {
+    "String": {
+      "aggregate_functions": {},
+      "comparison_operators": {},
+      "representation": {
+        "type": "string"
+      }
+    }
+  }
+}

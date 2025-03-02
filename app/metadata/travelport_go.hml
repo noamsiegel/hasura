@@ -1,0 +1,236 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: travelport_go
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_TRAVELPORT_GO_READ_URL
+      write:
+        valueFromEnv: APP_TRAVELPORT_GO_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_TRAVELPORT_GO_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        String:
+          representation:
+            type: string
+          aggregate_functions: {}
+          comparison_operators: {}
+      object_types:
+        DailyItem:
+          description: represents daily weather information
+          fields:
+            clouds:
+              type:
+                type: named
+                name: String
+            date:
+              type:
+                type: named
+                name: String
+            feels_like:
+              type:
+                type: named
+                name: FeelsLike
+            pop:
+              type:
+                type: named
+                name: String
+            summary:
+              type:
+                type: named
+                name: String
+            sunrise:
+              type:
+                type: named
+                name: String
+            sunset:
+              type:
+                type: named
+                name: String
+            temp:
+              type:
+                type: named
+                name: Temperature
+            uvi:
+              type:
+                type: named
+                name: String
+            weather:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: WeatherInfo
+            wind_deg:
+              type:
+                type: named
+                name: String
+            wind_gust:
+              type:
+                type: named
+                name: String
+            wind_speed:
+              type:
+                type: named
+                name: String
+        FeelsLike:
+          description: represents "feels like" temperature information
+          fields:
+            day:
+              type:
+                type: named
+                name: String
+            eve:
+              type:
+                type: named
+                name: String
+            morn:
+              type:
+                type: named
+                name: String
+            night:
+              type:
+                type: named
+                name: String
+        Temperature:
+          description: represents temperature information
+          fields:
+            day:
+              type:
+                type: named
+                name: String
+            eve:
+              type:
+                type: named
+                name: String
+            max:
+              type:
+                type: named
+                name: String
+            min:
+              type:
+                type: named
+                name: String
+            morn:
+              type:
+                type: named
+                name: String
+            night:
+              type:
+                type: named
+                name: String
+        WeatherDataResponse:
+          description: represents the response from the weather service
+          fields:
+            weatherData:
+              type:
+                type: named
+                name: WeatherDataResponseWeatherData
+        WeatherDataResponseWeatherData:
+          fields:
+            daily:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: DailyItem
+            lat:
+              type:
+                type: named
+                name: String
+            lon:
+              type:
+                type: named
+                name: String
+            timezone:
+              type:
+                type: named
+                name: String
+            timezone_offset:
+              type:
+                type: named
+                name: String
+        WeatherInfo:
+          description: represents weather condition information
+          fields:
+            description:
+              type:
+                type: named
+                name: String
+            icon:
+              type:
+                type: named
+                name: String
+            id:
+              type:
+                type: named
+                name: String
+            main:
+              type:
+                type: named
+                name: String
+      collections: []
+      functions:
+        - name: getWeather
+          arguments:
+            checkInDate:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            checkOutDate:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            latitude:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            longitude:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            precipitationUnit:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            temperatureUnit:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            windSpeedUnit:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+          result_type:
+            type: nullable
+            underlying_type:
+              type: named
+              name: WeatherDataResponse
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          variables: {}
+          nested_fields: {}
+          exists: {}
+        mutation: {}

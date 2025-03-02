@@ -1,0 +1,354 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: FeelsLike
+  description: represents "feels like" temperature information
+  fields:
+    - name: day
+      type: String!
+    - name: eve
+      type: String!
+    - name: morn
+      type: String!
+    - name: night
+      type: String!
+  graphql:
+    typeName: FeelsLike
+    inputTypeName: FeelsLikeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_go
+      dataConnectorObjectType: FeelsLike
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: FeelsLike
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - day
+          - eve
+          - morn
+          - night
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Temperature
+  description: represents temperature information
+  fields:
+    - name: day
+      type: String!
+    - name: eve
+      type: String!
+    - name: max
+      type: String!
+    - name: min
+      type: String!
+    - name: morn
+      type: String!
+    - name: night
+      type: String!
+  graphql:
+    typeName: Temperature
+    inputTypeName: TemperatureInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_go
+      dataConnectorObjectType: Temperature
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Temperature
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - day
+          - eve
+          - max
+          - min
+          - morn
+          - night
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WeatherInfo
+  description: represents weather condition information
+  fields:
+    - name: description
+      type: String!
+    - name: icon
+      type: String!
+    - name: id
+      type: String!
+    - name: main
+      type: String!
+  graphql:
+    typeName: WeatherInfo
+    inputTypeName: WeatherInfoInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_go
+      dataConnectorObjectType: WeatherInfo
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WeatherInfo
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - description
+          - icon
+          - id
+          - main
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DailyItem
+  description: represents daily weather information
+  fields:
+    - name: clouds
+      type: String!
+    - name: date
+      type: String!
+    - name: feelsLike
+      type: FeelsLike!
+    - name: pop
+      type: String!
+    - name: summary
+      type: String!
+    - name: sunrise
+      type: String!
+    - name: sunset
+      type: String!
+    - name: temp
+      type: Temperature!
+    - name: uvi
+      type: String!
+    - name: weather
+      type: "[WeatherInfo!]!"
+    - name: windDeg
+      type: String!
+    - name: windGust
+      type: String!
+    - name: windSpeed
+      type: String!
+  graphql:
+    typeName: DailyItem
+    inputTypeName: DailyItemInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_go
+      dataConnectorObjectType: DailyItem
+      fieldMapping:
+        clouds:
+          column:
+            name: clouds
+        date:
+          column:
+            name: date
+        feelsLike:
+          column:
+            name: feels_like
+        pop:
+          column:
+            name: pop
+        summary:
+          column:
+            name: summary
+        sunrise:
+          column:
+            name: sunrise
+        sunset:
+          column:
+            name: sunset
+        temp:
+          column:
+            name: temp
+        uvi:
+          column:
+            name: uvi
+        weather:
+          column:
+            name: weather
+        windDeg:
+          column:
+            name: wind_deg
+        windGust:
+          column:
+            name: wind_gust
+        windSpeed:
+          column:
+            name: wind_speed
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DailyItem
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - clouds
+          - date
+          - feelsLike
+          - pop
+          - summary
+          - sunrise
+          - sunset
+          - temp
+          - uvi
+          - weather
+          - windDeg
+          - windGust
+          - windSpeed
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WeatherDataResponseWeatherData_1
+  fields:
+    - name: daily
+      type: "[DailyItem!]!"
+    - name: lat
+      type: String!
+    - name: lon
+      type: String!
+    - name: timezone
+      type: String!
+    - name: timezoneOffset
+      type: String!
+  graphql:
+    typeName: WeatherDataResponseWeatherData1
+    inputTypeName: WeatherDataResponseWeatherData1Input
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_go
+      dataConnectorObjectType: WeatherDataResponseWeatherData
+      fieldMapping:
+        daily:
+          column:
+            name: daily
+        lat:
+          column:
+            name: lat
+        lon:
+          column:
+            name: lon
+        timezone:
+          column:
+            name: timezone
+        timezoneOffset:
+          column:
+            name: timezone_offset
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WeatherDataResponseWeatherData_1
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - daily
+          - lat
+          - lon
+          - timezone
+          - timezoneOffset
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WeatherDataResponse_1
+  description: represents the response from the weather service
+  fields:
+    - name: weatherData
+      type: WeatherDataResponseWeatherData_1!
+  graphql:
+    typeName: WeatherDataResponse1
+    inputTypeName: WeatherDataResponse1Input
+  dataConnectorTypeMapping:
+    - dataConnectorName: travelport_go
+      dataConnectorObjectType: WeatherDataResponse
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WeatherDataResponse_1
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - weatherData
+
+---
+kind: Command
+version: v1
+definition:
+  name: GetWeather
+  outputType: WeatherDataResponse_1
+  arguments:
+    - name: checkInDate
+      type: String
+    - name: checkOutDate
+      type: String
+    - name: latitude
+      type: String
+    - name: longitude
+      type: String
+    - name: precipitationUnit
+      type: String
+    - name: temperatureUnit
+      type: String
+    - name: windSpeedUnit
+      type: String
+  source:
+    dataConnectorName: travelport_go
+    dataConnectorCommand:
+      function: getWeather
+  graphql:
+    rootFieldName: getWeather
+    rootFieldKind: Query
+  description: "retrieves weather data for a given location and date range
+    Function is an operation type of query, the name of function will be
+    `getWeather`  Example:  curl http://localhost:8080/query -H 'content-type:
+    application/json' -d \\ '{ \"collection\": \"getWeather\", \"arguments\": {
+    \"checkInDate\": { \"type\": \"literal\", \"value\": \"2024-03-20\" },
+    \"checkOutDate\": { \"type\": \"literal\", \"value\": \"2024-03-25\" },
+    \"latitude\": { \"type\": \"literal\", \"value\": \"40.7128\" },
+    \"longitude\": { \"type\": \"literal\", \"value\": \"-74.0060\" } },
+    \"collection_relationships\": {}, \"query\": { \"fields\": {
+    \"weatherData\": { \"type\": \"object\", \"fields\": { \"lat\": {\"type\":
+    \"column\", \"column\": \"lat\"}, \"lon\": {\"type\": \"column\",
+    \"column\": \"lon\"}, \"timezone\": {\"type\": \"column\", \"column\":
+    \"timezone\"}, \"daily\": { \"type\": \"array\", \"fields\": { \"date\":
+    {\"type\": \"column\", \"column\": \"date\"}, \"summary\": {\"type\":
+    \"column\", \"column\": \"summary\"}, \"temp\": { \"type\": \"object\",
+    \"fields\": { \"day\": {\"type\": \"column\", \"column\": \"day\"}, \"min\":
+    {\"type\": \"column\", \"column\": \"min\"}, \"max\": {\"type\": \"column\",
+    \"column\": \"max\"} } } } } } } } } }'"
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: GetWeather
+  permissions:
+    - role: admin
+      allowExecution: true
+
