@@ -14,7 +14,7 @@ tasks:
     cmds:
       - task -l
 
-  travelport-rebuild:
+  travelport-js-rebuild:
     desc: Setup and run Travelport integration
     cmds:
       - ddn connector introspect travelport_js
@@ -24,8 +24,18 @@ tasks:
       - ddn supergraph build local --log-level DEBUG
       - ddn run docker-start --log-level DEBUG
 
-  travelport-start:
-    desc: Rebuild and run Travelport integration
+  travelport-go-rebuild:
+    desc: Rebuild Travelport Go integration
+    cmds:
+      - ddn connector introspect travelport_go
+      - ddn model add travelport_go "*"
+      - ddn command add travelport_go "*"
+      - ddn relationship add travelport_go "*"
+      - ddn supergraph build local --log-level DEBUG
+      - ddn run docker-start --log-level DEBUG
+
+  build:
+    desc: Build the supergraph
     cmds:
       - ddn supergraph build local --log-level DEBUG
       - ddn run docker-start --log-level DEBUG
@@ -34,8 +44,3 @@ tasks:
     desc: Start the application with Docker
     cmds:
       - HASURA_DDN_PAT=$(ddn auth print-pat) PROMPTQL_SECRET_KEY=$(ddn auth print-promptql-secret-key) docker compose -f compose.yaml --env-file .env up --build --pull always
-
-  build:
-    desc: Build the supergraph
-    cmds:
-      - ddn supergraph build local
