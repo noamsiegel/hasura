@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 )
 
 // DefaultParams represents the default configuration for weather data requests
@@ -21,40 +20,15 @@ var DefaultParams = struct {
 	Timezone          string
 	Timeformat        string
 }{
-	Latitude:  52.52,
-	Longitude: 13.41,
-	Daily: []string{
-		"weather_code",
-		"temperature_2m_max",
-		"temperature_2m_min",
-		"apparent_temperature_max",
-		"apparent_temperature_min",
-		"sunrise",
-		"sunset",
-		"daylight_duration",
-		"sunshine_duration",
-		"uv_index_max",
-		"uv_index_clear_sky_max",
-		"precipitation_sum",
-		"rain_sum",
-		"showers_sum",
-		"snowfall_sum",
-		"precipitation_hours",
-		"precipitation_probability_max",
-		"wind_speed_10m_max",
-		"wind_gusts_10m_max",
-		"wind_direction_10m_dominant",
-		"shortwave_radiation_sum",
-		"et0_fao_evapotranspiration",
-	},
-	TemperatureUnit:   "fahrenheit",
-	WindSpeedUnit:     "ms",
-	PrecipitationUnit: "inch",
-	Timezone:          "GMT",
-	Timeformat:        "iso8601",
+	Latitude:          defaultLatitude,
+	Longitude:         defaultLongitude,
+	Daily:             DefaultDailyParams,
+	TemperatureUnit:   defaultTemperatureUnit,
+	WindSpeedUnit:     defaultWindSpeedUnit,
+	PrecipitationUnit: defaultPrecipitationUnit,
+	Timezone:          defaultTimezone,
+	Timeformat:        defaultTimeformat,
 }
-
-const baseURL = "https://api.open-meteo.com/v1/forecast"
 
 // WeatherService handles weather data operations
 type WeatherService struct {
@@ -65,7 +39,7 @@ type WeatherService struct {
 func NewWeatherService() *WeatherService {
 	return &WeatherService{
 		client: &http.Client{
-			Timeout: time.Second * 10,
+			Timeout: defaultHTTPTimeout,
 		},
 	}
 }
@@ -90,11 +64,17 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 		}
 		if params.Latitude != "" {
 			if latVal, err := strconv.ParseFloat(params.Latitude, 64); err == nil {
+				if latVal < minLatitude || latVal > maxLatitude {
+					return nil, NewInvalidCoordinatesError(latVal, lon)
+				}
 				lat = latVal
 			}
 		}
 		if params.Longitude != "" {
 			if lonVal, err := strconv.ParseFloat(params.Longitude, 64); err == nil {
+				if lonVal < minLongitude || lonVal > maxLongitude {
+					return nil, NewInvalidCoordinatesError(lat, lonVal)
+				}
 				lon = lonVal
 			}
 		}
@@ -122,13 +102,13 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 	// Get sunrise/sunset data
 	sunriseData, err := s.fetchDirectData(lat, lon, startDate, endDate)
 	if err != nil {
-		return nil, fmt.Errorf("error fetching sunrise/sunset data: %w", err)
+		return nil, err
 	}
 
 	// Get main weather data
 	weatherData, err := s.fetchWeatherData(lat, lon, startDate, endDate, tempUnit, windUnit, precipUnit)
 	if err != nil {
-		return nil, fmt.Errorf("error fetching weather data: %w", err)
+		return nil, err
 	}
 
 	// Create response
@@ -150,22 +130,22 @@ func (s *WeatherService) fetchDirectData(lat, lon float64, startDate, endDate st
 
 	resp, err := s.client.Get(url)
 	if err != nil {
-		return nil, err
+		return nil, NewAPIError(http.StatusInternalServerError, err.Error())
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(resp.Body)
-		return nil, fmt.Errorf("API error (sunrise/sunset): %d - %s", resp.StatusCode, string(body))
+		return nil, NewAPIError(resp.StatusCode, string(body))
 	}
 
 	var data OpenMeteoResponse
 	if err := json.NewDecoder(resp.Body).Decode(&data); err != nil {
-		return nil, err
+		return nil, NewAPIError(http.StatusInternalServerError, err.Error())
 	}
 
 	if data.Error {
-		return nil, fmt.Errorf("API error: %s", data.Reason)
+		return nil, NewAPIError(http.StatusBadRequest, data.Reason)
 	}
 
 	return &data, nil
@@ -178,22 +158,22 @@ func (s *WeatherService) fetchWeatherData(lat, lon float64, startDate, endDate, 
 
 	resp, err := s.client.Get(url)
 	if err != nil {
-		return nil, err
+		return nil, NewAPIError(http.StatusInternalServerError, err.Error())
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(resp.Body)
-		return nil, fmt.Errorf("API error (main): %d - %s", resp.StatusCode, string(body))
+		return nil, NewAPIError(resp.StatusCode, string(body))
 	}
 
 	var data OpenMeteoResponse
 	if err := json.NewDecoder(resp.Body).Decode(&data); err != nil {
-		return nil, err
+		return nil, NewAPIError(http.StatusInternalServerError, err.Error())
 	}
 
 	if data.Error {
-		return nil, fmt.Errorf("API error: %s", data.Reason)
+		return nil, NewAPIError(http.StatusBadRequest, data.Reason)
 	}
 
 	return &data, nil
