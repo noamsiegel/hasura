@@ -45,7 +45,6 @@ func NewWeatherService() *WeatherService {
 
 // GetWeatherData retrieves weather data based on provided parameters
 func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherDataResponse, error) {
-	fmt.Printf("DEBUG: Starting GetWeatherData with params: %+v\n", params)
 	// Use default or provided parameters
 	today := getCurrentDate()
 	startDate := today
@@ -56,17 +55,12 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 	windUnit := DefaultParams.WindSpeedUnit
 	precipUnit := DefaultParams.PrecipitationUnit
 
-	// Debug log for date values
-	fmt.Printf("DEBUG: Today's date (UTC): %s\n", today)
-
 	if params != nil {
 		if params.CheckInDate != "" {
 			startDate = params.CheckInDate
-			fmt.Printf("DEBUG: Using check-in date: %s\n", startDate)
 		}
 		if params.CheckOutDate != "" {
 			endDate = params.CheckOutDate
-			fmt.Printf("DEBUG: Using check-out date: %s\n", endDate)
 		}
 		if params.Latitude != "" {
 			if latVal, err := strconv.ParseFloat(params.Latitude, 64); err == nil {
@@ -75,7 +69,6 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 					detectedTz := ""
 					if DefaultFinder != nil {
 						detectedTz = DefaultFinder.GetTimezoneName(lon, latVal)
-						fmt.Printf("DEBUG: Detected timezone for invalid coordinates: %s\n", detectedTz)
 					}
 					err := NewInvalidCoordinatesError(latVal, lon, detectedTz)
 					return nil, err.ToSDKError()
@@ -90,7 +83,6 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 					detectedTz := ""
 					if DefaultFinder != nil {
 						detectedTz = DefaultFinder.GetTimezoneName(lonVal, lat)
-						fmt.Printf("DEBUG: Detected timezone for invalid coordinates: %s\n", detectedTz)
 					}
 					err := NewInvalidCoordinatesError(lat, lonVal, detectedTz)
 					return nil, err.ToSDKError()
@@ -113,7 +105,6 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 	detectedTz := ""
 	if DefaultFinder != nil {
 		detectedTz = DefaultFinder.GetTimezoneName(lon, lat)
-		fmt.Printf("DEBUG: Detected timezone for coordinates: %s\n", detectedTz)
 	}
 
 	// Validate dates
@@ -125,11 +116,9 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 	}
 
 	// Validate date range for API compatibility
-	fmt.Printf("DEBUG: Validating date range for startDate: %s and endDate: %s\n", startDate, endDate)
 	startDateErr := validateDateRange(startDate, detectedTz)
 	endDateErr := validateDateRange(endDate, detectedTz)
 	if startDateErr != nil || endDateErr != nil {
-		fmt.Printf("DEBUG: Date range validation failed\n")
 		if startDateErr != nil {
 			if we, ok := startDateErr.(*WeatherError); ok {
 				return nil, we.ToSDKError()
@@ -148,18 +137,14 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 	// Get sunrise/sunset data
 	sunriseData, err := s.fetchDirectData(lat, lon, startDate, endDate)
 	if err != nil {
-		fmt.Printf("ERROR: Failed to fetch sunrise data: %v\n", err)
 		return nil, NewAPIError(500, err.Error()).ToSDKError()
 	}
-	fmt.Printf("DEBUG: Successfully fetched sunrise data: %+v\n", sunriseData)
 
 	// Get weather data
 	weatherData, err := s.fetchWeatherData(lat, lon, startDate, endDate, tempUnit, windUnit, precipUnit)
 	if err != nil {
-		fmt.Printf("ERROR: Failed to fetch weather data: %v\n", err)
 		return nil, NewAPIError(500, err.Error()).ToSDKError()
 	}
-	fmt.Printf("DEBUG: Successfully fetched weather data: %+v\n", weatherData)
 
 	// Create response
 	response := &WeatherDataResponse{}
@@ -169,7 +154,6 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 
 	// Create daily items
 	response.WeatherData.Daily = createDailyItemsFromResponses(weatherData, sunriseData)
-	fmt.Printf("DEBUG: Final response: %+v\n", response)
 
 	return response, nil
 }
@@ -180,7 +164,6 @@ func (s *WeatherService) fetchDirectData(lat, lon float64, startDate, endDate st
 	detectedTz := ""
 	if DefaultFinder != nil {
 		detectedTz = DefaultFinder.GetTimezoneName(lon, lat)
-		fmt.Printf("DEBUG: Detected timezone for fetchDirectData: %s\n", detectedTz)
 	}
 
 	// Construct URL with timezone if available
@@ -195,12 +178,9 @@ func (s *WeatherService) fetchDirectData(lat, lon float64, startDate, endDate st
 		)
 	}
 
-	fmt.Printf("DEBUG: Fetching direct data from URL: %s\n", url)
-
 	// Make the request
 	resp, err := http.Get(url)
 	if err != nil {
-		fmt.Printf("ERROR: Failed to fetch direct data: %v\n", err)
 		return nil, err
 	}
 	defer resp.Body.Close()
@@ -208,14 +188,12 @@ func (s *WeatherService) fetchDirectData(lat, lon float64, startDate, endDate st
 	// Read the response
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Printf("ERROR: Failed to read direct data response: %v\n", err)
 		return nil, err
 	}
 
 	// Parse the response
 	var sunriseData SunriseSunsetResponse
 	if err := json.Unmarshal(body, &sunriseData); err != nil {
-		fmt.Printf("ERROR: Failed to parse direct data response: %v\n", err)
 		return nil, err
 	}
 
@@ -224,13 +202,10 @@ func (s *WeatherService) fetchDirectData(lat, lon float64, startDate, endDate st
 
 // fetchWeatherData fetches weather data from the API
 func (s *WeatherService) fetchWeatherData(lat, lon float64, startDate, endDate, tempUnit, windUnit, precipUnit string) (*WeatherResponse, error) {
-	fmt.Printf("DEBUG: fetchWeatherData called with params - lat: %f, lon: %f, startDate: %s, endDate: %s\n", lat, lon, startDate, endDate)
-
 	// Detect timezone based on coordinates
 	detectedTz := ""
 	if DefaultFinder != nil {
 		detectedTz = DefaultFinder.GetTimezoneName(lon, lat)
-		fmt.Printf("DEBUG: Detected timezone for fetchWeatherData: %s\n", detectedTz)
 	}
 
 	// Construct base URL with required parameters
@@ -250,12 +225,9 @@ func (s *WeatherService) fetchWeatherData(lat, lon float64, startDate, endDate, 
 		url = fmt.Sprintf(baseURL+"&timezone=UTC", lat, lon, startDate, endDate, tempUnit, windUnit, precipUnit)
 	}
 
-	fmt.Printf("DEBUG: Fetching weather data from URL: %s\n", url)
-
 	// Make the request
 	resp, err := http.Get(url)
 	if err != nil {
-		fmt.Printf("ERROR: Failed to fetch weather data: %v\n", err)
 		return nil, err
 	}
 	defer resp.Body.Close()
@@ -263,66 +235,39 @@ func (s *WeatherService) fetchWeatherData(lat, lon float64, startDate, endDate, 
 	// Read the response
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Printf("ERROR: Failed to read weather data response: %v\n", err)
 		return nil, err
 	}
-
-	fmt.Printf("DEBUG: Raw API response: %s\n", string(body))
 
 	// Parse the response
 	var weatherData WeatherResponse
 	if err := json.Unmarshal(body, &weatherData); err != nil {
-		fmt.Printf("ERROR: Failed to parse weather data response: %v\n", err)
 		return nil, err
 	}
 
 	// Validate the response data
 	if weatherData.Daily.WeatherCode == nil || len(weatherData.Daily.WeatherCode) == 0 {
-		fmt.Printf("ERROR: Weather codes are missing in the API response\n")
 		return nil, fmt.Errorf("weather codes are missing in the API response")
 	}
 
-	fmt.Printf("DEBUG: Wind speed data - nil check: %v, length: %d\n", weatherData.Daily.WindSpeed10mMax == nil, len(weatherData.Daily.WindSpeed10mMax))
 	if weatherData.Daily.WindSpeed10mMax == nil {
-		fmt.Printf("ERROR: Wind speed array is nil in the API response\n")
 		return nil, fmt.Errorf("wind speed array is nil in the API response")
 	}
 	if len(weatherData.Daily.WindSpeed10mMax) == 0 {
-		fmt.Printf("ERROR: Wind speed array is empty in the API response\n")
 		return nil, fmt.Errorf("wind speed array is empty in the API response")
 	}
-
-	fmt.Printf("DEBUG: Parsed weather data: %+v\n", weatherData)
-	fmt.Printf("DEBUG: Daily data lengths - Time: %d, WeatherCode: %d, Temperature2mMax: %d, Temperature2mMin: %d, WindSpeed10mMax: %d\n",
-		len(weatherData.Daily.Time),
-		len(weatherData.Daily.WeatherCode),
-		len(weatherData.Daily.Temperature2mMax),
-		len(weatherData.Daily.Temperature2mMin),
-		len(weatherData.Daily.WindSpeed10mMax))
-
-	// Add debug for WindGusts10mMax and WindDirection10mDominant
-	fmt.Printf("DEBUG: Additional array lengths - WindGusts10mMax: %d, WindDirection10mDominant: %d\n",
-		len(weatherData.Daily.WindGusts10mMax),
-		len(weatherData.Daily.WindDirection10mDominant))
 
 	return &weatherData, nil
 }
 
 // createDailyItemsFromResponses creates daily items from the weather and sunrise/sunset responses
 func createDailyItemsFromResponses(weatherData *WeatherResponse, sunriseData *SunriseSunsetResponse) []DailyItem {
-	fmt.Printf("DEBUG: Starting createDailyItemsFromResponses\n")
-	fmt.Printf("DEBUG: WeatherData: %+v\n", weatherData)
-	fmt.Printf("DEBUG: SunriseData: %+v\n", sunriseData)
-
 	items := make([]DailyItem, 0)
 
-	// Debug check for nil pointers
+	// Check for nil pointers
 	if weatherData == nil {
-		fmt.Printf("ERROR: weatherData is nil\n")
 		return items
 	}
 	if weatherData.Daily.Time == nil {
-		fmt.Printf("ERROR: weatherData.Daily.Time is nil\n")
 		return items
 	}
 
@@ -332,9 +277,7 @@ func createDailyItemsFromResponses(weatherData *WeatherResponse, sunriseData *Su
 		Sunset  string
 	})
 	if sunriseData != nil {
-		fmt.Printf("DEBUG: Processing sunrise data, results count: %d\n", len(sunriseData.Results))
 		for _, result := range sunriseData.Results {
-			fmt.Printf("DEBUG: Adding sunrise data for date: %s\n", result.Date)
 			sunriseMap[result.Date] = struct {
 				Sunrise string
 				Sunset  string
@@ -345,31 +288,14 @@ func createDailyItemsFromResponses(weatherData *WeatherResponse, sunriseData *Su
 		}
 	}
 
-	// Debug print array lengths
-	fmt.Printf("DEBUG: Array lengths - Time: %d, WeatherCode: %d, Temperature2mMax: %d, Temperature2mMin: %d, WindSpeed10mMax: %d\n",
-		len(weatherData.Daily.Time),
-		len(weatherData.Daily.WeatherCode),
-		len(weatherData.Daily.Temperature2mMax),
-		len(weatherData.Daily.Temperature2mMin),
-		len(weatherData.Daily.WindSpeed10mMax))
-
-	// Add debug for WindGusts10mMax and WindDirection10mDominant
-	fmt.Printf("DEBUG: Additional array lengths - WindGusts10mMax: %d, WindDirection10mDominant: %d, PrecipitationProbabilityMax: %d\n",
-		len(weatherData.Daily.WindGusts10mMax),
-		len(weatherData.Daily.WindDirection10mDominant),
-		len(weatherData.Daily.PrecipitationProbabilityMax))
-
 	// Create daily items
 	for i, date := range weatherData.Daily.Time {
-		fmt.Printf("DEBUG: Processing date: %s (index: %d)\n", date, i)
-
 		// Skip if any required array doesn't have this index
 		if i >= len(weatherData.Daily.WeatherCode) ||
 			i >= len(weatherData.Daily.Temperature2mMax) ||
 			i >= len(weatherData.Daily.Temperature2mMin) ||
 			i >= len(weatherData.Daily.WindSpeed10mMax) ||
 			i >= len(weatherData.Daily.WindDirection10mDominant) {
-			fmt.Printf("ERROR: Index %d out of bounds for one or more required arrays\n", i)
 			continue
 		}
 
@@ -378,20 +304,15 @@ func createDailyItemsFromResponses(weatherData *WeatherResponse, sunriseData *Su
 		sunrise := ""
 		sunset := ""
 		if ok {
-			fmt.Printf("DEBUG: Found sunrise data for date: %s\n", date)
 			sunrise = sunriseInfo.Sunrise
 			sunset = sunriseInfo.Sunset
 		} else if i < len(weatherData.Daily.Sunrise) && i < len(weatherData.Daily.Sunset) {
-			fmt.Printf("DEBUG: Using weather API sunrise data for date: %s\n", date)
 			sunrise = weatherData.Daily.Sunrise[i]
 			sunset = weatherData.Daily.Sunset[i]
-		} else {
-			fmt.Printf("DEBUG: No sunrise data available for date: %s\n", date)
 		}
 
 		// Get weather description
 		weatherDesc := getWeatherDescription(weatherData.Daily.WeatherCode[i])
-		fmt.Printf("DEBUG: Weather description for date %s: %s\n", date, weatherDesc)
 
 		// Safely get wind gust value
 		var windGust string
@@ -443,11 +364,9 @@ func createDailyItemsFromResponses(weatherData *WeatherResponse, sunriseData *Su
 			Pop:    pop,
 			Uvi:    "0",
 		}
-		fmt.Printf("DEBUG: Created daily item for date %s: %+v\n", date, item)
 		items = append(items, item)
 	}
 
-	fmt.Printf("DEBUG: Returning %d daily items\n", len(items))
 	return items
 }
 
