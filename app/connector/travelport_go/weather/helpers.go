@@ -91,33 +91,32 @@ func getWeatherIcon(code int) string {
 
 // validateDateRange checks if a date is within the valid range for the API
 func validateDateRange(date string, timezone string) error {
-	// Get today's date in UTC
-	rawToday := time.Now().UTC()
-	fmt.Printf("DEBUG: validateDateRange - Raw UTC time: %s, Unix: %d\n", rawToday.Format(time.RFC3339), rawToday.Unix())
-
-	// If timezone is provided, also log the local time
+	// Get the location for the provided timezone
+	loc := time.UTC // Default to UTC if no timezone provided
 	if timezone != "" {
-		if loc, err := time.LoadLocation(timezone); err == nil {
-			localNow := time.Now().In(loc)
-			fmt.Printf("DEBUG: validateDateRange - Local time in %s: %s, Unix: %d\n",
-				timezone, localNow.Format(time.RFC3339), localNow.Unix())
-		} else {
-			fmt.Printf("DEBUG: validateDateRange - Failed to load timezone %s: %v\n", timezone, err)
+		var err error
+		loc, err = time.LoadLocation(timezone)
+		if err != nil {
+			fmt.Printf("DEBUG: validateDateRange - Failed to load timezone %s: %v, falling back to UTC\n", timezone, err)
 		}
 	}
 
-	// Truncate time component to get just the date at midnight UTC
-	today := time.Date(rawToday.Year(), rawToday.Month(), rawToday.Day(), 0, 0, 0, 0, time.UTC)
-	fmt.Printf("DEBUG: validateDateRange - Truncated today: %s, Unix: %d\n", today.Format(time.RFC3339), today.Unix())
+	// Get current time in the target timezone
+	rawToday := time.Now().In(loc)
+	fmt.Printf("DEBUG: validateDateRange - Raw time in %s: %s, Unix: %d\n", loc.String(), rawToday.Format(time.RFC3339), rawToday.Unix())
 
-	// Parse the input date
-	inputDate, err := time.Parse("2006-01-02", date)
+	// Truncate time component to get just the date at midnight in the target timezone
+	today := time.Date(rawToday.Year(), rawToday.Month(), rawToday.Day(), 0, 0, 0, 0, loc)
+	fmt.Printf("DEBUG: validateDateRange - Truncated today in %s: %s, Unix: %d\n", loc.String(), today.Format(time.RFC3339), today.Unix())
+
+	// Parse the input date in the target timezone
+	inputDate, err := time.ParseInLocation("2006-01-02", date, loc)
 	if err != nil {
 		fmt.Printf("DEBUG: validateDateRange - Failed to parse date: %s, error: %v\n", date, err)
 		return fmt.Errorf("invalid date format: %s", date)
 	}
 
-	// Calculate the maximum date (today + maxForecastDays)
+	// Calculate the maximum date (today + maxForecastDays) in the target timezone
 	maxDate := today.AddDate(0, 0, maxForecastDays)
 
 	fmt.Printf("DEBUG: validateDateRange - Input date: %s, Today: %s, Max date: %s\n",
@@ -146,28 +145,28 @@ func validateDateRange(date string, timezone string) error {
 
 // validateBookingDates validates check-in and check-out dates
 func validateBookingDates(checkInDate, checkOutDate string, timezone string) error {
-	// Use UTC to ensure consistency across different server environments
-	today := time.Now().UTC()
-	today = time.Date(today.Year(), today.Month(), today.Day(), 0, 0, 0, 0, time.UTC)
-	fmt.Printf("DEBUG: Booking validation - UTC today: %s\n", formatDate(today))
-
-	// If timezone is provided, also log the local time
+	// Get the location for the provided timezone
+	loc := time.UTC // Default to UTC if no timezone provided
 	if timezone != "" {
-		if loc, err := time.LoadLocation(timezone); err == nil {
-			localToday := time.Now().In(loc)
-			localToday = time.Date(localToday.Year(), localToday.Month(), localToday.Day(), 0, 0, 0, 0, loc)
-			fmt.Printf("DEBUG: Booking validation - Local today in %s: %s\n", timezone, formatDate(localToday))
-		} else {
-			fmt.Printf("DEBUG: Booking validation - Failed to load timezone %s: %v\n", timezone, err)
+		var err error
+		loc, err = time.LoadLocation(timezone)
+		if err != nil {
+			fmt.Printf("DEBUG: Booking validation - Failed to load timezone %s: %v, falling back to UTC\n", timezone, err)
 		}
 	}
 
-	checkIn, err := time.Parse("2006-01-02", checkInDate)
+	// Use the location's time for validation
+	now := time.Now().In(loc)
+	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, loc)
+	fmt.Printf("DEBUG: Booking validation - Today in %s: %s\n", loc.String(), formatDate(today))
+
+	// Parse dates in the target timezone
+	checkIn, err := time.ParseInLocation("2006-01-02", checkInDate, loc)
 	if err != nil {
 		return fmt.Errorf("invalid check-in date format: %s", checkInDate)
 	}
 
-	checkOut, err := time.Parse("2006-01-02", checkOutDate)
+	checkOut, err := time.ParseInLocation("2006-01-02", checkOutDate, loc)
 	if err != nil {
 		return fmt.Errorf("invalid check-out date format: %s", checkOutDate)
 	}
