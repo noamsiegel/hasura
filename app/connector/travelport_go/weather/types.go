@@ -81,7 +81,7 @@ type OpenMeteoResponse struct {
 // Daily represents daily weather data from Open Meteo
 type Daily struct {
 	Time                        []string  `json:"time"`
-	WeatherCode                 []int     `json:"weather_code"`
+	WeatherCode                 []int     `json:"weathercode"`
 	Temperature2mMax            []float64 `json:"temperature_2m_max"`
 	Temperature2mMin            []float64 `json:"temperature_2m_min"`
 	ApparentTemperatureMax      []float64 `json:"apparent_temperature_max"`
@@ -98,9 +98,9 @@ type Daily struct {
 	SnowfallSum                 []float64 `json:"snowfall_sum"`
 	PrecipitationHours          []float64 `json:"precipitation_hours"`
 	PrecipitationProbabilityMax []float64 `json:"precipitation_probability_max"`
-	WindSpeed10mMax             []float64 `json:"wind_speed_10m_max"`
+	WindSpeed10mMax             []float64 `json:"windspeed_10m_max"`
 	WindGusts10mMax             []float64 `json:"wind_gusts_10m_max"`
-	WindDirection10mDominant    []float64 `json:"wind_direction_10m_dominant"`
+	WindDirection10mDominant    []float64 `json:"winddirection_10m_dominant"`
 	ShortwaveRadiationSum       []float64 `json:"shortwave_radiation_sum"`
 	ET0FaoEvapotranspiration    []float64 `json:"et0_fao_evapotranspiration"`
 }
