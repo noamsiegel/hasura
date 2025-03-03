@@ -14,11 +14,10 @@ type WeatherDataParams struct {
 // WeatherDataResponse represents the response from the weather service
 type WeatherDataResponse struct {
 	WeatherData struct {
-		Lat            string      `json:"lat"`
-		Lon            string      `json:"lon"`
-		Timezone       string      `json:"timezone"`
-		TimezoneOffset string      `json:"timezone_offset"`
-		Daily          []DailyItem `json:"daily"`
+		Lat      string      `json:"lat"`
+		Lon      string      `json:"lon"`
+		Timezone string      `json:"timezone"`
+		Daily    []DailyItem `json:"daily"`
 	} `json:"weatherData"`
 }
 

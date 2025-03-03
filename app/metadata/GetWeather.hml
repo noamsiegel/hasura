@@ -229,8 +229,6 @@ definition:
       type: String!
     - name: timezone
       type: String!
-    - name: timezoneOffset
-      type: String!
   graphql:
     typeName: WeatherDataResponseWeatherData1
     inputTypeName: WeatherDataResponseWeatherData1Input
@@ -250,9 +248,6 @@ definition:
         timezone:
           column:
             name: timezone
-        timezoneOffset:
-          column:
-            name: timezone_offset
 
 ---
 kind: TypePermissions
@@ -267,7 +262,6 @@ definition:
           - lat
           - lon
           - timezone
-          - timezoneOffset
 
 ---
 kind: ObjectType

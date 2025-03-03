@@ -61,7 +61,6 @@ func (j WeatherDataResponse) ToMap() map[string]any {
 	j_WeatherData_obj["lat"] = j.WeatherData.Lat
 	j_WeatherData_obj["lon"] = j.WeatherData.Lon
 	j_WeatherData_obj["timezone"] = j.WeatherData.Timezone
-	j_WeatherData_obj["timezone_offset"] = j.WeatherData.TimezoneOffset
 	r["weatherData"] = j_WeatherData_obj
 
 	return r
