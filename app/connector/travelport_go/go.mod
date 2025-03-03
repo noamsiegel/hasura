@@ -1,9 +1,12 @@
 module hasura-ndc.dev/ndc-go
 
-go 1.21
+go 1.24
+
+toolchain go1.24.0
 
 require (
 	github.com/hasura/ndc-sdk-go v1.8.0
+	github.com/ringsaturn/tzf v0.17.2
 	go.opentelemetry.io/otel v1.29.0
 	go.opentelemetry.io/otel/trace v1.29.0
 	golang.org/x/sync v0.10.0
@@ -20,11 +23,19 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.22.0 // indirect
 	github.com/klauspost/compress v1.17.11 // indirect
+	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
+	github.com/paulmach/orb v0.11.1 // indirect
 	github.com/prometheus/client_golang v1.20.5 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.62.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
+	github.com/ringsaturn/tzf-rel-lite v0.0.2025-a // indirect
+	github.com/tidwall/geoindex v1.7.0 // indirect
+	github.com/tidwall/geojson v1.4.5 // indirect
+	github.com/tidwall/rtree v1.10.0 // indirect
+	github.com/twpayne/go-polyline v1.1.1 // indirect
+	go.mongodb.org/mongo-driver v1.11.4 // indirect
 	go.opentelemetry.io/contrib/bridges/otelslog v0.4.0 // indirect
 	go.opentelemetry.io/contrib/propagators/b3 v1.29.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc v0.5.0 // indirect
@@ -47,5 +58,5 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20240822170219-fc7c04adadcd // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240822170219-fc7c04adadcd // indirect
 	google.golang.org/grpc v1.65.0 // indirect
-	google.golang.org/protobuf v1.36.1 // indirect
+	google.golang.org/protobuf v1.36.5 // indirect
 )

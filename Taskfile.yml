@@ -27,7 +27,7 @@ tasks:
   travelport-go-rebuild:
     desc: Rebuild Travelport Go integration
     cmds:
-      - ddn connector introspect travelport_go
+      - ddn connector introspect travelport_go --log-level DEBUG
       - ddn model add travelport_go "*"
       - ddn command add travelport_go "*"
       - ddn relationship add travelport_go "*"

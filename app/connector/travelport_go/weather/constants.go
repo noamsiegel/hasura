@@ -1,6 +1,13 @@
 package weather
 
-import "time"
+import (
+	"time"
+
+	"github.com/ringsaturn/tzf"
+)
+
+// Global timezone finder instance
+var DefaultFinder, _ = tzf.NewDefaultFinder()
 
 // API related constants
 const (
@@ -28,7 +35,6 @@ const (
 const (
 	dateFormat      = "2006-01-02"
 	maxForecastDays = 16
-	maxBookingDays  = 15
 )
 
 // Default daily parameters
@@ -52,7 +58,7 @@ var DefaultDailyParams = []string{
 	"precipitation_probability_max",
 	"wind_speed_10m_max",
 	"wind_gusts_10m_max",
-	"wind_direction_10m_dominant",
+	"winddirection_10m_dominant",
 	"shortwave_radiation_sum",
 	"et0_fao_evapotranspiration",
 }
