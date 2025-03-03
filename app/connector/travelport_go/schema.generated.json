@@ -39,25 +39,7 @@
             }
           }
         },
-        "precipitationUnit": {
-          "type": {
-            "type": "nullable",
-            "underlying_type": {
-              "name": "String",
-              "type": "named"
-            }
-          }
-        },
-        "temperatureUnit": {
-          "type": {
-            "type": "nullable",
-            "underlying_type": {
-              "name": "String",
-              "type": "named"
-            }
-          }
-        },
-        "windSpeedUnit": {
+        "unit": {
           "type": {
             "type": "nullable",
             "underlying_type": {

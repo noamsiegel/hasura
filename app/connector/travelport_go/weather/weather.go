@@ -51,9 +51,12 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 	endDate := getDatePlusDays(3)
 	lat := DefaultParams.Latitude
 	lon := DefaultParams.Longitude
-	tempUnit := DefaultParams.TemperatureUnit
-	windUnit := DefaultParams.WindSpeedUnit
-	precipUnit := DefaultParams.PrecipitationUnit
+
+	// Set default units based on unit parameter
+	unit := defaultUnit
+	tempUnit := defaultTemperatureUnit
+	windUnit := defaultWindSpeedUnit
+	precipUnit := defaultPrecipitationUnit
 
 	if params != nil {
 		if params.CheckInDate != "" {
@@ -90,14 +93,20 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 				lon = lonVal
 			}
 		}
-		if params.TemperatureUnit != "" {
-			tempUnit = params.TemperatureUnit
-		}
-		if params.WindSpeedUnit != "" {
-			windUnit = params.WindSpeedUnit
-		}
-		if params.PrecipitationUnit != "" {
-			precipUnit = params.PrecipitationUnit
+		if params.Unit != "" {
+			unit = params.Unit
+			switch unit {
+			case UnitImperial:
+				tempUnit = imperialTemperatureUnit
+				windUnit = imperialWindSpeedUnit
+				precipUnit = imperialPrecipitationUnit
+			case UnitMetric:
+				tempUnit = metricTemperatureUnit
+				windUnit = metricWindSpeedUnit
+				precipUnit = metricPrecipitationUnit
+			default:
+				return nil, NewAPIError(400, fmt.Sprintf("invalid unit: %s. Must be either 'metric' or 'imperial'", unit)).ToSDKError()
+			}
 		}
 	}
 
@@ -225,27 +234,45 @@ func (s *WeatherService) fetchWeatherData(lat, lon float64, startDate, endDate, 
 		url = fmt.Sprintf(baseURL+"&timezone=UTC", lat, lon, startDate, endDate, tempUnit, windUnit, precipUnit)
 	}
 
+	fmt.Printf("DEBUG: Making API request to URL: %s\n", url)
+	fmt.Printf("DEBUG: Parameters - Temp Unit: %s, Wind Unit: %s, Precip Unit: %s\n", tempUnit, windUnit, precipUnit)
+
 	// Make the request
 	resp, err := http.Get(url)
 	if err != nil {
+		fmt.Printf("DEBUG: HTTP request failed with error: %v\n", err)
 		return nil, err
 	}
 	defer resp.Body.Close()
 
+	fmt.Printf("DEBUG: API Response Status Code: %d\n", resp.StatusCode)
+
 	// Read the response
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
+		fmt.Printf("DEBUG: Failed to read response body: %v\n", err)
 		return nil, err
 	}
+
+	fmt.Printf("DEBUG: Raw API Response: %s\n", string(body))
 
 	// Parse the response
 	var weatherData WeatherResponse
 	if err := json.Unmarshal(body, &weatherData); err != nil {
+		fmt.Printf("DEBUG: Failed to parse JSON response: %v\n", err)
 		return nil, err
+	}
+
+	fmt.Printf("DEBUG: Parsed Weather Data\n")
+	if weatherData.Daily.WeatherCode != nil {
+		fmt.Printf("DEBUG: Weather Codes Length: %d\n", len(weatherData.Daily.WeatherCode))
+	} else {
+		fmt.Printf("DEBUG: Weather Codes are nil\n")
 	}
 
 	// Validate the response data
 	if weatherData.Daily.WeatherCode == nil || len(weatherData.Daily.WeatherCode) == 0 {
+		fmt.Printf("DEBUG: Weather codes validation failed - codes are missing or empty\n")
 		return nil, fmt.Errorf("weather codes are missing in the API response")
 	}
 

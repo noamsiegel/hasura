@@ -305,11 +305,7 @@ definition:
       type: String
     - name: longitude
       type: String
-    - name: precipitationUnit
-      type: String
-    - name: temperatureUnit
-      type: String
-    - name: windSpeedUnit
+    - name: unit
       type: String
   source:
     dataConnectorName: travelport_go

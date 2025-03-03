@@ -31,15 +31,7 @@ func (j *WeatherArguments) FromValue(input map[string]any) error {
 	if err != nil {
 		return err
 	}
-	j.PrecipitationUnit, err = utils.GetNullableString(input, "precipitationUnit")
-	if err != nil {
-		return err
-	}
-	j.TemperatureUnit, err = utils.GetNullableString(input, "temperatureUnit")
-	if err != nil {
-		return err
-	}
-	j.WindSpeedUnit, err = utils.GetNullableString(input, "windSpeedUnit")
+	j.Unit, err = utils.GetNullableString(input, "unit")
 	if err != nil {
 		return err
 	}

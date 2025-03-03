@@ -9,13 +9,11 @@ import (
 
 // WeatherArguments represents the input arguments for the weather function
 type WeatherArguments struct {
-	CheckInDate       *string `json:"checkInDate,omitempty"`
-	CheckOutDate      *string `json:"checkOutDate,omitempty"`
-	Latitude          *string `json:"latitude,omitempty"`
-	Longitude         *string `json:"longitude,omitempty"`
-	TemperatureUnit   *string `json:"temperatureUnit,omitempty"`
-	WindSpeedUnit     *string `json:"windSpeedUnit,omitempty"`
-	PrecipitationUnit *string `json:"precipitationUnit,omitempty"`
+	CheckInDate  *string `json:"checkInDate,omitempty"`
+	CheckOutDate *string `json:"checkOutDate,omitempty"`
+	Latitude     *string `json:"latitude,omitempty"`
+	Longitude    *string `json:"longitude,omitempty"`
+	Unit         *string `json:"unit,omitempty"`
 }
 
 func FunctionGetWeather(ctx context.Context, state *types.State, arguments *WeatherArguments) (*weather.WeatherDataResponse, error) {
@@ -37,14 +35,8 @@ func FunctionGetWeather(ctx context.Context, state *types.State, arguments *Weat
 		if arguments.Longitude != nil {
 			params.Longitude = *arguments.Longitude
 		}
-		if arguments.TemperatureUnit != nil {
-			params.TemperatureUnit = *arguments.TemperatureUnit
-		}
-		if arguments.WindSpeedUnit != nil {
-			params.WindSpeedUnit = *arguments.WindSpeedUnit
-		}
-		if arguments.PrecipitationUnit != nil {
-			params.PrecipitationUnit = *arguments.PrecipitationUnit
+		if arguments.Unit != nil {
+			params.Unit = *arguments.Unit
 		}
 	}
 
