@@ -198,19 +198,7 @@ definition:
                 underlying_type:
                   type: named
                   name: String
-            precipitationUnit:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            temperatureUnit:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: String
-            windSpeedUnit:
+            unit:
               type:
                 type: nullable
                 underlying_type:

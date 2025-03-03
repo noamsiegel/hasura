@@ -22,11 +22,32 @@ const (
 	defaultLongitude = 13.41
 )
 
-// Unit defaults
+// Unit system constants
 const (
-	defaultTemperatureUnit   = "fahrenheit"
-	defaultWindSpeedUnit     = "ms"
-	defaultPrecipitationUnit = "inch"
+	UnitMetric   = "metric"
+	UnitImperial = "imperial"
+)
+
+// Unit defaults for metric system
+const (
+	metricTemperatureUnit   = "celsius"
+	metricWindSpeedUnit     = "kmh"
+	metricPrecipitationUnit = "mm"
+)
+
+// Unit defaults for imperial system
+const (
+	imperialTemperatureUnit   = "fahrenheit"
+	imperialWindSpeedUnit     = "mph"
+	imperialPrecipitationUnit = "inch"
+)
+
+// Default unit values
+const (
+	defaultUnit              = UnitMetric
+	defaultTemperatureUnit   = metricTemperatureUnit
+	defaultWindSpeedUnit     = metricWindSpeedUnit
+	defaultPrecipitationUnit = metricPrecipitationUnit
 	defaultTimezone          = "GMT"
 	defaultTimeformat        = "iso8601"
 )

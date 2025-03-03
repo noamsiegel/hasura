@@ -2,13 +2,11 @@ package weather
 
 // WeatherDataParams represents the parameters for weather data request
 type WeatherDataParams struct {
-	CheckInDate       string `json:"checkInDate,omitempty"`
-	CheckOutDate      string `json:"checkOutDate,omitempty"`
-	Latitude          string `json:"latitude,omitempty"`
-	Longitude         string `json:"longitude,omitempty"`
-	TemperatureUnit   string `json:"temperatureUnit,omitempty"`
-	WindSpeedUnit     string `json:"windSpeedUnit,omitempty"`
-	PrecipitationUnit string `json:"precipitationUnit,omitempty"`
+	CheckInDate  string `json:"checkInDate,omitempty"`
+	CheckOutDate string `json:"checkOutDate,omitempty"`
+	Latitude     string `json:"latitude,omitempty"`
+	Longitude    string `json:"longitude,omitempty"`
+	Unit         string `json:"unit,omitempty"`
 }
 
 // WeatherDataResponse represents the response from the weather service
@@ -77,7 +75,7 @@ type OpenMeteoResponse struct {
 	Reason           string            `json:"reason"`
 }
 
-// Daily represents daily weather data from Open Meteo
+// Daily represents daily weather data
 type Daily struct {
 	Time                        []string  `json:"time"`
 	WeatherCode                 []int     `json:"weathercode"`
