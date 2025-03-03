@@ -273,12 +273,6 @@
             "name": "String",
             "type": "named"
           }
-        },
-        "timezone_offset": {
-          "type": {
-            "name": "String",
-            "type": "named"
-          }
         }
       }
     },

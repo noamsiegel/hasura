@@ -151,10 +151,6 @@ definition:
               type:
                 type: named
                 name: String
-            timezone_offset:
-              type:
-                type: named
-                name: String
         WeatherInfo:
           description: represents weather condition information
           fields:
