@@ -7,6 +7,7 @@ toolchain go1.24.0
 require (
 	github.com/hasura/ndc-sdk-go v1.8.0
 	github.com/ringsaturn/tzf v0.17.2
+	github.com/valyala/quicktemplate v1.8.0
 	go.opentelemetry.io/otel v1.29.0
 	go.opentelemetry.io/otel/trace v1.29.0
 	golang.org/x/sync v0.10.0
@@ -35,6 +36,7 @@ require (
 	github.com/tidwall/geojson v1.4.5 // indirect
 	github.com/tidwall/rtree v1.10.0 // indirect
 	github.com/twpayne/go-polyline v1.1.1 // indirect
+	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	go.mongodb.org/mongo-driver v1.11.4 // indirect
 	go.opentelemetry.io/contrib/bridges/otelslog v0.4.0 // indirect
 	go.opentelemetry.io/contrib/propagators/b3 v1.29.0 // indirect
