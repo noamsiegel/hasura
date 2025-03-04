@@ -28,7 +28,7 @@ definition:
     typeName: CustomAddressHotelSearchRequest
     inputTypeName: CustomAddressHotelSearchRequestInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: CustomAddressHotelSearchRequest
       fieldMapping:
         checkInDate:
@@ -92,7 +92,7 @@ definition:
     - name: searchParams
       type: CustomAddressHotelSearchRequest!
   source:
-    dataConnectorName: travelport_js
+    dataConnectorName: travelport
     dataConnectorCommand:
       function: tpSearchHotelsByAddress
   graphql:

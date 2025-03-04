@@ -12,7 +12,7 @@ definition:
     typeName: CustomCoordinatesHotelSearchRequestGuests
     inputTypeName: CustomCoordinatesHotelSearchRequestGuestsInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: CustomCoordinatesHotelSearchRequest_guests
 
 ---
@@ -41,7 +41,7 @@ definition:
     typeName: Radius
     inputTypeName: RadiusInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: Radius
 
 ---
@@ -84,7 +84,7 @@ definition:
     typeName: CustomCoordinatesHotelSearchRequest
     inputTypeName: CustomCoordinatesHotelSearchRequestInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: CustomCoordinatesHotelSearchRequest
       fieldMapping:
         checkInDate:
@@ -148,7 +148,7 @@ definition:
     typeName: OfferInitialPrice
     inputTypeName: OfferInitialPriceInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: OfferInitialPrice
 
 ---
@@ -177,7 +177,7 @@ definition:
     typeName: OfferRetailRate
     inputTypeName: OfferRetailRateInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: OfferRetailRate
 
 ---
@@ -212,7 +212,7 @@ definition:
     typeName: CancelPolicyInfo
     inputTypeName: CancelPolicyInfoInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: CancelPolicyInfo
 
 ---
@@ -246,7 +246,7 @@ definition:
     typeName: CancellationPolicies
     inputTypeName: CancellationPoliciesInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: CancellationPolicies
 
 ---
@@ -276,7 +276,7 @@ definition:
 #     typeName: ModelsCustomResponseCommission
 #     inputTypeName: ModelsCustomResponseCommissionInput
 #   dataConnectorTypeMapping:
-#     - dataConnectorName: travelport_js
+#     - dataConnectorName: travelport
 #       dataConnectorObjectType: models_custom_response_Commission
 
 # ---
@@ -305,7 +305,7 @@ definition:
     typeName: InitialPrice
     inputTypeName: InitialPriceInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: InitialPrice
 
 ---
@@ -334,7 +334,7 @@ definition:
     typeName: SuggestedSellingPrice
     inputTypeName: SuggestedSellingPriceInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: SuggestedSellingPrice
 
 ---
@@ -367,7 +367,7 @@ definition:
     typeName: TaxesAndFee
     inputTypeName: TaxesAndFeeInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: TaxesAndFee
 
 ---
@@ -398,7 +398,7 @@ definition:
     typeName: Total
     inputTypeName: TotalInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: Total
 
 ---
@@ -431,7 +431,7 @@ definition:
     typeName: RetailRate
     inputTypeName: RetailRateInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: RetailRate
 
 ---
@@ -484,7 +484,7 @@ definition:
 #     typeName: ModelsCustomResponseRate
 #     inputTypeName: ModelsCustomResponseRateInput
 #   dataConnectorTypeMapping:
-#     - dataConnectorName: travelport_js
+#     - dataConnectorName: travelport
 #       dataConnectorObjectType: models_custom_response_Rate
 
 # ---
@@ -524,7 +524,7 @@ definition:
     typeName: SuggestedSellingPrice2
     inputTypeName: SuggestedSellingPrice2Input
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: SuggestedSellingPrice2
 
 ---
@@ -569,7 +569,7 @@ definition:
 #     typeName: ModelsCustomResponseRoomType
 #     inputTypeName: ModelsCustomResponseRoomTypeInput
 #   dataConnectorTypeMapping:
-#     - dataConnectorName: travelport_js
+#     - dataConnectorName: travelport
 #       dataConnectorObjectType: models_custom_response_RoomType
 
 # ---
@@ -606,7 +606,7 @@ definition:
     typeName: HotelData
     inputTypeName: HotelDataInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: HotelData
 
 ---
@@ -635,7 +635,7 @@ definition:
     typeName: CustomResponse
     inputTypeName: CustomResponseInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: CustomResponse
 
 ---
@@ -660,7 +660,7 @@ definition:
     - name: searchParams
       type: CustomCoordinatesHotelSearchRequest!
   source:
-    dataConnectorName: travelport_js
+    dataConnectorName: travelport
     dataConnectorCommand:
       function: tpSearchHotelsByCoordinates
   graphql:
@@ -690,7 +690,7 @@ definition:
     typeName: Commission
     inputTypeName: CommissionInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: Commission
 
 ---
@@ -741,7 +741,7 @@ definition:
     typeName: Rate
     inputTypeName: RateInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: Rate
 
 ---
@@ -797,7 +797,7 @@ definition:
     typeName: RoomType
     inputTypeName: RoomTypeInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: RoomType
 
 ---

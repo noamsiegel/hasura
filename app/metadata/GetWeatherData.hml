@@ -49,7 +49,7 @@ definition:
     typeName: WeatherDataParams
     inputTypeName: WeatherDataParamsInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: WeatherDataParams
 
 ---
@@ -87,7 +87,7 @@ definition:
     typeName: DailyWeatherItemFeelsLike
     inputTypeName: DailyWeatherItemFeelsLikeInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: DailyWeatherItem_feels_like
 
 ---
@@ -126,7 +126,7 @@ definition:
     typeName: DailyWeatherItemTemp
     inputTypeName: DailyWeatherItemTempInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: DailyWeatherItem_temp
 
 ---
@@ -163,7 +163,7 @@ definition:
     typeName: WeatherCondition
     inputTypeName: WeatherConditionInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: WeatherCondition
 
 ---
@@ -216,7 +216,7 @@ definition:
     typeName: DailyWeatherItem
     inputTypeName: DailyWeatherItemInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: DailyWeatherItem
       fieldMapping:
         clouds:
@@ -302,7 +302,7 @@ definition:
     typeName: WeatherDataResponseWeatherData
     inputTypeName: WeatherDataResponseWeatherDataInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: WeatherDataResponse_weatherData
       fieldMapping:
         daily:
@@ -349,7 +349,7 @@ definition:
     typeName: WeatherDataResponse
     inputTypeName: WeatherDataResponseInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: WeatherDataResponse
 
 ---
@@ -373,7 +373,7 @@ definition:
     - name: searchParams
       type: WeatherDataParams!
   source:
-    dataConnectorName: travelport_js
+    dataConnectorName: travelport
     dataConnectorCommand:
       function: getWeatherData
   graphql:
