@@ -40,6 +40,16 @@ tasks:
       - ddn supergraph build local --log-level DEBUG
       - ddn run docker-start --log-level DEBUG
 
+  weather-templates:
+    desc: Compile quicktemplate files for the weather service
+    dir: app/connector/travelport_go/weather
+    cmds:
+      - $HOME/go/bin/qtc
+    sources:
+      - "*.qtpl"
+    generates:
+      - "*.qtpl.go"
+
   start:
     desc: Start the application with Docker
     cmds:

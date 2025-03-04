@@ -35,6 +35,7 @@ var DefaultParams = struct {
 // WeatherService handles weather data operations
 type WeatherService struct {
 	client *http.Client
+	pool   *sync.Pool
 }
 
 // NewWeatherService creates a new WeatherService instance
@@ -51,6 +52,20 @@ func NewWeatherService() *WeatherService {
 		client: &http.Client{
 			Transport: transport,
 			Timeout:   defaultHTTPTimeout,
+		},
+		pool: &sync.Pool{
+			New: func() interface{} {
+				return &WeatherDataResponse{
+					WeatherData: struct {
+						Lat      string      `json:"lat"`
+						Lon      string      `json:"lon"`
+						Timezone string      `json:"timezone"`
+						Daily    []DailyItem `json:"daily"`
+					}{
+						Daily: make([]DailyItem, 0, 7), // Pre-allocate for a week's worth of data
+					},
+				}
+			},
 		},
 	}
 }
@@ -72,7 +87,7 @@ var (
 	cacheMux sync.RWMutex
 )
 
-const cacheDuration = 30 * time.Minute // Cache weather data for 30 minutes
+const cacheDuration = 15 * time.Minute // Cache weather data for 15 minutes
 
 // getCachedResponse attempts to get a cached weather response
 func (s *WeatherService) getCachedResponse(key cacheKey) (*WeatherDataResponse, bool) {
@@ -98,6 +113,22 @@ func (s *WeatherService) setCachedResponse(key cacheKey, response *WeatherDataRe
 
 // GetWeatherData retrieves weather data based on provided parameters
 func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherDataResponse, error) {
+	// Get a response object from the pool
+	response := s.pool.Get().(*WeatherDataResponse)
+	// Reset the response object for reuse
+	response.WeatherData.Lat = ""
+	response.WeatherData.Lon = ""
+	response.WeatherData.Timezone = ""
+	response.WeatherData.Daily = response.WeatherData.Daily[:0]
+
+	// Defer returning the response to the pool if there's an error
+	var returnToPool bool
+	defer func() {
+		if returnToPool {
+			s.pool.Put(response)
+		}
+	}()
+
 	// Use default or provided parameters
 	today := getCurrentDate()
 	startDate := today
@@ -173,6 +204,7 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 	}
 
 	if cachedResponse, found := s.getCachedResponse(cacheKey); found {
+		returnToPool = true
 		return cachedResponse, nil
 	}
 
@@ -222,7 +254,6 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 	}
 
 	// Create response
-	response := &WeatherDataResponse{}
 	response.WeatherData.Lat = fmt.Sprintf("%f", lat)
 	response.WeatherData.Lon = fmt.Sprintf("%f", lon)
 	response.WeatherData.Timezone = weatherData.Timezone
@@ -562,4 +593,10 @@ func weatherInfoToJSON(info []WeatherInfo) string {
 		}`, w.ID, w.Main, w.Description, w.Icon))
 	}
 	return result.String()
+}
+
+// MarshalJSON implements json.Marshaler interface
+func (r *WeatherDataResponse) MarshalJSON() ([]byte, error) {
+	// Use quicktemplate to generate JSON
+	return []byte(WeatherDataResponseJSON(r)), nil
 }

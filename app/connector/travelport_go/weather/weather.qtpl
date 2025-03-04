@@ -1,0 +1,51 @@
+{% func WeatherDataResponseJSON(r *WeatherDataResponse) %}
+{
+    "weatherData":{
+        "lat":"{% s r.WeatherData.Lat %}",
+        "lon":"{% s r.WeatherData.Lon %}",
+        "timezone":"{% s r.WeatherData.Timezone %}",
+        "daily":[
+            {% for i, item := range r.WeatherData.Daily %}
+                {% if i > 0 %},{% endif %}
+                {
+                    "date":"{% s item.Date %}",
+                    "sunrise":"{% s item.Sunrise %}",
+                    "sunset":"{% s item.Sunset %}",
+                    "summary":"{% s item.Summary %}",
+                    "temp":{
+                        "day":"{% s item.Temp.Day %}",
+                        "min":"{% s item.Temp.Min %}",
+                        "max":"{% s item.Temp.Max %}",
+                        "night":"{% s item.Temp.Night %}",
+                        "eve":"{% s item.Temp.Eve %}",
+                        "morn":"{% s item.Temp.Morn %}"
+                    },
+                    "feels_like":{
+                        "day":"{% s item.FeelsLike.Day %}",
+                        "night":"{% s item.FeelsLike.Night %}",
+                        "eve":"{% s item.FeelsLike.Eve %}",
+                        "morn":"{% s item.FeelsLike.Morn %}"
+                    },
+                    "wind_speed":"{% s item.WindSpeed %}",
+                    "wind_deg":"{% s item.WindDeg %}",
+                    "wind_gust":"{% s item.WindGust %}",
+                    "weather":[
+                        {% for j, w := range item.Weather %}
+                            {% if j > 0 %},{% endif %}
+                            {
+                                "id":"{% s w.ID %}",
+                                "main":"{% s w.Main %}",
+                                "description":"{% s w.Description %}",
+                                "icon":"{% s w.Icon %}"
+                            }
+                        {% endfor %}
+                    ],
+                    "clouds":"{% s item.Clouds %}",
+                    "pop":"{% s item.Pop %}",
+                    "uvi":"{% s item.Uvi %}"
+                }
+            {% endfor %}
+        ]
+    }
+}
+{% endfunc %} 
