@@ -12,7 +12,7 @@ definition:
     typeName: PropertyDetails
     inputTypeName: PropertyDetailsInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: PropertyDetails
 
 ---
@@ -51,7 +51,7 @@ definition:
     typeName: CustomHotelCodeHotelSearchRequest
     inputTypeName: CustomHotelCodeHotelSearchRequestInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: CustomHotelCodeHotelSearchRequest
       fieldMapping:
         checkInDate:
@@ -103,7 +103,7 @@ definition:
     - name: searchParams
       type: CustomHotelCodeHotelSearchRequest!
   source:
-    dataConnectorName: travelport_js
+    dataConnectorName: travelport
     dataConnectorCommand:
       function: tpSearchHotelsByProperty
   graphql:

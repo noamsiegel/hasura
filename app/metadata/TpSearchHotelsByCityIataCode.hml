@@ -24,7 +24,7 @@ definition:
     typeName: CustomCityIataCodeHotelSearchRequest
     inputTypeName: CustomCityIataCodeHotelSearchRequestInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_js
+    - dataConnectorName: travelport
       dataConnectorObjectType: CustomCityIataCodeHotelSearchRequest
       fieldMapping:
         checkInDate:
@@ -80,7 +80,7 @@ definition:
     - name: searchParams
       type: CustomCityIataCodeHotelSearchRequest!
   source:
-    dataConnectorName: travelport_js
+    dataConnectorName: travelport
     dataConnectorCommand:
       function: tpSearchHotelsByCityIataCode
   graphql:

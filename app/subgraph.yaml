@@ -20,12 +20,12 @@ definition:
       fromEnv: APP_WEATHER_READ_URL
     APP_WEATHER_WRITE_URL:
       fromEnv: APP_WEATHER_WRITE_URL
-    APP_TRAVELPORT_JS_AUTHORIZATION_HEADER:
-      fromEnv: APP_TRAVELPORT_JS_AUTHORIZATION_HEADER
-    APP_TRAVELPORT_JS_READ_URL:
-      fromEnv: APP_TRAVELPORT_JS_READ_URL
-    APP_TRAVELPORT_JS_WRITE_URL:
-      fromEnv: APP_TRAVELPORT_JS_WRITE_URL
+    APP_TRAVELPORT_AUTHORIZATION_HEADER:
+      fromEnv: APP_TRAVELPORT_AUTHORIZATION_HEADER
+    APP_TRAVELPORT_READ_URL:
+      fromEnv: APP_TRAVELPORT_READ_URL
+    APP_TRAVELPORT_WRITE_URL:
+      fromEnv: APP_TRAVELPORT_WRITE_URL
     APP_WEAVIATE_AUTHORIZATION_HEADER:
       fromEnv: APP_WEAVIATE_AUTHORIZATION_HEADER
     APP_WEAVIATE_READ_URL:
@@ -33,8 +33,8 @@ definition:
     APP_WEAVIATE_WRITE_URL:
       fromEnv: APP_WEAVIATE_WRITE_URL
   connectors:
-    - path: connector/travelport_js/connector.yaml
-      connectorLinkName: travelport_js
+    - path: connector/travelport/connector.yaml
+      connectorLinkName: travelport
     - path: connector/sb_api_postgres/connector.yaml
       connectorLinkName: sb_api_postgres
     - path: connector/weather/connector.yaml

@@ -5,7 +5,7 @@ version: '3'
 vars:
   GREETING: Hello, World!
   CONNECTORS:
-    - travelport_js
+    - travelport
     - sb_api_postgres
 
 tasks:
@@ -14,13 +14,13 @@ tasks:
     cmds:
       - task -l
 
-  travelport-js-rebuild:
+  travelport-rebuild:
     desc: Setup and run Travelport integration
     cmds:
-      - ddn connector introspect travelport_js
-      - ddn model add travelport_js "*"
-      - ddn command add travelport_js "*"
-      - ddn relationship add travelport_js "*"
+      - ddn connector introspect travelport
+      - ddn model add travelport "*"
+      - ddn command add travelport "*"
+      - ddn relationship add travelport "*"
       - ddn supergraph build local --log-level DEBUG
       - ddn run docker-start --log-level DEBUG
 

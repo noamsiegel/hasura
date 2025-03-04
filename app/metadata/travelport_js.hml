@@ -1,16 +1,16 @@
 kind: DataConnectorLink
 version: v1
 definition:
-  name: travelport_js
+  name: travelport
   url:
     readWriteUrls:
       read:
-        valueFromEnv: APP_TRAVELPORT_JS_READ_URL
+        valueFromEnv: APP_TRAVELPORT_READ_URL
       write:
-        valueFromEnv: APP_TRAVELPORT_JS_WRITE_URL
+        valueFromEnv: APP_TRAVELPORT_WRITE_URL
   headers:
     Authorization:
-      valueFromEnv: APP_TRAVELPORT_JS_AUTHORIZATION_HEADER
+      valueFromEnv: APP_TRAVELPORT_AUTHORIZATION_HEADER
   schema:
     version: v0.1
     schema:

@@ -2,7 +2,7 @@
 kind: DataConnectorScalarRepresentation
 version: v1
 definition:
-  dataConnectorName: travelport_js
+  dataConnectorName: travelport
   dataConnectorScalarType: String
   representation: String
   graphql:
@@ -12,7 +12,7 @@ definition:
 kind: DataConnectorScalarRepresentation
 version: v1
 definition:
-  dataConnectorName: travelport_js
+  dataConnectorName: travelport
   dataConnectorScalarType: Float
   representation: Float
   graphql:
@@ -22,7 +22,7 @@ definition:
 kind: DataConnectorScalarRepresentation
 version: v1
 definition:
-  dataConnectorName: travelport_js
+  dataConnectorName: travelport
   dataConnectorScalarType: Boolean
   representation: Boolean
   graphql:
@@ -48,7 +48,7 @@ definition:
 #         - name: _eq
 #           argumentType: DateTime!
 #       dataConnectorOperatorMapping:
-#         - dataConnectorName: travelport_js
+#         - dataConnectorName: travelport
 #           dataConnectorScalarType: DateTime
 #           operatorMapping: {}
 #   logicalOperators:
@@ -62,7 +62,7 @@ definition:
 # kind: DataConnectorScalarRepresentation
 # version: v1
 # definition:
-#   dataConnectorName: travelport_js
+#   dataConnectorName: travelport
 #   dataConnectorScalarType: DateTime
 #   representation: DateTime
 #   graphql:
