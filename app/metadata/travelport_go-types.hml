@@ -2,7 +2,7 @@
 kind: DataConnectorScalarRepresentation
 version: v1
 definition:
-  dataConnectorName: travelport_go
+  dataConnectorName: weather
   dataConnectorScalarType: String
   representation: String
   graphql:
