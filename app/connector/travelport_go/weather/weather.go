@@ -6,6 +6,9 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"strings"
+	"sync"
+	"time"
 )
 
 // DefaultParams represents the default configuration for weather data requests
@@ -36,11 +39,61 @@ type WeatherService struct {
 
 // NewWeatherService creates a new WeatherService instance
 func NewWeatherService() *WeatherService {
+	transport := &http.Transport{
+		MaxIdleConns:        100,
+		MaxIdleConnsPerHost: 100,
+		IdleConnTimeout:     90 * time.Second,
+		DisableCompression:  false, // Enable compression for responses
+		ForceAttemptHTTP2:   true,  // Enable HTTP/2 where possible
+	}
+
 	return &WeatherService{
 		client: &http.Client{
-			Timeout: defaultHTTPTimeout,
+			Transport: transport,
+			Timeout:   defaultHTTPTimeout,
 		},
 	}
+}
+
+type cacheKey struct {
+	lat, lon  float64
+	startDate string
+	endDate   string
+	unit      string
+}
+
+type cacheEntry struct {
+	response *WeatherDataResponse
+	expiry   time.Time
+}
+
+var (
+	cache    = make(map[cacheKey]cacheEntry)
+	cacheMux sync.RWMutex
+)
+
+const cacheDuration = 30 * time.Minute // Cache weather data for 30 minutes
+
+// getCachedResponse attempts to get a cached weather response
+func (s *WeatherService) getCachedResponse(key cacheKey) (*WeatherDataResponse, bool) {
+	cacheMux.RLock()
+	entry, exists := cache[key]
+	cacheMux.RUnlock()
+
+	if !exists || time.Now().After(entry.expiry) {
+		return nil, false
+	}
+	return entry.response, true
+}
+
+// setCachedResponse stores a weather response in the cache
+func (s *WeatherService) setCachedResponse(key cacheKey, response *WeatherDataResponse) {
+	cacheMux.Lock()
+	cache[key] = cacheEntry{
+		response: response,
+		expiry:   time.Now().Add(cacheDuration),
+	}
+	cacheMux.Unlock()
 }
 
 // GetWeatherData retrieves weather data based on provided parameters
@@ -110,6 +163,19 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 		}
 	}
 
+	// Check cache first
+	cacheKey := cacheKey{
+		lat:       lat,
+		lon:       lon,
+		startDate: startDate,
+		endDate:   endDate,
+		unit:      unit,
+	}
+
+	if cachedResponse, found := s.getCachedResponse(cacheKey); found {
+		return cachedResponse, nil
+	}
+
 	// Detect timezone based on coordinates
 	detectedTz := ""
 	if DefaultFinder != nil {
@@ -163,6 +229,9 @@ func (s *WeatherService) GetWeatherData(params *WeatherDataParams) (*WeatherData
 
 	// Create daily items
 	response.WeatherData.Daily = createDailyItemsFromResponses(weatherData, sunriseData)
+
+	// Cache the response before returning
+	s.setCachedResponse(cacheKey, response)
 
 	return response, nil
 }
@@ -409,3 +478,88 @@ type SunriseSunsetResponse struct {
 
 // WeatherResponse represents the response from the weather API
 type WeatherResponse = OpenMeteoResponse
+
+// toJSONString converts WeatherDataResponse to a JSON string using string templates
+func (r *WeatherDataResponse) toJSONString() string {
+	var dailyItems strings.Builder
+	for i, item := range r.WeatherData.Daily {
+		if i > 0 {
+			dailyItems.WriteString(",")
+		}
+		dailyItems.WriteString(fmt.Sprintf(`{
+			"date":"%s",
+			"sunrise":"%s",
+			"sunset":"%s",
+			"summary":"%s",
+			"temp":{
+				"day":"%s",
+				"min":"%s",
+				"max":"%s",
+				"night":"%s",
+				"eve":"%s",
+				"morn":"%s"
+			},
+			"feels_like":{
+				"day":"%s",
+				"night":"%s",
+				"eve":"%s",
+				"morn":"%s"
+			},
+			"wind_speed":"%s",
+			"wind_deg":"%s",
+			"wind_gust":"%s",
+			"weather":[%s],
+			"clouds":"%s",
+			"pop":"%s",
+			"uvi":"%s"
+		}`,
+			item.Date,
+			item.Sunrise,
+			item.Sunset,
+			item.Summary,
+			item.Temp.Day,
+			item.Temp.Min,
+			item.Temp.Max,
+			item.Temp.Night,
+			item.Temp.Eve,
+			item.Temp.Morn,
+			item.FeelsLike.Day,
+			item.FeelsLike.Night,
+			item.FeelsLike.Eve,
+			item.FeelsLike.Morn,
+			item.WindSpeed,
+			item.WindDeg,
+			item.WindGust,
+			weatherInfoToJSON(item.Weather),
+			item.Clouds,
+			item.Pop,
+			item.Uvi,
+		))
+	}
+
+	return fmt.Sprintf(`{
+		"weatherData":{
+			"lat":"%s",
+			"lon":"%s",
+			"timezone":"%s",
+			"daily":[%s]
+		}
+	}`, r.WeatherData.Lat, r.WeatherData.Lon, r.WeatherData.Timezone, dailyItems.String())
+}
+
+// weatherInfoToJSON converts WeatherInfo slice to JSON string
+func weatherInfoToJSON(info []WeatherInfo) string {
+	var result strings.Builder
+	for i, w := range info {
+		if i > 0 {
+			result.WriteString(",")
+		}
+		result.WriteString(fmt.Sprintf(`{
+			"id":"%s",
+			"main":"%s",
+			"description":"%s",
+			"icon":"%s"
+		}`, w.ID, w.Main, w.Description, w.Icon))
+	}
+	return result.String()
+}
