@@ -1,7 +1,7 @@
 include:
   - path: app/connector/travelport_js/compose.yaml
   - path: app/connector/sb_api_postgres/compose.yaml
-  - path: app/connector/travelport_go/compose.yaml
+  - path: app/connector/weather/compose.yaml
 services:
   engine:
     build:

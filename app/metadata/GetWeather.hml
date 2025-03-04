@@ -17,7 +17,7 @@ definition:
     typeName: FeelsLike
     inputTypeName: FeelsLikeInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_go
+    - dataConnectorName: weather
       dataConnectorObjectType: FeelsLike
 
 ---
@@ -57,7 +57,7 @@ definition:
     typeName: Temperature
     inputTypeName: TemperatureInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_go
+    - dataConnectorName: weather
       dataConnectorObjectType: Temperature
 
 ---
@@ -95,7 +95,7 @@ definition:
     typeName: WeatherInfo
     inputTypeName: WeatherInfoInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_go
+    - dataConnectorName: weather
       dataConnectorObjectType: WeatherInfo
 
 ---
@@ -149,7 +149,7 @@ definition:
     typeName: DailyItem
     inputTypeName: DailyItemInput
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_go
+    - dataConnectorName: weather
       dataConnectorObjectType: DailyItem
       fieldMapping:
         clouds:
@@ -233,7 +233,7 @@ definition:
     typeName: WeatherDataResponseWeatherData1
     inputTypeName: WeatherDataResponseWeatherData1Input
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_go
+    - dataConnectorName: weather
       dataConnectorObjectType: WeatherDataResponseWeatherData
       fieldMapping:
         daily:
@@ -276,7 +276,7 @@ definition:
     typeName: WeatherDataResponse1
     inputTypeName: WeatherDataResponse1Input
   dataConnectorTypeMapping:
-    - dataConnectorName: travelport_go
+    - dataConnectorName: weather
       dataConnectorObjectType: WeatherDataResponse
 
 ---
@@ -308,7 +308,7 @@ definition:
     - name: unit
       type: String
   source:
-    dataConnectorName: travelport_go
+    dataConnectorName: weather
     dataConnectorCommand:
       function: getWeather
   graphql:

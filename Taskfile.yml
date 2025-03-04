@@ -24,13 +24,13 @@ tasks:
       - ddn supergraph build local --log-level DEBUG
       - ddn run docker-start --log-level DEBUG
 
-  travelport-go-rebuild:
-    desc: Rebuild Travelport Go integration
+  weather-rebuild:
+    desc: Rebuild weather integration
     cmds:
-      - ddn connector introspect travelport_go --log-level DEBUG
-      - ddn model add travelport_go "*"
-      - ddn command add travelport_go "*"
-      - ddn relationship add travelport_go "*"
+      - ddn connector introspect weather --log-level DEBUG
+      - ddn model add weather "*"
+      - ddn command add weather "*"
+      - ddn relationship add weather "*"
       - ddn supergraph build local --log-level DEBUG
       - ddn run docker-start --log-level DEBUG
 
@@ -42,7 +42,7 @@ tasks:
 
   weather-templates:
     desc: Compile quicktemplate files for the weather service
-    dir: app/connector/travelport_go/weather
+    dir: app/connector/weather/weather
     cmds:
       - $HOME/go/bin/qtc
     sources:

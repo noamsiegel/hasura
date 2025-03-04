@@ -14,12 +14,12 @@ definition:
       fromEnv: APP_SB_API_POSTGRES_READ_URL
     APP_SB_API_POSTGRES_WRITE_URL:
       fromEnv: APP_SB_API_POSTGRES_WRITE_URL
-    APP_TRAVELPORT_GO_AUTHORIZATION_HEADER:
-      fromEnv: APP_TRAVELPORT_GO_AUTHORIZATION_HEADER
-    APP_TRAVELPORT_GO_READ_URL:
-      fromEnv: APP_TRAVELPORT_GO_READ_URL
-    APP_TRAVELPORT_GO_WRITE_URL:
-      fromEnv: APP_TRAVELPORT_GO_WRITE_URL
+    APP_WEATHER_AUTHORIZATION_HEADER:
+      fromEnv: APP_WEATHER_AUTHORIZATION_HEADER
+    APP_WEATHER_READ_URL:
+      fromEnv: APP_WEATHER_READ_URL
+    APP_WEATHER_WRITE_URL:
+      fromEnv: APP_WEATHER_WRITE_URL
     APP_TRAVELPORT_JS_AUTHORIZATION_HEADER:
       fromEnv: APP_TRAVELPORT_JS_AUTHORIZATION_HEADER
     APP_TRAVELPORT_JS_READ_URL:
@@ -37,5 +37,5 @@ definition:
       connectorLinkName: travelport_js
     - path: connector/sb_api_postgres/connector.yaml
       connectorLinkName: sb_api_postgres
-    - path: connector/travelport_go/connector.yaml
-      connectorLinkName: travelport_go
+    - path: connector/weather/connector.yaml
+      connectorLinkName: weather
